@@ -39,6 +39,12 @@
               <referencedTypeMoniker Id="e0838be8-56ff-4d01-acb2-6e1882fa32e8" LastKnownName="bool" />
             </type_NamedElement>
           </property>
+          <property Id="4ddf73e8-b9da-4434-8bc2-cc05af115e8b" name="kamernr" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="476b8464-7f9b-4f8f-b546-989f031c07d3" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4bbd9557-0c75-4992-b600-ca27ee00e807" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
