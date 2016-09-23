@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="Hotel.cs" />
     <Compile Include="Kamer.cs" />
+    <Compile Include="Liftschacht.cs" />
     <Compile Include="Lift.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

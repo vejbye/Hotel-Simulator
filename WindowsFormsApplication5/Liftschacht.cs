@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    abstract class Ruimte
+    class Liftschacht: Ruimte
     {
-        public List<Ruimte> neighbours = new List<Ruimte>();
+        Lift lift;
+
+        public Liftschacht(Lift lift)
+        {
+            this.lift = lift;
+        }
     }
 }
