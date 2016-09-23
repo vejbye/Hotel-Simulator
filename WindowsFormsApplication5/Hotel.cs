@@ -42,15 +42,23 @@ namespace WindowsFormsApplication5
             t3.neighbours.Add(f);
             t2.neighbours.Add(l2);
             t3.neighbours.Add(l3);
+            t1.neighbours.Add(t2);
+            t2.neighbours.Add(t1);
+            t2.neighbours.Add(t3);
+            t3.neighbours.Add(t2);
             rs.neighbours.Add(l2);
             rc.neighbours.Add(l1);
             t1.neighbours.Add(l1);
             l2.neighbours.Add(t2);
             l2.neighbours.Add(rs);
+            l2.neighbours.Add(l1);
+            l2.neighbours.Add(l3);
             l1.neighbours.Add(t1);
             l1.neighbours.Add(rc);
+            l1.neighbours.Add(l2);
             l3.neighbours.Add(t3);
             l3.neighbours.Add(kamer3);
+            l3.neighbours.Add(l2);
 
 
         }
