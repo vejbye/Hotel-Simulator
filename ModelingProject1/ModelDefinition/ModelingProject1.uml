@@ -135,7 +135,28 @@
         name="Ruimte"
         isAbstract="true"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="60ac6ee9-6f61-426d-ac2d-cbfa2cd77170"
+            name="neigbours"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89"
+                LastKnownName="List&lt;ruimte&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -421,16 +442,60 @@
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
         </suppliersInternal>
-        <generalsInternal>
-          <generalization
-            Id="d0f9c64c-a067-4d14-a087-fd725294edf3"
-            isSubstitutable="false">
+        <targetEnds>
+          <association
+            Id="27097aa3-ec75-4245-8aac-cdcd435471ca"
+            isDerived="false"
+            sourceEndRoleName="Lift"
+            targetEndRoleName="Liftschacht"
+            isLeaf="false"
+            isAbstract="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="67441863-0030-42fb-aa02-fedeba0de583"
+              LastKnownName="Liftschacht"
               LastKnownLocation="ModelingProject1.uml" />
-          </generalization>
-        </generalsInternal>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9853eef5-068b-4512-a1ff-45a34275505f"
+                  name="Lift"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="9aee5302-9f36-48ba-bcbb-706b2071268f"
+                      name="Lower"
+                      value="0,1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="1c05aba8-84b3-4309-a52b-6bea35b6d4ff"
+                      name="Upper"
+                      value="0,1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="517683d9-16f3-44d9-81ab-e779a682c401"
+                  name="Liftschacht"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="d5a3ed86-5d41-426a-98c4-9d5fd5195682"
@@ -488,6 +553,30 @@
         isAbstract="true"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="67441863-0030-42fb-aa02-fedeba0de583"
+        name="Liftschacht"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="2877ad93-2fc2-4423-a7e2-a6866f1fba1f"
+            isSubstitutable="false">
+            <classMoniker
+              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
+              LastKnownName="Ruimte"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89"
+        name="List&lt;ruimte&gt;" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

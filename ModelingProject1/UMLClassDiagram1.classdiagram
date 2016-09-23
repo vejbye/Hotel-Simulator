@@ -57,6 +57,14 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="3f141bc8-1749-4f60-9c9f-614f76a44546" name="Ruimte" isAbstract="true" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5" />
+        <ownedAttributesInternal>
+          <property Id="0c0c7cb8-e064-42e9-aeff-6410e7c975a5" name="neigbours" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="60ac6ee9-6f61-426d-ac2d-cbfa2cd77170" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="ce4cd54b-bb13-434a-b11b-8ed7b53a4f7f" LastKnownName="List&lt;ruimte&gt;" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -193,12 +201,34 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="5980a39f-2fc8-4eee-a337-73b1cc8d9c57" name="Lift" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="a8740f82-de36-44dd-8820-5a54815249ba" />
-        <generalsInternal>
-          <generalization Id="abe80e1b-08d8-4332-8ae3-2b513910899d" isSubstitutable="false">
-            <classMoniker Id="3f141bc8-1749-4f60-9c9f-614f76a44546" LastKnownName="Ruimte" />
-            <elementDefinition Id="d0f9c64c-a067-4d14-a087-fd725294edf3" />
-          </generalization>
-        </generalsInternal>
+        <targetEnds>
+          <association Id="41a7a0a8-83b5-4cda-b0cd-b447a5e1d6e1" isDerived="false" sourceEndRoleName="Lift" targetEndRoleName="Liftschacht" isLeaf="false" isAbstract="false">
+            <classMoniker Id="72585c83-81a6-4490-acc0-408cedb5eeaf" LastKnownName="Liftschacht" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fee76434-1023-4fc4-82c5-f42d1888f39c" name="Lift" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="4fd4e2bb-51fe-48c7-bb18-e824498b6486" name="Lower" value="0,1">
+                      <elementDefinition Id="9aee5302-9f36-48ba-bcbb-706b2071268f" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="f9295d14-95d0-4554-8b7f-3e75b248dd51" name="Upper" value="0,1">
+                      <elementDefinition Id="1c05aba8-84b3-4309-a52b-6bea35b6d4ff" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9853eef5-068b-4512-a1ff-45a34275505f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a4dafc71-624d-4921-93ee-65593e576d49" name="Liftschacht" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="517683d9-16f3-44d9-81ab-e779a682c401" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="27097aa3-ec75-4245-8aac-cdcd435471ca" />
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property Id="f39c65d6-1081-4af4-af6e-6f2da9a7d5c6" name="snelheid" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="d5a3ed86-5d41-426a-98c4-9d5fd5195682" />
@@ -220,6 +250,22 @@
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="72585c83-81a6-4490-acc0-408cedb5eeaf" name="Liftschacht" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="67441863-0030-42fb-aa02-fedeba0de583" />
+        <generalsInternal>
+          <generalization Id="4c7cbf94-9f47-4b8c-aa13-01a7d64ada3a" isSubstitutable="false">
+            <classMoniker Id="3f141bc8-1749-4f60-9c9f-614f76a44546" LastKnownName="Ruimte" />
+            <elementDefinition Id="2877ad93-2fc2-4423-a7e2-a6866f1fba1f" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="ce4cd54b-bb13-434a-b11b-8ed7b53a4f7f" name="List&lt;ruimte&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;ruimte&gt;">
+        <elementDefinition Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="bf212f23-896b-49ed-9a75-c847cdaa27e3" name="ModelingProject1">
     <elementDefinition Id="58f3a805-d8b9-4709-b27b-717dc4e073c6" />
