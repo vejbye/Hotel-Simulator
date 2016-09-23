@@ -28,7 +28,20 @@ namespace WindowsFormsApplication5
             Liftschacht l1 = new Liftschacht(new Lift());
             Liftschacht l2 = new Liftschacht(null);
             Liftschacht l3 = new Liftschacht(null);
-
+            ruimtes.Add(kamer1);
+            ruimtes.Add(kamer2);
+            ruimtes.Add(kamer3);
+            ruimtes.Add(kamer4);
+            ruimtes.Add(b);
+            ruimtes.Add(rs);
+            ruimtes.Add(rc);
+            ruimtes.Add(f);
+            ruimtes.Add(t1);
+            ruimtes.Add(t2);
+            ruimtes.Add(t3);
+            ruimtes.Add(l1);
+            ruimtes.Add(l2);
+            ruimtes.Add(l3);
             b.neighbours.Add(f);
             kamer1.neighbours.Add(kamer2);
             kamer4.neighbours.Add(kamer3);
