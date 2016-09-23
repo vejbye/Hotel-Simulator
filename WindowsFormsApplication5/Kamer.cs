@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    class Kamer
+    class Kamer : Ruimte
     {
         bool isBezet { get; set; }
         int kamernr { get; set; }

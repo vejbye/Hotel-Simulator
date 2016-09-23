@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    class Lift: infrastructuur
+    class Lift: Ruimte
     {
         int snelheid { get; set; }
     }

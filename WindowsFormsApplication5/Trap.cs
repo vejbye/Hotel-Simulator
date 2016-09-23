@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    class Trap: infrastructuur
+    class Trap: Ruimte
     {
     }
 }

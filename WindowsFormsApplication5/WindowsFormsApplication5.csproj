@@ -55,16 +55,14 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs" />
-    <Compile Include="infrastructuur.cs" />
     <Compile Include="Kamer.cs" />
     <Compile Include="Lift.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receptie.cs" />
     <Compile Include="Restaurant.cs" />
+    <Compile Include="Ruimte.cs" />
     <Compile Include="Trap.cs" />
-    <Compile Include="Voorziening.cs" />
-    <Compile Include="Washok.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

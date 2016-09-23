@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    class Bioscoop: Voorziening
+    class Bioscoop: Ruimte
     {
         bool isBezig { get; set; }
     }

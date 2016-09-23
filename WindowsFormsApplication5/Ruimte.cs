@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    abstract class Voorziening
+    class Ruimte
     {
     }
 }

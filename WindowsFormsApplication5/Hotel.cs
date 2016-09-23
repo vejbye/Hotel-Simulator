@@ -8,5 +8,13 @@ namespace WindowsFormsApplication5
 {
     class Hotel
     {
+        int height;
+        int width;
+        List<object> ruimtes = new List<object>();
+
+        public void maakHotel()
+        {
+
+        }
     }
 }

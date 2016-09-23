@@ -25,6 +25,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="8b840cfa-c631-45ed-b255-34e0540f6056"
+            isSubstitutable="false">
+            <classMoniker
+              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
+              LastKnownName="Ruimte"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association
             Id="f2315d30-b12d-4b90-9e89-5a920c7cefcb"
@@ -122,7 +132,7 @@
     <packageHasNamedElement>
       <class
         Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-        name="Voorziening"
+        name="Ruimte"
         isAbstract="true"
         isLeaf="false"
         isActiveClass="false" />
@@ -140,7 +150,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Voorziening"
+              LastKnownName="Ruimte"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -179,7 +189,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Voorziening"
+              LastKnownName="Ruimte"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -218,7 +228,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Voorziening"
+              LastKnownName="Ruimte"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -237,7 +247,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Voorziening"
+              LastKnownName="Ruimte"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -249,7 +259,18 @@
         name="Receptie"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="7e79fbc8-e8a1-4352-8c29-bda6b1797d05"
+            isSubstitutable="false">
+            <classMoniker
+              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
+              LastKnownName="Ruimte"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <undefinedType
@@ -330,58 +351,6 @@
         isActiveClass="false">
         <targetEnds>
           <association
-            Id="8abe6d4b-95f9-4dc9-9c90-b13a32b2d8f2"
-            isDerived="false"
-            sourceEndRoleName="Hotel"
-            targetEndRoleName="Kamer"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="eb26905d-03f0-49b1-8be1-efe23b409773"
-              LastKnownName="Kamer"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="90d57121-c8bc-412d-bd3a-fb7e093f6544"
-                  name="Hotel"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b3c44461-dfc0-42ef-9349-61e8ed608abb"
-                  name="Kamer"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="9c76ba44-b379-4529-84bc-19b2803189a1"
-                      name="Lower"
-                      value="1" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="a853b832-ff01-438d-ae46-9a9bf4b719f6"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="8b98cb1e-0db6-44e1-b0f3-4685f511b4a8"
             isDerived="false"
             sourceEndRoleName="Hotel"
@@ -390,7 +359,7 @@
             isAbstract="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Voorziening"
+              LastKnownName="Ruimte"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -433,97 +402,6 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
-          <association
-            Id="34129035-36c5-41b0-ae86-75aa2c610b00"
-            isDerived="false"
-            sourceEndRoleName="Hotel"
-            targetEndRoleName="Receptie"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="bb5d3846-ecb8-460a-b8d8-51a5a3f9297f"
-              LastKnownName="Receptie"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="a9f2bac1-966d-4868-bc22-d0a232e5e22f"
-                  name="Hotel"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="83e04187-a4f7-4d21-8391-9c7c219e784a"
-                  name="Receptie"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="bbe3b7bc-092d-46fa-b4ce-494bb0a2974c"
-            isDerived="false"
-            sourceEndRoleName="Hotel"
-            targetEndRoleName="infrastructuur"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="57749422-a7f9-47fa-845b-4e74ce7d5c3c"
-              LastKnownName="infrastructuur"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="25e7d836-8b43-46a6-888e-52e0b938f370"
-                  name="Hotel"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="256a3e84-14e6-4897-950c-bd6d6f8155a4"
-                  name="infrastructuur"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="c9083ed3-81af-4302-ae63-27b10d0864e4"
-                      name="Lower"
-                      value="1" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="1e50bf96-e861-40f1-a231-a7e7dfa74192"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -543,6 +421,16 @@
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
         </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="d0f9c64c-a067-4d14-a087-fd725294edf3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
+              LastKnownName="Ruimte"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="d5a3ed86-5d41-426a-98c4-9d5fd5195682"
@@ -581,6 +469,16 @@
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
         </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="35b09d17-af59-4287-a04d-f3c8b7fdfd86"
+            isSubstitutable="false">
+            <classMoniker
+              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
+              LastKnownName="Ruimte"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
