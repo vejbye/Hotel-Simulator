@@ -218,7 +218,7 @@
     <packageHasNamedElement>
       <class
         Id="c1f6a0e6-cde0-46ef-b5ae-df75fa7e33f9"
-        name="Fitnessruimte"
+        name="Fitness"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">

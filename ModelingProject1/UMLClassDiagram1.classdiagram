@@ -98,7 +98,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="4ab56edf-0985-438e-ad44-6598a601a275" name="Fitnessruimte" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="4ab56edf-0985-438e-ad44-6598a601a275" name="Fitness" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="c1f6a0e6-cde0-46ef-b5ae-df75fa7e33f9" />
         <generalsInternal>
           <generalization Id="74ba5f74-2bf6-417a-883c-7f97e3c381f6" isSubstitutable="false">
