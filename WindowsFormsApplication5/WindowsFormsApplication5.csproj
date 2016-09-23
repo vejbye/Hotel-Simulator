@@ -55,6 +55,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs" />
+    <Compile Include="Kamer.cs" />
+    <Compile Include="Object\Liftschacht.cs" />
+    <Compile Include="Lift.cs" />
     <Compile Include="Object\Kamer.cs" />
     <Compile Include="Object\Lift.cs" />
     <Compile Include="Program.cs" />

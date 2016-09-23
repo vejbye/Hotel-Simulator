@@ -12,9 +12,12 @@ namespace WindowsFormsApplication5
 {
     public partial class Form1 : Form
     {
+        Hotel hotel;
         public Form1()
         {
             InitializeComponent();
+            hotel = new Hotel();
+            hotel.maakHotel();
         }
     }
 }
