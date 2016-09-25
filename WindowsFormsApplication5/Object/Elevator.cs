@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator
 {
-    class Lift
+    class Elevator
     {
-        int snelheid { get; set; }
+        int speed { get; set; }
     }
 }

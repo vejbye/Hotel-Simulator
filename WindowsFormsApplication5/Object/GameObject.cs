@@ -10,6 +10,6 @@ namespace HotelSimulator.Object
     class GameObject
     {
         public int roomSize;
-        protected Image image;
+        public Image image;
     }
 }

@@ -19,7 +19,7 @@ namespace HotelSimulator
         {
             InitializeComponent();
             hotel = new Hotel();
-            screenPB.Image = hotel.Build();
+            screenPB.Image = hotel.Build(screenPB.Width, screenPB.Height);
         }
 
         private void HotelSimulator_Load(object sender, EventArgs e)

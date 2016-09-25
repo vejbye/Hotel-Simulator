@@ -34,9 +34,10 @@
             // 
             // screenPB
             // 
+            this.screenPB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.screenPB.Location = new System.Drawing.Point(12, 12);
             this.screenPB.Name = "screenPB";
-            this.screenPB.Size = new System.Drawing.Size(513, 311);
+            this.screenPB.Size = new System.Drawing.Size(1148, 432);
             this.screenPB.TabIndex = 0;
             this.screenPB.TabStop = false;
             // 
@@ -44,10 +45,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 483);
+            this.ClientSize = new System.Drawing.Size(1172, 556);
             this.Controls.Add(this.screenPB);
             this.Name = "HotelSimulator";
-            this.Text = "Form1";
+            this.Text = "Hotel Simulator 2016";
             this.Load += new System.EventHandler(this.HotelSimulator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).EndInit();
             this.ResumeLayout(false);

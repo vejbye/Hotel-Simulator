@@ -8,6 +8,6 @@ namespace HotelSimulator.Object
 {
     class Cinema: GameObject
     {
-        bool isBezig { get; set; }
+        bool playing { get; set; }
     }
 }

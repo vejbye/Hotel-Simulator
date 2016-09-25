@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator.Object
 {
-    class Receptie: GameObject
+    class Reception: GameObject
     {
     }
 }

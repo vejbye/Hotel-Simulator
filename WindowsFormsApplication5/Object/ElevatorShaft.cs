@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator.Object
 {
-    class Liftschacht: GameObject
+    class ElevatorShaft: GameObject
     {
-        Lift lift;
+        ElevatorShaft elevatorShaft;
 
-        public Liftschacht(Lift lift)
+        public ElevatorShaft(ElevatorShaft shaft)
         {
-            this.lift = lift;
+            this.elevatorShaft = shaft;
         }
     }
 }

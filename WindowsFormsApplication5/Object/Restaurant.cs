@@ -8,7 +8,7 @@ namespace HotelSimulator.Object
 {
     class Restaurant: GameObject
     {
-        int capaciteit { get; set; }
+        int capacity { get; set; }
         
     }
 }
