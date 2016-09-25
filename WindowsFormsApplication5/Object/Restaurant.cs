@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator.Object
 {
-    class Restaurant: Ruimte
+    class Restaurant: GameObject
     {
         int capaciteit { get; set; }
         

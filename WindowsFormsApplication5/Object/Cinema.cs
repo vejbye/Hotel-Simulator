@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator.Object
 {
-    class Kamer : Ruimte
+    class Cinema: GameObject
     {
-        bool isBezet { get; set; }
-        int kamernr { get; set; }
+        bool isBezig { get; set; }
     }
 }

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator.Object
 {
-    class Trap: Ruimte
+    class GameObject
     {
+        public int roomSize;
+        protected Image image;
     }
 }

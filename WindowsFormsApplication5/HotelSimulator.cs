@@ -7,17 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelSimulator.Object;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator
 {
-    public partial class Form1 : Form
+    public partial class HotelSimulator : Form
     {
         Hotel hotel;
-        public Form1()
+
+        public HotelSimulator()
         {
             InitializeComponent();
             hotel = new Hotel();
-            hotel.maakHotel();
+            screenPB.Image = hotel.Build();
+        }
+
+        private void HotelSimulator_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

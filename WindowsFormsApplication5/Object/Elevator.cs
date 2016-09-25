@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator
 {
-    abstract class Ruimte
+    class Lift
     {
-        public List<Ruimte> neighbours = new List<Ruimte>();
+        int snelheid { get; set; }
     }
 }
