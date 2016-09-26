@@ -40,6 +40,10 @@
             this.screenPB.Size = new System.Drawing.Size(1148, 432);
             this.screenPB.TabIndex = 0;
             this.screenPB.TabStop = false;
+            this.screenPB.Paint += new System.Windows.Forms.PaintEventHandler(this.screenPB_Paint);
+            this.screenPB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseDown);
+            this.screenPB.MouseMove += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseMove);
+            this.screenPB.MouseUp += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseUp);
             // 
             // HotelSimulator
             // 
