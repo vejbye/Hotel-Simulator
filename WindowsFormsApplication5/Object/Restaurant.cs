@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication5
 {
-    class Restaurant: Ruimte
+    class Restaurant
     {
         int capaciteit { get; set; }
         
