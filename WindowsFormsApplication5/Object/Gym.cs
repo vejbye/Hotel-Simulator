@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator.Object
 {
-    class Bioscoop: Ruimte
+    class Gym: GameObject
     {
-        bool isBezig { get; set; }
     }
 }

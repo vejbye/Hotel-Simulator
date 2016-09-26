@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator.Object
 {
-    class Fitnessruimte: Ruimte
+    class Cinema: GameObject
     {
+        bool playing { get; set; }
     }
 }

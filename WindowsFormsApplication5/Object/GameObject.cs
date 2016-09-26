@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator.Object
 {
-    abstract class Ruimte
+    class GameObject
     {
-        public List<Ruimte> neighbours = new List<Ruimte>();
+        public int roomSize;
+        public Image image;
     }
 }

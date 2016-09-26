@@ -21,17 +21,25 @@
     <packageHasNamedElement>
       <class
         Id="eb26905d-03f0-49b1-8be1-efe23b409773"
-        name="Kamer"
+        name="Room"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="8b840cfa-c631-45ed-b255-34e0540f6056"
+            Id="4cd456ed-15c7-47dc-b828-b253a4e3d8f4"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="60b793ce-faef-4fc3-81e8-7a027d99f81c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -39,19 +47,18 @@
           <association
             Id="f2315d30-b12d-4b90-9e89-5a920c7cefcb"
             isDerived="false"
-            sourceEndRoleName="Kamer"
-            targetEndRoleName="Receptie"
+            sourceEndRoleName=""
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
               Id="bb5d3846-ecb8-460a-b8d8-51a5a3f9297f"
-              LastKnownName="Receptie"
+              LastKnownName="Reception"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="6b114fcc-98c7-4be7-8da9-489511663466"
-                  name="Kamer"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -76,7 +83,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="877428df-1306-4eaa-b7b3-645485f423c0"
-                  name="Receptie"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -92,7 +98,7 @@
         <ownedAttributesInternal>
           <property
             Id="49212d13-cc95-467f-b208-3c3a252ffb02"
-            name="isBezet"
+            name="taken"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -110,7 +116,7 @@
           </property>
           <property
             Id="476b8464-7f9b-4f8f-b546-989f031c07d3"
-            name="kamernr"
+            name="roomNr"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -132,10 +138,160 @@
     <packageHasNamedElement>
       <class
         Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-        name="Ruimte"
-        isAbstract="true"
+        name="Space"
+        isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ea554fe8-f922-457d-a421-bba8b31639ca">
+            <enumerationMoniker
+              Id="855e3c9b-419c-4490-8a2f-7d6da33550d2"
+              LastKnownName="Neighbour"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="123782c8-8db8-4992-82b5-8af1dfd22481">
+            <enumerationMoniker
+              Id="09f80e00-d438-4b96-a827-ee16bdd8fa6b"
+              LastKnownName="Neighbour"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="141cc5a3-34a4-48c4-b8d8-dff062617293"
+            isDerived="false"
+            sourceEndRoleName="Space"
+            targetEndRoleName="GameObject"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2b79a689-0e7f-4200-9030-c589c537534c"
+                  name="Space"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e66caa52-011a-412b-9abe-d2458ebf3874"
+                  name="GameObject"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8e53efca-eb85-4c3b-a69f-65b2d7a589b8"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6495cb91-46e1-407d-aafa-fa996b18d74f"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d3012b6a-7a60-48f9-9f4c-9190334c6f54"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="18530cee-aaa8-4302-816b-1256382c795e"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
+              LastKnownName="Space"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="409a76e1-617d-4cd8-9049-a11a48e619c6"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="eb8685b8-4540-4fb9-aa72-e2e3b8affa2f"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="60ac6ee9-6f61-426d-ac2d-cbfa2cd77170"
+            name="neighbours"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89"
+                LastKnownName="List&lt;Space&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -146,18 +302,26 @@
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="d1fa908e-6e81-4cfa-b64d-9e61947845e7"
+            Id="748d027c-381b-46da-936f-3f68d0f27d8c"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="da3ffeb5-5d21-46d6-be6a-52e05060e882"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="27cae503-da2f-46ee-8831-0af8a1a837ad"
-            name="capaciteit"
+            name="capacity"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -179,24 +343,32 @@
     <packageHasNamedElement>
       <class
         Id="9bf439e0-e937-420c-aaf1-b6a7c666775f"
-        name="Bioscoop"
+        name="Cinema"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="0f8077b7-861c-49a3-9789-f6ae87eec8ea"
+            Id="7fc73059-23cb-4cf1-bf1a-984f398f9019"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="25842217-4822-4e87-bd2b-21c671961cb6"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="db615b6d-779e-4e11-b3df-a3280350293e"
-            name="isBezig"
+            name="playing"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -218,17 +390,25 @@
     <packageHasNamedElement>
       <class
         Id="c1f6a0e6-cde0-46ef-b5ae-df75fa7e33f9"
-        name="Fitness"
+        name="Gym"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="f6ca9fd2-b841-46b5-812b-49f04879efff"
+            Id="9c374f77-911c-414e-97ec-d13d502c624a"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="b6e64c1d-8ccb-45c9-b353-5741ca8030e6"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -247,7 +427,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              LastKnownName="Space"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -256,17 +436,25 @@
     <packageHasNamedElement>
       <class
         Id="bb5d3846-ecb8-460a-b8d8-51a5a3f9297f"
-        name="Receptie"
+        name="Reception"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="7e79fbc8-e8a1-4352-8c29-bda6b1797d05"
+            Id="3bd80eee-3d2d-455a-b60a-3b9976d06457"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="c841b802-1b35-4ac2-91b2-bd10d7037946"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -293,8 +481,8 @@
           <association
             Id="49252f37-0e86-4827-ba75-e8f7bf5874d0"
             isDerived="false"
-            sourceEndRoleName="Program"
-            targetEndRoleName="Hotel"
+            sourceEndRoleName=""
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -305,7 +493,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="55882bd3-fa16-4cf7-9014-6f3dd23bc65a"
-                  name="Program"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -318,7 +505,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="bb3dcbb9-e5b1-4b94-93b0-b51408244f23"
-                  name="Hotel"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -353,19 +539,18 @@
           <association
             Id="8b98cb1e-0db6-44e1-b0f3-4685f511b4a8"
             isDerived="false"
-            sourceEndRoleName="Hotel"
-            targetEndRoleName="Voorziening"
+            sourceEndRoleName=""
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
               Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              LastKnownName="Space"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="8f165a31-7c42-42f2-a29f-ea63295f97bd"
-                  name="Hotel"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -378,7 +563,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="976c83e5-2137-4c22-8f76-54e95bb676b8"
-                  name="Voorziening"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -390,7 +574,7 @@
                     <literalString
                       Id="3f2b384a-0a0c-4365-924f-4f56c41a587d"
                       name="Lower"
-                      value="1" />
+                      value="0" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
@@ -408,7 +592,7 @@
     <packageHasNamedElement>
       <class
         Id="a8740f82-de36-44dd-8820-5a54815249ba"
-        name="Lift"
+        name="Elevator"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -423,18 +607,70 @@
         </suppliersInternal>
         <generalsInternal>
           <generalization
-            Id="d0f9c64c-a067-4d14-a087-fd725294edf3"
+            Id="f71d3526-bf17-4798-998c-d03861ead6b4"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="3cc3471f-1982-4932-b71d-6d8563dacefa"
+              LastKnownName="TransportObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="27097aa3-ec75-4245-8aac-cdcd435471ca"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="67441863-0030-42fb-aa02-fedeba0de583"
+              LastKnownName="ElevatorShaft"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9853eef5-068b-4512-a1ff-45a34275505f"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="9aee5302-9f36-48ba-bcbb-706b2071268f"
+                      name="Lower"
+                      value="0" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="1c05aba8-84b3-4309-a52b-6bea35b6d4ff"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="517683d9-16f3-44d9-81ab-e779a682c401"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="d5a3ed86-5d41-426a-98c4-9d5fd5195682"
-            name="snelheid"
+            name="speed"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -456,7 +692,7 @@
     <packageHasNamedElement>
       <class
         Id="8043153a-0aaf-426b-8e94-d9ce11cf9a99"
-        name="Trap"
+        name="Stair"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -471,11 +707,19 @@
         </suppliersInternal>
         <generalsInternal>
           <generalization
-            Id="35b09d17-af59-4287-a04d-f3c8b7fdfd86"
+            Id="cf7ebde4-2420-4864-b4bc-20ac1ddb4397"
             isSubstitutable="false">
             <classMoniker
-              Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5"
-              LastKnownName="Ruimte"
+              Id="1a1b2792-d4f5-4c04-b321-bba38472963d"
+              LastKnownName="TransportObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="c69f84cf-4dfe-47ac-afc5-dcfb20ec9e6b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3cc3471f-1982-4932-b71d-6d8563dacefa"
+              LastKnownName="TransportObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -488,6 +732,235 @@
         isAbstract="true"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="67441863-0030-42fb-aa02-fedeba0de583"
+        name="ElevatorShaft"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="e049ead4-ccf4-4dbf-b60d-417531342922"
+            isSubstitutable="false">
+            <classMoniker
+              Id="1a1b2792-d4f5-4c04-b321-bba38472963d"
+              LastKnownName="TransportObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="ffeb1b32-b55e-45af-b7a2-371243db6a4a"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3cc3471f-1982-4932-b71d-6d8563dacefa"
+              LastKnownName="TransportObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89"
+        name="List&lt;Space&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+        name="GameObject"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="29e44c51-c975-4bde-8a4a-5d2fc6742e71"
+            name="image"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="2ae92350-4cf0-44f5-920e-af22c198e5e2"
+                LastKnownName="Image"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1a1b2792-d4f5-4c04-b321-bba38472963d"
+        name="TransportObject"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="3277d7ab-472e-450f-bf25-a819d4309472"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c45dae3c-caea-4ab3-b012-fea169a05d95"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="236a7283-7e99-4a91-9dc5-d1e2ae6fd4a1"
+            name="duration"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="2ae92350-4cf0-44f5-920e-af22c198e5e2"
+        name="Image" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="855e3c9b-419c-4490-8a2f-7d6da33550d2"
+        name="Neighbour"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="dab59adc-a63b-4d0c-9b7d-0fdfaecb7bb0"
+            name="East" />
+          <enumerationLiteral
+            Id="827975d1-0154-4935-86d0-3713d4b2b295"
+            name="North" />
+          <enumerationLiteral
+            Id="9ce8cc39-b8cb-4b62-99c8-083b488c0f3f"
+            name="South" />
+          <enumerationLiteral
+            Id="54e50763-7ff0-42b6-a698-a7ae260a778c"
+            name="West" />
+          <enumerationLiteral
+            Id="870ae2e1-975f-4ed5-989a-3ca54c4b55a6"
+            name="None" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+        name="GameObject"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="68d03f6d-1011-4b91-85b3-aa17cc84012a"
+            name="roomSize"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f7bafe3e-4801-4b0f-adf9-f4e6095f78f8"
+            name="image"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="2ae92350-4cf0-44f5-920e-af22c198e5e2"
+                LastKnownName="Image"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3cc3471f-1982-4932-b71d-6d8563dacefa"
+        name="TransportObject"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="09f06045-82b6-4386-8bf1-4ca3f2a95f88"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="GameObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1feb2a06-9224-4fbe-be31-e58842bce3c0"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="09f80e00-d438-4b96-a827-ee16bdd8fa6b"
+        name="Neighbour"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="b5c2bbd5-f2cc-4629-a273-8ff66f5fde7c"
+            name="East" />
+          <enumerationLiteral
+            Id="b4436ddb-1531-4022-a304-3da0a178ab06"
+            name="North" />
+          <enumerationLiteral
+            Id="1a045cc9-f139-4b98-8579-b00a7b01f9e6"
+            name="South" />
+          <enumerationLiteral
+            Id="1af9a82b-479a-47e2-a04b-7a1c0497f94a"
+            name="West" />
+          <enumerationLiteral
+            Id="cb1bca60-2a1c-4ba8-a1f8-2ad82229a0dc"
+            name="None" />
+        </ownedLiterals>
+      </enumeration>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
