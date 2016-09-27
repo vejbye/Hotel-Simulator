@@ -22,7 +22,7 @@ namespace HotelSimulator
         {
             InitializeComponent();
             hotel = new Hotel();
-            screenPB.Image = hotel.Build(screenPB.Width, screenPB.Height);
+            screenPB.Image = hotel.Build();
         }
 
         private void HotelSimulator_Load(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace HotelSimulator
         {
             panning = true;
             startingPoint = new Point(e.Location.X - movingPoint.X,
-                                      e.Location.Y - movingPoint.Y);
+                                      e.Location.Y - movingPoint.Y); 
         }
 
         void screenPB_MouseUp(object sender, MouseEventArgs e)
@@ -47,16 +47,19 @@ namespace HotelSimulator
         {
             if (panning)
             {
-                movingPoint = new Point(e.Location.X - startingPoint.X,
-                                        e.Location.Y - startingPoint.Y);
-                screenPB.Invalidate();
+                
+                {
+                    movingPoint = new Point(e.Location.X - startingPoint.X,
+                                            e.Location.Y - startingPoint.Y);
+                    screenPB.Invalidate();
+                }
             }
         }
 
         void screenPB_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.Clear(Color.White);
-            e.Graphics.DrawImage(hotel.Build(screenPB.Width, screenPB.Height), movingPoint);
+            e.Graphics.DrawImage(hotel.Build(), movingPoint);
         }
 
         

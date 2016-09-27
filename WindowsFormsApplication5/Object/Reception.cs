@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
+using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
@@ -11,7 +12,7 @@ namespace HotelSimulator.Object
     {
         public Reception() : base()
         {
-            image = Image.FromFile(@"C:\Users\iCalvin\Source\Repos\Hotel-Simulator\WindowsFormsApplication5\Resources\Reception.png");
+            image = Resources.Reception;
         }
     }
 }

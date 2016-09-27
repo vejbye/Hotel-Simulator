@@ -4,17 +4,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
     class Hotel
     {
-        List<object> Spaces = new List<object>();
+        List<GameObject> objects = new List<GameObject>();
 
-        public Bitmap Build(int width, int height)
+        public Bitmap Build()
         {
-            Bitmap hotel = new Bitmap(width, height);
-            Space[,] map = new Space[width, height];
+            Bitmap hotel = new Bitmap(1000,1000);
+            Space[,] map = new Space[10, 10];
 
             for (int x = 0; x < map.GetLength(0); x++)
             {
@@ -28,33 +29,51 @@ namespace HotelSimulator.Object
             Room test2 = new Room();
             Room test3 = new Room();
             Reception test4 = new Reception();
+            ElevatorShaft test5 = new ElevatorShaft();
+            objects.Add(test);
+            objects.Add(test2);
+            objects.Add(test3);
+            objects.Add(test4);
+            objects.Add(test5);
+
             map[0, 0].currentObject = test;
             map[0, 1].currentObject = test2;
             map[1, 0].currentObject = test3;
             map[1, 1].currentObject = test4;
+            map[2, 1].currentObject = test5;
 
 
             Graphics gfx = Graphics.FromImage(hotel);
 
-            int xas = 1;
-            int yas = 1;
+            int xas = 400;
+            int yas = 270;
+            gfx.DrawImage(Resources.hotelBG, 1 , 1 , 1400, 402);
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
                     if (map[x, y].currentObject != null)
                     {
-                        if (map[x,y].currentObject is Reception)
+                        if (map[x, y].currentObject is Reception)
+                        {
                             gfx.DrawImage(map[x, y].currentObject.image, xas, yas, 200, 50);
-                        else
+                            xas += 100;
+                        }
+                        if (map[x, y].currentObject is ElevatorShaft)
+                        {
                             gfx.DrawImage(map[x, y].currentObject.image, xas, yas, 100, 50);
+                        }
+                        if (map[x, y].currentObject is Room)
+                        {
+                            gfx.DrawImage(map[x, y].currentObject.image, xas, yas, 100, 50);
+                        }
                     }
 
                     yas += 50;
                 }
 
                 xas += 100;
-                yas = 1;
+                yas = 270;
             }
 
             return hotel;

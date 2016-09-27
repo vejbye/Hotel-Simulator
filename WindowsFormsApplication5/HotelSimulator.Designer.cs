@@ -35,9 +35,9 @@
             // screenPB
             // 
             this.screenPB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.screenPB.Location = new System.Drawing.Point(12, 12);
+            this.screenPB.Location = new System.Drawing.Point(-2, 0);
             this.screenPB.Name = "screenPB";
-            this.screenPB.Size = new System.Drawing.Size(1148, 432);
+            this.screenPB.Size = new System.Drawing.Size(1175, 402);
             this.screenPB.TabIndex = 0;
             this.screenPB.TabStop = false;
             this.screenPB.Paint += new System.Windows.Forms.PaintEventHandler(this.screenPB_Paint);
