@@ -131,12 +131,38 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="2c4a08c3-4327-4813-a0ed-aa81daa66ab8" name="Reception" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="bb5d3846-ecb8-460a-b8d8-51a5a3f9297f" />
+        <suppliersInternal>
+          <dependency Id="4097703e-de46-4e30-9193-406323daf1f8">
+            <classMoniker Id="31902f17-4f09-44d2-8a5c-e918322e8b69" LastKnownName="Hotel" />
+            <elementDefinition Id="d8dd700f-eb65-45bf-8f92-8a4f470ff68e" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="4b15debb-6373-4aeb-bd2c-e457fb6f09a4" isSubstitutable="false">
             <classMoniker Id="3c9cd8a7-515b-43df-8ad3-c8cc79239278" LastKnownName="HotelRoom" />
             <elementDefinition Id="f69fd134-2a56-4ea8-bb2f-eec4cdd0063a" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="2527d1c5-917c-4438-a1a8-6bc29b4beded" name="findEmptyRoom" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="cdd79f6f-adaa-46d8-9f8c-d22e0787ab4f" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="335c4906-1bac-4fcd-8166-5fd89bb72f2c" name="Hotel hotel" direction="In" isUnique="false">
+                  <elementDefinition Id="708ea3bf-99c0-4400-998c-a34002581843" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="556e22a8-4e99-4d3e-ac1b-352af1a1f161" direction="Return" isUnique="false">
+                  <elementDefinition Id="48997448-ed2a-4706-a373-585070f75719" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="010ae49b-71be-4d28-840b-dd8b9f1bb679" LastKnownName="Room" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
@@ -409,6 +435,22 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="57a74249-504b-4c14-a79b-bd4fdbfc0444" />
           </association>
+          <association Id="cd2fa04e-affb-476e-9a60-800eedca451b" isDerived="false" sourceEndRoleName="Guest" targetEndRoleName="Room" isLeaf="false" isAbstract="false">
+            <classMoniker Id="0aa0a359-d7cb-4560-ac0e-acd1bad9de6b" LastKnownName="Room" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c74696b1-d5c1-48fa-a760-cb2d6598b79c" name="Guest" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="95c4bab0-b415-4d45-b2b2-ba97fb6292c3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="30bd0f3d-5a18-4157-8271-37a5c1b0408a" name="Room" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e2533654-e2d2-4357-97eb-1ca97c22ad5e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d8e428f1-5b5a-449e-973b-d692219d3063" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -445,6 +487,11 @@
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="010ae49b-71be-4d28-840b-dd8b9f1bb679" name="Room" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::Room">
+        <elementDefinition Id="eb26905d-03f0-49b1-8be1-efe23b409773" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="bf212f23-896b-49ed-9a75-c847cdaa27e3" name="ModelingProject1">
     <elementDefinition Id="58f3a805-d8b9-4709-b27b-717dc4e073c6" />
