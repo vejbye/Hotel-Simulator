@@ -34,10 +34,11 @@
             // 
             // screenPB
             // 
+            this.screenPB.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.screenPB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.screenPB.Location = new System.Drawing.Point(-2, 0);
             this.screenPB.Name = "screenPB";
-            this.screenPB.Size = new System.Drawing.Size(1175, 402);
+            this.screenPB.Size = new System.Drawing.Size(1175, 540);
             this.screenPB.TabIndex = 0;
             this.screenPB.TabStop = false;
             this.screenPB.Paint += new System.Windows.Forms.PaintEventHandler(this.screenPB_Paint);
@@ -49,11 +50,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 556);
+            this.ClientSize = new System.Drawing.Size(1172, 614);
             this.Controls.Add(this.screenPB);
             this.Name = "HotelSimulator";
             this.Text = "Hotel Simulator 2016";
-            this.Load += new System.EventHandler(this.HotelSimulator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).EndInit();
             this.ResumeLayout(false);
 

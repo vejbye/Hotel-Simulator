@@ -17,6 +17,13 @@ namespace HotelSimulator
         private Point startingPoint = Point.Empty;
         private Point movingPoint = Point.Empty;
         private bool panning = false;
+        private Point original = new Point(0, 0);
+
+        int maxPanX = -800;
+        int minPanX = 1;
+        int maxPanY = 0;
+        int minPanY = -250;
+        
 
         public HotelSimulator()
         {
@@ -25,17 +32,13 @@ namespace HotelSimulator
             screenPB.Image = hotel.Build();
         }
 
-        private void HotelSimulator_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
+        
         void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
             panning = true;
             startingPoint = new Point(e.Location.X - movingPoint.X,
-                                      e.Location.Y - movingPoint.Y); 
+                                      e.Location.Y - movingPoint.Y);
+            
         }
 
         void screenPB_MouseUp(object sender, MouseEventArgs e)
@@ -48,18 +51,34 @@ namespace HotelSimulator
             if (panning)
             {
                 
-                {
                     movingPoint = new Point(e.Location.X - startingPoint.X,
                                             e.Location.Y - startingPoint.Y);
                     screenPB.Invalidate();
-                }
+                
             }
         }
 
         void screenPB_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.Clear(Color.White);
-            e.Graphics.DrawImage(hotel.Build(), movingPoint);
+            e.Graphics.Clear(Color.DeepSkyBlue);
+            
+            if (movingPoint.X < maxPanX)
+                movingPoint.X = maxPanX;
+
+            if (movingPoint.X > minPanX)
+                movingPoint.X = minPanX;
+                     
+            if (movingPoint.Y < minPanY)
+                movingPoint.Y = minPanY;
+
+            if (movingPoint.Y > maxPanY)
+                movingPoint.Y = maxPanY;
+
+
+
+
+
+            e.Graphics.DrawImage(screenPB.Image, movingPoint);
         }
 
         

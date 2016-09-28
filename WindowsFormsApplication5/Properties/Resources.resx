@@ -121,13 +121,13 @@
   <data name="ElevatorShaft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ElevatorShaft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hotelBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hotelBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Reception" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reception.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Room" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Room.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SimulatorBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SimulatorBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

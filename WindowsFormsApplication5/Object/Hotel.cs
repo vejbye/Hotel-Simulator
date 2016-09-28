@@ -14,7 +14,7 @@ namespace HotelSimulator.Object
 
         public Bitmap Build()
         {
-            Bitmap hotel = new Bitmap(1000,1000);
+            Bitmap hotel = new Bitmap(2000,1000);
             Space[,] map = new Space[10, 10];
 
             for (int x = 0; x < map.GetLength(0); x++)
@@ -45,9 +45,9 @@ namespace HotelSimulator.Object
 
             Graphics gfx = Graphics.FromImage(hotel);
 
-            int xas = 400;
-            int yas = 270;
-            gfx.DrawImage(Resources.hotelBG, 1 , 1 , 1400, 402);
+            int xas = 700;
+            int yas = 635;
+            gfx.DrawImage(Resources.SimulatorBG, 1 , 1 , 2000, 800);
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
@@ -73,7 +73,7 @@ namespace HotelSimulator.Object
                 }
 
                 xas += 100;
-                yas = 270;
+                yas = 635;
             }
 
             return hotel;

@@ -103,7 +103,7 @@
     <None Include="Resources\Room.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\hotelBG.png" />
+    <None Include="Resources\SimulatorBG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

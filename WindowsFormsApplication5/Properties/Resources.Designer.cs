@@ -73,16 +73,6 @@ namespace WindowsFormsApplication5.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap hotelBG {
-            get {
-                object obj = ResourceManager.GetObject("hotelBG", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap Reception {
             get {
                 object obj = ResourceManager.GetObject("Reception", resourceCulture);
@@ -96,6 +86,16 @@ namespace WindowsFormsApplication5.Properties {
         public static System.Drawing.Bitmap Room {
             get {
                 object obj = ResourceManager.GetObject("Room", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SimulatorBG {
+            get {
+                object obj = ResourceManager.GetObject("SimulatorBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
