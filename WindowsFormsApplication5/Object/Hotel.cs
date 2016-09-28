@@ -11,11 +11,11 @@ namespace HotelSimulator.Object
     class Hotel
     {
         List<GameObject> objects = new List<GameObject>();
+        Space[,] map = new Space[10, 10];
 
         public Bitmap Build()
         {
             Bitmap hotel = new Bitmap(2000,1000);
-            Space[,] map = new Space[10, 10];
 
             for (int x = 0; x < map.GetLength(0); x++)
             {
@@ -30,6 +30,7 @@ namespace HotelSimulator.Object
             Room test3 = new Room();
             Reception test4 = new Reception();
             ElevatorShaft test5 = new ElevatorShaft();
+
             objects.Add(test);
             objects.Add(test2);
             objects.Add(test3);
@@ -77,8 +78,12 @@ namespace HotelSimulator.Object
             }
 
             return hotel;
-
             
+        }
+
+        public Space[,] getMap()
+        {
+            return map;
         }
 
     }
