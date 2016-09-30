@@ -69,6 +69,7 @@
     <Compile Include="LayoutFormat.cs" />
     <Compile Include="Neighbour.cs" />
     <Compile Include="Object\Cinema.cs" />
+    <Compile Include="Object\Guest.cs" />
     <Compile Include="Object\HotelRoom.cs" />
     <Compile Include="Object\SimObject.cs" />
     <Compile Include="Object\Gym.cs" />
@@ -148,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Restaurant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guest.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
