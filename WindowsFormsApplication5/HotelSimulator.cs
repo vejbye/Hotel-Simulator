@@ -25,20 +25,20 @@ namespace HotelSimulator
         int maxPanY = 0;
         int minPanY = -250;
         bool initialized = false;
-        
+
         public HotelSimulator()
         {
             InitializeComponent();
             hotel = new Hotel();
         }
 
-        
+
         void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
             panning = true;
             startingPoint = new Point(e.Location.X - movingPoint.X,
                                       e.Location.Y - movingPoint.Y);
-            
+
         }
 
         void screenPB_MouseUp(object sender, MouseEventArgs e)
@@ -50,11 +50,11 @@ namespace HotelSimulator
         {
             if (panning)
             {
-                
-                    movingPoint = new Point(e.Location.X - startingPoint.X,
-                                            e.Location.Y - startingPoint.Y);
-                    screenPB.Invalidate();
-                
+
+                movingPoint = new Point(e.Location.X - startingPoint.X,
+                                        e.Location.Y - startingPoint.Y);
+                screenPB.Invalidate();
+
             }
         }
 

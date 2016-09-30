@@ -11,8 +11,8 @@ namespace HotelSimulator.Object
 {
     class Hotel
     {
-        List<int> hotelWidth;
-        List<int> hotelHeight;
+        List<int> HotelWidth;
+        List<int> HotelHeight;
         
         List<SimObject> objects; 
         Space[,] map = new Space[10, 10];
@@ -35,15 +35,15 @@ namespace HotelSimulator.Object
             foreach (LayoutFormat l in layout)
             {
                 string[] positions = l.Position.Split(',');
-                string[] dimensions = l.Dimension.Split(',');
+                string[] Dimensions = l.Dimension.Split(',');
 
                 switch (l.AreaType)
                 {
                     case "Room":
                         {
                             Room current = new Room();
-                            current.width = int.Parse(dimensions[0]);
-                            current.height = int.Parse(dimensions[1]);
+                            current.width = int.Parse(Dimensions[0]);
+                            current.height = int.Parse(Dimensions[1]);
                             objects.Add(current);
                             map[int.Parse(positions[0]), int.Parse(positions[1])].currentObject = current;
                             break;
@@ -52,8 +52,8 @@ namespace HotelSimulator.Object
                     case "Cinema":
                         {
                             Cinema current = new Cinema();
-                            current.width = int.Parse(dimensions[0]);
-                            current.height = int.Parse(dimensions[1]);
+                            current.width = int.Parse(Dimensions[0]);
+                            current.height = int.Parse(Dimensions[1]);
                             objects.Add(current);
                             map[int.Parse(positions[0]), int.Parse(positions[1])].currentObject = current;
                             break;
@@ -62,8 +62,8 @@ namespace HotelSimulator.Object
                     case "Restaurant":
                         {
                             Restaurant current = new Restaurant();
-                            current.width = int.Parse(dimensions[0]);
-                            current.height = int.Parse(dimensions[1]);
+                            current.width = int.Parse(Dimensions[0]);
+                            current.height = int.Parse(Dimensions[1]);
                             objects.Add(current);
                             map[int.Parse(positions[0]), int.Parse(positions[1])].currentObject = current;
                             break;
@@ -72,8 +72,8 @@ namespace HotelSimulator.Object
                     case "Fitness":
                         {
                             Gym current = new Gym();
-                            current.width = int.Parse(dimensions[0]);
-                            current.height = int.Parse(dimensions[1]);
+                            current.width = int.Parse(Dimensions[0]);
+                            current.height = int.Parse(Dimensions[1]);
                             objects.Add(current);
                             map[int.Parse(positions[0]), int.Parse(positions[1])].currentObject = current;
                             break;
@@ -87,7 +87,7 @@ namespace HotelSimulator.Object
             Graphics gfx = Graphics.FromImage(hotel);
 
             int xStartPosition = 1;
-            int yStartPosition = 1;
+            int yStartPosition = 500 ;
             int standardRoomWidth = 100;
             int standardRoomHeight = 50;
 
@@ -95,45 +95,22 @@ namespace HotelSimulator.Object
 
             for (int x = 0; x < map.GetLength(0); x++)
             {
+               
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
-                    if (map[x, y].currentObject != null)
+                    
+                    if (map[x, y].currentObject != null && map[x, y].currentObject is HotelRoom)
                     {
-                        if (map[x, y].currentObject is Reception)
-                        {
-                            gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition, (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
-                        }
-                        if (map[x, y].currentObject is Restaurant)
-                        {
-                            gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition, (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
-                        }
-                        if (map[x, y].currentObject is Gym)
-                        {
-                            gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition, (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
-                        }
-                        if (map[x, y].currentObject is Cinema)
-                        {
-                            gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition, (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
-                        }
-                        if (map[x, y].currentObject is ElevatorShaft)
-                        {
-                            gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition, (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
-                        }
-                        if (map[x, y].currentObject is Room)
-                        {
-                            gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition, (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
-                        }
-
-
+                         gfx.DrawImage(map[x, y].currentObject.image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].currentObject.height), (standardRoomWidth * map[x, y].currentObject.width), (standardRoomHeight * map[x, y].currentObject.height));
                     }
 
-                    //Builds up
-                    yStartPosition += standardRoomHeight;
+                    //Builds down
+                    yStartPosition -= standardRoomHeight;
                 }
 
                 //Builds to right and sets start position on the ground again.
                 xStartPosition += standardRoomWidth;
-                yStartPosition = 1;
+                yStartPosition = 500;
             }
 
             //Returns the drawn bitmap
