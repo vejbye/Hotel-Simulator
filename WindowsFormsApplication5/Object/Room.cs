@@ -9,7 +9,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Room : GameObject
+    class Room : HotelRoom
     {
         bool taken { get; set; }
         int roomNr { get; set; }
@@ -19,6 +19,9 @@ namespace HotelSimulator.Object
             
             image = Resources.Room;
             taken = false;
+            width = 1;
+            height = 1;
+            
         }
 
         public bool getTaken()

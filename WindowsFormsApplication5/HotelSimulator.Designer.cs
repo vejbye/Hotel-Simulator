@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.screenPB = new System.Windows.Forms.PictureBox();
+            this.loadlayoutBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,11 +47,22 @@
             this.screenPB.MouseMove += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseMove);
             this.screenPB.MouseUp += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseUp);
             // 
+            // loadlayoutBTN
+            // 
+            this.loadlayoutBTN.Location = new System.Drawing.Point(1030, 562);
+            this.loadlayoutBTN.Name = "loadlayoutBTN";
+            this.loadlayoutBTN.Size = new System.Drawing.Size(114, 28);
+            this.loadlayoutBTN.TabIndex = 1;
+            this.loadlayoutBTN.Text = "Load layout";
+            this.loadlayoutBTN.UseVisualStyleBackColor = true;
+            this.loadlayoutBTN.Click += new System.EventHandler(this.loadlayoutBTN_Click);
+            // 
             // HotelSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 614);
+            this.Controls.Add(this.loadlayoutBTN);
             this.Controls.Add(this.screenPB);
             this.Name = "HotelSimulator";
             this.Text = "Hotel Simulator 2016";
@@ -62,6 +74,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox screenPB;
+        private System.Windows.Forms.Button loadlayoutBTN;
     }
 }
 

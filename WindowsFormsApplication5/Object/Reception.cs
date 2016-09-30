@@ -8,11 +8,13 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Reception: GameObject
+    class Reception: HotelRoom
     {
         public Reception() : base()
         {
             image = Resources.Reception;
+            width = 1;
+            height = 1;
         }
 
         public Room findEmptyRoom(Hotel hotel)

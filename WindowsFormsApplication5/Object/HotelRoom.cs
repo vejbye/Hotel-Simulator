@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator.Object
 {
-    class Stair: SimObject
+    abstract class HotelRoom : SimObject
     {
+        
     }
 }

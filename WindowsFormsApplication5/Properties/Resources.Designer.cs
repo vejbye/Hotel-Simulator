@@ -63,6 +63,16 @@ namespace WindowsFormsApplication5.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Cinema {
+            get {
+                object obj = ResourceManager.GetObject("Cinema", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap ElevatorShaft {
             get {
                 object obj = ResourceManager.GetObject("ElevatorShaft", resourceCulture);
@@ -73,9 +83,29 @@ namespace WindowsFormsApplication5.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Gym {
+            get {
+                object obj = ResourceManager.GetObject("Gym", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Reception {
             get {
                 object obj = ResourceManager.GetObject("Reception", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Restaurant {
+            get {
+                object obj = ResourceManager.GetObject("Restaurant", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
