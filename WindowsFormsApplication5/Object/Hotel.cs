@@ -87,6 +87,7 @@ namespace HotelSimulator.Object
             Graphics gfx = Graphics.FromImage(hotel);
 
             int xStartPosition = 1;
+            int guestxPosition = xStartPosition;
             int yStartPosition = 500 ;
             int standardRoomWidth = 100;
             int standardRoomHeight = 50;
@@ -111,6 +112,17 @@ namespace HotelSimulator.Object
                 //Builds to right and sets start position on the ground again.
                 xStartPosition += standardRoomWidth;
                 yStartPosition = 500;
+            }
+
+            Guest guest1 = null;
+            foreach (Space space in map)
+            {
+                if (space.currentObject != null)
+                {
+                    guest1 = new Guest(space);
+                    guest1.Draw(gfx, map, guestxPosition, yStartPosition);
+                    guest1.Walk();
+                }
             }
 
             //Returns the drawn bitmap
