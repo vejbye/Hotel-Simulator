@@ -10,7 +10,7 @@ namespace HotelSimulator.Object
 {
     public class LayoutReader
     {
-        List<LayoutFormat> Formats;
+        private List<LayoutFormat> Formats;
 
         public List<LayoutFormat> ReadLayout(string jsonPath)
         {

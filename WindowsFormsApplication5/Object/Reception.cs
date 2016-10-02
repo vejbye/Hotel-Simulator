@@ -12,9 +12,9 @@ namespace HotelSimulator.Object
     {
         public Reception() : base()
         {
-            image = Resources.Reception;
-            width = 1;
-            height = 1;
+            Image = Resources.Reception;
+            Width = 1;
+            Height = 1;
         }
 
         public Room findEmptyRoom(Hotel hotel)

@@ -11,27 +11,27 @@ namespace HotelSimulator.Object
 {
     class Room : HotelRoom
     {
-        bool taken { get; set; }
-        int roomNr { get; set; }
+        private bool Taken { get; set; }
+        private int RoomNr { get; set; }
 
         public Room() : base()
         {
             
-            image = Resources.Room;
-            taken = false;
-            width = 1;
-            height = 1;
+            Image = Resources.Room;
+            Taken = false;
+            Width = 1;
+            Height = 1;
             
         }
 
         public bool getTaken()
         {
-            return taken;
+            return Taken;
         }
 
         public void setTaken(bool taken)
         {
-            this.taken = taken;
+            this.Taken = taken;
 
         }
 

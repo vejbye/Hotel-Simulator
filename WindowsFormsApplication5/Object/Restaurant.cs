@@ -13,9 +13,9 @@ namespace HotelSimulator.Object
 
         public Restaurant()
         {
-            image = Resources.Restaurant;
-            width = 1;
-            height = 1;
+            Image = Resources.Restaurant;
+            Width = 1;
+            Height = 1;
         }
         
     }

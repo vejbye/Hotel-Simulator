@@ -243,27 +243,37 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="2c095b5f-fc65-4f87-9fe2-95f6a5da2884" />
           </association>
+          <association Id="2cac3222-ee89-4716-bb8a-2a3d769ae2e9" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="640b996d-085f-4853-b697-2a0e8e9f0ea3" LastKnownName="Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cab1f7df-2e48-4ae3-ae33-008691c925db" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0d9221b7-6b0c-4cb8-840d-22bb1a8a68cd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1ae0bf0b-17ec-4fb1-8b86-98b59cd5c2e7" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="813d32f1-341a-4f74-82b0-14049105a9a6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b5500254-9688-4702-897d-7eecf1e83d0c" />
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property Id="8ecab4c2-318a-4e57-b02f-1f0a1a6cc83c" name="hotelWidth" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="8ecab4c2-318a-4e57-b02f-1f0a1a6cc83c" name="hotelWidth" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="70c4e814-9429-42b6-94ec-ed83601f7cdb" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="31a81565-3f07-493a-a049-8d6865c9bba8" LastKnownName="List&lt;int&gt;" />
+              <referencedTypeMoniker Id="77740385-4d2d-4a9d-ab32-5f350705dca9" LastKnownName="List&lt;int&gt;" />
             </type_NamedElement>
           </property>
-          <property Id="2666183c-e45d-4b13-adb3-36fb9758fd8e" name="hotelHeight" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="2666183c-e45d-4b13-adb3-36fb9758fd8e" name="hotelHeight" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="02ef4ae2-7a00-431b-9a74-66e69f1b00da" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="31a81565-3f07-493a-a049-8d6865c9bba8" LastKnownName="List&lt;int&gt;" />
+              <referencedTypeMoniker Id="f41ab0e8-d5a9-409a-8e45-8cbae444db9a" LastKnownName="List&lt;int&gt;" />
             </type_NamedElement>
           </property>
-          <property Id="bbd96231-4a18-44d7-9cad-9abec93e53b1" name="objects" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="dd4ef6ad-0e2a-4a29-b512-828bc1bc78c6" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="d9c8b7a1-ac7c-4dae-8fdd-0787f96f851a" LastKnownName="SimObject" />
-            </type_NamedElement>
-          </property>
-          <property Id="fbb43472-5a60-4442-aae6-4f6f01e3a7a8" name="map" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="fbb43472-5a60-4442-aae6-4f6f01e3a7a8" name="map" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <lowerValueInternal>
               <literalString Id="4b51c1ac-f930-4e8b-86e0-d80232ab0244" name="Lower" value=",">
                 <elementDefinition Id="85ec0c85-f183-46db-a453-7339b5f73847" />
@@ -276,7 +286,19 @@
             </upperValueInternal>
             <elementDefinition Id="84cc7e58-b64a-4e4d-88cb-92d0d13f3d14" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="985917b1-b47b-47b8-b244-4883f52a5613" LastKnownName="Space" />
+              <referencedTypeMoniker Id="c621f7c7-0c2e-4048-afb5-ca899a3b4594" LastKnownName="Space" />
+            </type_NamedElement>
+          </property>
+          <property Id="006f7596-699e-4dfa-af40-e7b5e07ef51f" name="hotelHeight" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a9e48076-9214-4d20-8c3f-5fea6d3471db" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4bbd9557-0c75-4992-b600-ca27ee00e807" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
+          <property Id="5b089e83-a0c1-44e5-ae3e-8577d245ba14" name="hotelWidth" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5cc2ba46-7e51-4714-863f-0e6da3486cb1" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4bbd9557-0c75-4992-b600-ca27ee00e807" LastKnownName="int" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -570,13 +592,25 @@
           </dependency>
         </suppliersInternal>
         <ownedAttributesInternal>
-          <property Id="b4b61811-27ad-461d-93f3-b8dce6694c3b" name="formats" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="b4b61811-27ad-461d-93f3-b8dce6694c3b" name="formats" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="993dd62d-7478-4798-b2b2-3e4c04593c6d" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="d3480d48-eecc-4938-8b0e-2d29ae67997b" LastKnownName="List&lt;LayoutFormat&gt;" />
+              <referencedTypeMoniker Id="5d4992b6-51d4-4104-ae41-342408181c97" LastKnownName="List&lt;LayoutFormat&gt;" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="a9a8422e-ebbe-4a6e-8a01-a0b92b5fa133" name="ReadLayout" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="cbcd71f4-d7a3-48ee-bb24-abd644a8e63c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ab8bfc63-5315-42da-9318-0db3bbabe741" name="string jsonPath" direction="In" isUnique="false">
+                  <elementDefinition Id="a50f04b2-010d-4bc6-957e-34e041e569f8" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -591,23 +625,8 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
-      <referencedType Id="d3480d48-eecc-4938-8b0e-2d29ae67997b" name="List&lt;LayoutFormat&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;LayoutFormat&gt;">
-        <elementDefinition Id="ed8ea0aa-5163-4dba-9d3c-e557e398ba13" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="d9c8b7a1-ac7c-4dae-8fdd-0787f96f851a" name="SimObject" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::SimObject">
         <elementDefinition Id="27bc5417-f29c-4054-a466-0d11fdcd5457" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="31a81565-3f07-493a-a049-8d6865c9bba8" name="List&lt;int&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;int&gt;">
-        <elementDefinition Id="7b0f3d9e-e4fb-4458-aa74-26482a0ca369" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="985917b1-b47b-47b8-b244-4883f52a5613" name="Space" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::Space">
-        <elementDefinition Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -620,6 +639,31 @@
         <elementDefinition Id="cf75fec7-6035-424c-b417-6716474aa4fe" />
       </referencedType>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="f41ab0e8-d5a9-409a-8e45-8cbae444db9a" name="List&lt;int&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;int&gt;">
+        <elementDefinition Id="7b0f3d9e-e4fb-4458-aa74-26482a0ca369" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="c621f7c7-0c2e-4048-afb5-ca899a3b4594" name="Space" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::Space">
+        <elementDefinition Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="77740385-4d2d-4a9d-ab32-5f350705dca9" name="List&lt;int&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;int&gt;">
+        <elementDefinition Id="7b0f3d9e-e4fb-4458-aa74-26482a0ca369" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="5d4992b6-51d4-4104-ae41-342408181c97" name="List&lt;LayoutFormat&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;LayoutFormat&gt;">
+        <elementDefinition Id="ed8ea0aa-5163-4dba-9d3c-e557e398ba13" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="640b996d-085f-4853-b697-2a0e8e9f0ea3" name="Settings" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0bef0a26-4748-47d1-b022-3fd577c16a04" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="bf212f23-896b-49ed-9a75-c847cdaa27e3" name="ModelingProject1">
     <elementDefinition Id="58f3a805-d8b9-4709-b27b-717dc4e073c6" />

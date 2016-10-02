@@ -18,7 +18,7 @@ namespace HotelSimulator.Object
         public Guest(Space current)
         {
             this.current = current;
-            image = Resources.Guest;
+            Image = Resources.Guest;
             
             
             
@@ -41,7 +41,7 @@ namespace HotelSimulator.Object
                     }
                 }
             }
-            gfx.DrawImage(image, xpos * (current.currentObject.width + 100)+ xstart, ypos * (current.currentObject.height + 50)+ ystart, 30, 30);
+            gfx.DrawImage(Image, xpos * (current.currentObject.Width + 100)+ xstart, ypos * (current.currentObject.Height + 50)+ ystart, 30, 30);
         }
         public void Walk()
         {

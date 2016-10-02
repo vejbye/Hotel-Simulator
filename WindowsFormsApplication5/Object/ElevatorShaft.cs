@@ -12,7 +12,9 @@ namespace HotelSimulator.Object
     {
         public ElevatorShaft()
         {
-            image = Resources.ElevatorShaft;
+            Image = Resources.ElevatorShaft;
+            Width = 1;
+            Height = 1;
         }
     }
 }

@@ -14,26 +14,26 @@ namespace HotelSimulator
 {
     public partial class HotelSimulator : Form
     {
-        Hotel hotel;
+        Hotel Hotel;
         private Point startingPoint = Point.Empty;
         private Point movingPoint = Point.Empty;
         private bool panning = false;
         private Point original = new Point(0, 0);
 
-        int maxPanX = -800;
-        int minPanX = 0;
-        int maxPanY = 0;
-        int minPanY = -250;
+        private int maxPanX = -800;
+        private int minPanX = 0;
+        private int maxPanY = 0;
+        private int minPanY = -250;
         bool initialized = false;
 
         public HotelSimulator()
         {
             InitializeComponent();
-            hotel = new Hotel();
+            Hotel = new Hotel();
         }
 
 
-        void screenPB_MouseDown(object sender, MouseEventArgs e)
+        private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
             panning = true;
             startingPoint = new Point(e.Location.X - movingPoint.X,
@@ -41,12 +41,12 @@ namespace HotelSimulator
 
         }
 
-        void screenPB_MouseUp(object sender, MouseEventArgs e)
+        private void screenPB_MouseUp(object sender, MouseEventArgs e)
         {
             panning = false;
         }
 
-        void screenPB_MouseMove(object sender, MouseEventArgs e)
+        private void screenPB_MouseMove(object sender, MouseEventArgs e)
         {
             if (panning)
             {
@@ -58,7 +58,7 @@ namespace HotelSimulator
             }
         }
 
-        void screenPB_Paint(object sender, PaintEventArgs e)
+        private void screenPB_Paint(object sender, PaintEventArgs e)
         {
             if (initialized)
             {
@@ -95,12 +95,35 @@ namespace HotelSimulator
 
                 initialized = true;
                 LayoutReader reader = new LayoutReader();
-                screenPB.Image = hotel.Build(reader.ReadLayout(json));
+                screenPB.Image = Hotel.Build(reader.ReadLayout(json));
 
 
             }
             else
                 MessageBox.Show("Couldn't load file");
+        }
+
+        private void HotelSimulator_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingsBTN_Click(object sender, EventArgs e)
+        {
+            SettingsForm settings = new SettingsForm();
+            var result = settings.ShowDialog();
+            
+            if (result == DialogResult.OK)
+            {
+                
+            }
+
+            
+            if (result == DialogResult.Cancel)
+            {
+                
+            }
+
         }
     }
 }

@@ -30,13 +30,16 @@
         {
             this.screenPB = new System.Windows.Forms.PictureBox();
             this.loadlayoutBTN = new System.Windows.Forms.Button();
+            this.settingsBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).BeginInit();
             this.SuspendLayout();
             // 
             // screenPB
             // 
             this.screenPB.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.screenPB.BackgroundImage = global::WindowsFormsApplication5.Properties.Resources.SimulatorBG;
             this.screenPB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.screenPB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.screenPB.Location = new System.Drawing.Point(-2, 0);
             this.screenPB.Name = "screenPB";
             this.screenPB.Size = new System.Drawing.Size(1175, 540);
@@ -57,15 +60,27 @@
             this.loadlayoutBTN.UseVisualStyleBackColor = true;
             this.loadlayoutBTN.Click += new System.EventHandler(this.loadlayoutBTN_Click);
             // 
+            // settingsBTN
+            // 
+            this.settingsBTN.Location = new System.Drawing.Point(915, 562);
+            this.settingsBTN.Name = "settingsBTN";
+            this.settingsBTN.Size = new System.Drawing.Size(109, 28);
+            this.settingsBTN.TabIndex = 2;
+            this.settingsBTN.Text = "Settings";
+            this.settingsBTN.UseVisualStyleBackColor = true;
+            this.settingsBTN.Click += new System.EventHandler(this.settingsBTN_Click);
+            // 
             // HotelSimulator
             // 
-            //this.AutoScaledimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 614);
+            this.Controls.Add(this.settingsBTN);
             this.Controls.Add(this.loadlayoutBTN);
             this.Controls.Add(this.screenPB);
             this.Name = "HotelSimulator";
             this.Text = "Hotel Simulator 2016";
+            this.Load += new System.EventHandler(this.HotelSimulator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).EndInit();
             this.ResumeLayout(false);
 
@@ -75,6 +90,7 @@
 
         private System.Windows.Forms.PictureBox screenPB;
         private System.Windows.Forms.Button loadlayoutBTN;
+        private System.Windows.Forms.Button settingsBTN;
     }
 }
 
