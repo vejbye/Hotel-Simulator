@@ -69,7 +69,6 @@ namespace HotelSimulator.Object
                             Room current = new Room();
                             current.Width = int.Parse(dimensions[0]);
                             current.Height = int.Parse(dimensions[1]);
-                            
                             map[int.Parse(positions[0]), int.Parse(positions[1])] = current;
                             break;
                         }
@@ -102,11 +101,24 @@ namespace HotelSimulator.Object
                         }
 
                 }
+            
+                //Places a reception as big as the hotel without the stairs and elevators
+                for (int lobbyStart = 1; lobbyStart <= _hotelWidth; lobbyStart++)
+                {
+                    map[lobbyStart, 0] = new Reception();
+                }
+
+                //Adds elevatorshafts to left side of hotel
+                for (int infrastructureStart = 0; infrastructureStart <= _hotelHeight; infrastructureStart++)
+                {
+                    map[0, infrastructureStart] = new ElevatorShaft();
+                    map[_hotelWidth + 1, infrastructureStart] = new Stair();
+                }
             }
 
         }
 
-        public Bitmap Draw()
+        public Bitmap Draw(SimObject[,] map)
         {
             //Drawing the hotel on a bitmap
             Graphics gfx = Graphics.FromImage(_hotel);
@@ -119,29 +131,21 @@ namespace HotelSimulator.Object
             //Background image o the hotel
             gfx.DrawImage(Resources.SimulatorBG, 1, 1, 2000, 800);
 
-            //Places a reception as big as the hotel without the stairs and elevators
-            for (int lobbyStart = 1; lobbyStart <= _hotelWidth; lobbyStart++)
-            {
-                map[lobbyStart, 0] = new Reception();
-            }
-
-            //Adds elevatorshafts to left side of hotel
-            for (int infrastructureStart = 0; infrastructureStart <= _hotelHeight; infrastructureStart++)
-            {
-                map[0, infrastructureStart] = new ElevatorShaft();
-                map[_hotelWidth + 1, infrastructureStart] = new Stair();
-            }
-
             //Fills space with a room if there is one
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
-                    if (map[x, y] != null && map[x, y] is SimObject)
+                    if (map[x, y] != null && map[x, y] is HotelRoom)
                     {
                         gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
                     }
 
+                    else if (map[x, y] != null && map[x, y] is TransportObject)
+                    {
+                        gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
+                    }
+                    
 
                     //Builds down
                     yStartPosition -= standardRoomHeight;
@@ -203,7 +207,7 @@ namespace HotelSimulator.Object
 
                     if (map[x, y] != null)
                     {
-                        map[x, y].Position = map[x, y];
+                        map[x, y].CurrentObject = map[x, y];
                     }
                 }
             }

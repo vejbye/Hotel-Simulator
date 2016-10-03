@@ -49,12 +49,12 @@ namespace HotelSimulator.Object
             {
                 if(direction.Key == Neighbour.Neighbours.East && direction.Value != null)
                 {
-                    current = direction.Value.Position;
+                    current = direction.Value.CurrentObject;
                     //Draw(gfx,plans);
                 }
                 else if(direction.Key == Neighbour.Neighbours.North && direction.Value != null)
                 {
-                    current = direction.Value.Position;
+                    current = direction.Value.CurrentObject;
                 }
             }
 

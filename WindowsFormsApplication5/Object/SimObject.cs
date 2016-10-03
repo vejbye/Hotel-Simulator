@@ -12,7 +12,7 @@ namespace HotelSimulator.Object
         public Image Image;
         public int Width;
         public int Height;
-        public SimObject Position;
+        public SimObject CurrentObject;
 
         public Dictionary<Neighbour.Neighbours, SimObject> neighbours = new Dictionary<Neighbour.Neighbours, SimObject>();
 
