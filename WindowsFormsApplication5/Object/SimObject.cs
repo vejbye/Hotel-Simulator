@@ -13,5 +13,12 @@ namespace HotelSimulator.Object
         public int Width;
         public int Height;
         public Space Position;
+
+        public Dictionary<Neighbour.Neighbours, Space> neighbours = new Dictionary<Neighbour.Neighbours, Space>();
+
+        public void CreateNeighbours(ref Space neighbour, Neighbour.Neighbours n)
+        {
+            neighbours.Add(n, neighbour);
+        }
     }
 }

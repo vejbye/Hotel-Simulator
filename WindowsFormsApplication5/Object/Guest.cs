@@ -11,11 +11,11 @@ namespace HotelSimulator.Object
     class Guest: SimObject
     {
         Room room;
-        Space current;
-        Space[,] plans;
+        SimObject current;
+        SimObject[,] plans;
         Graphics gfx;
 
-        public Guest(Space current)
+        public Guest(SimObject current)
         {
             this.current = current;
             Image = Resources.Guest;
@@ -23,7 +23,7 @@ namespace HotelSimulator.Object
             
             
         }
-        public void Draw(Graphics gfx, Space[,] map, int xstart, int ystart)
+        public void Draw(Graphics gfx, SimObject[,] map, int xstart, int ystart)
         {
             int xpos = 1;
             int ypos = 1;
@@ -41,11 +41,11 @@ namespace HotelSimulator.Object
                     }
                 }
             }
-            gfx.DrawImage(Image, xpos * (current.currentObject.Width + 100)+ xstart, ypos * (current.currentObject.Height + 50)+ ystart, 30, 30);
+            gfx.DrawImage(Image, xpos * (current.Width + 100)+ xstart, ypos * (current.Height + 50)+ ystart, 30, 30);
         }
         public void Walk()
         {
-            foreach (KeyValuePair<Neighbour.Neighbours,Space> direction in current.neighbours)
+            foreach(KeyValuePair<Neighbour.Neighbours, SimObject> direction in current.neighbours)
             {
                 if(direction.Key == Neighbour.Neighbours.East && direction.Value != null)
                 {

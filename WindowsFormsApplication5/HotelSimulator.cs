@@ -15,7 +15,7 @@ namespace HotelSimulator
     public partial class HotelSimulator : Form
     {
         Hotel Hotel;
-        Space[, ] map;
+        SimObject[,] map;
         private Point startingPoint = Point.Empty;
         private Point movingPoint = Point.Empty;
         private bool panning = false;
@@ -129,10 +129,11 @@ namespace HotelSimulator
 
         private void screenPB_MouseClick(object sender, MouseEventArgs e)
         {
-            foreach(Space s in map)
+            /*
+            foreach (Space s in map)
             {
                // if(s.)
-            }
+            }*/
         }
     }
 }
