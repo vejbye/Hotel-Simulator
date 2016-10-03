@@ -13,8 +13,7 @@ namespace HotelSimulator
             North,
             East,
             South,
-            West,
-            None
+            West
         }
     }
 }

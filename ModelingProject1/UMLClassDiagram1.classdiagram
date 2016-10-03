@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="711356a3-5893-4305-ad53-4a5328a4481f" name="UMLClassDiagram1" linkedPackageId="bf212f23-896b-49ed-9a75-c847cdaa27e3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="711356a3-5893-4305-ad53-4a5328a4481f" name="UMLClassDiagram1" linkedPackageId="bf212f23-896b-49ed-9a75-c847cdaa27e3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="3f141bc8-1749-4f60-9c9f-614f76a44546" name="Space" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -160,7 +160,7 @@
       </referencedType>
     </packageHasNamedElement>
     <logicalClassDesignerModelHasTypes>
-      <class Id="4cffb3b1-3a3b-4738-bd57-549389945781" name="Program" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="4cffb3b1-3a3b-4738-bd57-549389945781" name="HotelSimulator" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="d4b45548-d10e-4e70-95e9-4aee36374bb0" />
         <targetEnds>
           <association Id="fea6ccff-8b2d-4892-af57-b19650b88e33" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
@@ -178,6 +178,22 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="49252f37-0e86-4827-ba75-e8f7bf5874d0" />
+          </association>
+          <association Id="a558c708-5231-4ac2-b8eb-2d04995c480c" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="640b996d-085f-4853-b697-2a0e8e9f0ea3" LastKnownName="Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="86f87994-c0df-4b40-ab09-50aed8d35a73" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b2dc2b12-5453-4018-a3bf-89738287c5e2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9896c033-a6ab-445d-a38d-d757da627d33" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="01a7b33b-5f78-461d-8cf8-af576227fb46" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="06e7ca69-d5b6-4583-9f10-8e07c6ae26d2" />
           </association>
         </targetEnds>
         <ownedOperationsInternal>
@@ -242,22 +258,6 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="2c095b5f-fc65-4f87-9fe2-95f6a5da2884" />
-          </association>
-          <association Id="2cac3222-ee89-4716-bb8a-2a3d769ae2e9" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-            <classMoniker Id="640b996d-085f-4853-b697-2a0e8e9f0ea3" LastKnownName="Settings" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="cab1f7df-2e48-4ae3-ae33-008691c925db" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="0d9221b7-6b0c-4cb8-840d-22bb1a8a68cd" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="1ae0bf0b-17ec-4fb1-8b86-98b59cd5c2e7" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="813d32f1-341a-4f74-82b0-14049105a9a6" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="b5500254-9688-4702-897d-7eecf1e83d0c" />
           </association>
         </targetEnds>
         <ownedAttributesInternal>

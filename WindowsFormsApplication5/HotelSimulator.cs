@@ -15,6 +15,7 @@ namespace HotelSimulator
     public partial class HotelSimulator : Form
     {
         Hotel Hotel;
+        Space[, ] map;
         private Point startingPoint = Point.Empty;
         private Point movingPoint = Point.Empty;
         private bool panning = false;
@@ -30,6 +31,7 @@ namespace HotelSimulator
         {
             InitializeComponent();
             Hotel = new Hotel();
+            map = Hotel.map;
         }
 
 
@@ -95,9 +97,8 @@ namespace HotelSimulator
 
                 initialized = true;
                 LayoutReader reader = new LayoutReader();
-                screenPB.Image = Hotel.Build(reader.ReadLayout(json));
-
-
+                Hotel.Build(reader.ReadLayout(json));
+                screenPB.Image = Hotel.Draw();
             }
             else
                 MessageBox.Show("Couldn't load file");
@@ -124,6 +125,14 @@ namespace HotelSimulator
                 
             }
 
+        }
+
+        private void screenPB_MouseClick(object sender, MouseEventArgs e)
+        {
+            foreach(Space s in map)
+            {
+               // if(s.)
+            }
         }
     }
 }
