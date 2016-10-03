@@ -160,7 +160,7 @@ namespace HotelSimulator.Object
             {
                 if (space != null)
                 {
-                    guest = new Guest();
+                    guest = new Guest(space);
                     guest.Draw(gfx, map, xStartPosition, yStartPosition);
                     guest.Walk();
                 }

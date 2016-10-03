@@ -23,12 +23,12 @@ namespace HotelSimulator.Object
             {
                 for (int j = 0; j < hotel.getMap().GetLength(1); i++)
                 {
-                    if (hotel.getMap()[i, j].currentObject is Room)
+                    if (hotel.getMap()[i, j] is Room)
                     {
-                        if (!((Room)hotel.getMap()[i, j].currentObject).getTaken())
+                        if (!((Room)hotel.getMap()[i, j]).getTaken())
                         {
-                            ((Room)hotel.getMap()[i, j].currentObject).setTaken(true);
-                            return (Room)hotel.getMap()[i, j].currentObject;
+                            ((Room)hotel.getMap()[i, j]).setTaken(true);
+                            return (Room)hotel.getMap()[i, j];
                         }
                     }
                 }

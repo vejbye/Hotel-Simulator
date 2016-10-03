@@ -45,16 +45,16 @@ namespace HotelSimulator.Object
         }
         public void Walk()
         {
-            foreach(KeyValuePair<Neighbour.Neighbours, SimObject> direction in current.neighbours)
+            foreach(KeyValuePair<Neighbour.Neighbours, Space> direction in current.neighbours)
             {
                 if(direction.Key == Neighbour.Neighbours.East && direction.Value != null)
                 {
-                    current = direction.Value;
+                    current = direction.Value.currentObject;
                     //Draw(gfx,plans);
                 }
                 else if(direction.Key == Neighbour.Neighbours.North && direction.Value != null)
                 {
-                    current = direction.Value;
+                    current = direction.Value.currentObject;
                 }
             }
 
