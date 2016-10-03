@@ -174,7 +174,7 @@ namespace HotelSimulator.Object
         }
     
 
-        private void AddNeighbours(Space [,] map)
+        private void AddNeighbours(SimObject [,] map)
         {
             for (int x = 0; x < map.GetLength(0); x++)
             {
@@ -201,9 +201,9 @@ namespace HotelSimulator.Object
                         map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbour.Neighbours.West);
                     }
 
-                    if (map[x, y].currentObject != null)
+                    if (map[x, y] != null)
                     {
-                        map[x, y].currentObject.Position = map[x, y];
+                        map[x, y].Position = map[x, y];
                     }
                 }
             }
