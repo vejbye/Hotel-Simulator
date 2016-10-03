@@ -15,46 +15,47 @@ namespace HotelSimulator
     public partial class HotelSimulator : Form
     {
         Hotel Hotel;
-        SimObject[,] map;
-        private Point startingPoint = Point.Empty;
-        private Point movingPoint = Point.Empty;
-        private bool panning = false;
-        private Point original = new Point(0, 0);
+        SimObject[,] Map;
 
-        private int maxPanX = -800;
-        private int minPanX = 0;
-        private int maxPanY = 0;
-        private int minPanY = -250;
-        bool initialized = false;
+        private Point _startingPoint = Point.Empty;
+        private Point _movingPoint = Point.Empty;
+        private Point _original = new Point(0, 0);
+        private bool _panning = false;
+
+        private int _maxPanX = -800;
+        private int _minPanX = 0;
+        private int _maxPanY = 0;
+        private int _minPanY = -250;
+        private bool _initialized = false;
 
         public HotelSimulator()
         {
             InitializeComponent();
             Hotel = new Hotel();
-            map = Hotel.map;
+            Map = Hotel.map;
         }
 
 
         private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
-            panning = true;
-            startingPoint = new Point(e.Location.X - movingPoint.X,
-                                      e.Location.Y - movingPoint.Y);
+            _panning = true;
+            _startingPoint = new Point(e.Location.X - _movingPoint.X,
+                                      e.Location.Y - _movingPoint.Y);
 
         }
 
         private void screenPB_MouseUp(object sender, MouseEventArgs e)
         {
-            panning = false;
+            _panning = false;
         }
 
         private void screenPB_MouseMove(object sender, MouseEventArgs e)
         {
-            if (panning)
+            if (_panning)
             {
 
-                movingPoint = new Point(e.Location.X - startingPoint.X,
-                                        e.Location.Y - startingPoint.Y);
+                _movingPoint = new Point(e.Location.X - _startingPoint.X,
+                                        e.Location.Y - _startingPoint.Y);
                 screenPB.Invalidate();
 
             }
@@ -62,23 +63,23 @@ namespace HotelSimulator
 
         private void screenPB_Paint(object sender, PaintEventArgs e)
         {
-            if (initialized)
+            if (_initialized)
             {
                 e.Graphics.Clear(Color.DeepSkyBlue);
 
-                if (movingPoint.X < maxPanX)
-                    movingPoint.X = maxPanX;
+                if (_movingPoint.X < _maxPanX)
+                    _movingPoint.X = _maxPanX;
 
-                if (movingPoint.X > minPanX)
-                    movingPoint.X = minPanX;
+                if (_movingPoint.X > _minPanX)
+                    _movingPoint.X = _minPanX;
 
-                if (movingPoint.Y < minPanY)
-                    movingPoint.Y = minPanY;
+                if (_movingPoint.Y < _minPanY)
+                    _movingPoint.Y = _minPanY;
 
-                if (movingPoint.Y > maxPanY)
-                    movingPoint.Y = maxPanY;
+                if (_movingPoint.Y > _maxPanY)
+                    _movingPoint.Y = _maxPanY;
 
-                e.Graphics.DrawImage(screenPB.Image, movingPoint);
+                e.Graphics.DrawImage(screenPB.Image, _movingPoint);
             }
 
 
@@ -95,7 +96,7 @@ namespace HotelSimulator
             {
                 string json = chosenFile.FileName;
 
-                initialized = true;
+                _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
                 screenPB.Image = Hotel.Draw();

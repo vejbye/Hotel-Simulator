@@ -11,6 +11,7 @@ namespace HotelSimulator.Object
     {
         private List<int> _hotelWidthList;
         private List<int> _hotelHeightList;
+        private List<Rectangle> _rectangles;
         private int _hotelWidth;
         private int _hotelHeight;
         private Bitmap _hotel = new Bitmap(2000, 1000);
