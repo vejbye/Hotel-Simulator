@@ -9,17 +9,7 @@ namespace HotelSimulator.Object
 {
     class Space
     {
-        public SimObject currentObject { get; set; }
-        public Dictionary<Neighbour.Neighbours, Space> neighbours = new Dictionary<Neighbour.Neighbours, Space>();
-
-        public void CreateNeighbours(ref Space neighbour, Neighbour.Neighbours n)
-        {
-            neighbours.Add(n, neighbour);
-        }
+        public SimObject CurrentObject { get; set; }
         
-
-
-        
-
     }
 }

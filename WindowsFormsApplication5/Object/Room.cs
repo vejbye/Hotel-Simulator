@@ -16,12 +16,10 @@ namespace HotelSimulator.Object
 
         public Room() : base()
         {
-            
             Image = Resources.Room;
             Taken = false;
             Width = 1;
             Height = 1;
-            
         }
 
         public bool getTaken()

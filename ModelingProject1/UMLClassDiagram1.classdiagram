@@ -2,40 +2,6 @@
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="711356a3-5893-4305-ad53-4a5328a4481f" name="UMLClassDiagram1" linkedPackageId="bf212f23-896b-49ed-9a75-c847cdaa27e3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
-      <class Id="3f141bc8-1749-4f60-9c9f-614f76a44546" name="Space" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="720c36fe-6a6d-41ff-ba58-318a4abc5dc5" />
-        <suppliersInternal>
-          <dependency Id="a8b0a74b-73ff-4c56-a945-d84d3f4d6d33">
-            <enumerationMoniker Id="a9081e60-926a-493c-9cbe-1b7cdfef113b" LastKnownName="Neighbour" />
-            <elementDefinition Id="123782c8-8db8-4992-82b5-8af1dfd22481" />
-          </dependency>
-        </suppliersInternal>
-        <ownedAttributesInternal>
-          <property Id="0c0c7cb8-e064-42e9-aeff-6410e7c975a5" name="neighbours" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="60ac6ee9-6f61-426d-ac2d-cbfa2cd77170" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="ce4cd54b-bb13-434a-b11b-8ed7b53a4f7f" LastKnownName="List&lt;Space&gt;" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation Id="663db5c9-9659-439a-9a95-b1cd372496cc" name="CreateNeighbours" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="d2a74f79-ea70-47dd-a03a-7a47cebf3c1e" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="81b3edcc-90cf-42db-b17a-1ad7441b595e" direction="Return" isUnique="false">
-                  <elementDefinition Id="da4ac434-c240-42a5-9026-939524d21771" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="449bc88a-5b11-4b99-898e-39908ea23edf" LastKnownName="void" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-        </ownedOperationsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
       <class Id="905f1d62-9738-467e-a268-5d24ee57a8f2" name="Restaurant" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="deaf9ca9-774f-499c-a9d0-a02a624e2139" />
         <generalsInternal>
@@ -207,32 +173,6 @@
       <class Id="31902f17-4f09-44d2-8a5c-e918322e8b69" name="Hotel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="1fab963e-0363-43b9-b458-d6ed77a7a33f" />
         <targetEnds>
-          <association Id="f8e53359-f422-4025-8ac1-2f2cef9fd031" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-            <classMoniker Id="3f141bc8-1749-4f60-9c9f-614f76a44546" LastKnownName="Space" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="33c5fe8d-049c-4dc4-9bf4-13f6a29857e7" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="deb98ec7-0afe-491a-888d-6fab816a93e1" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="45b87ab8-918e-478b-b0ee-01a6a9012a0e" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
-                  <lowerValueInternal>
-                    <literalString Id="71c0c70a-1ad7-4d8e-b9da-fe7218f33f7f" name="Lower" value="*">
-                      <elementDefinition Id="db4456a2-9804-4c9e-9cff-7b457f511e9e" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="510b4606-777d-4cd8-8180-58f86e66ea54" name="Upper" value="*">
-                      <elementDefinition Id="a168e5e4-231c-4cb4-913c-305257e3c603" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="5039fcd2-9570-4866-8654-921ee688b17b" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="a284a58c-5d6d-4118-8498-ec832d14bfa8" />
-          </association>
           <association Id="f9cd74c2-85c5-40e7-9909-88889996c34c" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
             <classMoniker Id="61468347-c35d-4c36-8500-1fc5f63ec19a" LastKnownName="SimObject" />
             <relationshipOwnedElementsInternal>
@@ -328,9 +268,9 @@
       <class Id="5980a39f-2fc8-4eee-a337-73b1cc8d9c57" name="Elevator" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="a8740f82-de36-44dd-8820-5a54815249ba" />
         <generalsInternal>
-          <generalization Id="185951d0-97b5-4cb6-ba5d-6a999fcab661" isSubstitutable="false">
-            <classMoniker Id="2bbaf579-ed29-40d7-855b-846e7b54f0dc" LastKnownName="TransportObject" />
-            <elementDefinition Id="ce0cf9e5-5b87-4a66-acad-2d8e1f544c58" />
+          <generalization Id="1aca5cc9-b973-4439-abb2-200c8b1a34a3" isSubstitutable="false">
+            <classMoniker Id="61468347-c35d-4c36-8500-1fc5f63ec19a" LastKnownName="SimObject" />
+            <elementDefinition Id="ec6b20a4-b36e-4309-9c07-7796dd14c7ff" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
@@ -347,39 +287,16 @@
       <class Id="e23570d4-2970-4f9f-b419-de0a72ab2d52" name="Stair" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="8043153a-0aaf-426b-8e94-d9ce11cf9a99" />
         <generalsInternal>
-          <generalization Id="8351fe5f-df5d-4d75-a937-f6cdbdccb622" isSubstitutable="false">
-            <classMoniker Id="2bbaf579-ed29-40d7-855b-846e7b54f0dc" LastKnownName="TransportObject" />
-            <elementDefinition Id="5a72d416-0e8a-45fc-a56c-384bd9b1d761" />
+          <generalization Id="3bf561d9-304c-43a1-b5dc-d619c3033083" isSubstitutable="false">
+            <classMoniker Id="ded26496-a945-4f0c-b9f9-84c52be5c3dd" LastKnownName="HotelRoom" />
+            <elementDefinition Id="02d4df25-8a91-4fad-a109-bce44e6be51c" />
           </generalization>
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
-    <packageHasNamedElement>
-      <referencedType Id="ce4cd54b-bb13-434a-b11b-8ed7b53a4f7f" name="List&lt;Space&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;Space&gt;">
-        <elementDefinition Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89" />
-      </referencedType>
-    </packageHasNamedElement>
     <logicalClassDesignerModelHasTypes>
       <class Id="61468347-c35d-4c36-8500-1fc5f63ec19a" name="SimObject" isAbstract="true" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="27bc5417-f29c-4054-a466-0d11fdcd5457" />
-        <targetEnds>
-          <association Id="60a844e5-a50a-4abf-be7b-db571072d50f" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-            <classMoniker Id="3f141bc8-1749-4f60-9c9f-614f76a44546" LastKnownName="Space" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="5ffd2534-dd3a-4142-a23f-d0ac5ac13289" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="f76fae75-dc04-41fd-a12a-443ec8e725e2" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="4270fc34-42e1-4071-904a-3957e512f56f" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="13ff2597-a4d1-44cd-ad92-432affa026f3" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="f00d99fc-bde7-40fe-af4c-028e97bcc661" />
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property Id="7a527c59-ae81-4bce-b35f-8ee5f094d546" name="image" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="f7bafe3e-4801-4b0f-adf9-f4e6095f78f8" />
@@ -399,10 +316,10 @@
               <referencedTypeMoniker Id="4bbd9557-0c75-4992-b600-ca27ee00e807" LastKnownName="int" />
             </type_NamedElement>
           </property>
-          <property Id="faa87bf2-4c7c-47b4-83f5-a16c75308a32" name="currentObject" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="d2bb2dd0-ec92-46fb-aace-572b0bc70814" />
+          <property Id="92bc869c-de14-4eed-a0c3-99530e76352f" name="currentObject" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e2bdab1a-bc48-4f82-93c6-70db0a917ad6" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="d9c8b7a1-ac7c-4dae-8fdd-0787f96f851a" LastKnownName="SimObject" />
+              <referencedTypeMoniker Id="2073f3ce-9264-4c7b-9be3-5e7b56c1b0f6" LastKnownName="SimObject" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -468,33 +385,43 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="ded26496-a945-4f0c-b9f9-84c52be5c3dd" name="HotelRoom" isAbstract="true" isLeaf="false" isActiveClass="false">
+      <class Id="ded26496-a945-4f0c-b9f9-84c52be5c3dd" name="HotelRoom" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26" />
+        <suppliersInternal>
+          <dependency Id="3e837aff-dba6-4022-88bb-c7422f9c3f9d">
+            <enumerationMoniker Id="a9081e60-926a-493c-9cbe-1b7cdfef113b" LastKnownName="Neighbour" />
+            <elementDefinition Id="dd64fdb3-0c65-4b11-892b-707c454b1274" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="1f42565f-c3d1-4f6d-8acb-503d797b9726" isSubstitutable="false">
             <classMoniker Id="61468347-c35d-4c36-8500-1fc5f63ec19a" LastKnownName="SimObject" />
             <elementDefinition Id="085dcd5b-5516-4d0e-8622-51685182c500" />
           </generalization>
         </generalsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="2bbaf579-ed29-40d7-855b-846e7b54f0dc" name="TransportObject" isAbstract="true" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="a4288e6d-424e-4953-a99d-abf90953911c" />
-        <generalsInternal>
-          <generalization Id="b0b9dba2-a21f-4e7f-a044-9092864671a5" isSubstitutable="false">
-            <classMoniker Id="61468347-c35d-4c36-8500-1fc5f63ec19a" LastKnownName="SimObject" />
-            <elementDefinition Id="b2b12599-b60d-4105-8b83-def590f9c50c" />
-          </generalization>
-        </generalsInternal>
         <ownedAttributesInternal>
-          <property Id="8237c512-689b-4749-a43b-25a9d7a0ed8a" name="speed" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="e677dae7-0cf8-40ff-9cae-3086e4121ed9" />
+          <property Id="6a369925-017a-47ae-a179-efec09912969" name="neighbours" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a296db30-9437-43f1-8c7a-54d20611347a" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="4bbd9557-0c75-4992-b600-ca27ee00e807" LastKnownName="int" />
+              <referencedTypeMoniker Id="a0bca49b-c785-479b-ac11-b27d43cd04ca" LastKnownName="List&lt;Space&gt;" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="f0c41063-bf2b-4ded-b6eb-3402973e4c94" name="CreateNeighbours" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a8060628-c611-497b-9510-e3861e4dd31f" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="d8c6d4a3-1a7b-4705-9b9a-5c157ef7f96b" direction="Return" isUnique="false">
+                  <elementDefinition Id="e3d9833e-e354-4eba-ae93-acaaa3c8c945" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="aab37357-e575-40ab-acd0-68e65ca23f95" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -557,9 +484,9 @@
       <class Id="693093ed-c3e9-4a7a-9516-64655ef07d43" name="ElevatorShaft" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="47c6570b-dc44-4e00-8aae-6a73aec04e61" />
         <generalsInternal>
-          <generalization Id="74d36d8a-ba16-49f6-9ed8-cb6e3ead952e" isSubstitutable="false">
-            <classMoniker Id="61468347-c35d-4c36-8500-1fc5f63ec19a" LastKnownName="SimObject" />
-            <elementDefinition Id="0d5c8570-c26b-4470-bd8e-ac0c459306ee" />
+          <generalization Id="51f4b287-08b2-4a2b-adfa-2e94b1e98946" isSubstitutable="false">
+            <classMoniker Id="ded26496-a945-4f0c-b9f9-84c52be5c3dd" LastKnownName="HotelRoom" />
+            <elementDefinition Id="0fcdac62-52a9-476d-bc66-9bc313beb7d9" />
           </generalization>
         </generalsInternal>
         <targetEnds>
@@ -625,18 +552,8 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
-      <referencedType Id="d9c8b7a1-ac7c-4dae-8fdd-0787f96f851a" name="SimObject" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::SimObject">
-        <elementDefinition Id="27bc5417-f29c-4054-a466-0d11fdcd5457" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="0e8b528f-788c-429d-9e47-dfcc6671e189" name="Bitmap" isAbstract="false" isLeaf="false" cachedFullName="Bitmap">
         <elementDefinition Id="4455cb34-e3b6-4f84-96a5-e144d0081ec5" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="449bc88a-5b11-4b99-898e-39908ea23edf" name="void" isAbstract="false" isLeaf="false" cachedFullName="void">
-        <elementDefinition Id="cf75fec7-6035-424c-b417-6716474aa4fe" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -664,6 +581,21 @@
         <elementDefinition Id="0bef0a26-4748-47d1-b022-3fd577c16a04" />
       </class>
     </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="2073f3ce-9264-4c7b-9be3-5e7b56c1b0f6" name="SimObject" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::SimObject">
+        <elementDefinition Id="27bc5417-f29c-4054-a466-0d11fdcd5457" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="a0bca49b-c785-479b-ac11-b27d43cd04ca" name="List&lt;Space&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;Space&gt;">
+        <elementDefinition Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="aab37357-e575-40ab-acd0-68e65ca23f95" name="void" isAbstract="false" isLeaf="false" cachedFullName="void">
+        <elementDefinition Id="cf75fec7-6035-424c-b417-6716474aa4fe" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="bf212f23-896b-49ed-9a75-c847cdaa27e3" name="ModelingProject1">
     <elementDefinition Id="58f3a805-d8b9-4709-b27b-717dc4e073c6" />

@@ -83,7 +83,6 @@
     <Compile Include="Object\ElevatorShaft.cs" />
     <Compile Include="Object\Room.cs" />
     <Compile Include="Object\Elevator.cs" />
-    <Compile Include="Object\TransportObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Object\Reception.cs" />

@@ -150,13 +150,6 @@
               LastKnownName="Neighbour"
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
-          <dependency
-            Id="123782c8-8db8-4992-82b5-8af1dfd22481">
-            <enumerationMoniker
-              Id="09f80e00-d438-4b96-a827-ee16bdd8fa6b"
-              LastKnownName="Neighbour"
-              LastKnownLocation="ModelingProject1.uml" />
-          </dependency>
         </suppliersInternal>
         <targetEnds>
           <association
@@ -235,51 +228,14 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
-        <ownedAttributesInternal>
-          <property
-            Id="60ac6ee9-6f61-426d-ac2d-cbfa2cd77170"
-            name="neighbours"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89"
-                LastKnownName="List&lt;Space&gt;"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="d2a74f79-ea70-47dd-a03a-7a47cebf3c1e"
-            name="CreateNeighbours"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="da4ac434-c240-42a5-9026-939524d21771"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="cf75fec7-6035-424c-b417-6716474aa4fe"
-                      LastKnownName="void"
-                      LastKnownLocation="ModelingProject1.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -1001,6 +957,14 @@
               LastKnownName="TransportObject"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
+          <generalization
+            Id="ec6b20a4-b36e-4309-9c07-7796dd14c7ff"
+            isSubstitutable="false">
+            <classMoniker
+              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
+              LastKnownName="SimObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
         </generalsInternal>
         <targetEnds>
           <association
@@ -1115,6 +1079,14 @@
             <classMoniker
               Id="a4288e6d-424e-4953-a99d-abf90953911c"
               LastKnownName="TransportObject"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+          <generalization
+            Id="02d4df25-8a91-4fad-a109-bce44e6be51c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
@@ -1359,7 +1331,7 @@
             </type_NamedElement>
           </property>
           <property
-            Id="d2bb2dd0-ec92-46fb-aace-572b0bc70814"
+            Id="e2bdab1a-bc48-4f82-93c6-70db0a917ad6"
             name="currentObject"
             isLeaf="false"
             isStatic="false"
@@ -1671,9 +1643,18 @@
       <class
         Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
         name="HotelRoom"
-        isAbstract="true"
+        isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="dd64fdb3-0c65-4b11-892b-707c454b1274">
+            <enumerationMoniker
+              Id="09f80e00-d438-4b96-a827-ee16bdd8fa6b"
+              LastKnownName="Neighbour"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="085dcd5b-5516-4d0e-8622-51685182c500"
@@ -1684,6 +1665,52 @@
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="a296db30-9437-43f1-8c7a-54d20611347a"
+            name="neighbours"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="6e5cc125-0aab-4185-bbfe-22bc59e32a89"
+                LastKnownName="List&lt;Space&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="a8060628-c611-497b-9510-e3861e4dd31f"
+            name="CreateNeighbours"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e3d9833e-e354-4eba-ae93-acaaa3c8c945"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="cf75fec7-6035-424c-b417-6716474aa4fe"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1695,18 +1722,18 @@
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="b2b12599-b60d-4105-8b83-def590f9c50c"
+            Id="8520ef6e-22f9-464a-b59c-89f69274efde"
             isSubstitutable="false">
             <classMoniker
-              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
-              LastKnownName="SimObject"
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="e677dae7-0cf8-40ff-9cae-3086e4121ed9"
-            name="speed"
+            name="dura"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1836,11 +1863,11 @@
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="0d5c8570-c26b-4470-bd8e-ac0c459306ee"
+            Id="0fcdac62-52a9-476d-bc66-9bc313beb7d9"
             isSubstitutable="false">
             <classMoniker
-              Id="27bc5417-f29c-4054-a466-0d11fdcd5457"
-              LastKnownName="SimObject"
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>

@@ -16,12 +16,18 @@ namespace HotelSimulator.Object
         private int _hotelHeight;
         private Bitmap _hotel = new Bitmap(2000, 1000);
 
-        public SimObject[,] map;
+        public HotelRoom[,] map;
 
         public void Build(List<LayoutFormat> layout)
         {
             _hotelHeightList = new List<int>();
             _hotelWidthList = new List<int>();
+
+            for (int i  = 0; i  < _hotelHeight * _hotelWidth; i ++)
+            {
+                Rectangle rectangle = new Rectangle();
+                _rectangles.Add(rectangle);
+            }
 
             //Looks at the width and height of the hotel
             foreach (LayoutFormat l in layout)
@@ -45,14 +51,14 @@ namespace HotelSimulator.Object
             }
 
             //Creates double array based on the width and height and adds 1 to width for elevator and stairs
-            map = new SimObject[_hotelWidth + 2, _hotelHeight + 1];
+            map = new HotelRoom[_hotelWidth + 2, _hotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
-                    map[x, y] = new SimObject();
+                    map[x, y] = new HotelRoom();
                 }
             }
 
@@ -96,7 +102,7 @@ namespace HotelSimulator.Object
                             Gym current = new Gym();
                             current.Width = int.Parse(dimensions[0]);
                             current.Height = int.Parse(dimensions[1]);
-                            map[int.Parse(positions[0]), int.Parse(positions[1])] = current;
+                            map[int.Parse(positions[0]), int.Parse(positions[1])]  = current;
                             break;
                         }
 
@@ -118,7 +124,7 @@ namespace HotelSimulator.Object
 
         }
 
-        public Bitmap Draw(SimObject[,] map)
+        public Bitmap Draw(HotelRoom[,] map)
         {
             //Drawing the hotel on a bitmap
             Graphics gfx = Graphics.FromImage(_hotel);
@@ -136,17 +142,14 @@ namespace HotelSimulator.Object
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
-                    if (map[x, y] != null && map[x, y] is HotelRoom)
+                    if (map[x, y] != null && map[x, y] is SimObject)
                     {
-                        gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
-                    }
+                        if (map[x, y].Image == null) ;
 
-                    else if (map[x, y] != null && map[x, y] is TransportObject)
-                    {
-                        gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
+                        else
+                            gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
                     }
                     
-
                     //Builds down
                     yStartPosition -= standardRoomHeight;
                 }
@@ -160,7 +163,7 @@ namespace HotelSimulator.Object
 
             Guest guest = null;
 
-            foreach (SimObject space in map)
+            foreach (HotelRoom space in map)
             {
                 if (space != null)
                 {
@@ -178,7 +181,7 @@ namespace HotelSimulator.Object
         }
     
 
-        private void AddNeighbours(SimObject [,] map)
+        private void AddNeighbours(HotelRoom [,] map)
         {
             for (int x = 0; x < map.GetLength(0); x++)
             {
@@ -187,33 +190,33 @@ namespace HotelSimulator.Object
                     if (y > 0)
                     {
                         //North
-                        map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbour.Neighbours.North);
+                        map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
                     }
                     if (x < map.GetLength(0) - 1)
                     {
                         //East
-                        map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbour.Neighbours.East);
+                        map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
                     }
                     if (y < map.GetLength(1) - 1)
                     {
                         //South
-                        map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbour.Neighbours.South);
+                        map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);
                     }
                     if (x > 0)
                     {
                         //West
-                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbour.Neighbours.West);
+                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
                     }
 
                     if (map[x, y] != null)
                     {
-                        map[x, y].CurrentObject = map[x, y];
+                        map[x, y].CurrentRoom = map[x, y];
                     }
                 }
             }
         }
 
-        public SimObject[,] getMap()
+        public HotelRoom[,] getMap()
         {
             return map;
         }

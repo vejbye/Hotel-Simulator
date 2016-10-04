@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator
 {
-    class Neighbour
+    public class Neighbour
     {
-        public enum Neighbours
-        {
-            North,
-            East,
-            South,
-            West
-        }
+        
     }
 }
