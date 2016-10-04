@@ -121,6 +121,7 @@ namespace HotelSimulator.Object
                     map[_hotelWidth + 1, infrastructureStart] = new Stair();
                 }
             }
+            AddNeighbours(map);
 
         }
 
@@ -177,7 +178,7 @@ namespace HotelSimulator.Object
             }
 
 
-            AddNeighbours(map);
+          
 
             //Returns the drawn bitmap
             return _hotel;
@@ -194,6 +195,8 @@ namespace HotelSimulator.Object
                 if (space == map[0,0])
                 {
                     guest = new Guest(space);
+                    space.guest = guest;
+                    Draw(map);
                     //guest.Draw(gfx, map, xStartPosition, yStartPosition);
                     //guest.Walk(this);
                 }
