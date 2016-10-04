@@ -7,7 +7,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Hotel
+    public class Hotel
     {
         private List<int> _hotelWidthList;
         private List<int> _hotelHeightList;
@@ -131,6 +131,8 @@ namespace HotelSimulator.Object
 
             int xStartPosition = 500;
             int yStartPosition = 735;
+            int guestxpos = xStartPosition;
+            int guestypos = yStartPosition;
             int standardRoomWidth = 100;
             int standardRoomHeight = 50;
 
@@ -146,8 +148,21 @@ namespace HotelSimulator.Object
                     {
                         if (map[x, y].Image == null) ;
 
-                        else
+                        else {
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
+                            if(((HotelRoom)map[x,y]).guest != null)
+                            {
+                                int dimension = -25;
+                                if (((HotelRoom)map[x, y]).Height == 1)
+                                {
+                                    gfx.DrawImage(((HotelRoom)map[x, y]).guest.Image, x * (((HotelRoom)map[x, y]).Width + 100) + guestxpos, -y * (((HotelRoom)map[x, y]).Height + 50) + guestypos + dimension, ((HotelRoom)map[x, y]).guest.Width, ((HotelRoom)map[x, y]).guest.Height);
+                                }
+                                else
+                                {
+                                    gfx.DrawImage(((HotelRoom)map[x, y]).guest.Image, x * (((HotelRoom)map[x, y]).Width + 100) + guestxpos, -y * (((HotelRoom)map[x, y]).Height + 50) + guestypos + dimension + (dimension * ((HotelRoom)map[x, y]).Height), ((HotelRoom)map[x, y]).guest.Width, ((HotelRoom)map[x, y]).guest.Height);
+                                }
+                            }
+                        }
                     }
                     
                     //Builds down
@@ -161,22 +176,28 @@ namespace HotelSimulator.Object
                 yStartPosition = 735;
             }
 
-            Guest guest = null;
-
-            foreach (HotelRoom space in map)
-            {
-                if (space != null)
-                {
-                    guest = new Guest(space);
-                    guest.Draw(gfx, map, xStartPosition, yStartPosition);
-                    guest.Walk();
-                }
-            }
 
             AddNeighbours(map);
 
             //Returns the drawn bitmap
             return _hotel;
+
+        }
+
+        public void Action()
+        {
+
+            Guest guest = null;
+
+            foreach (HotelRoom space in map)
+            {
+                if (space == map[0,0])
+                {
+                    guest = new Guest(space);
+                    //guest.Draw(gfx, map, xStartPosition, yStartPosition);
+                    //guest.Walk(this);
+                }
+            }
 
         }
     

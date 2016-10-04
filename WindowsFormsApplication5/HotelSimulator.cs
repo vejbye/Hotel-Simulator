@@ -100,6 +100,7 @@ namespace HotelSimulator
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
                 screenPB.Image = Hotel.Draw(Hotel.map);
+                Hotel.Action();
             }
             else
                 MessageBox.Show("Couldn't load file");

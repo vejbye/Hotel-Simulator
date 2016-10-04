@@ -18,6 +18,7 @@ namespace HotelSimulator.Object
     {
         public HotelRoom CurrentRoom;
         public Dictionary<Neighbours, HotelRoom> Neighbours = new Dictionary<Neighbours, HotelRoom>();
+        public Guest guest;
 
         public void CreateNeighbours(ref HotelRoom neighbour, Neighbours n)
         {
