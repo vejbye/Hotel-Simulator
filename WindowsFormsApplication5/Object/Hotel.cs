@@ -7,7 +7,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Hotel
+    public class Hotel
     {
         private List<int> _hotelWidthList;
         private List<int> _hotelHeightList;
@@ -144,9 +144,7 @@ namespace HotelSimulator.Object
                 {
                     if (map[x, y] != null && map[x, y] is SimObject)
                     {
-                        if (map[x, y].Image == null) ;
-
-                        else
+                        if (map[x, y].Image != null)
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
                     }
                     
