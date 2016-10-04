@@ -144,7 +144,9 @@ namespace HotelSimulator.Object
                 {
                     if (map[x, y] != null && map[x, y] is SimObject)
                     {
-                        if (map[x, y].Image != null)
+                        if (map[x, y].Image == null) ;
+
+                        else
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
                     }
                     
@@ -159,22 +161,28 @@ namespace HotelSimulator.Object
                 yStartPosition = 735;
             }
 
-            Guest guest = null;
-
-            foreach (HotelRoom space in map)
-            {
-                if (space != null)
-                {
-                    guest = new Guest(space);
-                    guest.Draw(gfx, map, xStartPosition, yStartPosition);
-                    guest.Walk();
-                }
-            }
 
             AddNeighbours(map);
 
             //Returns the drawn bitmap
             return _hotel;
+
+        }
+
+        public void Action()
+        {
+
+            Guest guest = null;
+
+            foreach (HotelRoom space in map)
+            {
+                if (space == map[0,0])
+                {
+                    guest = new Guest(space);
+                    //guest.Draw(gfx, map, xStartPosition, yStartPosition);
+                    //guest.Walk(this);
+                }
+            }
 
         }
     
