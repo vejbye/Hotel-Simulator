@@ -17,8 +17,8 @@ namespace HotelSimulator.Object
         {
             this.current = current;
             Image = Resources.Guest;
-            Width = 30;
-            Height = 30;
+            Width = 40;
+            Height = 40;
             path = new List<HotelRoom>();
         }
         public void Walk(Hotel hotel, HotelSimulator hs)

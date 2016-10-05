@@ -129,7 +129,7 @@ namespace HotelSimulator.Object
             int yStartPosition = 735;
             int standardRoomWidth = 100;
             int standardRoomHeight = 50;
-            int dimension = 25;
+            int dimension = 10;
 
             //Background image o the hotel
             gfx.DrawImage(Resources.SimulatorBG, 1, 1, 2000, 800);

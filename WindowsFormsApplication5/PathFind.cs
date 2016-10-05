@@ -17,7 +17,7 @@ namespace HotelSimulator
             open = new List<HotelRoom>();
         }
 
-        public HotelRoom shortestPathDijkstra(Guest guest, HotelRoom start, HotelRoom end)
+        public HotelRoom shortestPathDijkstra(SimObject guest, HotelRoom start, HotelRoom end)
         {
             HotelRoom current = start;
             while (Completed(current, end) == false)

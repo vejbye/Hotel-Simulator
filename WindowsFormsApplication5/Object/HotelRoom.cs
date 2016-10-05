@@ -19,6 +19,7 @@ namespace HotelSimulator.Object
         public HotelRoom CurrentRoom;
         public Dictionary<Neighbours, HotelRoom> Neighbours = new Dictionary<Neighbours, HotelRoom>();
         public Guest guest;
+        public Maid maid;
         public HotelRoom Previous;
         public int distance;
 
