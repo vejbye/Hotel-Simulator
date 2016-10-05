@@ -16,6 +16,7 @@ namespace HotelSimulator
     {
         Hotel Hotel;
         SimObject[,] Map;
+        Guest guest;
 
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
@@ -38,6 +39,7 @@ namespace HotelSimulator
 
         private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
+   
             _panning = true;
             _startingPoint = new Point(e.Location.X - _movingPoint.X,
                                       e.Location.Y - _movingPoint.Y);
@@ -100,7 +102,8 @@ namespace HotelSimulator
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
                 screenPB.Image = Hotel.Draw(Hotel.map);
-                Hotel.Action();
+                guest = Hotel.Action();
+               
             }
             else
                 MessageBox.Show("Couldn't load file");
@@ -136,6 +139,19 @@ namespace HotelSimulator
             {
                // if(s.)
             }*/
+        }
+
+        private void movement(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Right)
+            {
+                screenPB.Invalidate();
+                screenPB.Refresh();
+                guest.Walk(Hotel, this);
+                screenPB.Invalidate();
+                screenPB.Refresh();
+            }
         }
     }
 }

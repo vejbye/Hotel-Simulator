@@ -19,10 +19,14 @@ namespace HotelSimulator.Object
         public HotelRoom CurrentRoom;
         public Dictionary<Neighbours, HotelRoom> Neighbours = new Dictionary<Neighbours, HotelRoom>();
         public Guest guest;
+        public HotelRoom Previous;
+        public int distance;
 
         public void CreateNeighbours(ref HotelRoom neighbour, Neighbours n)
         {
             Neighbours.Add(n, neighbour);
+            Previous = null;
+            distance = Int32.MaxValue;
         }
 
     }

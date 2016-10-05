@@ -21,7 +21,7 @@ namespace HotelSimulator.Object
         {
             for (int i = 0; i < hotel.getMap().GetLength(0); i++)
             {
-                for (int j = 0; j < hotel.getMap().GetLength(1); i++)
+                for (int j = 0; j < hotel.getMap().GetLength(1); j++)
                 {
                     if (hotel.getMap()[i, j] is Room)
                     {

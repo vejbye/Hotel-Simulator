@@ -11,7 +11,6 @@ namespace HotelSimulator.Object
     {
         private List<int> _hotelWidthList;
         private List<int> _hotelHeightList;
-        private List<Rectangle> _rectangles;
         private int _hotelWidth;
         private int _hotelHeight;
         private Bitmap _hotel = new Bitmap(2000, 1000);
@@ -23,11 +22,7 @@ namespace HotelSimulator.Object
             _hotelHeightList = new List<int>();
             _hotelWidthList = new List<int>();
 
-            for (int i  = 0; i  < _hotelHeight * _hotelWidth; i ++)
-            {
-                Rectangle rectangle = new Rectangle();
-                _rectangles.Add(rectangle);
-            }
+            
 
             //Looks at the width and height of the hotel
             foreach (LayoutFormat l in layout)
@@ -185,7 +180,7 @@ namespace HotelSimulator.Object
 
         }
 
-        public void Action()
+        public Guest Action()
         {
 
             Guest guest = null;
@@ -199,8 +194,10 @@ namespace HotelSimulator.Object
                     Draw(map);
                     //guest.Draw(gfx, map, xStartPosition, yStartPosition);
                     //guest.Walk(this);
+                    return guest;
                 }
             }
+            return null;
 
         }
     
