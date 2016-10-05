@@ -22,6 +22,11 @@ namespace HotelSimulator.Object
         public HotelRoom Previous;
         public int distance;
 
+        public HotelRoom()
+        {
+                Width = 1;
+                Height = 1;
+        }
         public void CreateNeighbours(ref HotelRoom neighbour, Neighbours n)
         {
             Neighbours.Add(n, neighbour);

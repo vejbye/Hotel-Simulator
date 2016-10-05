@@ -129,6 +129,7 @@ namespace HotelSimulator.Object
             int yStartPosition = 735;
             int standardRoomWidth = 100;
             int standardRoomHeight = 50;
+            int dimension = 25;
 
             //Background image o the hotel
             gfx.DrawImage(Resources.SimulatorBG, 1, 1, 2000, 800);
@@ -144,6 +145,10 @@ namespace HotelSimulator.Object
 
                         else
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
+                        if(map[x,y].guest != null)
+                        {
+                            gfx.DrawImage(map[x, y].guest.Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height) + dimension * map[x,y].Height, (map[x, y].guest.Width), (map[x, y].guest.Height));
+                        }
                     }
                     
                     //Builds down
@@ -193,7 +198,7 @@ namespace HotelSimulator.Object
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
-                    if (y > 0)
+                    if (y > 0 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
                     {
                         //North
                         map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
@@ -203,7 +208,7 @@ namespace HotelSimulator.Object
                         //East
                         map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
                     }
-                    if (y < map.GetLength(1) - 1)
+                    if (y < map.GetLength(1) - 1 && (map[x,y] is ElevatorShaft || map[x,y] is Stair))
                     {
                         //South
                         map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);

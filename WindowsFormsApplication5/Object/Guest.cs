@@ -12,20 +12,14 @@ namespace HotelSimulator.Object
     {
         Room room;
         public HotelRoom current;
-        List<HotelRoom> open;
         List<HotelRoom> path;
-
         public Guest(HotelRoom current)
         {
             this.current = current;
             Image = Resources.Guest;
             Width = 30;
             Height = 30;
-            open = new List<HotelRoom>();
             path = new List<HotelRoom>();
-
-
-
         }
         public void Walk(Hotel hotel, HotelSimulator hs)
         {
@@ -42,8 +36,9 @@ namespace HotelSimulator.Object
                     hotel.Draw(hotel.map);
                     hs.Refresh();
             }
-            HotelRoom stair = hotel.map[9, 0];
-            shortestPathDijkstra(this,current, stair);
+            HotelRoom stair = hotel.map[7,6];
+            PathFind pf = new PathFind();
+            pf.shortestPathDijkstra(this,current, stair);
             HotelRoom cur = stair;
             while (cur != current)
             {
@@ -54,8 +49,7 @@ namespace HotelSimulator.Object
             foreach(HotelRoom hr in path)
             Console.WriteLine(hr+ ",");
             for (int i = path.Count - 1; i > -1; i--)
-            {
-                
+            {                
                 if (i - 1 >= 0)
                 {
                     path[i].guest = null;
@@ -63,75 +57,8 @@ namespace HotelSimulator.Object
                     current = path[i - 1];
                     hotel.Draw(hotel.map);
                     hs.Refresh();
-                }
-               
+                }               
             }
-
-
-    }
-
-        public HotelRoom shortestPathDijkstra(Guest guest, HotelRoom start, HotelRoom end)
-        {
-            HotelRoom current = start;
-            while (Completed(current, end) == false)
-            {if (open.Count > 0)
-                {
-                    current = open.Aggregate((l, r) => l.Width < r.Width ? l : r);
-                }
-                else
-                {
-                    current = null;
-                    break;
-                }
-            }
-            //guest.current = current;
-            return current;
-        }
-
-        public bool Completed(HotelRoom current, HotelRoom end)
-        {
-            if (current == end)
-            {
-                return true;
-            }
-            if (open.Contains(current))
-            {
-                
-                open.Remove(current);
-            }
-            foreach (KeyValuePair<Neighbours, HotelRoom> weight in current.Neighbours)
-            {
-                int newDistance = current.distance + weight.Value.Height;
-                if (!((current is ElevatorShaft || current is Stair) && (weight.Value is ElevatorShaft || weight.Value is Stair)))
-                {
-                   
-                    if (newDistance < weight.Value.distance)
-                    {
-                        weight.Value.distance = newDistance;
-                        if (weight.Value.Previous == null)
-                        {
-                            weight.Value.Previous = current;
-                            open.Add(weight.Value);
-                        }
-                        
-                    }
-                }
-                else
-                {
-                    newDistance = current.distance + weight.Value.Height;
-                    if (newDistance < weight.Value.distance)
-                    {
-                        weight.Value.distance = newDistance;
-                        if (weight.Value.Previous == null)
-                        {
-                            weight.Value.Previous = current;
-                            open.Add(weight.Value);
-                        }
-                       
-                    }
-                }
-            }
-            return false;
         }
     }
 }
