@@ -82,7 +82,6 @@
             this.Controls.Add(this.screenPB);
             this.Name = "HotelSimulator";
             this.Text = "Hotel Simulator 2016";
-            this.Load += new System.EventHandler(this.HotelSimulator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).EndInit();
             this.ResumeLayout(false);
 

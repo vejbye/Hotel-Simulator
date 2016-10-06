@@ -30,7 +30,7 @@ namespace HotelSimulator.Object
             HotelRoom destination = null;
             if (Room == null)
             {
-                foreach (HotelRoom hr in hotel.map)
+                foreach (HotelRoom hr in hotel.Map)
                 {
                     if (hr is Reception)
                     {
@@ -46,7 +46,7 @@ namespace HotelSimulator.Object
                 switch (no)
                 {
                     case 0:
-                        foreach (HotelRoom hr in hotel.map)
+                        foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Cinema)
                             {
@@ -54,7 +54,7 @@ namespace HotelSimulator.Object
                             }
                         }; break;
                     case 1:
-                        foreach (HotelRoom hr in hotel.map)
+                        foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Restaurant)
                             {
@@ -62,7 +62,7 @@ namespace HotelSimulator.Object
                             }
                         }; break;
                     case 2:
-                        foreach (HotelRoom hr in hotel.map)
+                        foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Gym)
                             {
@@ -70,7 +70,7 @@ namespace HotelSimulator.Object
                             }
                         }; break;
                     case 3:
-                        foreach (HotelRoom hr in hotel.map)
+                        foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Reception)
                             {
@@ -110,7 +110,7 @@ namespace HotelSimulator.Object
                     Path[i].Guests.Remove(this);
                     Path[i - 1].Guests.Add(this);
                     Current = Path[i - 1];
-                    hotel.Draw(hotel.map);
+                    hotel.Draw(hotel.Map);
                     hs.Refresh();
                 }               
             }
@@ -118,10 +118,10 @@ namespace HotelSimulator.Object
             {
                 Room = ((Reception)destination).findEmptyRoom(hotel);
             }
-            foreach(HotelRoom hr in hotel.map)
+            foreach(HotelRoom hr in hotel.Map)
             {
                 hr.Previous = null;
-                hr.distance = Int32.MaxValue;
+                hr.Distance = Int32.MaxValue;
             }
             Path.Clear();
         }

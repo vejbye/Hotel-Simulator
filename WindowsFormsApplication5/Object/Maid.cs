@@ -21,7 +21,7 @@ namespace HotelSimulator.Object
         }
         public void Walk(Hotel hotel, HotelSimulator hs)
         {
-            foreach(HotelRoom hm in hotel.map)
+            foreach(HotelRoom hm in hotel.Map)
             {
                 if(hm is Room && ((Room)hm).Dirty == true){
                     PathFind pf = new PathFind();
@@ -42,14 +42,14 @@ namespace HotelSimulator.Object
                             Path[i].Maids.Remove(this);
                             Path[i - 1].Maids.Add(this);
                             Current = Path[i - 1];
-                            hotel.Draw(hotel.map);
+                            hotel.Draw(hotel.Map);
                             hs.Refresh();
                         }
                     }
-                    foreach (HotelRoom hr in hotel.map)
+                    foreach (HotelRoom hr in hotel.Map)
                     {
                         hr.Previous = null;
-                        hr.distance = Int32.MaxValue;
+                        hr.Distance = Int32.MaxValue;
                     }
                     ((Room)hm).Dirty = false;
                     Path.Clear();
