@@ -55,6 +55,7 @@ namespace HotelSimulator.Object
                     Map[x, y] = new HotelRoom();
             }
 
+            
             AddBoxes(Map);
 
             //Looks for every room in the layout file and gives it a position in the hotel
@@ -119,8 +120,8 @@ namespace HotelSimulator.Object
                     Map[_hotelWidth + 1, infrastructureStart] = new Stair();
                 }
             }
-            
             AddNeighbours(Map);
+
         }
 
         public Bitmap Draw(HotelRoom[,] map)
@@ -217,22 +218,23 @@ namespace HotelSimulator.Object
                     {
                         //North
                         map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
-
-                        if (x < map.GetLength(0) - 1)
+                    }
+                        if (x < map.GetLength(0) - 1) { 
                             map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
                     }
                     if (y < map.GetLength(1) - 1 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
                     {
                         //South
                         map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);
-
+                    }
                         if (x > 0)
                             map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
+
 
                         if (map[x, y] != null)
                             map[x, y].CurrentRoom = map[x, y];
 
-                    }
+                    
                 }
             }
         }

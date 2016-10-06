@@ -60,11 +60,11 @@ namespace HotelSimulator
                  }
                  /*if (!((current is ElevatorShaft || current is Stair) && (weight.Value is ElevatorShaft || weight.Value is Stair)))
                  {*/
-                int newDistance = current.Distance + 1;
+                int newDistance = current.Distance  + weight.Value.Distance;
                 if (newDistance < weight.Value.Distance)
                 {
                     weight.Value.Distance = newDistance;
-                    if (weight.Value.Previous == null)
+                   if (weight.Value.Previous == null)
                     {
                         weight.Value.Previous = current;
                         open.Add(weight.Value);
