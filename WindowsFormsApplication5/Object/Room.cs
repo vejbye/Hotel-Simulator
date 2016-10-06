@@ -14,12 +14,15 @@ namespace HotelSimulator.Object
         private bool Taken { get; set; }
         private int RoomNr { get; set; }
 
+        public bool Dirty { get; set; }
+
         public Room() : base()
         {
             Image = Resources.Room;
             Taken = false;
             Width = 1;
             Height = 1;
+            Dirty = false;
         }
 
         public bool getTaken()

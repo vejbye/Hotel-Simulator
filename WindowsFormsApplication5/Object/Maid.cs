@@ -9,39 +9,50 @@ namespace HotelSimulator.Object
 {
     public class Maid: SimObject
     {
-        public HotelRoom current;
-        List<HotelRoom> path;
+        public HotelRoom Current;
+        List<HotelRoom> Path;
         public Maid(HotelRoom current)
         {
-            this.current = current;
+            this.Current = current;
             Image = Resources.Maid;
-            Width = 30;
-            Height = 30;
-            path = new List<HotelRoom>();
+            Width = 40;
+            Height = 40;
+            Path = new List<HotelRoom>();
         }
         public void Walk(Hotel hotel, HotelSimulator hs)
         {
-            HotelRoom stair = hotel.map[7, 6];
-            PathFind pf = new PathFind();
-            pf.shortestPathDijkstra(this, current, stair);
-            HotelRoom cur = stair;
-            while (cur != current)
+            foreach(HotelRoom hm in hotel.map)
             {
-                path.Add(cur);
-                cur = cur.Previous;
-            }
-            path.Add(cur);
-            foreach (HotelRoom hr in path)
-                Console.WriteLine(hr + ",");
-            for (int i = path.Count - 1; i > -1; i--)
-            {
-                if (i - 1 >= 0)
-                {
-                    path[i].maid = null;
-                    path[i - 1].maid = this;
-                    current = path[i - 1];
-                    hotel.Draw(hotel.map);
-                    hs.Refresh();
+                if(hm is Room && ((Room)hm).Dirty == true){
+                    PathFind pf = new PathFind();
+                    pf.shortestPathDijkstra(this, Current, hm);
+                    HotelRoom cur = hm;
+                    while (cur != Current)
+                    {
+                        Path.Add(cur);
+                        cur = cur.Previous;
+                    }
+                    Path.Add(cur);
+                    foreach (HotelRoom hr in Path)
+                        Console.WriteLine(hr + ",");
+                    for (int i = Path.Count - 1; i > -1; i--)
+                    {
+                        if (i - 1 >= 0)
+                        {
+                            Path[i].Maids.Remove(this);
+                            Path[i - 1].Maids.Add(this);
+                            Current = Path[i - 1];
+                            hotel.Draw(hotel.map);
+                            hs.Refresh();
+                        }
+                    }
+                    foreach (HotelRoom hr in hotel.map)
+                    {
+                        hr.Previous = null;
+                        hr.distance = Int32.MaxValue;
+                    }
+                    ((Room)hm).Dirty = false;
+                    Path.Clear();
                 }
             }
         }

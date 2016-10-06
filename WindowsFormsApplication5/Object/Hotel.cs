@@ -145,9 +145,13 @@ namespace HotelSimulator.Object
 
                         else
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
-                        if(map[x,y].guest != null)
+                        foreach (Guest guest in map[x, y].Guests)
                         {
-                            gfx.DrawImage(map[x, y].guest.Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height) + dimension * map[x,y].Height, (map[x, y].guest.Width), (map[x, y].guest.Height));
+                            gfx.DrawImage(guest.Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height) + dimension * map[x,y].Height * map[x, y].Height + map[x, y].Height, (guest.Width), (guest.Height));
+                        }
+                        foreach(Maid maid in map[x, y].Maids)
+                        {
+                            gfx.DrawImage(maid.Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height) + dimension * map[x, y].Height * map[x, y].Height + map[x, y].Height, (maid.Width), (maid.Height));
                         }
                     }
                     
@@ -180,14 +184,24 @@ namespace HotelSimulator.Object
                 if (space == map[0,0])
                 {
                     guest = new Guest(space);
-                    space.guest = guest;
+                    space.Guests.Add(guest);
+                    Draw(map);                  
+                }
+                else if (space == map[2, 2])
+                {
+                    Maid maid = new Maid(space);
+                    space.Maids.Add(maid);
                     Draw(map);
-                    //guest.Draw(gfx, map, xStartPosition, yStartPosition);
-                    //guest.Walk(this);
-                    return guest;
+                }
+                else if(space == map[8, 1])
+                {
+                    if(space is Room)
+                    {
+                        ((Room)space).Dirty = true;
+                    }
                 }
             }
-            return null;
+            return guest;
 
         }
     
