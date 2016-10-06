@@ -132,6 +132,7 @@ namespace HotelSimulator.Object
             int yStartPosition = 735;
             int standardRoomWidth = 100;
             int standardRoomHeight = 50;
+            int dimension = 10;
 
             //Background image o the hotel
             gfx.DrawImage(Resources.SimulatorBG, 1, 1, 2000, 800);
@@ -145,6 +146,14 @@ namespace HotelSimulator.Object
                     {
                         if (map[x, y].Image != null)
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height), (standardRoomWidth * map[x, y].Width), (standardRoomHeight * map[x, y].Height));
+                        foreach (Guest guest in map[x, y].Guests)
+                        {
+                            gfx.DrawImage(guest.Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height) + dimension * map[x,y].Height * map[x, y].Height + map[x, y].Height, (guest.Width), (guest.Height));
+                        }
+                        foreach(Maid maid in map[x, y].Maids)
+                        {
+                            gfx.DrawImage(maid.Image, xStartPosition, yStartPosition - (standardRoomHeight * map[x, y].Height) + dimension * map[x, y].Height * map[x, y].Height + map[x, y].Height, (maid.Width), (maid.Height));
+                        }
                     }
                     
                     //Builds down
@@ -176,14 +185,24 @@ namespace HotelSimulator.Object
                 if (space == Map[0,0])
                 {
                     guest = new Guest(space);
-                    //space.guest = guest;
-                    Draw(Map);
-                    //guest.Draw(gfx, map, xStartPosition, yStartPosition);
-                    //guest.Walk(this);
-                    return guest;
+                    space.Guests.Add(guest);
+                    Draw(map);                  
+                }
+                else if (space == map[2, 2])
+                {
+                    Maid maid = new Maid(space);
+                    space.Maids.Add(maid);
+                    Draw(map);
+                }
+                else if(space == map[8, 1])
+                {
+                    if(space is Room)
+                    {
+                        ((Room)space).Dirty = true;
+                    }
                 }
             }
-            return null;
+            return guest;
 
         }
     
@@ -194,13 +213,17 @@ namespace HotelSimulator.Object
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
-                    if (y > 0)
+                    if (y > 0 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
+                    {
+                        //North
                         map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
                     
                     if (x < map.GetLength(0) - 1)
                         map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
-                    
-                    if (y < map.GetLength(1) - 1)
+                    }
+                    if (y < map.GetLength(1) - 1 && (map[x,y] is ElevatorShaft || map[x,y] is Stair))
+                    {
+                        //South
                         map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);
                     
                     if (x > 0)

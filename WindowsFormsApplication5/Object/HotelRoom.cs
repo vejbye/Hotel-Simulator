@@ -18,11 +18,19 @@ namespace HotelSimulator.Object
     {
         public HotelRoom CurrentRoom;
         public Dictionary<Neighbours, HotelRoom> Neighbours = new Dictionary<Neighbours, HotelRoom>();
-        public Guest Guest;
+        public List<Guest> Guests;
+        public List<Maid> Maids;
         public HotelRoom Previous;
         public int Distance;
         public int Id;
 
+        public HotelRoom()
+        {
+                Width = 1;
+                Height = 1;
+            Maids = new List<Maid>();
+            Guests = new List<Guest>();
+        }
         public void CreateNeighbours(ref HotelRoom neighbour, Neighbours n)
         {
             Neighbours.Add(n, neighbour);
