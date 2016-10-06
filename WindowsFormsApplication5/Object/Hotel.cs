@@ -55,7 +55,6 @@ namespace HotelSimulator.Object
                     Map[x, y] = new HotelRoom();
             }
 
-            AddNeighbours(Map);
             AddBoxes(Map);
 
             //Looks for every room in the layout file and gives it a position in the hotel
@@ -121,6 +120,7 @@ namespace HotelSimulator.Object
                 }
             }
             
+            AddNeighbours(Map);
         }
 
         public Bitmap Draw(HotelRoom[,] map)
@@ -186,15 +186,15 @@ namespace HotelSimulator.Object
                 {
                     guest = new Guest(space);
                     space.Guests.Add(guest);
-                    Draw(map);                  
+                    Draw(Map);                  
                 }
-                else if (space == map[2, 2])
+                else if (space == Map[2, 2])
                 {
                     Maid maid = new Maid(space);
                     space.Maids.Add(maid);
-                    Draw(map);
+                    Draw(Map);
                 }
-                else if(space == map[8, 1])
+                else if(space == Map[8, 1])
                 {
                     if(space is Room)
                     {
@@ -205,7 +205,7 @@ namespace HotelSimulator.Object
             return guest;
 
         }
-    
+
 
         private void AddNeighbours(HotelRoom[,] map)
         {
@@ -217,22 +217,22 @@ namespace HotelSimulator.Object
                     {
                         //North
                         map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
-                    
-                    if (x < map.GetLength(0) - 1)
-                        map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
+
+                        if (x < map.GetLength(0) - 1)
+                            map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
                     }
-                    if (y < map.GetLength(1) - 1 && (map[x,y] is ElevatorShaft || map[x,y] is Stair))
+                    if (y < map.GetLength(1) - 1 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
                     {
                         //South
                         map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);
-                    
-                    if (x > 0)
-                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
-                    
 
-                    if (map[x, y] != null)
-                        map[x, y].CurrentRoom = map[x, y];
-                    
+                        if (x > 0)
+                            map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
+
+                        if (map[x, y] != null)
+                            map[x, y].CurrentRoom = map[x, y];
+
+                    }
                 }
             }
         }

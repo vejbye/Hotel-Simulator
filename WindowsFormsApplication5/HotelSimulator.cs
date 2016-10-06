@@ -155,9 +155,9 @@ namespace HotelSimulator
             {
                 screenPB.Invalidate();
                 screenPB.Refresh();
-                HotelRoom destination = guest.setDestination(Hotel);
-                guest.Walk(Hotel, this, destination);
-               foreach (HotelRoom hr in Hotel.map)
+                HotelRoom destination = Guest.setDestination(Hotel);
+                Guest.Walk(Hotel, this, destination);
+               foreach (HotelRoom hr in Hotel.Map)
                 {
                     try {
                         foreach (Maid maid in hr.Maids)

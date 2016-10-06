@@ -24,7 +24,7 @@ namespace HotelSimulator
             {
                 if (open.Count > 0)
                 {
-                    current = open.Aggregate((l, r) => l.distance < r.distance ? l : r);
+                    current = open.Aggregate((l, r) => l.Distance < r.Distance ? l : r);
                 }
                 else
                 {
@@ -60,10 +60,10 @@ namespace HotelSimulator
                  }
                  /*if (!((current is ElevatorShaft || current is Stair) && (weight.Value is ElevatorShaft || weight.Value is Stair)))
                  {*/
-                int newDistance = current.distance + 1;
-                if (newDistance < weight.Value.distance)
+                int newDistance = current.Distance + 1;
+                if (newDistance < weight.Value.Distance)
                 {
-                    weight.Value.distance = newDistance;
+                    weight.Value.Distance = newDistance;
                     if (weight.Value.Previous == null)
                     {
                         weight.Value.Previous = current;
