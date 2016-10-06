@@ -10,10 +10,10 @@ namespace HotelSimulator.Object
 {
     public class Guest: SimObject
     {
-        Room room;
         public HotelRoom current;
-        List<HotelRoom> open;
-        List<HotelRoom> path;
+        private Room _room;
+        private List<HotelRoom> _open;
+        private List<HotelRoom> _path;
 
         public Guest(HotelRoom current)
         {
@@ -21,8 +21,8 @@ namespace HotelSimulator.Object
             Image = Resources.Guest;
             Width = 30;
             Height = 30;
-            open = new List<HotelRoom>();
-            path = new List<HotelRoom>();
+            _open = new List<HotelRoom>();
+            _path = new List<HotelRoom>();
 
 
 
@@ -31,37 +31,37 @@ namespace HotelSimulator.Object
         {
             while (current.Neighbours.ContainsKey(Neighbours.East))
             {
-                if (current is Reception && room == null)
+                if (current is Reception && _room == null)
                 {
-                   room = ((Reception)current).findEmptyRoom(hotel);
+                   _room = ((Reception)current).findEmptyRoom(hotel);
                     break;
                 }
-                    current.guest = null;
-                    current.Neighbours[Neighbours.East].guest = this;
+                    current.Guest = null;
+                    current.Neighbours[Neighbours.East].Guest = this;
                     current = current.Neighbours[Neighbours.East];
-                    hotel.Draw(hotel.map);
+                    hotel.Draw(hotel.Map);
                     hs.Refresh();
             }
-            HotelRoom stair = hotel.map[9, 0];
+            HotelRoom stair = hotel.Map[9, 0];
             shortestPathDijkstra(this,current, stair);
             HotelRoom cur = stair;
             while (cur != current)
             {
-                path.Add(cur);
+                _path.Add(cur);
                 cur = cur.Previous;
             }
-            path.Add(cur);
-            foreach(HotelRoom hr in path)
+            _path.Add(cur);
+            foreach(HotelRoom hr in _path)
             Console.WriteLine(hr+ ",");
-            for (int i = path.Count - 1; i > -1; i--)
+            for (int i = _path.Count - 1; i > -1; i--)
             {
                 
                 if (i - 1 >= 0)
                 {
-                    path[i].guest = null;
-                    path[i - 1].guest = this;
-                    current = path[i - 1];
-                    hotel.Draw(hotel.map);
+                    _path[i].Guest = null;
+                    _path[i - 1].Guest = this;
+                    current = _path[i - 1];
+                    hotel.Draw(hotel.Map);
                     hs.Refresh();
                 }
                
@@ -74,9 +74,9 @@ namespace HotelSimulator.Object
         {
             HotelRoom current = start;
             while (Completed(current, end) == false)
-            {if (open.Count > 0)
+            {if (_open.Count > 0)
                 {
-                    current = open.Aggregate((l, r) => l.Width < r.Width ? l : r);
+                    current = _open.Aggregate((l, r) => l.Width < r.Width ? l : r);
                 }
                 else
                 {
@@ -94,38 +94,38 @@ namespace HotelSimulator.Object
             {
                 return true;
             }
-            if (open.Contains(current))
+            if (_open.Contains(current))
             {
                 
-                open.Remove(current);
+                _open.Remove(current);
             }
             foreach (KeyValuePair<Neighbours, HotelRoom> weight in current.Neighbours)
             {
-                int newDistance = current.distance + weight.Value.Height;
+                int newDistance = current.Distance + weight.Value.Height;
                 if (!((current is ElevatorShaft || current is Stair) && (weight.Value is ElevatorShaft || weight.Value is Stair)))
                 {
                    
-                    if (newDistance < weight.Value.distance)
+                    if (newDistance < weight.Value.Distance)
                     {
-                        weight.Value.distance = newDistance;
+                        weight.Value.Distance = newDistance;
                         if (weight.Value.Previous == null)
                         {
                             weight.Value.Previous = current;
-                            open.Add(weight.Value);
+                            _open.Add(weight.Value);
                         }
                         
                     }
                 }
                 else
                 {
-                    newDistance = current.distance + weight.Value.Height;
-                    if (newDistance < weight.Value.distance)
+                    newDistance = current.Distance + weight.Value.Height;
+                    if (newDistance < weight.Value.Distance)
                     {
-                        weight.Value.distance = newDistance;
+                        weight.Value.Distance = newDistance;
                         if (weight.Value.Previous == null)
                         {
                             weight.Value.Previous = current;
-                            open.Add(weight.Value);
+                            _open.Add(weight.Value);
                         }
                        
                     }

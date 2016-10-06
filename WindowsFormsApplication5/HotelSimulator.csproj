@@ -65,6 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfoScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoScreen.Designer.cs">
+      <DependentUpon>InfoScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="LayoutReader.cs" />
     <Compile Include="LayoutFormat.cs" />
     <Compile Include="Neighbour.cs" />
@@ -98,10 +104,13 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Space.cs" />
+    <Compile Include="BoundaryBox.cs" />
     <Compile Include="Object\Stair.cs" />
     <EmbeddedResource Include="HotelSimulator.resx">
       <DependentUpon>HotelSimulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoScreen.resx">
+      <DependentUpon>InfoScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

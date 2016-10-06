@@ -16,8 +16,8 @@ namespace HotelSimulator
     {
         Hotel Hotel;
         SimObject[,] Map;
-        Guest guest;
-
+        Guest Guest;
+        
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
         private Point _original = new Point(0, 0);
@@ -33,16 +33,19 @@ namespace HotelSimulator
         {
             InitializeComponent();
             Hotel = new Hotel();
-            Map = Hotel.map;
+            Map = Hotel.Map;
         }
 
 
         private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
-   
-            _panning = true;
-            _startingPoint = new Point(e.Location.X - _movingPoint.X,
-                                      e.Location.Y - _movingPoint.Y);
+
+            if (e.Button == MouseButtons.Left)
+            {
+                _panning = true;
+                _startingPoint = new Point(e.Location.X - _movingPoint.X,
+                                          e.Location.Y - _movingPoint.Y);
+            }
 
         }
 
@@ -90,7 +93,7 @@ namespace HotelSimulator
         private void loadlayoutBTN_Click(object sender, EventArgs e)
         {
             OpenFileDialog chosenFile = new OpenFileDialog();
-            chosenFile.Filter = "All Files (*.*)|*.*";
+            chosenFile.Filter = "Layout Files|*.LAYOUT*";
             chosenFile.FilterIndex = 1;
             chosenFile.Multiselect = false;
 
@@ -101,17 +104,11 @@ namespace HotelSimulator
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
-                screenPB.Image = Hotel.Draw(Hotel.map);
-                guest = Hotel.Action();
-               
+                screenPB.Image = Hotel.Draw(Hotel.Map);
+                Guest = Hotel.Action();
             }
             else
                 MessageBox.Show("Couldn't load file");
-        }
-
-        private void HotelSimulator_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void settingsBTN_Click(object sender, EventArgs e)
@@ -123,7 +120,6 @@ namespace HotelSimulator
             {
                 
             }
-
             
             if (result == DialogResult.Cancel)
             {
@@ -134,24 +130,32 @@ namespace HotelSimulator
 
         private void screenPB_MouseClick(object sender, MouseEventArgs e)
         {
-            /*
-            foreach (Space s in map)
+            if (e.Button == MouseButtons.Right)
             {
-               // if(s.)
-            }*/
+                Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
+                foreach (Rectangle r in Hotel.BoundaryBox.BoundaryBoxes)
+                {
+                    if (r.Contains(boxPosition))
+                    {
+                        InfoScreen infoScreen = new InfoScreen();
+                        var result = infoScreen.ShowDialog();
+                    }
+
+                }
+
+                Console.WriteLine("Actual Click: {0} \nClick in World: {1}", e.Location, boxPosition);
+            }
+
         }
 
         private void movement(object sender, MouseEventArgs e)
         {
 
-            if (e.Button == MouseButtons.Right)
-            {
-                screenPB.Invalidate();
-                screenPB.Refresh();
-                guest.Walk(Hotel, this);
-                screenPB.Invalidate();
-                screenPB.Refresh();
-            }
+        }
+
+        private void HotelSimulator_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

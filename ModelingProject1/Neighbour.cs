@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelSimulator.Object
+namespace HotelSimulator
 {
-    class Space
+    public class Neighbour
     {
-        public SimObject CurrentObject { get; set; }
         
     }
 }

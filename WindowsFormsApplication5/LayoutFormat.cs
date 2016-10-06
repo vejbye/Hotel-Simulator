@@ -17,6 +17,7 @@ namespace HotelSimulator
         public string AreaType { get; set; }
         public string Dimension { get; set; }
         public string Position { get; set; }
+        public int ID { get; set; }
     }
 
 }

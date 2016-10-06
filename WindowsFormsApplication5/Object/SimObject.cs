@@ -7,8 +7,9 @@ using System.Drawing;
 
 namespace HotelSimulator.Object
 {
-    public class SimObject
+    public abstract class SimObject
     {
+        public Rectangle BoundingBox { get; set; }
         public Image Image;
         public int Width;
         public int Height;
