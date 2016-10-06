@@ -132,46 +132,51 @@ namespace HotelSimulator
         {
             if (e.Button == MouseButtons.Right)
             {
-                Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
-                foreach (Rectangle r in Hotel.BoundaryBox.BoundaryBoxes)
+                if (Hotel.Map != null)
                 {
-                    if (r.Contains(boxPosition))
+                    Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
+                    foreach (Rectangle r in Hotel.BoundaryBox.BoundaryBoxes)
                     {
-                        InfoScreen infoScreen = new InfoScreen();
-                        var result = infoScreen.ShowDialog();
+                        if (r.Contains(boxPosition))
+                        {
+                            InfoScreen infoScreen = new InfoScreen();
+                            var result = infoScreen.ShowDialog();
+                        }
+
                     }
 
+                    Console.WriteLine("Actual Click: {0} \nClick in World: {1}", e.Location, boxPosition);
                 }
-
-                Console.WriteLine("Actual Click: {0} \nClick in World: {1}", e.Location, boxPosition);
             }
-
         }
 
         private void Movement(object sender, MouseEventArgs e)
         {
-
-            if (e.Button == MouseButtons.Right)
+            if (Hotel.Map != null)
             {
-                screenPB.Invalidate();
-                screenPB.Refresh();
-                HotelRoom destination = Guest.setDestination(Hotel);
-                Guest.Walk(Hotel, this, destination);
-               foreach (HotelRoom hr in Hotel.Map)
+                if (e.Button == MouseButtons.Middle)
                 {
-                    try {
-                        foreach (Maid maid in hr.Maids)
+                    screenPB.Invalidate();
+                    screenPB.Refresh();
+                    HotelRoom destination = Guest.setDestination(Hotel);
+                    Guest.Walk(Hotel, this, destination);
+                    foreach (HotelRoom hr in Hotel.Map)
+                    {
+                        try
                         {
-                            maid.Walk(Hotel, this);
+                            foreach (Maid maid in hr.Maids)
+                            {
+                                maid.Walk(Hotel, this);
+                            }
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+
                         }
                     }
-                    catch(InvalidOperationException ex)
-                    {
-
-                    }
+                    screenPB.Invalidate();
+                    screenPB.Refresh();
                 }
-                screenPB.Invalidate();
-                screenPB.Refresh();
             }
         }
     }
