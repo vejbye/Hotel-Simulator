@@ -26,8 +26,8 @@ namespace HotelSimulator.Object
 
         public HotelRoom()
         {
-                Width = 1;
-                Height = 1;
+            Width = 100;
+            Height = 50;
             Maids = new List<Maid>();
             Guests = new List<Guest>();
         }

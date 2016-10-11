@@ -14,8 +14,6 @@ namespace HotelSimulator.Object
         public Cinema()
         {
             Image = Resources.Cinema;
-            Width = 1;
-            Height = 1;
         }
     }
 }

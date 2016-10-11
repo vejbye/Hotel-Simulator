@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.typeOfRoomLBL = new System.Windows.Forms.Label();
-            this.unknownRoomLBL = new System.Windows.Forms.Label();
+            this.unknownLBL = new System.Windows.Forms.Label();
             this.peopleLBL = new System.Windows.Forms.Label();
             this.unknownLBL2 = new System.Windows.Forms.Label();
             this.dimensionLBL = new System.Windows.Forms.Label();
@@ -48,14 +48,14 @@
             this.typeOfRoomLBL.TabIndex = 0;
             this.typeOfRoomLBL.Text = "Type of Room: ";
             // 
-            // unknownRoomLBL
+            // unknownLBL
             // 
-            this.unknownRoomLBL.AutoSize = true;
-            this.unknownRoomLBL.Location = new System.Drawing.Point(112, 9);
-            this.unknownRoomLBL.Name = "unknownRoomLBL";
-            this.unknownRoomLBL.Size = new System.Drawing.Size(53, 13);
-            this.unknownRoomLBL.TabIndex = 1;
-            this.unknownRoomLBL.Text = "Unknown";
+            this.unknownLBL.AutoSize = true;
+            this.unknownLBL.Location = new System.Drawing.Point(122, 9);
+            this.unknownLBL.Name = "unknownLBL";
+            this.unknownLBL.Size = new System.Drawing.Size(53, 13);
+            this.unknownLBL.TabIndex = 1;
+            this.unknownLBL.Text = "Unknown";
             // 
             // peopleLBL
             // 
@@ -70,7 +70,7 @@
             // unknownLBL2
             // 
             this.unknownLBL2.AutoSize = true;
-            this.unknownLBL2.Location = new System.Drawing.Point(112, 41);
+            this.unknownLBL2.Location = new System.Drawing.Point(122, 41);
             this.unknownLBL2.Name = "unknownLBL2";
             this.unknownLBL2.Size = new System.Drawing.Size(53, 13);
             this.unknownLBL2.TabIndex = 3;
@@ -89,7 +89,7 @@
             // unknownLBL3
             // 
             this.unknownLBL3.AutoSize = true;
-            this.unknownLBL3.Location = new System.Drawing.Point(112, 74);
+            this.unknownLBL3.Location = new System.Drawing.Point(122, 74);
             this.unknownLBL3.Name = "unknownLBL3";
             this.unknownLBL3.Size = new System.Drawing.Size(53, 13);
             this.unknownLBL3.TabIndex = 5;
@@ -108,7 +108,7 @@
             // unknownLBL4
             // 
             this.unknownLBL4.AutoSize = true;
-            this.unknownLBL4.Location = new System.Drawing.Point(112, 103);
+            this.unknownLBL4.Location = new System.Drawing.Point(122, 103);
             this.unknownLBL4.Name = "unknownLBL4";
             this.unknownLBL4.Size = new System.Drawing.Size(53, 13);
             this.unknownLBL4.TabIndex = 7;
@@ -118,17 +118,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(189, 133);
+            this.ClientSize = new System.Drawing.Size(333, 133);
             this.Controls.Add(this.unknownLBL4);
             this.Controls.Add(this.floorLBL);
             this.Controls.Add(this.unknownLBL3);
             this.Controls.Add(this.dimensionLBL);
             this.Controls.Add(this.unknownLBL2);
             this.Controls.Add(this.peopleLBL);
-            this.Controls.Add(this.unknownRoomLBL);
+            this.Controls.Add(this.unknownLBL);
             this.Controls.Add(this.typeOfRoomLBL);
             this.Name = "InfoScreen";
             this.Text = "InfoScreen";
+            this.Load += new System.EventHandler(this.InfoScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +138,7 @@
         #endregion
 
         private System.Windows.Forms.Label typeOfRoomLBL;
-        private System.Windows.Forms.Label unknownRoomLBL;
+        private System.Windows.Forms.Label unknownLBL;
         private System.Windows.Forms.Label peopleLBL;
         private System.Windows.Forms.Label unknownLBL2;
         private System.Windows.Forms.Label dimensionLBL;

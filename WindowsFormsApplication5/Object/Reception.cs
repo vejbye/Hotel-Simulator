@@ -13,22 +13,20 @@ namespace HotelSimulator.Object
         public Reception() : base()
         {
             Image = Resources.Reception;
-            Width = 1;
-            Height = 1;
         }
 
         public Room findEmptyRoom(Hotel hotel)
         {
-            for (int i = 0; i < hotel.getMap().GetLength(0); i++)
+            for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
             {
-                for (int j = 0; j < hotel.getMap().GetLength(1); j++)
+                for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
                 {
-                    if (hotel.getMap()[i, j] is Room)
+                    if (hotel.GetMap()[i, j] is Room)
                     {
-                        if (!((Room)hotel.getMap()[i, j]).getTaken())
+                        if (!((Room)hotel.GetMap()[i, j]).getTaken())
                         {
-                            ((Room)hotel.getMap()[i, j]).setTaken(true);
-                            return (Room)hotel.getMap()[i, j];
+                            ((Room)hotel.GetMap()[i, j]).setTaken(true);
+                            return (Room)hotel.GetMap()[i, j];
                         }
                     }
                 }

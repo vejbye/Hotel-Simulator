@@ -18,13 +18,15 @@ namespace HotelSimulator
 
     public partial class HotelSimulator : Form
     {
-        Hotel Hotel;
+        public Hotel Hotel;
         SimObject[,] Map;
         Guest Guest;
         public List<Guest> newcomers;
         System.Windows.Forms.Timer aTimer;
         System.Windows.Forms.Timer SpawnTimer;
-
+        private Guest _guest;
+        private Draw DrawMe;
+        
 
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
@@ -41,12 +43,13 @@ namespace HotelSimulator
         {
             InitializeComponent();
             Hotel = new Hotel();
+            DrawMe = new Draw();
             Map = Hotel.Map;
             newcomers = new List<Guest>();
             for(int i = 0; i < 10; i++)
             {
                 newcomers.Add(new Guest(null));
-            }
+        }
         }
 
         private void OnSpawn(object source, EventArgs e)
@@ -123,13 +126,12 @@ namespace HotelSimulator
             if (chosenFile.ShowDialog() == DialogResult.OK)
             {
                 string json = chosenFile.FileName;
-
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
-                screenPB.Image = Hotel.Draw(Hotel.Map);
-                Guest = Hotel.Action();
-                
+                screenPB.Image = DrawMe.DrawHotel(Hotel.GetMap(), Hotel._hotel);
+                _guest = Hotel.Action();
+
                 aTimer = new System.Windows.Forms.Timer();
                 aTimer.Interval = 2000;
                 aTimer.Tick += new EventHandler(OnTimedEvent);
@@ -164,22 +166,18 @@ namespace HotelSimulator
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (Hotel.Map != null)
-                {
                     Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
-                    foreach (Rectangle r in Hotel.BoundaryBox.BoundaryBoxes)
+                foreach (SimObject s in Hotel.GetMap())
                     {
-                        if (r.Contains(boxPosition))
+                    if (s.BoundingBox.Contains(boxPosition))
                         {
-                            InfoScreen infoScreen = new InfoScreen();
+                        InfoScreen infoScreen = new InfoScreen(s);
                             var result = infoScreen.ShowDialog();
                         }
 
-                    }
-
-                    Console.WriteLine("Actual Click: {0} \nClick in World: {1}", e.Location, boxPosition);
                 }
             }
+
         }
 
         private void OnTimedEvent(object source, EventArgs e)
@@ -230,7 +228,7 @@ namespace HotelSimulator
                             {
                                 if (maid.moved == false)
                                 {
-                                    maid.Walk(Hotel, this);
+                                maid.Walk(Hotel, this);
                                     maid.moved = true;
                                 }
                             }

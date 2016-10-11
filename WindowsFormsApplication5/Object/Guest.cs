@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
 using HotelEvents;
+using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
@@ -24,7 +25,7 @@ namespace HotelSimulator.Object
             Width = 40;
             Height = 40;
             Path = new List<HotelRoom>();
-        
+            DrawMe = new Draw();
         }
 
         public HotelRoom setDestination(Hotel hotel)
@@ -50,8 +51,8 @@ namespace HotelSimulator.Object
                 }
                 else
                 {
-                    destination = Room;
-                }
+                destination = Room;
+            }
             }
             else {
                 switch (no)
@@ -119,11 +120,11 @@ namespace HotelSimulator.Object
                     Path[i].Guests.Remove(this);
                     Path[i - 1].Guests.Add(this);
                     Current = Path[i - 1];
-                    hotel.Draw(hotel.Map);
+                    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
                     hs.Refresh();
                     
                 }               
-            }
+                }               
             if(destination == hotel.Map[0, 0])
             {
                 hotel.Map[0, 0].Guests.Remove(this);
