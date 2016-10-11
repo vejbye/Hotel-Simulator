@@ -50,7 +50,7 @@
             this.screenPB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseDown);
             this.screenPB.MouseMove += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseMove);
             this.screenPB.MouseUp += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseUp);
-            this.screenPB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Movement);
+            //this.screenPB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Movement);
             // 
             // loadlayoutBTN
             // 

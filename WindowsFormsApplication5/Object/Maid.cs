@@ -11,6 +11,7 @@ namespace HotelSimulator.Object
     {
         public HotelRoom Current;
         List<HotelRoom> Path;
+        public bool moved = false;
         public Maid(HotelRoom current)
         {
             this.Current = current;
@@ -33,8 +34,6 @@ namespace HotelSimulator.Object
                         cur = cur.Previous;
                     }
                     Path.Add(cur);
-                    foreach (HotelRoom hr in Path)
-                        Console.WriteLine(hr + ",");
                     for (int i = Path.Count - 1; i > -1; i--)
                     {
                         if (i - 1 >= 0)

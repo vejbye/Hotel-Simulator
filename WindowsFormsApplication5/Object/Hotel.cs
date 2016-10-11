@@ -128,7 +128,7 @@ namespace HotelSimulator.Object
         {
             //Drawing the hotel on a bitmap
             Graphics gfx = Graphics.FromImage(_hotel);
-
+            
             int xStartPosition = 500;
             int yStartPosition = 735;
             int standardRoomWidth = 100;
@@ -183,25 +183,25 @@ namespace HotelSimulator.Object
 
             foreach (HotelRoom space in Map)
             {
-                if (space == Map[0,0])
+                /*if (space == Map[0,0])
                 {
                     guest = new Guest(space);
                     space.Guests.Add(guest);
                     Draw(Map);                  
-                }
-                else if (space == Map[2, 2])
+                }*/
+                 if (space == Map[2, 2])
                 {
                     Maid maid = new Maid(space);
                     space.Maids.Add(maid);
                     Draw(Map);
                 }
-                else if(space == Map[8, 1])
+                /*else if(space == Map[8, 1])
                 {
                     if(space is Room)
                     {
                         ((Room)space).Dirty = true;
                     }
-                }
+                }*/
             }
             return guest;
 

@@ -9,7 +9,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Room : HotelRoom
+    public class Room : HotelRoom
     {
         private bool Taken { get; set; }
         private int RoomNr { get; set; }
