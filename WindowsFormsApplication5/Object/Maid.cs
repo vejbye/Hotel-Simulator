@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
+using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
@@ -18,6 +19,7 @@ namespace HotelSimulator.Object
             Width = 40;
             Height = 40;
             Path = new List<HotelRoom>();
+            DrawMe = new Draw();
         }
         public void Walk(Hotel hotel, HotelSimulator hs)
         {
@@ -33,8 +35,6 @@ namespace HotelSimulator.Object
                         cur = cur.Previous;
                     }
                     Path.Add(cur);
-                    foreach (HotelRoom hr in Path)
-                        Console.WriteLine(hr + ",");
                     for (int i = Path.Count - 1; i > -1; i--)
                     {
                         if (i - 1 >= 0)
@@ -42,7 +42,7 @@ namespace HotelSimulator.Object
                             Path[i].Maids.Remove(this);
                             Path[i - 1].Maids.Add(this);
                             Current = Path[i - 1];
-                            hotel.Draw(hotel.Map);
+                            DrawMe.DrawHotel(hotel.Map, hotel._hotel);
                             hs.Refresh();
                         }
                     }

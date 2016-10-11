@@ -20,8 +20,6 @@ namespace HotelSimulator.Object
         {
             Image = Resources.Room;
             Taken = false;
-            Width = 1;
-            Height = 1;
             Dirty = false;
         }
 

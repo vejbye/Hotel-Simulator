@@ -12,8 +12,6 @@ namespace HotelSimulator.Object
         public Gym()
         {
             Image = Resources.Gym;
-            Width = 1;
-            Height = 1;
         }
     }
 }

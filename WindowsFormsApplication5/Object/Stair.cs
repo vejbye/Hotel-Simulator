@@ -12,8 +12,6 @@ namespace HotelSimulator.Object
         public Stair()
         {
             Image = Resources.Stairs;
-            Width = 1;
-            Height = 1;
         }
     }
 }

@@ -14,9 +14,9 @@ namespace HotelSimulator
 {
     public partial class HotelSimulator : Form
     {
-        Hotel Hotel;
-        SimObject[,] Map;
-        Guest Guest;
+        public Hotel Hotel;
+        private Guest _guest;
+        private Draw DrawMe;
         
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
@@ -33,7 +33,7 @@ namespace HotelSimulator
         {
             InitializeComponent();
             Hotel = new Hotel();
-            Map = Hotel.Map;
+            DrawMe = new Draw();
         }
 
 
@@ -104,8 +104,8 @@ namespace HotelSimulator
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
-                screenPB.Image = Hotel.Draw(Hotel.Map);
-                Guest = Hotel.Action();
+                screenPB.Image = DrawMe.DrawHotel(Hotel.GetMap(), Hotel._hotel);
+                _guest = Hotel.Action();
             }
             else
                 MessageBox.Show("Couldn't load file");
@@ -133,17 +133,15 @@ namespace HotelSimulator
             if (e.Button == MouseButtons.Right)
             {
                 Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
-                foreach (Rectangle r in Hotel.BoundaryBox.BoundaryBoxes)
+                foreach (SimObject s in Hotel.GetMap())
                 {
-                    if (r.Contains(boxPosition))
+                    if (s.BoundingBox.Contains(boxPosition))
                     {
-                        InfoScreen infoScreen = new InfoScreen();
+                        InfoScreen infoScreen = new InfoScreen(s);
                         var result = infoScreen.ShowDialog();
                     }
 
-                }
-
-                Console.WriteLine("Actual Click: {0} \nClick in World: {1}", e.Location, boxPosition);
+                 }
             }
 
         }
@@ -151,15 +149,16 @@ namespace HotelSimulator
         private void Movement(object sender, MouseEventArgs e)
         {
 
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Middle)
             {
                 screenPB.Invalidate();
                 screenPB.Refresh();
-                HotelRoom destination = Guest.setDestination(Hotel);
-                Guest.Walk(Hotel, this, destination);
-               foreach (HotelRoom hr in Hotel.Map)
+                HotelRoom destination = _guest.setDestination(Hotel);
+                _guest.Walk(Hotel, this, destination);
+                foreach (HotelRoom hr in Hotel.GetMap())
                 {
-                    try {
+                    try
+                    {
                         foreach (Maid maid in hr.Maids)
                         {
                             maid.Walk(Hotel, this);

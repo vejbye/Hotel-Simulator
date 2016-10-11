@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Draw.cs" />
     <Compile Include="InfoScreen.cs">
       <SubType>Form</SubType>
     </Compile>
