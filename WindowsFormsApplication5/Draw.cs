@@ -37,9 +37,9 @@ namespace WindowsFormsApplication5
                             map[x, y].BoundingBox = new Rectangle(xStartPosition, yStartPosition - map[x, y].Height, map[x, y].Width, map[x, y].Height);
                         }
                         foreach (Guest guest in map[x, y].Guests)
-                            gfx.DrawImage(guest.Image, xStartPosition, yStartPosition - map[x, y].Height, map[x, y].Width, map[x, y].Height);
+                            gfx.DrawImage(guest.Image, xStartPosition, yStartPosition - map[x, y].Height, guest.Width, guest.Height);
                         foreach (Maid maid in map[x, y].Maids)
-                            gfx.DrawImage(maid.Image, xStartPosition, yStartPosition - map[x, y].Height, map[x, y].Width, map[x, y].Height);
+                            gfx.DrawImage(maid.Image, xStartPosition, yStartPosition - map[x, y].Height, maid.Width, maid.Height);
                     }
 
                     //Builds down
