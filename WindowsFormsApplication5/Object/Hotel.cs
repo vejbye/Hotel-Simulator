@@ -55,7 +55,7 @@ namespace HotelSimulator.Object
                     Map[x, y] = new HotelRoom();
             }
 
-            
+            AddNeighbours(Map);
             AddBoxes(Map);
 
             //Looks for every room in the layout file and gives it a position in the hotel
@@ -218,9 +218,9 @@ namespace HotelSimulator.Object
                     {
                         //North
                         map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
-                    }
-                        if (x < map.GetLength(0) - 1) { 
-                            map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
+                    
+                    if (x < map.GetLength(0) - 1)
+                        map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
                     }
                     if (y < map.GetLength(1) - 1 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
                     {
