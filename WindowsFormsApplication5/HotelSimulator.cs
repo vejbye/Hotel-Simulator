@@ -148,29 +148,31 @@ namespace HotelSimulator
 
         private void Movement(object sender, MouseEventArgs e)
         {
-
-            if (e.Button == MouseButtons.Middle)
+            if (Hotel.Map != null)
             {
-                screenPB.Invalidate();
-                screenPB.Refresh();
-                HotelRoom destination = _guest.setDestination(Hotel);
-                _guest.Walk(Hotel, this, destination);
-                foreach (HotelRoom hr in Hotel.GetMap())
+                if (e.Button == MouseButtons.Middle)
                 {
-                    try
+                    screenPB.Invalidate();
+                    screenPB.Refresh();
+                    HotelRoom destination = Guest.setDestination(Hotel);
+                    Guest.Walk(Hotel, this, destination);
+                    foreach (HotelRoom hr in Hotel.Map)
                     {
-                        foreach (Maid maid in hr.Maids)
+                        try
                         {
-                            maid.Walk(Hotel, this);
+                            foreach (Maid maid in hr.Maids)
+                            {
+                                maid.Walk(Hotel, this);
+                            }
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+
                         }
                     }
-                    catch(InvalidOperationException ex)
-                    {
-
-                    }
+                    screenPB.Invalidate();
+                    screenPB.Refresh();
                 }
-                screenPB.Invalidate();
-                screenPB.Refresh();
             }
         }
     }
