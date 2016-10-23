@@ -28,7 +28,7 @@ namespace HotelSimulator.Object
             _hotelWidthList = new List<int>();
             _hotel = new Bitmap(2000, 1000);
             DrawMe = new Draw();
-
+                
             //Looks at the width and height of the hotel
             foreach (LayoutFormat l in layout)
             {
@@ -123,14 +123,14 @@ namespace HotelSimulator.Object
                             Map[int.Parse(positions[0]), int.Parse(positions[1])] = current;
                             break;
                         }
-
-                }
-
+            
             }
 
-            AddNeighbours(Map);
-
         }
+
+            AddNeighbours(Map);
+                    
+                }
 
         public Guest Action()
         {
@@ -138,7 +138,7 @@ namespace HotelSimulator.Object
 
             foreach (HotelRoom space in Map)
             {
-                if (space == Map[0,0])
+                /*if (space == Map[0,0])
                 {
                     guest = new Guest(space);
                     space.Guests.Add(guest);
@@ -150,13 +150,13 @@ namespace HotelSimulator.Object
                     space.Maids.Add(maid);
                     DrawMe.DrawHotel(Map, _hotel);
                 }
-                else if(space == Map[8, 1])
+                /*else if(space == Map[8, 1])
                 {
                     if(space is Room)
                     {
                         ((Room)space).Dirty = true;
                     }
-                }
+                }*/
             }
             return guest;
 
@@ -177,12 +177,12 @@ namespace HotelSimulator.Object
                     if (x < map.GetLength(0) - 1)
                         map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
 
-                    if (x > 0)
-                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
+                        if (x > 0)
+                            map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
 
-                    if (map[x, y] != null)
-                        map[x, y].CurrentRoom = map[x, y];
-  
+                        if (map[x, y] != null)
+                            map[x, y].CurrentRoom = map[x, y];
+
                 }
             }
         }

@@ -49,18 +49,8 @@ namespace HotelSimulator
             }
             foreach (KeyValuePair<Neighbours, HotelRoom> weight in current.Neighbours)
             {
-                /* int newDistance = 0;
-                 if (weight.Key == Neighbours.East || weight.Key == Neighbours.West)
-                 {
-                      newDistance = current.distance + weight.Value.Height;
-                 }
-                 else
-                 {
-                     newDistance = current.distance + weight.Value.Width;
-                 }
-                 /*if (!((current is ElevatorShaft || current is Stair) && (weight.Value is ElevatorShaft || weight.Value is Stair)))
-                 {*/
-                int newDistance = current.Distance  + weight.Value.Distance;
+
+                int newDistance = current.Distance + 1;//weight.Value.Distance;
                 if (newDistance < weight.Value.Distance)
                 {
                     weight.Value.Distance = newDistance;
@@ -71,20 +61,6 @@ namespace HotelSimulator
                     }
 
                 }
-                /* }
-                 else
-                 {
-                     if (newDistance < weight.Value.distance)
-                     {
-                         weight.Value.distance = newDistance;
-                         if (weight.Value.Previous == null)
-                         {
-                             weight.Value.Previous = current;
-                             open.Add(weight.Value);
-                         }
-
-                     }
-                 }*/
             }
             return false;
         }

@@ -5,17 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
+using HotelEvents;
 using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
     public class Guest: SimObject
     {
-        Room Room;
+        public Room Room;
         public HotelRoom Current;
         List<HotelRoom> Path;
         public HotelRoom LastDestination;
-
+        public bool moved = false;
+        public int delay = 0;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -43,7 +45,14 @@ namespace HotelSimulator.Object
             }
             else if (LastDestination != Room)
             {
+                if (Room == null)
+                {
+                    destination = hotel.Map[0, 0];
+                }
+                else
+                {
                 destination = Room;
+            }
             }
             else {
                 switch (no)
@@ -113,13 +122,23 @@ namespace HotelSimulator.Object
                     Current = Path[i - 1];
                     DrawMe.DrawHotel(hotel.Map, hotel._hotel);
                     hs.Refresh();
+                    
                 }               
+                }               
+            if(destination == hotel.Map[0, 0])
+            {
+                hotel.Map[0, 0].Guests.Remove(this);
+                hs.newcomers.Add(this);
             }
             if(Room == null && destination is Reception)
             {
                 Room = ((Reception)destination).findEmptyRoom(hotel);
             }
-            foreach(HotelRoom hr in hotel.Map)
+            else if (Room != null && destination is Reception)
+            {
+                ((Reception)destination).checkOut(this);
+            }
+            foreach (HotelRoom hr in hotel.Map)
             {
                 hr.Previous = null;
                 hr.Distance = Int32.MaxValue;

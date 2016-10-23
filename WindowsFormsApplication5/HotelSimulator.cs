@@ -9,15 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HotelSimulator.Object;
 using WindowsFormsApplication5;
+using System.Threading;
+using System.Timers;
 
 namespace HotelSimulator
 {
+   
+
     public partial class HotelSimulator : Form
     {
         public Hotel Hotel;
+        SimObject[,] Map;
+        Guest Guest;
+        public List<Guest> newcomers;
+        System.Windows.Forms.Timer aTimer;
+        System.Windows.Forms.Timer SpawnTimer;
         private Guest _guest;
         private Draw DrawMe;
         
+
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
         private Point _original = new Point(0, 0);
@@ -34,6 +44,22 @@ namespace HotelSimulator
             InitializeComponent();
             Hotel = new Hotel();
             DrawMe = new Draw();
+            Map = Hotel.Map;
+            newcomers = new List<Guest>();
+            for(int i = 0; i < 10; i++)
+            {
+                newcomers.Add(new Guest(null));
+        }
+        }
+
+        private void OnSpawn(object source, EventArgs e)
+        {
+                if (newcomers.Count > 0)
+                {
+                    ((HotelRoom)Hotel.Map[0, 0]).Guests.Add(newcomers.ElementAt(0));
+                    newcomers.ElementAt(0).Current = ((HotelRoom)Hotel.Map[0, 0]);
+                    newcomers.RemoveAt(0);
+                }
         }
 
 
@@ -100,12 +126,20 @@ namespace HotelSimulator
             if (chosenFile.ShowDialog() == DialogResult.OK)
             {
                 string json = chosenFile.FileName;
-
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
                 screenPB.Image = DrawMe.DrawHotel(Hotel.GetMap(), Hotel._hotel);
                 _guest = Hotel.Action();
+
+                aTimer = new System.Windows.Forms.Timer();
+                aTimer.Interval = 2000;
+                aTimer.Tick += new EventHandler(OnTimedEvent);
+                aTimer.Start();
+                SpawnTimer = new System.Windows.Forms.Timer();
+                SpawnTimer.Interval = 5000;
+                SpawnTimer.Tick += new EventHandler(OnSpawn);
+                SpawnTimer.Start();
             }
             else
                 MessageBox.Show("Couldn't load file");
@@ -132,37 +166,53 @@ namespace HotelSimulator
         {
             if (e.Button == MouseButtons.Right)
             {
-                Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
+                    Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
                 foreach (SimObject s in Hotel.GetMap())
-                {
-                    if (s.BoundingBox.Contains(boxPosition))
                     {
+                    if (s.BoundingBox.Contains(boxPosition))
+                        {
                         InfoScreen infoScreen = new InfoScreen(s);
-                        var result = infoScreen.ShowDialog();
-                    }
+                            var result = infoScreen.ShowDialog();
+                        }
 
-                 }
+                }
             }
 
         }
 
-        private void Movement(object sender, MouseEventArgs e)
+        private void OnTimedEvent(object source, EventArgs e)
+        {
+            aTimer.Stop();
+           Movement();
+            aTimer.Start();
+        }
+
+        private void Movement()
         {
             if (Hotel.Map != null)
             {
-                if (e.Button == MouseButtons.Middle)
                 {
-                    screenPB.Invalidate();
-                    screenPB.Refresh();
-                    HotelRoom destination = _guest.setDestination(Hotel);
-                    _guest.Walk(Hotel, this, destination);
                     foreach (HotelRoom hr in Hotel.Map)
                     {
                         try
                         {
-                            foreach (Maid maid in hr.Maids)
+                            for(int i = 0; i < hr.Guests.Count; i++)
                             {
-                                maid.Walk(Hotel, this);
+                                if (hr.Guests.ElementAt(i).moved == false)
+                                {
+                                    hr.Guests.ElementAt(i).moved = true;
+                                    hr.Guests.ElementAt(i).delay = 3;
+                                    HotelRoom destination = hr.Guests.ElementAt(i).setDestination(Hotel);
+                                    hr.Guests.ElementAt(i).Walk(Hotel, this, destination);
+                                    i--;
+                                }else
+                                {
+                                    hr.Guests.ElementAt(i).delay--;
+                                    if (hr.Guests.ElementAt(i).delay == 0)
+                                    {
+                                        hr.Guests.ElementAt(i).moved = false;
+                                    }
+                                }
                             }
                         }
                         catch (InvalidOperationException ex)
@@ -170,8 +220,31 @@ namespace HotelSimulator
 
                         }
                     }
-                    screenPB.Invalidate();
-                    screenPB.Refresh();
+                  /*  foreach (HotelRoom hr in Hotel.Map)
+                    {
+                        try
+                        {
+                            foreach (Maid maid in hr.Maids)
+                            {
+                                if (maid.moved == false)
+                                {
+                                maid.Walk(Hotel, this);
+                                    maid.moved = true;
+                                }
+                            }
+                            foreach (Maid maid in hr.Maids)
+                            {
+                                maid.moved = false;
+
+                            }
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+
+                        }
+                    }*/
+                    //screenPB.Invalidate();
+                    //screenPB.Refresh();
                 }
             }
         }

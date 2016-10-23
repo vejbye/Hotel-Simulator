@@ -12,6 +12,7 @@ namespace HotelSimulator.Object
     {
         public HotelRoom Current;
         List<HotelRoom> Path;
+        public bool moved = false;
         public Maid(HotelRoom current)
         {
             this.Current = current;

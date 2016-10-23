@@ -8,7 +8,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Reception: HotelRoom
+    public class Reception: HotelRoom
     {
         public Reception() : base()
         {
@@ -32,6 +32,13 @@ namespace HotelSimulator.Object
                 }
             }
             return null;
+        }
+
+        public void checkOut(Guest guest)
+        {
+            guest.Room.setTaken(false);
+            guest.Room.Dirty = true;
+            guest.Room = null;
         }
     }
 }
