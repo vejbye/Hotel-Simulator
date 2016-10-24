@@ -6,23 +6,28 @@ using System.Threading.Tasks;
 using System.Drawing;
 using HotelSimulator.Object;
 using WindowsFormsApplication5.Properties;
+using System.Windows.Forms;
 
-namespace WindowsFormsApplication5
+namespace HotelSimulator
 {
     public class Draw
     {
-        public Bitmap DrawHotel(HotelRoom[,] map, Bitmap _hotel)
+        public int xStartPosition = 500;
+       public int yStartPosition = 735;
+       public int standardRoomWidth = 100;
+       public int standardRoomHeight = 50;
+        public Image img = Resources.SimulatorBG;
+        Graphics gfx;
+        public Bitmap DrawHotel(HotelRoom[,] map, Bitmap _hotel, List<Guest> guests, List<Maid> maids)
         {
             //Drawing the hotel on a bitmap
-            Graphics gfx = Graphics.FromImage(_hotel);
-            
-            int xStartPosition = 500;
-            int yStartPosition = 735;
-            int standardRoomWidth = 100;
-            int standardRoomHeight = 50;
+             gfx = Graphics.FromImage(_hotel);
             
             //Background image o the hotel
-            gfx.DrawImage(Resources.SimulatorBG, 1, 1, 2000, 800);
+            if (img != null)
+            {
+               gfx.DrawImage(img, 0, 0, 2000, 800);
+            }
 
             //Fills space with a room if there is one
             for (int x = 0; x < map.GetLength(0); x++)
@@ -36,18 +41,6 @@ namespace WindowsFormsApplication5
                             gfx.DrawImage(map[x, y].Image, xStartPosition, yStartPosition - map[x, y].Height, map[x, y].Width, map[x, y].Height);
                             map[x, y].BoundingBox = new Rectangle(xStartPosition, yStartPosition - map[x, y].Height, map[x, y].Width, map[x, y].Height);
                         }
-                        foreach (Guest guest in map[x, y].Guests)
-                            if (map[x, y].Height == standardRoomHeight)
-                            {
-                                gfx.DrawImage(guest.Image, xStartPosition, yStartPosition - map[x, y].Height, guest.Width, guest.Height);
-
-                            }
-                            else
-                            {
-                                gfx.DrawImage(guest.Image, xStartPosition, yStartPosition - map[x, y].Height + standardRoomHeight, guest.Width, guest.Height);
-                            }
-                                foreach (Maid maid in map[x, y].Maids)
-                            gfx.DrawImage(maid.Image, xStartPosition, yStartPosition - map[x, y].Height, maid.Width, maid.Height);
                     }
 
                     //Builds down
@@ -59,11 +52,77 @@ namespace WindowsFormsApplication5
                 yStartPosition = 735;
             }
 
+            xStartPosition = 500;
+            foreach(Guest guest in guests)
+            {
+                gfx.DrawImage(guest.Image, guest.Position.X, guest.Position.Y, guest.Width, guest.Height);
+            }
 
-
+            foreach(Maid maid in maids)
+            {
+                gfx.DrawImage(maid.Image, maid.Position.X, maid.Position.Y, maid.Width, maid.Height);
+            }
 
             //Returns the drawn bitmap
             return _hotel;
+
+        }
+
+        public void drawPersons(Hotel hotel, SimObject person, HotelSimulator hs )
+        {
+            Point point;
+            if (person is Guest || person is Maid) {
+                if (person.Direction ==  Direction.RIGHT)
+                {
+                     point = new Point(person.Position.X + standardRoomWidth, person.Position.Y);
+                    while (person.Position.X < point.X)
+                    {
+                        person.Position.X += 10;
+                        xStartPosition = 500;
+                        yStartPosition = 735;
+                        DrawHotel(hotel.Map, hotel._hotel, hotel.Guests, hotel.maids);
+                        hs.Refresh();
+                        //Application.DoEvents();
+                    }
+                }
+                if (person.Direction == Direction.UP)
+                {
+                    point = new Point(person.Position.X, person.Position.Y + standardRoomHeight);
+                    while (person.Position.Y < point.Y)
+                    {
+                        person.Position.Y += 10;
+                        xStartPosition = 500;
+                        yStartPosition = 735;
+                        DrawHotel(hotel.Map, hotel._hotel, hotel.Guests, hotel.maids);
+                        hs.Refresh();
+                    }
+                }
+                else if (person.Direction == Direction.LEFT)
+                {
+                    point = new Point(person.Position.X - standardRoomWidth, person.Position.Y);
+                    while (person.Position.X > point.X)
+                    {
+                        person.Position.X -= 10;
+                        xStartPosition = 500;
+                        yStartPosition = 735;
+                        DrawHotel(hotel.Map, hotel._hotel, hotel.Guests, hotel.maids);
+                        hs.Refresh();
+                    }
+                }
+                if (person.Direction == Direction.DOWN)
+                {
+                    point = new Point(person.Position.X, person.Position.Y - standardRoomHeight);
+                    while (person.Position.Y > point.Y)
+                    {
+                        person.Position.Y -= 10;
+                        xStartPosition = 500;
+                        yStartPosition = 735;
+                        DrawHotel(hotel.Map, hotel._hotel, hotel.Guests, hotel.maids);
+                        hs.Refresh();
+                    }
+                }
+            }
+
 
         }
     }

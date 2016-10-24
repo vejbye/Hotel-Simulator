@@ -16,6 +16,8 @@ namespace HotelSimulator.Object
 
         public bool Dirty { get; set; }
 
+        public string Stars { get; set; }
+
         public Room() : base()
         {
             Image = Resources.Room;

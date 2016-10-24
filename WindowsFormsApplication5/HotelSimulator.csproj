@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="BoundaryBox.cs" />
     <Compile Include="Object\Stair.cs" />
+    <Compile Include="SimEventListener.cs" />
     <EmbeddedResource Include="HotelSimulator.resx">
       <DependentUpon>HotelSimulator.cs</DependentUpon>
     </EmbeddedResource>

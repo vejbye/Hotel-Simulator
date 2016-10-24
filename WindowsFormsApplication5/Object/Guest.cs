@@ -12,12 +12,13 @@ namespace HotelSimulator.Object
 {
     public class Guest: SimObject
     {
+        public string Id;
         public Room Room;
-        public HotelRoom Current;
-        List<HotelRoom> Path;
+        public HotelRoom Current; // current location of guest
+        List<HotelRoom> Path; // for storing the path to the guests destination
         public HotelRoom LastDestination;
-        public bool moved = false;
         public int delay = 0;
+        public string preference; // the guests prefered room classification
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -102,48 +103,68 @@ namespace HotelSimulator.Object
             
         }
 
+        //let the guest walk;
         public void Walk(Hotel hotel, HotelSimulator hs, HotelRoom destination)
         {
-            PathFind pf = new PathFind();           
-            pf.shortestPathDijkstra(this,Current, destination);
-            HotelRoom cur = destination;
-            while (cur != Current)
-            {
-                Path.Add(cur);
-                cur = cur.Previous;
-            }
-            Path.Add(cur);
-            for (int i = Path.Count - 1; i > -1; i--)
-            {                
-                if (i - 1 >= 0)
+                PathFind pf = new PathFind();
+                pf.shortestPathDijkstra(Current, destination); //algorithm to define shortest path
+                HotelRoom cur = destination;
+                while (cur != Current)
                 {
-                    Path[i].Guests.Remove(this);
-                    Path[i - 1].Guests.Add(this);
-                    Current = Path[i - 1];
-                    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
-                    hs.Refresh();
-                    
-                }               
-                }               
-            if(destination == hotel.Map[0, 0])
-            {
-                hotel.Map[0, 0].Guests.Remove(this);
-                hs.newcomers.Add(this);
-            }
-            if(Room == null && destination is Reception)
-            {
-                Room = ((Reception)destination).findEmptyRoom(hotel);
-            }
-            else if (Room != null && destination is Reception)
-            {
-                ((Reception)destination).checkOut(this);
-            }
-            foreach (HotelRoom hr in hotel.Map)
-            {
-                hr.Previous = null;
-                hr.Distance = Int32.MaxValue;
-            }
-            Path.Clear();
+                    Path.Add(cur);
+                    cur = cur.Previous;
+                }
+                Path.Add(cur);
+                for (int i = Path.Count - 1; i > -1; i--)
+                {
+                    if (i - 1 >= 0)
+                    {
+                        if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[i - 1] == Current.Neighbours[Neighbours.East])
+                        {
+                            Direction = Direction.RIGHT;
+                        }
+                        else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[i - 1] == Current.Neighbours[Neighbours.West])
+                        {
+                            Direction = Direction.LEFT;
+                        }
+                        else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[i - 1] == Current.Neighbours[Neighbours.South])
+                        {
+                            Direction = Direction.DOWN;
+                        }
+                        else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[i - 1] == Current.Neighbours[Neighbours.North])
+                        {
+                            Direction = Direction.UP;
+                        }
+                        DrawMe.drawPersons(hotel, this, hs);
+                       // Path[i].Guests.Remove(this);
+                        //Path[i - 1].Guests.Add(this);
+                        Current = Path[i - 1];
+                        //    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
+
+                    }
+                }
+                /*if (destination == hotel.Map[0, 0])
+                {
+                    hotel.Map[0, 0].Guests.Remove(this);
+                    hs.newcomers.Add(this);
+                }*/
+                //let the guest request a room
+                if (Room == null && destination is Reception)
+                {
+                    Room = ((Reception)destination).findEmptyRoom(hotel, preference);
+
+                }
+                else if (Room != null && destination is Reception)//checkout if guest goes to reception while having a room
+                {
+                    HotelEvent he = new HotelEvent();
+                    ((Reception)destination).checkOut(this);
+                }
+                foreach (HotelRoom hr in hotel.Map)
+                {
+                    hr.Previous = null;
+                    hr.Distance = Int32.MaxValue;
+                }
+                Path.Clear();
         }
     }
 }

@@ -19,14 +19,22 @@ namespace HotelSimulator.Object
         public Bitmap _hotel;
         public HotelRoom[,] Map;
         public Draw DrawMe;
+        public List<Guest> Guests;
+        public List<Maid> maids;
 
         public List<Rectangle> TEST = new List<Rectangle>();
+
+        public Hotel()
+        {
+            Guests = new List<Guest>();
+            maids = new List<Maid>();
+        }
 
         public void Build(List<LayoutFormat> layout)
         {
             _hotelHeightList = new List<int>();
             _hotelWidthList = new List<int>();
-            _hotel = new Bitmap(2000, 1000);
+            _hotel = new Bitmap(2000, 800);
             DrawMe = new Draw();
                 
             //Looks at the width and height of the hotel
@@ -90,6 +98,7 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
+                            current.Stars = l.Classification.Substring(0,1);
                             Map[int.Parse(positions[0]), int.Parse(positions[1])] = current;
                             break;
                         }
@@ -132,36 +141,12 @@ namespace HotelSimulator.Object
                     
                 }
 
-        public Guest Action()
+        public void Action()
         {
-            Guest guest = null;
-
-            foreach (HotelRoom space in Map)
-            {
-                /*if (space == Map[0,0])
-                {
-                    guest = new Guest(space);
-                    space.Guests.Add(guest);
-                    DrawMe.DrawHotel(Map, _hotel);                  
-                }
-                else if (space == Map[2, 2])
-                {
-                    Maid maid = new Maid(space);
-                    space.Maids.Add(maid);
-                    DrawMe.DrawHotel(Map, _hotel);
-                }
-                /*else if(space == Map[8, 1])
-                {
-                    if(space is Room)
-                    {
-                        ((Room)space).Dirty = true;
-                    }
-                }*/
-            }
-            return guest;
-
+            Maid maid1 = new Maid(Map[0,0]);
+            maid1.Position = new System.Drawing.Point(DrawMe.xStartPosition, DrawMe.yStartPosition - DrawMe.standardRoomHeight);
+            maids.Add(maid1);
         }
-
         private void AddNeighbours(HotelRoom[,] map)
         {
             for (int x = 0; x < map.GetLength(0); x++)

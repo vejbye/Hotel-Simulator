@@ -10,8 +10,8 @@ namespace HotelSimulator.Object
 {
     public class Maid: SimObject
     {
-        public HotelRoom Current;
-        List<HotelRoom> Path;
+        public HotelRoom Current; // current location of maid
+        List<HotelRoom> Path; // for storing the path to the maids destination
         public bool moved = false;
         public Maid(HotelRoom current)
         {
@@ -28,7 +28,7 @@ namespace HotelSimulator.Object
             {
                 if(hm is Room && ((Room)hm).Dirty == true){
                     PathFind pf = new PathFind();
-                    pf.shortestPathDijkstra(this, Current, hm);
+                    pf.shortestPathDijkstra(Current, hm);
                     HotelRoom cur = hm;
                     while (cur != Current)
                     {
@@ -40,11 +40,25 @@ namespace HotelSimulator.Object
                     {
                         if (i - 1 >= 0)
                         {
-                            Path[i].Maids.Remove(this);
-                            Path[i - 1].Maids.Add(this);
+                            if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[i - 1] == Current.Neighbours[Neighbours.East])
+                            {
+                                Direction = Direction.RIGHT;
+                            }
+                            else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[i - 1] == Current.Neighbours[Neighbours.West])
+                            {
+                                Direction = Direction.LEFT;
+                            }
+                            else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[i - 1] == Current.Neighbours[Neighbours.South])
+                            {
+                                Direction = Direction.DOWN;
+                            }
+                            else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[i - 1] == Current.Neighbours[Neighbours.North])
+                            {
+                                Direction = Direction.UP;
+                            }
+                            DrawMe.drawPersons(hotel, this, hs);
                             Current = Path[i - 1];
-                            DrawMe.DrawHotel(hotel.Map, hotel._hotel);
-                            hs.Refresh();
+                            
                         }
                     }
                     foreach (HotelRoom hr in hotel.Map)

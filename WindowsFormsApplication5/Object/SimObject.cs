@@ -8,6 +8,15 @@ using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
+    public enum Direction
+    {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN,
+        NONE
+
+    }
     public abstract class SimObject
     {
         public Rectangle BoundingBox { get; set; }
@@ -15,5 +24,7 @@ namespace HotelSimulator.Object
         public Image Image;
         public int Width;
         public int Height;
+        public Point Position;
+        public Direction Direction;
     }
 }
