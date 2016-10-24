@@ -14,7 +14,7 @@ namespace HotelSimulator.Object
         public string Id;
         public Room Room;
         public HotelRoom Current; // current location of guest
-        List<HotelRoom> Path; // for storing the path to the guests destination
+        public List<HotelRoom> Path; // for storing the path to the guests destination
         public HotelRoom LastDestination;
         public int delay = 0;
         public string preference; // the guests prefered room classification
