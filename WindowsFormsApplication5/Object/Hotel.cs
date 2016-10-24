@@ -22,9 +22,6 @@ namespace HotelSimulator.Object
         public Draw DrawMe;
         public List<Guest> Guests;
         public List<Maid> maids;
-        
-
-        public List<Rectangle> TEST = new List<Rectangle>();
 
         public Hotel()
         {
