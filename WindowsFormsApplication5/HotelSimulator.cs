@@ -9,63 +9,62 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HotelSimulator.Object;
 using WindowsFormsApplication5;
-using System.Threading;
-using System.Timers;
+//using System.Threading;
 
 namespace HotelSimulator
 {
-   
-
     public partial class HotelSimulator : Form
     {
         public Hotel Hotel;
-        SimObject[,] Map;
-        Guest Guest;
         public List<Guest> newcomers;
-        System.Windows.Forms.Timer aTimer;
-        System.Windows.Forms.Timer SpawnTimer;
+        Timer aTimer;
+        Timer SpawnTimer;
         private Guest _guest;
         private Draw DrawMe;
-        
 
+        //Parameters for panning
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
         private Point _original = new Point(0, 0);
         private bool _panning = false;
 
+        //Max pan box
         private int _maxPanX = -800;
         private int _minPanX = 0;
         private int _maxPanY = 0;
         private int _minPanY = -250;
         private bool _initialized = false;
 
+        Timer timer = new Timer();
+        
+
         public HotelSimulator()
         {
             InitializeComponent();
             Hotel = new Hotel();
             DrawMe = new Draw();
-            Map = Hotel.Map;
             newcomers = new List<Guest>();
-            for(int i = 0; i < 10; i++)
-            {
+
+            timer.Interval = (10 * 1000); // 10 sec
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+
+            for (int i = 0; i < 10; i++)
                 newcomers.Add(new Guest(null));
-        }
         }
 
         private void OnSpawn(object source, EventArgs e)
         {
-                if (newcomers.Count > 0)
-                {
-                    ((HotelRoom)Hotel.Map[0, 0]).Guests.Add(newcomers.ElementAt(0));
-                    newcomers.ElementAt(0).Current = ((HotelRoom)Hotel.Map[0, 0]);
-                    newcomers.RemoveAt(0);
-                }
+            if (newcomers.Count > 0)
+            {
+                ((HotelRoom)Hotel.Map[0, 0]).Guests.Add(newcomers.ElementAt(0));
+                newcomers.ElementAt(0).Current = ((HotelRoom)Hotel.Map[0, 0]);
+                newcomers.RemoveAt(0);
+            }
         }
-
 
         private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 _panning = true;
@@ -84,11 +83,9 @@ namespace HotelSimulator
         {
             if (_panning)
             {
-
                 _movingPoint = new Point(e.Location.X - _startingPoint.X,
                                         e.Location.Y - _startingPoint.Y);
                 screenPB.Invalidate();
-
             }
         }
 
@@ -112,8 +109,7 @@ namespace HotelSimulator
 
                 e.Graphics.DrawImage(screenPB.Image, _movingPoint);
             }
-
-
+            
         }
 
         private void loadlayoutBTN_Click(object sender, EventArgs e)
@@ -129,7 +125,8 @@ namespace HotelSimulator
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
-                screenPB.Image = DrawMe.DrawHotel(Hotel.GetMap(), Hotel._hotel);
+                Hotel._added = false;
+                screenPB.Image = DrawMe.DrawHotel(Hotel.GetMap(), Hotel._hotel, Hotel.Elevator, true);
                 _guest = Hotel.Action();
 
                 aTimer = new System.Windows.Forms.Timer();
@@ -166,24 +163,23 @@ namespace HotelSimulator
         {
             if (e.Button == MouseButtons.Right)
             {
-                    Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
+                Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
                 foreach (SimObject s in Hotel.GetMap())
-                    {
+                {
                     if (s.BoundingBox.Contains(boxPosition))
-                        {
+                    {
                         InfoScreen infoScreen = new InfoScreen(s);
-                            var result = infoScreen.ShowDialog();
-                        }
+                        var result = infoScreen.ShowDialog();
+                    }
 
                 }
             }
-
         }
 
         private void OnTimedEvent(object source, EventArgs e)
         {
             aTimer.Stop();
-           Movement();
+            Movement();
             aTimer.Start();
         }
 
@@ -191,7 +187,6 @@ namespace HotelSimulator
         {
             if (Hotel.Map != null)
             {
-                {
                     foreach (HotelRoom hr in Hotel.Map)
                     {
                         try
@@ -247,6 +242,25 @@ namespace HotelSimulator
                     //screenPB.Refresh();
                 }
             }
+
+        private void elevatorBTN_Click(object sender, EventArgs e)
+        {
+            int idk = DrawMe.yStartPosition - DrawMe.standardRoomHeight * Hotel.GetMap().GetLength(1);
+            for (int i = 0; i < (Hotel.GetMap().GetLength(1) - 1) * DrawMe.standardRoomHeight; i++)
+            {
+                if (Hotel.Elevator.Position.Y > idk)
+                {
+                    screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, i);
+                    Update();
+                }
+                else
+                    break;
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            //this.Update();
         }
     }
 }

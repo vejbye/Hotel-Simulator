@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
-using HotelEvents;
 using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
@@ -14,10 +13,11 @@ namespace HotelSimulator.Object
     {
         public Room Room;
         public HotelRoom Current;
-        List<HotelRoom> Path;
+        public List<HotelRoom> Path;
         public HotelRoom LastDestination;
         public bool moved = false;
         public int delay = 0;
+
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -65,7 +65,7 @@ namespace HotelSimulator.Object
                                 destination = hr;
                             }
                         }; break;
-                    case 1:
+                    case 1337:
                         foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Restaurant)
@@ -73,7 +73,7 @@ namespace HotelSimulator.Object
                                 destination = hr;
                             }
                         }; break;
-                    case 2:
+                    case 42:
                         foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Gym)
@@ -104,13 +104,13 @@ namespace HotelSimulator.Object
 
         public void Walk(Hotel hotel, HotelSimulator hs, HotelRoom destination)
         {
-            PathFind pf = new PathFind();           
+            /*PathFind pf = new PathFind();           
             pf.shortestPathDijkstra(this,Current, destination);
             HotelRoom cur = destination;
             while (cur != Current)
             {
-                Path.Add(cur);
-                cur = cur.Previous;
+                //Path.Add(cur);
+                //cur = cur.Previous;
             }
             Path.Add(cur);
             for (int i = Path.Count - 1; i > -1; i--)
@@ -120,11 +120,10 @@ namespace HotelSimulator.Object
                     Path[i].Guests.Remove(this);
                     Path[i - 1].Guests.Add(this);
                     Current = Path[i - 1];
-                    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
-                    hs.Refresh();
-                    
+                    //DrawMe.DrawHotel(hotel.Map, hotel._hotel, hotel.Elevator);
+                    //hs.Invalidate();
                 }               
-                }               
+            }               
             if(destination == hotel.Map[0, 0])
             {
                 hotel.Map[0, 0].Guests.Remove(this);
@@ -143,7 +142,7 @@ namespace HotelSimulator.Object
                 hr.Previous = null;
                 hr.Distance = Int32.MaxValue;
             }
-            Path.Clear();
+            Path.Clear();*/
         }
     }
 }

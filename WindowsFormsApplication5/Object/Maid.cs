@@ -43,8 +43,8 @@ namespace HotelSimulator.Object
                             Path[i].Maids.Remove(this);
                             Path[i - 1].Maids.Add(this);
                             Current = Path[i - 1];
-                            DrawMe.DrawHotel(hotel.Map, hotel._hotel);
-                            hs.Refresh();
+                            //DrawMe.DrawHotel(hotel.Map, hotel._hotel, hotel.Elevator);
+                            //hs.Refresh();
                         }
                     }
                     foreach (HotelRoom hr in hotel.Map)
