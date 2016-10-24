@@ -110,8 +110,8 @@ namespace HotelSimulator.Object
             HotelRoom cur = destination;
             while (cur != Current)
             {
-                //Path.Add(cur);
-                //cur = cur.Previous;
+                Path.Add(cur);
+                cur = cur.Previous;
             }
             Path.Add(cur);
             for (int i = Path.Count - 1; i > -1; i--)
