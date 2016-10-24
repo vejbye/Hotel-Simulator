@@ -28,16 +28,11 @@ namespace HotelSimulator.Object
             //Drawing the hotel on a bitmap
             gfx = Graphics.FromImage(hotel._hotel);
 
-            //Background image o the hotel
-            if (img != null)
-            {
-                gfx.DrawImage(img, 0, 0, 2000, 800);
-            }
             currentXPos = xStartPosition;
             currentYPos = yStartPosition;
 
             //Background image of the hotel
-            gfx.DrawImage(Resources.SimulatorBG, (xStartPosition - xStartPosition), (yStartPosition - yStartPosition), hotel._hotelWidth, hotel._hotelHeight);
+            gfx.DrawImage(img, (xStartPosition - xStartPosition), (yStartPosition - yStartPosition), hotel._hotel.Width, hotel._hotel.Height);
 
             //Fills space with a room if there is one
             for (int x = 0; x < hotel.Map.GetLength(0); x++)

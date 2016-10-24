@@ -38,6 +38,7 @@ namespace HotelSimulator.Object
             _hotelWidthList = new List<int>();
             _hotel = new Bitmap(2000, 800);
             DrawMe = new Draw();
+            Elevator = new Elevator();
                 
             //Looks at the width and height of the hotel
             foreach (LayoutFormat l in layout)
@@ -61,7 +62,7 @@ namespace HotelSimulator.Object
             }
 
             //Creates double array based on the width and height and adds 1 to width for elevator and stairs
-            Map = new HotelRoom[_hotelWidth + 2, _hotelHeight + 1];
+            Map = new HotelRoom[_hotelWidth + 3, _hotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -88,7 +89,7 @@ namespace HotelSimulator.Object
                         Map[0, infrastructureStart] = new ElevatorShaft();
                         Map[_hotelWidth + 1, infrastructureStart] = new Stair();
                     }
-
+                    Map[_hotelWidth + 2, 0] = Elevator;
                     _added = true;
                 }
 
