@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
-using HotelEvents;
 using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
@@ -66,7 +65,7 @@ namespace HotelSimulator.Object
                                 destination = hr;
                             }
                         }; break;
-                    case 1:
+                    case 1337:
                         foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Restaurant)
@@ -74,7 +73,7 @@ namespace HotelSimulator.Object
                                 destination = hr;
                             }
                         }; break;
-                    case 2:
+                    case 42:
                         foreach (HotelRoom hr in hotel.Map)
                         {
                             if (hr is Gym)
@@ -108,17 +107,17 @@ namespace HotelSimulator.Object
         {
                 PathFind pf = new PathFind();
                 pf.shortestPathDijkstra(Current, destination); //algorithm to define shortest path
-                HotelRoom cur = destination;
-                while (cur != Current)
+            HotelRoom cur = destination;
+            while (cur != Current)
+            {
+                //Path.Add(cur);
+                //cur = cur.Previous;
+            }
+            Path.Add(cur);
+            for (int i = Path.Count - 1; i > -1; i--)
+            {                
+                if (i - 1 >= 0)
                 {
-                    Path.Add(cur);
-                    cur = cur.Previous;
-                }
-                Path.Add(cur);
-                for (int i = Path.Count - 1; i > -1; i--)
-                {
-                    if (i - 1 >= 0)
-                    {
                         if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[i - 1] == Current.Neighbours[Neighbours.East])
                         {
                             Direction = Direction.RIGHT;
@@ -135,36 +134,35 @@ namespace HotelSimulator.Object
                         {
                             Direction = Direction.UP;
                         }
-                        DrawMe.drawPersons(hotel, this, hs);
+                        DrawMe.drawPersons(hotel,this, hotel.Elevator, hs);
                        // Path[i].Guests.Remove(this);
                         //Path[i - 1].Guests.Add(this);
-                        Current = Path[i - 1];
+                    Current = Path[i - 1];
                         //    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
 
-                    }
-                }
+                }               
+                }               
                 /*if (destination == hotel.Map[0, 0])
-                {
-                    hotel.Map[0, 0].Guests.Remove(this);
-                    hs.newcomers.Add(this);
+            {
+                hotel.Map[0, 0].Guests.Remove(this);
+                hs.newcomers.Add(this);
                 }*/
                 //let the guest request a room
                 if (Room == null && destination is Reception)
-                {
+            {
                     Room = ((Reception)destination).findEmptyRoom(hotel, preference);
 
-                }
+            }
                 else if (Room != null && destination is Reception)//checkout if guest goes to reception while having a room
-                {
-                    HotelEvent he = new HotelEvent();
-                    ((Reception)destination).checkOut(this);
-                }
-                foreach (HotelRoom hr in hotel.Map)
-                {
-                    hr.Previous = null;
-                    hr.Distance = Int32.MaxValue;
-                }
-                Path.Clear();
+            {
+                ((Reception)destination).checkOut(this);
+            }
+            foreach (HotelRoom hr in hotel.Map)
+            {
+                hr.Previous = null;
+                hr.Distance = Int32.MaxValue;
+            }
+            Path.Clear();
         }
     }
 }

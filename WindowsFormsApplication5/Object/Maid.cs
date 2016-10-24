@@ -56,7 +56,7 @@ namespace HotelSimulator.Object
                             {
                                 Direction = Direction.UP;
                             }
-                            DrawMe.drawPersons(hotel, this, hs);
+                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
                             Current = Path[i - 1];
                             
                         }

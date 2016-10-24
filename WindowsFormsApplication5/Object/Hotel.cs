@@ -12,15 +12,17 @@ namespace HotelSimulator.Object
         private List<int> _hotelWidthList;
         private List<int> _hotelHeightList;
 
-        private int _hotelWidth;
-        private int _hotelHeight;
-        private bool _added = false;
+        public int _hotelWidth;
+        public int _hotelHeight;
+        public bool _added = false;
 
         public Bitmap _hotel;
         public HotelRoom[,] Map;
+        public Elevator Elevator;
         public Draw DrawMe;
         public List<Guest> Guests;
         public List<Maid> maids;
+        
 
         public List<Rectangle> TEST = new List<Rectangle>();
 

@@ -16,43 +16,47 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator
 {
-   
-
     public partial class HotelSimulator : Form
     {
         public Hotel Hotel;
-        SimObject[,] Map;
         public List<Guest> newcomers;
         public System.Windows.Forms.Timer HotelEventTimer;
         private Draw DrawMe;
+
+        //Parameters for panning
         public SimEventListener sl;
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
         private Point _original = new Point(0, 0);
         private bool _panning = false;
 
+        //Max pan box
         private int _maxPanX = -800;
         private int _minPanX = 0;
         private int _maxPanY = 0;
         private int _minPanY = -250;
         private bool _initialized = false;
 
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        
+
         public HotelSimulator()
         {
             InitializeComponent();
             Hotel = new Hotel();
             DrawMe = new Draw();
-            Map = Hotel.Map;
             newcomers = new List<Guest>();
-            for(int i = 0; i < 2; i++)
-            {
+
+            timer.Interval = (10 * 1000); // 10 sec
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+
+            for (int i = 0; i < 10; i++)
                 newcomers.Add(new Guest(null));
-        }
         }
 
         private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 _panning = true;
@@ -98,7 +102,6 @@ namespace HotelSimulator
                 e.Graphics.DrawImage(screenPB.Image, _movingPoint);
             }
 
-
         }
 
         private void loadlayoutBTN_Click(object sender, EventArgs e)
@@ -114,8 +117,9 @@ namespace HotelSimulator
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
+                Hotel._added = false;
                 Hotel.Action();
-                screenPB.Image = DrawMe.DrawHotel(Hotel.GetMap(), Hotel._hotel, Hotel.Guests, Hotel.maids);
+                screenPB.Image = DrawMe.DrawHotel(Hotel, Hotel.Elevator, true);
 
                 sl = new SimEventListener(Hotel, this);
                 HotelEventManager.Register(sl);
@@ -162,7 +166,6 @@ namespace HotelSimulator
 
                 }
             }
-
         }
 
         //when interval is reached, execute next hotelevent
@@ -188,9 +191,29 @@ namespace HotelSimulator
                     catch (Exception e)
                     {
 
-                    }        
+                    }
                 }
             }
+        }
+
+        private void elevatorBTN_Click(object sender, EventArgs e)
+        {
+            int idk = DrawMe.yStartPosition - DrawMe.standardRoomHeight * Hotel.GetMap().GetLength(1);
+            for (int i = 0; i < (Hotel.GetMap().GetLength(1) - 1) * DrawMe.standardRoomHeight; i++)
+            {
+                if (Hotel.Elevator.Position.Y > idk)
+                {
+                    screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, i);
+                    Update();
+                }
+                else
+                    break;
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            //this.Update();
         }
     }
 }

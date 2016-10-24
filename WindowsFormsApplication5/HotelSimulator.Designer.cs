@@ -31,6 +31,7 @@
             this.screenPB = new System.Windows.Forms.PictureBox();
             this.loadlayoutBTN = new System.Windows.Forms.Button();
             this.settingsBTN = new System.Windows.Forms.Button();
+            this.elevatorBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,6 @@
             this.screenPB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseDown);
             this.screenPB.MouseMove += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseMove);
             this.screenPB.MouseUp += new System.Windows.Forms.MouseEventHandler(this.screenPB_MouseUp);
-            //this.screenPB.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Movement);
             // 
             // loadlayoutBTN
             // 
@@ -72,11 +72,22 @@
             this.settingsBTN.UseVisualStyleBackColor = true;
             this.settingsBTN.Click += new System.EventHandler(this.settingsBTN_Click);
             // 
+            // elevatorBTN
+            // 
+            this.elevatorBTN.Location = new System.Drawing.Point(800, 562);
+            this.elevatorBTN.Name = "elevatorBTN";
+            this.elevatorBTN.Size = new System.Drawing.Size(109, 28);
+            this.elevatorBTN.TabIndex = 3;
+            this.elevatorBTN.Text = "Move Elevator";
+            this.elevatorBTN.UseVisualStyleBackColor = true;
+            this.elevatorBTN.Click += new System.EventHandler(this.elevatorBTN_Click);
+            // 
             // HotelSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 614);
+            this.Controls.Add(this.elevatorBTN);
             this.Controls.Add(this.settingsBTN);
             this.Controls.Add(this.loadlayoutBTN);
             this.Controls.Add(this.screenPB);
@@ -92,6 +103,7 @@
         private System.Windows.Forms.PictureBox screenPB;
         private System.Windows.Forms.Button loadlayoutBTN;
         private System.Windows.Forms.Button settingsBTN;
+        private System.Windows.Forms.Button elevatorBTN;
     }
 }
 
