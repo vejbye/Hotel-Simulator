@@ -51,6 +51,9 @@
     <Reference Include="HotelEvents">
       <HintPath>..\..\..\..\..\..\Downloads\HotelEvents.dll</HintPath>
     </Reference>
+    <Reference Include="HotelEvents4">
+      <HintPath>..\..\..\..\Downloads\HotelEvents4.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -110,7 +113,6 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BoundaryBox.cs" />
     <Compile Include="Object\Stair.cs" />
     <Compile Include="SimEventListener.cs" />
     <EmbeddedResource Include="HotelSimulator.resx">
