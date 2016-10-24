@@ -102,7 +102,7 @@ namespace HotelSimulator.Object
                         yStartPosition = 735;
                         DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
-                        //Application.DoEvents();
+                        //Application.DoEvents(); p
                     }
                 }
                 if (person.Direction == Direction.UP)
