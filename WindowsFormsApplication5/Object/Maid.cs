@@ -17,7 +17,7 @@ namespace HotelSimulator.Object
         {
             this.Current = current;
             Image = Resources.Maid;
-            Width = 40;
+            Width = 20;
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();

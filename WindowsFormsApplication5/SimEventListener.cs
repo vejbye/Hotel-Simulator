@@ -45,10 +45,9 @@ namespace HotelSimulator
                         Guest guest = new Guest(null);
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
                         guest.preference = evt.Data.Values.ElementAt(0).Substring(8,1);
-                        ((HotelRoom)Hotel.Map[0, 0]).Guests.Add(guest);
                         Hotel.Guests.Add(guest);
                         guest.Current = ((HotelRoom)Hotel.Map[0, 0]);
-                        guest.Position = new System.Drawing.Point(Hotel.DrawMe.xStartPosition, Hotel.DrawMe.yStartPosition - Hotel.DrawMe.standardRoomHeight);
+                        guest.Position = new System.Drawing.Point(Hotel.DrawMe.xStartPosition + guest.Width, Hotel.DrawMe.yStartPosition - guest.Height);
                         Reception r = null;
                         foreach (HotelRoom hr in Hotel.Map)
                         {

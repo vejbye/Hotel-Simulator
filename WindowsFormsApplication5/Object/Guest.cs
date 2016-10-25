@@ -22,7 +22,7 @@ namespace HotelSimulator.Object
         {
             this.Current = current;
             Image = Resources.Guest;
-            Width = 40;
+            Width = 30;
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();

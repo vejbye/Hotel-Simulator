@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
-using WindowsFormsApplication5;
+using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
@@ -36,7 +36,7 @@ namespace HotelSimulator.Object
             _hotel = new Bitmap(2000, 800);
             DrawMe = new Draw();
             Elevator = new Elevator();
-                
+
             //Looks at the width and height of the hotel
             foreach (LayoutFormat l in layout)
             {
@@ -76,7 +76,7 @@ namespace HotelSimulator.Object
 
                 if (!_added)
                 {
-                    
+
                     for (int lobbyStart = 1; lobbyStart <= _hotelWidth; lobbyStart++)
                         Map[lobbyStart, 0] = new Reception();
 
@@ -98,8 +98,42 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
-                            current.Stars = l.Classification.Substring(0,1);
+                            current.Stars = int.Parse(l.Classification.Substring(0, 1));
                             Map[int.Parse(positions[0]), int.Parse(positions[1])] = current;
+                            switch (current.Stars)
+                            {
+                                case 1:
+                                    {
+                                        current.Image = Resources.Room;
+                                        break;
+                                    }
+
+                                case 2:
+                                    {
+                                        current.Image = Resources.Room2;
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        current.Image = Resources.Room3;
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        current.Image = Resources.Room4;
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        current.Image = Resources.Room5;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("There is no image of this room.");
+                                        break;
+                                    }
+                            }
                             break;
                         }
 
@@ -132,19 +166,19 @@ namespace HotelSimulator.Object
                             Map[int.Parse(positions[0]), int.Parse(positions[1])] = current;
                             break;
                         }
-            
+
+                }
+
             }
+
+            AddNeighbours(Map);
 
         }
 
-            AddNeighbours(Map);
-                    
-                }
-
         public void Action()
         {
-            Maid maid1 = new Maid(Map[0,0]);
-            maid1.Position = new System.Drawing.Point(DrawMe.xStartPosition, DrawMe.yStartPosition - DrawMe.standardRoomHeight);
+            Maid maid1 = new Maid(Map[0, 0]);
+            maid1.Position = new Point(DrawMe.xStartPosition + maid1.Width, DrawMe.yStartPosition - maid1.Height);
             maids.Add(maid1);
         }
         private void AddNeighbours(HotelRoom[,] map)
@@ -162,11 +196,11 @@ namespace HotelSimulator.Object
                     if (x < map.GetLength(0) - 1)
                         map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
 
-                        if (x > 0)
-                            map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
+                    if (x > 0)
+                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
 
-                        if (map[x, y] != null)
-                            map[x, y].CurrentRoom = map[x, y];
+                    if (map[x, y] != null)
+                        map[x, y].CurrentRoom = map[x, y];
 
                 }
             }

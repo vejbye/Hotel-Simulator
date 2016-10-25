@@ -48,9 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HotelEvents">
-      <HintPath>..\..\..\..\..\..\Downloads\HotelEvents.dll</HintPath>
-    </Reference>
     <Reference Include="HotelEvents4">
       <HintPath>..\..\..\..\Downloads\HotelEvents4.dll</HintPath>
     </Reference>
@@ -187,6 +184,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Elevator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Room2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Room3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Room4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Room5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

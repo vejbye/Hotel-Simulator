@@ -21,7 +21,7 @@ namespace HotelSimulator.Object
             {
                 for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
                 {
-                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Stars == stars)
+                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Stars.ToString() == stars)
                     {
                         if (!((Room)hotel.GetMap()[i, j]).getTaken())
                         {

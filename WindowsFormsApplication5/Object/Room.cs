@@ -16,13 +16,15 @@ namespace HotelSimulator.Object
 
         public bool Dirty { get; set; }
 
-        public string Stars { get; set; }
+        public int Stars { get; set; }
 
         public Room() : base()
         {
-            Image = Resources.Room;
+            //Image = Resources.Room;
             Taken = false;
             Dirty = false;
+
+            
         }
 
         public bool getTaken()
