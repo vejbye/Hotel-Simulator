@@ -37,8 +37,11 @@ namespace HotelSimulator
         private int _minPanY = -250;
         private bool _initialized = false;
 
+        private int _previousFloor = 0;
+        private bool _movingUp = true;
+
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-        
+
 
         public HotelSimulator()
         {
@@ -46,10 +49,6 @@ namespace HotelSimulator
             Hotel = new Hotel();
             DrawMe = new Draw();
             newcomers = new List<Guest>();
-
-            timer.Interval = (10 * 1000); // 10 sec
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
 
             for (int i = 0; i < 10; i++)
                 newcomers.Add(new Guest(null));
@@ -117,13 +116,14 @@ namespace HotelSimulator
                 _initialized = true;
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
-                Hotel._added = false;
+                //Hotel.HotelAdded = false;
+                Hotel.Reset();
                 Hotel.Action();
                 screenPB.Image = DrawMe.DrawHotel(Hotel, Hotel.Elevator, true);
 
                 sl = new SimEventListener(Hotel, this);
                 HotelEventManager.Register(sl);
-                HotelEventManager.Start();
+                //HotelEventManager.Start();
 
                 HotelEventTimer = new System.Windows.Forms.Timer();
                 HotelEventTimer.Interval = 1000;
@@ -138,15 +138,15 @@ namespace HotelSimulator
         {
             SettingsForm settings = new SettingsForm();
             var result = settings.ShowDialog();
-            
+
             if (result == DialogResult.OK)
             {
-                
+
             }
-            
+
             if (result == DialogResult.Cancel)
             {
-                
+
             }
 
         }
@@ -155,14 +155,14 @@ namespace HotelSimulator
         {
             if (e.Button == MouseButtons.Right)
             {
-                    Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
+                Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
                 foreach (SimObject s in Hotel.GetMap())
-                    {
+                {
                     if (s.BoundingBox.Contains(boxPosition))
-                        {
+                    {
                         InfoScreen infoScreen = new InfoScreen(s);
-                            var result = infoScreen.ShowDialog();
-                        }
+                        var result = infoScreen.ShowDialog();
+                    }
 
                 }
             }
@@ -171,7 +171,7 @@ namespace HotelSimulator
         //when interval is reached, execute next hotelevent
         private void OnTimedEvent(object source, EventArgs e)
         {
-           // HotelEventManager.Pauze();
+            //HotelEventManager.Pauze();
             sl.DoEvent();
         }
 
@@ -198,22 +198,38 @@ namespace HotelSimulator
 
         private void elevatorBTN_Click(object sender, EventArgs e)
         {
-            int idk = DrawMe.yStartPosition - DrawMe.standardRoomHeight * Hotel.GetMap().GetLength(1);
-            for (int i = 0; i < (Hotel.GetMap().GetLength(1) - 1) * DrawMe.standardRoomHeight; i++)
+            for (int j = 0; j < Hotel.Elevator.Requests.Count; j++)
             {
-                if (Hotel.Elevator.Position.Y > idk)
+                int floor = Hotel.Elevator.Requests.ElementAt(j);
+                
+                for (int i = 0; i < floor * DrawMe.standardRoomHeight; i++)
                 {
-                    screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, i);
-                    Update();
+                    if (Hotel.Elevator.ElevatorPosition.Y > DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight) && _movingUp)
+                    {
+                        screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, true);
+                        Update();
+                    }
+                    
+                    if (Hotel.Elevator.ElevatorPosition.Y < DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight))
+                    {
+                        screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, false);
+                        Update();
+                    }
+
                 }
-                else
-                    break;
+                    _previousFloor = floor;
             }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void HotelSimulator_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //this.Update();
+            if (e.CloseReason == CloseReason.UserClosing)
+                Console.WriteLine("Closed");
+            // Then assume that X has been clicked and act accordingly.
+
         }
-    }
+
+    
+
+}
 }

@@ -10,11 +10,10 @@ namespace HotelSimulator.Object
 {
     public class Elevator: HotelRoom
     {
-        public int Speed { get; set; }  
-        public Point Position;
-
-        private new Draw DrawMe;
-        private List<int> _requests;
+        public int Speed { get; set; }
+        public Point ElevatorPosition;
+        
+        public List<int> Requests;
 
         public Elevator()
         {
@@ -22,17 +21,17 @@ namespace HotelSimulator.Object
             Height = 50;
             Width = 35;
             DrawMe = new Draw();
-            Position = new Point((int)(DrawMe.xStartPosition + (DrawMe.standardRoomWidth * 0.65)), (DrawMe.yStartPosition - DrawMe.standardRoomHeight));
+            ElevatorPosition = new Point((int)(DrawMe.xStartPosition + (DrawMe.standardRoomWidth * 0.65)), (DrawMe.yStartPosition - DrawMe.standardRoomHeight));
             
 
-            _requests = new List<int>();
-            _requests.Add(3);
-            _requests.Add(2);
-            _requests.Add(6);
-            _requests.Add(1);
-            _requests.Add(5);
-            _requests.Sort();
-            _requests.ForEach(i => Console.Write("{0}\n", i));
+            Requests = new List<int>();
+            Requests.Add(3);
+            Requests.Add(2);
+            Requests.Add(6);
+            Requests.Add(1);
+            Requests.Add(5);
+            //_requests.Sort();
+            //_requests.ForEach(i => Console.Write("{0}\n", i));
         }
 
         private void CalculateSeekingTime()

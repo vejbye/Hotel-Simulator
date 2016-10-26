@@ -12,8 +12,7 @@ namespace HotelSimulator.Object
     public class Draw
     {
         public Image img = Resources.SimulatorBG;
-        Graphics gfx;
-      //  public Bitmap DrawHotel(HotelRoom[,] map, Bitmap _hotel, List<Guest> guests, List<Maid> maids);
+        public Graphics gfx;
         public int yStartPosition = 735;
         public int xStartPosition = 500;
 
@@ -44,7 +43,7 @@ namespace HotelSimulator.Object
                         if (hotel.Map[x, y].Image != null)
                         {
                             if (hotel.Map[x, y] is Elevator)
-                                gfx.DrawImage(hotel.Map[x, y].Image, hotelElevator.Position.X, hotelElevator.Position.Y, hotelElevator.Width, hotelElevator.Height);
+                                gfx.DrawImage(hotel.Map[x, y].Image, hotelElevator.ElevatorPosition.X, hotelElevator.ElevatorPosition.Y, hotelElevator.Width, hotelElevator.Height);
                             else
                             {
                                 gfx.DrawImage(hotel.Map[x, y].Image, currentXPos, currentYPos - hotel.Map[x, y].Height, hotel.Map[x, y].Width, hotel.Map[x, y].Height);
@@ -70,16 +69,20 @@ namespace HotelSimulator.Object
                 gfx.DrawImage(guest.Image, guest.Position.X, guest.Position.Y, guest.Width, guest.Height);
             }
 
-            foreach (Maid maid in hotel.maids)
+            foreach (Maid maid in hotel.Maids)
             {
                 gfx.DrawImage(maid.Image, maid.Position.X, maid.Position.Y, maid.Width, maid.Height);
             }
 
             return hotel._hotel;
         }
-        public Bitmap MoveElevator(Hotel hotel, Elevator hotelElevator, int move)
+        public Bitmap MoveElevator(Hotel hotel, Elevator hotelElevator, bool moveUp)
         {
-            hotelElevator.Position.Y = hotelElevator.Position.Y - 100;
+            if(moveUp)
+                hotelElevator.ElevatorPosition.Y = hotelElevator.ElevatorPosition.Y - 20;
+            if(!moveUp)
+                hotelElevator.ElevatorPosition.Y = hotelElevator.ElevatorPosition.Y + 20;
+
             return DrawHotel(hotel, hotelElevator, false);
         }
 
@@ -94,12 +97,10 @@ namespace HotelSimulator.Object
             if (person is Guest || person is Maid) {
                 if (person.Direction ==  Direction.RIGHT)
                 {
-                     point = new Point(person.Position.X + standardRoomWidth, person.Position.Y);
+                    point = new Point(person.Position.X + standardRoomWidth, person.Position.Y);
                     while (person.Position.X < point.X)
                     {
                         person.Position.X += 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
                         DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
                         //Application.DoEvents(); p
@@ -111,8 +112,6 @@ namespace HotelSimulator.Object
                     while (person.Position.Y < point.Y)
                     {
                         person.Position.Y += 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
                         DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
                     }
@@ -123,8 +122,6 @@ namespace HotelSimulator.Object
                     while (person.Position.X > point.X)
                     {
                         person.Position.X -= 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
                         DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
                     }
@@ -135,8 +132,6 @@ namespace HotelSimulator.Object
                     while (person.Position.Y > point.Y)
                     {
                         person.Position.Y -= 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
                         DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
                     }

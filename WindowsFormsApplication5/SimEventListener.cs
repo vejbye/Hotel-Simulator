@@ -97,7 +97,7 @@ namespace HotelSimulator
                             }
                         }
 
-                        foreach (Maid maid in Hotel.maids)
+                        foreach (Maid maid in Hotel.Maids)
                         {
                             maid.Walk(Hotel, hs);
                         }
