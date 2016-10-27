@@ -126,6 +126,7 @@
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Fakes Include="Fakes\HotelEvents4.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -196,6 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Room5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pool.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
