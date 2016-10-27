@@ -239,15 +239,6 @@ namespace HotelSimulator
 
         private void HotelSimulator_FormClosed(object sender, FormClosedEventArgs e)
         {
-            for(int i = 0; i < Hotel.Guests.Count; i++)
-            {
-                Hotel.Guests[i].Walk(Hotel, this, Hotel.Guests[i].Destination);
-            }
-            for (int i = 0; i < Hotel.Maids.Count; i++)
-            {
-                Hotel.Maids[i].Walk(Hotel, this);
-            }
-            Hotel.DrawMe.DrawHotel(Hotel,Hotel.Elevator, false);
             if (e.CloseReason == CloseReason.UserClosing)
                 Console.WriteLine("Closed");
             // Then assume that X has been clicked and act accordingly.
