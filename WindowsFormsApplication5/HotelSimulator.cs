@@ -187,11 +187,11 @@ namespace HotelSimulator
                     {
                         foreach (Guest guest in Hotel.Guests)
                         {
-                           // HotelRoom destination = guest.setDestination(Hotel);
+                            // HotelRoom destination = guest.setDestination(Hotel);
                             //guest.Walk(Hotel, this, destination);
                         }
                     }
-                    catch (Exception e)
+                    catch
                     {
 
                     }
@@ -204,23 +204,29 @@ namespace HotelSimulator
             for (int j = 0; j < Hotel.Elevator.Requests.Count; j++)
             {
                 int floor = Hotel.Elevator.Requests.ElementAt(j);
-                
+
+                if (floor < _previousFloor)
+                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
+                else
+                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
+
                 for (int i = 0; i < floor * DrawMe.standardRoomHeight; i++)
                 {
-                    if (Hotel.Elevator.ElevatorPosition.Y > DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight) && _movingUp)
+                    if (Hotel.Elevator.ElevatorPosition.Y > DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight) && Hotel.Elevator.CurrentState.Equals(Elevator.ElevatorState.MovingUp))
                     {
                         screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, true);
                         Update();
                     }
-                    
-                    if (Hotel.Elevator.ElevatorPosition.Y < DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight))
+
+                    if (Hotel.Elevator.ElevatorPosition.Y < DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight) && Hotel.Elevator.CurrentState.Equals(Elevator.ElevatorState.MovingDown))
                     {
                         screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, false);
                         Update();
                     }
-
                 }
-                    _previousFloor = floor;
+
+                _previousFloor = floor;
+                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
             }
         }
 
@@ -237,7 +243,7 @@ namespace HotelSimulator
             Hotel.DrawMe.DrawHotel(Hotel, Hotel.Elevator, false);
         }
 
-        
 
-}
+
+    }
 }

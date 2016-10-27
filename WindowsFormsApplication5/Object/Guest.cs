@@ -54,7 +54,7 @@ namespace HotelSimulator.Object
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
                     Direction = Direction.RIGHT;
-                    DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
                     if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -64,7 +64,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
                     Direction = Direction.LEFT;
-                    DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
                     if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + 10)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -73,7 +73,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
                     Direction = Direction.DOWN;
-                    DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
                     if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 20)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -82,12 +82,12 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.North])
                 {
                     Direction = Direction.UP;
-                    DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
                     if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - 20)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
-                    DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
                     // Path[i].Guests.Remove(this);
                     //Path[i - 1].Guests.Add(this);
                     //    DrawMe.DrawHotel(hotel.Map, hotel._hotel);

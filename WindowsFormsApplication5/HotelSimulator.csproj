@@ -77,7 +77,6 @@
     </Compile>
     <Compile Include="LayoutReader.cs" />
     <Compile Include="LayoutFormat.cs" />
-    <Compile Include="Neighbour.cs" />
     <Compile Include="Object\Cinema.cs" />
     <Compile Include="Object\Guest.cs" />
     <Compile Include="Object\HotelRoom.cs" />

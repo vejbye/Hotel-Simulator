@@ -52,7 +52,7 @@ namespace HotelSimulator.Object
                                     DrawBoundingBoxes(hotel.Map, x, y);
                             }
                         }
-                        if(hotel.Map[x,y].RoomPosition == new Point(0,0))
+                        if (hotel.Map[x, y].RoomPosition == new Point(0, 0))
                         {
                             hotel.Map[x, y].RoomPosition = new Point(currentXPos, currentYPos - hotel.Map[x, y].Height);
                         }
@@ -82,9 +82,9 @@ namespace HotelSimulator.Object
         }
         public Bitmap MoveElevator(Hotel hotel, Elevator hotelElevator, bool moveUp)
         {
-            if(moveUp)
+            if (moveUp)
                 hotelElevator.ElevatorPosition.Y = hotelElevator.ElevatorPosition.Y - 20;
-            if(!moveUp)
+            else
                 hotelElevator.ElevatorPosition.Y = hotelElevator.ElevatorPosition.Y + 20;
 
             return DrawHotel(hotel, hotelElevator, false);
@@ -95,36 +95,36 @@ namespace HotelSimulator.Object
             map[x, y].BoundingBox = new Rectangle(currentXPos, currentYPos - map[x, y].Height, map[x, y].Width, map[x, y].Height);
         }
 
-        public void drawPersons(Hotel hotel, SimObject person, Elevator hotelElevator, HotelSimulator hs )
+        public void DrawPersons(Hotel hotel, SimObject person, Elevator hotelElevator, HotelSimulator hs)
         {
-            Point point;
-            if (person is Guest || person is Maid) {
-                if (person.Direction ==  Direction.RIGHT)
+            if (person is Guest || person is Maid)
+            {
+                if (person.Direction == Direction.RIGHT)
                 {
-                        person.Position.X += 10;
-                      //  DrawHotel(hotel, hotelElevator, false);
-                        hs.Refresh();
-                        //Application.DoEvents(); p
-                   
+                    person.Position.X += 10;
+                    //  DrawHotel(hotel, hotelElevator, false);
+                    hs.Refresh();
+                    //Application.DoEvents(); p
+
                 }
                 if (person.Direction == Direction.UP)
                 {
-                        person.Position.Y += 10;
-                      //  DrawHotel(hotel, hotelElevator, false);
-                        hs.Refresh();
-                    
+                    person.Position.Y += 10;
+                    //  DrawHotel(hotel, hotelElevator, false);
+                    hs.Refresh();
+
                 }
                 else if (person.Direction == Direction.LEFT)
                 {
-                        person.Position.X -= 10;
-                       // DrawHotel(hotel, hotelElevator, false);
-                        hs.Refresh();
+                    person.Position.X -= 10;
+                    // DrawHotel(hotel, hotelElevator, false);
+                    hs.Refresh();
                 }
                 if (person.Direction == Direction.DOWN)
                 {
-                        person.Position.Y -= 10;
-                       // DrawHotel(hotel, hotelElevator, false);
-                        hs.Refresh();
+                    person.Position.Y -= 10;
+                    // DrawHotel(hotel, hotelElevator, false);
+                    hs.Refresh();
                 }
             }
 

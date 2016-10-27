@@ -11,6 +11,9 @@ namespace HotelSimulator.Object
     {
         private List<int> _hotelWidthList;
         private List<int> _hotelHeightList;
+        private const int BITMAPHEIGHT = 800;
+        private const int BITMAPWIDTH = 2000;
+        private int amountOfInfrastructure = 3;
 
         public int HotelWidth;
         public int HotelHeight;
@@ -39,7 +42,7 @@ namespace HotelSimulator.Object
         {
             _hotelHeightList = new List<int>();
             _hotelWidthList = new List<int>();
-            _hotel = new Bitmap(2000, 800);
+            _hotel = new Bitmap(BITMAPWIDTH, BITMAPHEIGHT);
             DrawMe = new Draw();
             Elevator = new Elevator();
 
@@ -74,9 +77,8 @@ namespace HotelSimulator.Object
             }
 
             //Creates double array based on the width and height
-            //Adds width: 3 (1 for elevator, 1 for stairs, and 1 for shaft)
             //Adds height: 1 for reception
-            Map = new HotelRoom[HotelWidth + 3 + _lastArrayDimension, HotelHeight + 1];
+            Map = new HotelRoom[HotelWidth + amountOfInfrastructure + _lastArrayDimension, HotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -246,8 +248,10 @@ namespace HotelSimulator.Object
 
         public void Reset()
         {
-            _hotelWidthList = null;
-            _hotelHeightList = null;
+            _hotelWidthList.Clear();
+            _hotelHeightList.Clear();
+            Guests.Clear();
+            Maids.Clear();
             HotelWidth = 0;
             HotelHeight = 0;
             _lastArrayDimension = 0;

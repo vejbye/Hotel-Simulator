@@ -12,12 +12,21 @@ namespace HotelSimulator.Object
     {
         public int Speed { get; set; }
         public Point ElevatorPosition;
+        public ElevatorState CurrentState;
         
         public List<int> Requests;
+
+        public enum ElevatorState
+        {
+            MovingUp,
+            MovingDown,
+            Idle
+        }
 
         public Elevator()
         {
             Image = Resources.Elevator;
+            CurrentState = ElevatorState.Idle;
             Height = 50;
             Width = 35;
             DrawMe = new Draw();
@@ -30,6 +39,8 @@ namespace HotelSimulator.Object
             Requests.Add(6);
             Requests.Add(1);
             Requests.Add(5);
+            Requests.Add(3);
+
             //_requests.Sort();
             //_requests.ForEach(i => Console.Write("{0}\n", i));
         }
