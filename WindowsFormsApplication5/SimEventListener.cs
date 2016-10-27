@@ -57,9 +57,9 @@ namespace HotelSimulator
                                 break;
                             }
                         }
-                        guest.Walk(Hotel, hs, r);
+                        guest.setPath(Hotel, r);
+                        //guest.Walk(Hotel, hs, r);
                         //hs.Refresh();
-                        guest.Walk(Hotel, hs, guest.Room);
                         Console.WriteLine("Guest has checked in");
                         break;
 
@@ -72,9 +72,8 @@ namespace HotelSimulator
                                    {
                                        if (room is Reception)
                                        {
-                                           g.Walk(Hotel, hs, room);
-                                           g.Walk(Hotel, hs, Hotel.Map[0, 0]);
-                                           Hotel.Guests.Remove(g);
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, room);
                                            break;
                                        }
                                    }
@@ -92,14 +91,14 @@ namespace HotelSimulator
                                 if (data.Key.Equals("kamer") && room.Id == Int32.Parse(data.Value))
                                 {
                                     ((Room)room).Dirty = true;
-                                    break;
                                 }
                             }
                         }
 
                         foreach (Maid maid in Hotel.Maids)
                         {
-                            maid.Walk(Hotel, hs);
+                            maid.Path.Clear();
+                            maid.setPath(Hotel);
                         }
 
                         Console.WriteLine("there is a cleaning emergency");
@@ -108,8 +107,8 @@ namespace HotelSimulator
                         Console.WriteLine(evt.Message);
                         foreach (Guest g in Hotel.Guests)
                         {
-                                
-                                        g.Walk(Hotel, hs, Hotel.Map[0,0]);
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, Hotel.Map[0,0]);
                                         break;                                
                         }
                         Console.WriteLine("fly, you fools!");
@@ -126,7 +125,9 @@ namespace HotelSimulator
                                      {
                                          if (room is Cinema)
                                          {
-                                             g.Walk(Hotel, hs, room);
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, room);
+                                        g.Walk(Hotel, hs, room);
                                              break;
                                          }
                                      }
@@ -143,7 +144,9 @@ namespace HotelSimulator
                                   {
                                       if (room is Gym)
                                       {
-                                          g.Walk(Hotel, hs, room);
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, room);
+                                        g.Walk(Hotel, hs, room);
                                           break;
                                       }
                                   }
@@ -160,6 +163,8 @@ namespace HotelSimulator
                                 {
                                     if(room is Restaurant)
                                     {
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, room);
                                         g.Walk(Hotel, hs, room);
                                         break;
                                     }

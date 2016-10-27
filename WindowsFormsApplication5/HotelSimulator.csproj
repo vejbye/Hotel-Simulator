@@ -83,6 +83,7 @@
     <Compile Include="Object\HotelRoom.cs" />
     <Compile Include="Object\Maid.cs" />
     <Compile Include="Object\Pool.cs" />
+    <Compile Include="Object\Moveable.cs" />
     <Compile Include="Object\SimObject.cs" />
     <Compile Include="Object\Gym.cs" />
     <Compile Include="HotelSimulator.cs">
