@@ -237,15 +237,7 @@ namespace HotelSimulator
             Hotel.DrawMe.DrawHotel(Hotel, Hotel.Elevator, false);
         }
 
-        private void HotelSimulator_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-                Console.WriteLine("Closed");
-            // Then assume that X has been clicked and act accordingly.
-
-        }
-
-    
+        
 
 }
 }

@@ -199,12 +199,12 @@ namespace HotelSimulator.Object
                     //Places the elevator in the empty space of the array since I need it there >:(
                     Map[Map.GetLength(0) - 1, 0] = Elevator;
 
-                    AddNeighbours(Map);
                     Added = true;
                 }
             }
 
 
+            AddNeighbours(Map);
         }
 
         public void Action()
