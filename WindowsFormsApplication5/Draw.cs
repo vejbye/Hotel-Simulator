@@ -53,6 +53,10 @@ namespace HotelSimulator.Object
                                     DrawBoundingBoxes(hotel.Map, x, y);
                             }
                         }
+                        if(hotel.Map[x,y].RoomPosition == new Point(0,0))
+                        {
+                            hotel.Map[x, y].RoomPosition = new Point(currentXPos, currentYPos - hotel.Map[x, y].Height);
+                        }
                     }
 
                     //Builds down
@@ -94,52 +98,30 @@ namespace HotelSimulator.Object
             if (person is Guest || person is Maid) {
                 if (person.Direction ==  Direction.RIGHT)
                 {
-                     point = new Point(person.Position.X + standardRoomWidth, person.Position.Y);
-                    while (person.Position.X < point.X)
-                    {
                         person.Position.X += 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
-                        DrawHotel(hotel, hotelElevator, false);
+                      //  DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
                         //Application.DoEvents(); p
-                    }
+                   
                 }
                 if (person.Direction == Direction.UP)
                 {
-                    point = new Point(person.Position.X, person.Position.Y + standardRoomHeight);
-                    while (person.Position.Y < point.Y)
-                    {
                         person.Position.Y += 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
-                        DrawHotel(hotel, hotelElevator, false);
+                      //  DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
-                    }
+                    
                 }
                 else if (person.Direction == Direction.LEFT)
                 {
-                    point = new Point(person.Position.X - standardRoomWidth, person.Position.Y);
-                    while (person.Position.X > point.X)
-                    {
                         person.Position.X -= 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
-                        DrawHotel(hotel, hotelElevator, false);
+                       // DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
-                    }
                 }
                 if (person.Direction == Direction.DOWN)
                 {
-                    point = new Point(person.Position.X, person.Position.Y - standardRoomHeight);
-                    while (person.Position.Y > point.Y)
-                    {
                         person.Position.Y -= 10;
-                        xStartPosition = 500;
-                        yStartPosition = 735;
-                        DrawHotel(hotel, hotelElevator, false);
+                       // DrawHotel(hotel, hotelElevator, false);
                         hs.Refresh();
-                    }
                 }
             }
 

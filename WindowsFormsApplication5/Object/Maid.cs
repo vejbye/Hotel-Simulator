@@ -8,10 +8,8 @@ using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
-    public class Maid: SimObject
+    public class Maid: Moveable
     {
-        public HotelRoom Current; // current location of maid
-        List<HotelRoom> Path; // for storing the path to the maids destination
         public bool moved = false;
         public Maid(HotelRoom current)
         {
@@ -22,11 +20,13 @@ namespace HotelSimulator.Object
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
         }
-        public void Walk(Hotel hotel, HotelSimulator hs)
+
+        public void setPath(Hotel hotel)
         {
-            foreach(HotelRoom hm in hotel.Map)
+            foreach (HotelRoom hm in hotel.Map)
             {
-                if(hm is Room && ((Room)hm).Dirty == true){
+                if (hm is Room && ((Room)hm).Dirty == true)
+                {
                     PathFind pf = new PathFind();
                     pf.shortestPathDijkstra(Current, hm);
                     HotelRoom cur = hm;
@@ -36,40 +36,63 @@ namespace HotelSimulator.Object
                         cur = cur.Previous;
                     }
                     Path.Add(cur);
-                    for (int i = Path.Count - 1; i > -1; i--)
-                    {
-                        if (i - 1 >= 0)
-                        {
-                            if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[i - 1] == Current.Neighbours[Neighbours.East])
-                            {
-                                Direction = Direction.RIGHT;
-                            }
-                            else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[i - 1] == Current.Neighbours[Neighbours.West])
-                            {
-                                Direction = Direction.LEFT;
-                            }
-                            else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[i - 1] == Current.Neighbours[Neighbours.South])
-                            {
-                                Direction = Direction.DOWN;
-                            }
-                            else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[i - 1] == Current.Neighbours[Neighbours.North])
-                            {
-                                Direction = Direction.UP;
-                            }
-                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
-                            Current = Path[i - 1];
-                            
-                        }
-                    }
                     foreach (HotelRoom hr in hotel.Map)
                     {
                         hr.Previous = null;
                         hr.Distance = Int32.MaxValue;
                     }
-                    ((Room)hm).Dirty = false;
-                    Path.Clear();
+                    break;
                 }
             }
+        }
+        public void Walk(Hotel hotel, HotelSimulator hs)
+        {
+                    if (Path.Count > 0 && Current != Path.ElementAt(0))
+                    {
+                        if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
+                        {
+                            Direction = Direction.RIGHT;
+                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                            if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X)
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+
+                        }
+                        else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
+                        {
+                            Direction = Direction.LEFT;
+                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                            if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + 10)
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                        }
+                        else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
+                        {
+                            Direction = Direction.DOWN;
+                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                            if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 20)
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                        }
+                        else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.North])
+                        {
+                            Direction = Direction.UP;
+                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                            if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - 20)
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            DrawMe.drawPersons(hotel, this, hotel.Elevator, hs);
+                            // Path[i].Guests.Remove(this);
+                            //Path[i - 1].Guests.Add(this);
+                            //    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
+                        }
+                    }
+                    
+                              
         }
     }
 }

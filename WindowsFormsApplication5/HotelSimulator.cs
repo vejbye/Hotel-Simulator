@@ -47,9 +47,9 @@ namespace HotelSimulator
             DrawMe = new Draw();
             newcomers = new List<Guest>();
 
-            timer.Interval = (10 * 1000); // 10 sec
+            timer.Interval = 1; // 10 sec
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
+            //timer.Start();
 
             for (int i = 0; i < 10; i++)
                 newcomers.Add(new Guest(null));
@@ -124,7 +124,7 @@ namespace HotelSimulator
                 sl = new SimEventListener(Hotel, this);
                 HotelEventManager.Register(sl);
                 HotelEventManager.Start();
-
+                timer.Start();
                 HotelEventTimer = new System.Windows.Forms.Timer();
                 HotelEventTimer.Interval = 1000;
                 HotelEventTimer.Tick += new EventHandler(OnTimedEvent);
@@ -184,8 +184,8 @@ namespace HotelSimulator
                     {
                         foreach (Guest guest in Hotel.Guests)
                         {
-                            HotelRoom destination = guest.setDestination(Hotel);
-                            guest.Walk(Hotel, this, destination);
+                           // HotelRoom destination = guest.setDestination(Hotel);
+                            //guest.Walk(Hotel, this, destination);
                         }
                     }
                     catch (Exception e)
@@ -213,7 +213,15 @@ namespace HotelSimulator
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //this.Update();
+            for(int i = 0; i < Hotel.Guests.Count; i++)
+            {
+                Hotel.Guests[i].Walk(Hotel, this, Hotel.Guests[i].Destination);
+            }
+            for (int i = 0; i < Hotel.maids.Count; i++)
+            {
+                Hotel.maids[i].Walk(Hotel, this);
+            }
+            Hotel.DrawMe.DrawHotel(Hotel,Hotel.Elevator, false);
         }
     }
 }
