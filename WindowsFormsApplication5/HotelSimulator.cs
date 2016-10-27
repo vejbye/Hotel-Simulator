@@ -224,15 +224,28 @@ namespace HotelSimulator
             }
         }
 
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Hotel.Guests.Count; i++)
+            {
+                Hotel.Guests[i].Walk(Hotel, this, Hotel.Guests[i].Destination);
+            }
+            for (int i = 0; i < Hotel.Maids.Count; i++)
+            {
+                Hotel.Maids[i].Walk(Hotel, this);
+            }
+            Hotel.DrawMe.DrawHotel(Hotel, Hotel.Elevator, false);
+        }
+
         private void HotelSimulator_FormClosed(object sender, FormClosedEventArgs e)
         {
             for(int i = 0; i < Hotel.Guests.Count; i++)
             {
                 Hotel.Guests[i].Walk(Hotel, this, Hotel.Guests[i].Destination);
             }
-            for (int i = 0; i < Hotel.maids.Count; i++)
+            for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.maids[i].Walk(Hotel, this);
+                Hotel.Maids[i].Walk(Hotel, this);
             }
             Hotel.DrawMe.DrawHotel(Hotel,Hotel.Elevator, false);
             if (e.CloseReason == CloseReason.UserClosing)
