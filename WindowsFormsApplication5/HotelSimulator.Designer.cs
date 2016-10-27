@@ -93,7 +93,6 @@
             this.Controls.Add(this.screenPB);
             this.Name = "HotelSimulator";
             this.Text = "Hotel Simulator 2016";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HotelSimulator_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).EndInit();
             this.ResumeLayout(false);
 
