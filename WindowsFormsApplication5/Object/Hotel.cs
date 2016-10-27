@@ -14,10 +14,10 @@ namespace HotelSimulator.Object
 
         public int HotelWidth;
         public int HotelHeight;
+        public bool Added = false;
         private bool _layoutStartsAt0 = false;
-        private int _roomWidthOfHotel = 0;
-
-
+        private int _lastArrayDimension = 0;
+        
         public Bitmap _hotel;
         public HotelRoom[,] Map;
         public Elevator Elevator;
@@ -55,7 +55,10 @@ namespace HotelSimulator.Object
                 for (int i = 0; i < _hotelWidthList.Count; i++)
                 {
                     if (_hotelWidthList[i] > HotelWidth)
+                    {
                         HotelWidth = _hotelWidthList[i];
+                        _lastArrayDimension = int.Parse(dimensions[0]);
+                    }
                 }
 
                 for (int i = 0; i < _hotelHeightList.Count; i++)
@@ -73,7 +76,7 @@ namespace HotelSimulator.Object
             //Creates double array based on the width and height
             //Adds width: 3 (1 for elevator, 1 for stairs, and 1 for shaft)
             //Adds height: 1 for reception
-            Map = new HotelRoom[HotelWidth + 3, HotelHeight + 1];
+            Map = new HotelRoom[HotelWidth + 3 + _lastArrayDimension, HotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -87,12 +90,18 @@ namespace HotelSimulator.Object
             {
                 string[] dimensions = l.Dimension.Split(',');
                 string[] positions = l.Position.Split(',');
+                int stairXpos = HotelWidth + _lastArrayDimension;
                 int xPos = int.Parse(positions[0]);
+
                 int roomImg = 1;
 
                 //If the layout has a room that starts at x = 0 then add them in the next array.
                 if (_layoutStartsAt0 == true)
+                {
                     xPos++;
+                    stairXpos++;
+                    _lastArrayDimension++;
+                }
 
                 //Looks for every type of room in the layout and assigns the information accordingly.
                 switch (l.AreaType)
@@ -163,30 +172,38 @@ namespace HotelSimulator.Object
                             Map[xPos, int.Parse(positions[1])] = current;
                             break;
                         }
+                    case "Pool":
+                        {
+                            Pool current = new Pool();
+                            current.Width = current.Width * int.Parse(dimensions[0]);
+                            current.Height = current.Height * int.Parse(dimensions[1]);
+                            current.Id = l.ID;
+                            Map[xPos, int.Parse(positions[1])] = current;
+                            break;
+                        }
 
                 }
 
-                if (int.Parse(positions[0]) == 0)
-                    _layoutStartsAt0 = true;
-
-                for (int lobbyStart = 1; lobbyStart <= HotelWidth; lobbyStart++)
-                    Map[lobbyStart, 0] = new Reception();
-
-                //Adds elevatorshafts to left side of hotel, and stairs to the right side of the hotel.
-                for (int infrastructureStart = 0; infrastructureStart <= HotelHeight; infrastructureStart++)
+                if (!Added)
                 {
-                    Map[0, infrastructureStart] = new ElevatorShaft();
-                    Map[HotelWidth + 2, infrastructureStart] = new Stair();
+                    for (int lobbyStart = 1; lobbyStart <= HotelWidth + _lastArrayDimension; lobbyStart++)
+                        Map[lobbyStart, 0] = new Reception();
+
+                    //Adds elevatorshafts to left side of hotel, and stairs to the right side of the hotel.
+                    for (int infrastructureStart = 0; infrastructureStart <= HotelHeight; infrastructureStart++)
+                    {
+                        Map[0, infrastructureStart] = new ElevatorShaft();
+                        Map[stairXpos, infrastructureStart] = new Stair();
+                    }
+
+                    //Places the elevator in the empty space of the array since I need it there >:(
+                    Map[Map.GetLength(0) - 1, 0] = Elevator;
+
+                    AddNeighbours(Map);
+                    Added = true;
                 }
-
-                //Places the elevator in the empty space of the array since I need it there >:(
-                Map[HotelWidth + 2, 0] = Elevator;
-
-
             }
 
-            AddNeighbours(Map);
-            _layoutStartsAt0 = false;
 
         }
 
@@ -196,6 +213,7 @@ namespace HotelSimulator.Object
             maid1.Position = new Point(DrawMe.xStartPosition + maid1.Width, DrawMe.yStartPosition - maid1.Height);
             Maids.Add(maid1);
         }
+
         private void AddNeighbours(HotelRoom[,] map)
         {
             for (int x = 0; x < map.GetLength(0); x++)
@@ -232,7 +250,9 @@ namespace HotelSimulator.Object
             _hotelHeightList = null;
             HotelWidth = 0;
             HotelHeight = 0;
-            _roomWidthOfHotel = 0;
+            _lastArrayDimension = 0;
+            Added = false;
+            _layoutStartsAt0 = false;
         }
 
     }

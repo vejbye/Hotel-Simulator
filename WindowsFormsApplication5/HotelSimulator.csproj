@@ -82,6 +82,7 @@
     <Compile Include="Object\Guest.cs" />
     <Compile Include="Object\HotelRoom.cs" />
     <Compile Include="Object\Maid.cs" />
+    <Compile Include="Object\Pool.cs" />
     <Compile Include="Object\SimObject.cs" />
     <Compile Include="Object\Gym.cs" />
     <Compile Include="HotelSimulator.cs">
@@ -126,7 +127,6 @@
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <Fakes Include="Fakes\HotelEvents4.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

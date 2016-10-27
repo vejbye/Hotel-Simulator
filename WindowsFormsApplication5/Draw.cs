@@ -63,7 +63,7 @@ namespace HotelSimulator.Object
                 currentYPos = yStartPosition;
             }
 
-            xStartPosition = 500;
+            currentXPos = 500;
             foreach (Guest guest in hotel.Guests)
             {
                 gfx.DrawImage(guest.Image, guest.Position.X, guest.Position.Y, guest.Width, guest.Height);
