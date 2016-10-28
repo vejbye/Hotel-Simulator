@@ -84,13 +84,13 @@ namespace HotelSimulator.Object
                 }
 
                 if (Direction == Direction.RIGHT)
-                    Position.X += 10;
+                    Position.X += MoveDistance;
                 if (Direction == Direction.UP)
-                    Position.Y += 10;
+                    Position.Y += MoveDistance;
                 if (Direction == Direction.DOWN)
-                    Position.Y -= 10;
+                    Position.Y -= MoveDistance;
                 if (Direction == Direction.LEFT)
-                    Position.X -= 10;
+                    Position.X -= MoveDistance;
             }
 
 

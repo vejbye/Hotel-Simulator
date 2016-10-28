@@ -51,10 +51,11 @@ namespace HotelSimulator.Object
         {
             if (Current != Path.ElementAt(0))
             {
+                //give direction and update current room
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
-                    Direction = Direction.RIGHT;                 
-                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + 10 )
+                    Direction = Direction.RIGHT;
+                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + MoveDistance * (Path[Path.IndexOf(Current) - 1].Width / DrawMe.standardRoomWidth))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -63,7 +64,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
                     Direction = Direction.LEFT;                   
-                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + 20)
+                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + MoveDistance * (Path[Path.IndexOf(Current) - 1].Width / DrawMe.standardRoomWidth))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -84,15 +85,15 @@ namespace HotelSimulator.Object
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
-
+                //move guest accordingly
                 if (Direction == Direction.RIGHT)
-                    Position.X += 10;
+                    Position.X += MoveDistance;
                 if (Direction == Direction.UP)
-                    Position.Y += 10;
+                    Position.Y += MoveDistance;
                 if (Direction == Direction.DOWN)
-                    Position.Y -= 10;
+                    Position.Y -= MoveDistance;
                 if (Direction == Direction.LEFT)
-                    Position.X -= 10;
+                    Position.X -= MoveDistance;
             }
 
             //let the guest request a room
@@ -112,7 +113,7 @@ namespace HotelSimulator.Object
                 CheckedIn = false;
             }
 
-            if (Destination == hotel.Map[0, 0] && Current == Destination && !CheckedIn)
+            if (Destination == hotel.Map[0, 0] && Current == Destination && !CheckedIn)// remove guest from hotel when checked out
             {
                 hotel.Guests.Remove(this);
             }
