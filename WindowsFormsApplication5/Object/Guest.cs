@@ -53,7 +53,7 @@ namespace HotelSimulator.Object
             {
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
-                    Direction = Direction.RIGHT;
+                    Direction = Direction.RIGHT;                 
                     if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + 10 )
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -62,7 +62,7 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
-                    Direction = Direction.LEFT;
+                    Direction = Direction.LEFT;                   
                     if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + 20)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -70,7 +70,7 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
-                    Direction = Direction.DOWN;
+                    Direction = Direction.DOWN;              
                     if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 30)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -84,7 +84,15 @@ namespace HotelSimulator.Object
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
-                DrawMe.DrawPersons(hotel, this);
+
+                if (Direction == Direction.RIGHT)
+                    Position.X += 10;
+                if (Direction == Direction.UP)
+                    Position.Y += 10;
+                if (Direction == Direction.DOWN)
+                    Position.Y -= 10;
+                if (Direction == Direction.LEFT)
+                    Position.X -= 10;
             }
 
             //let the guest request a room

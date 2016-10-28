@@ -73,9 +73,12 @@ namespace HotelSimulator
                                 {
                                     if (room is Reception)
                                     {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, room);
-                                        break;
+                                        if (g.Current == g.Destination)
+                                        {
+                                            g.Path.Clear();
+                                            g.setPath(Hotel, room);
+                                            break;
+                                        }
                                     }
                                 }
                                 break;
@@ -109,7 +112,6 @@ namespace HotelSimulator
                         {
                             g.Path.Clear();
                             g.setPath(Hotel, Hotel.Map[0, 0]);
-                            break;
                         }
                         Console.WriteLine("fly, you fools!");
                         break;
@@ -125,10 +127,13 @@ namespace HotelSimulator
                                 {
                                     if (room is Cinema)
                                     {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, room);
-                                        g.Walk(Hotel, room);
-                                        break;
+                                        if (g.Current == g.Destination)
+                                        {
+                                            g.Path.Clear();
+                                            g.setPath(Hotel, room);
+                                            g.Walk(Hotel, room);
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -144,10 +149,13 @@ namespace HotelSimulator
                                 {
                                     if (room is Gym)
                                     {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, room);
-                                        g.Walk(Hotel, room);
-                                        break;
+                                        if (g.Current == g.Destination)
+                                        {
+                                            g.Path.Clear();
+                                            g.setPath(Hotel, room);
+                                            g.Walk(Hotel, room);
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -162,11 +170,13 @@ namespace HotelSimulator
                                 foreach (HotelRoom room in Hotel.Map)
                                 {
                                     if (room is Restaurant)
-                                    {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, room);
-                                        g.Walk(Hotel, room);
-                                        break;
+                                    { if (g.Current == g.Destination)
+                                        {
+                                            g.Path.Clear();
+                                            g.setPath(Hotel, room);
+                                            g.Walk(Hotel, room);
+                                            break;
+                                        }
                                     }
                                 }
                             }

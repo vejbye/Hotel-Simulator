@@ -82,8 +82,15 @@ namespace HotelSimulator.Object
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
-                DrawMe.DrawPersons(hotel, this);
 
+                if (Direction == Direction.RIGHT)
+                    Position.X += 10;
+                if (Direction == Direction.UP)
+                    Position.Y += 10;
+                if (Direction == Direction.DOWN)
+                    Position.Y -= 10;
+                if (Direction == Direction.LEFT)
+                    Position.X -= 10;
             }
 
 

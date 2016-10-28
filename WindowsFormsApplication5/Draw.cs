@@ -105,22 +105,5 @@ namespace HotelSimulator.Object
         {
             map[x, y].BoundingBox = new Rectangle(currentXPos, currentYPos - map[x, y].Height, map[x, y].Width, map[x, y].Height);
         }
-
-        public void DrawPersons(Hotel hotel, SimObject person)
-        {
-            if (person is Guest || person is Maid)
-            {
-                if (person.Direction == Direction.RIGHT)
-                    person.Position.X += 10;
-                if (person.Direction == Direction.UP)
-                    person.Position.Y += 10;
-                if (person.Direction == Direction.DOWN)
-                    person.Position.Y -= 10;
-                if (person.Direction == Direction.LEFT)
-                    person.Position.X -= 10;
-            }
-
-
-        }
     }
 }
