@@ -157,7 +157,7 @@ namespace HotelSimulator
             if (e.Button == MouseButtons.Right)
             {
                 Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
-                foreach (SimObject s in Hotel.GetMap())
+                foreach (HotelRoom s in Hotel.GetMap())
                 {
                     if (s.BoundingBox.Contains(boxPosition))
                     {
@@ -216,7 +216,7 @@ namespace HotelSimulator
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);
             Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
 
-            DrawMe.MoveElevator(Hotel, Hotel.Elevator, Hotel.Elevator.RequestedFloor);
+            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor);
             
             if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {

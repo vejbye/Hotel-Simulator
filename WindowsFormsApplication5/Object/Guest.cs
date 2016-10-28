@@ -98,7 +98,7 @@ namespace HotelSimulator.Object
             //let the guest request a room
             if (Room == null && Destination is Reception && Current == Destination)
             {
-                Room = ((Reception)Destination).findEmptyRoom(hotel, Preference);
+                Room = ((Reception)Destination).findEmptyRoom(hotel, Preference, this);
                 Path.Clear();
                 setPath(hotel, Room);
                 CheckedIn = true;

@@ -15,17 +15,17 @@ namespace HotelSimulator.Object
             Image = Resources.Reception;
         }
 
-        public Room findEmptyRoom(Hotel hotel, string stars)
+        public Room findEmptyRoom(Hotel hotel, string stars, Guest guest)
         {
             for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
             {
                 for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
                 {
-                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Stars.ToString() == stars)
+                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Classification.ToString() == stars)
                     {
                         if (!((Room)hotel.GetMap()[i, j]).getTaken())
                         {
-                            ((Room)hotel.GetMap()[i, j]).setTaken(true);
+                            ((Room)hotel.GetMap()[i, j]).setTaken(true, guest);
                             return (Room)hotel.GetMap()[i, j];
                         }
                     }
@@ -36,7 +36,7 @@ namespace HotelSimulator.Object
 
         public void checkOut(Guest guest)
         {
-            guest.Room.setTaken(false);
+            guest.Room.setTaken(false, guest);
             guest.Room.Dirty = true;
             guest.Room = null;
         }

@@ -81,20 +81,27 @@ namespace HotelSimulator.Object
 
             return hotel._hotel;
         }
-        public void MoveElevator(Hotel hotel, Elevator hotelElevator, int floor)
+        
+        /// <summary>
+        /// Moves the elevator in steps.
+        /// </summary>
+        /// <param name="hotel">The hotel where the elevator is in.</param>
+        /// <param name="hotelElevator"></param>
+        /// <param name="floor"></param>
+        public void MoveElevator(Hotel hotel, int floor)
         {
-            if (hotelElevator.ElevatorPosition.Y != yStartPosition - (floor * standardRoomHeight))
+            if (hotel.Elevator.ElevatorPosition.Y != yStartPosition - (floor * standardRoomHeight))
             {
-                if (hotelElevator.ElevatorPosition.Y > yStartPosition - (floor * standardRoomHeight))
+                if (hotel.Elevator.ElevatorPosition.Y > yStartPosition - (floor * standardRoomHeight))
                 {
-                    hotelElevator.CurrentState = Elevator.ElevatorState.MovingUp;
-                    hotelElevator.ElevatorPosition.Y -= 10;
+                    hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
+                    hotel.Elevator.ElevatorPosition.Y -= 10;
                 }
 
-                if (hotelElevator.ElevatorPosition.Y < yStartPosition - (floor * standardRoomHeight) && floor < hotelElevator.PreviousFloor)
+                if (hotel.Elevator.ElevatorPosition.Y < yStartPosition - (floor * standardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
                 {
-                    hotelElevator.CurrentState = Elevator.ElevatorState.MovingDown;
-                    hotelElevator.ElevatorPosition.Y += 10;
+                    hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
+                    hotel.Elevator.ElevatorPosition.Y += 10;
                 }
 
             }

@@ -114,7 +114,9 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
-                            current.Stars = int.Parse(l.Classification.Substring(0, 1));
+                            current.Classification = int.Parse(l.Classification.Substring(0, 1));
+                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
+                            current.Floor = int.Parse(positions[1]);
                             Map[xPos, int.Parse(positions[1])] = current;
                             roomImg = int.Parse(dimensions[0]) * int.Parse(dimensions[1]);
 
@@ -151,6 +153,8 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
+                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
+                            current.Floor = int.Parse(positions[1]);
                             Map[xPos, int.Parse(positions[1])] = current;
                             break;
                         }
@@ -161,6 +165,8 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
+                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
+                            current.Floor = int.Parse(positions[1]);
                             Map[xPos, int.Parse(positions[1])] = current;
                             break;
                         }
@@ -171,6 +177,8 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
+                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
+                            current.Floor = int.Parse(positions[1]);
                             Map[xPos, int.Parse(positions[1])] = current;
                             break;
                         }
@@ -180,6 +188,8 @@ namespace HotelSimulator.Object
                             current.Width = current.Width * int.Parse(dimensions[0]);
                             current.Height = current.Height * int.Parse(dimensions[1]);
                             current.Id = l.ID;
+                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
+                            current.Floor = int.Parse(positions[1]);
                             Map[xPos, int.Parse(positions[1])] = current;
                             break;
                         }
@@ -195,7 +205,10 @@ namespace HotelSimulator.Object
                     for (int infrastructureStart = 0; infrastructureStart <= HotelHeight; infrastructureStart++)
                     {
                         Map[0, infrastructureStart] = new ElevatorShaft();
+                        Map[0, infrastructureStart].Floor = infrastructureStart;
+
                         Map[stairXpos, infrastructureStart] = new Stair();
+                        Map[stairXpos, infrastructureStart].Floor = infrastructureStart;
                     }
 
                     //Places the elevator in the empty space of the array since I need it there >:(
