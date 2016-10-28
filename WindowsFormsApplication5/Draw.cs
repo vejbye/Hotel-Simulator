@@ -81,11 +81,10 @@ namespace HotelSimulator.Object
 
             return hotel._hotel;
         }
-        public void MoveElevator(Hotel hotel, Elevator hotelElevator, int j, int floor)
+        public void MoveElevator(Hotel hotel, Elevator hotelElevator, int floor)
         {
             if (hotelElevator.ElevatorPosition.Y != yStartPosition - (floor * standardRoomHeight))
             {
-
                 if (hotelElevator.ElevatorPosition.Y > yStartPosition - (floor * standardRoomHeight))
                 {
                     hotelElevator.CurrentState = Elevator.ElevatorState.MovingUp;
@@ -97,6 +96,7 @@ namespace HotelSimulator.Object
                     hotelElevator.CurrentState = Elevator.ElevatorState.MovingDown;
                     hotelElevator.ElevatorPosition.Y += 10;
                 }
+
             }
 
         }

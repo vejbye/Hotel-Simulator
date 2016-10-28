@@ -36,6 +36,7 @@ namespace HotelSimulator
         private int _maxPanY = 0;
         private int _minPanY = -250;
         private bool _initialized = false;
+        private int currentElement = 0;
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -212,18 +213,19 @@ namespace HotelSimulator
                 Hotel.Maids[i].Walk(Hotel);
             }
 
-            for (int j = 0; j < Hotel.Elevator.Requests.Count; j++)
-            {
-                Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(j);
-                Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
-                DrawMe.MoveElevator(Hotel, Hotel.Elevator, j, Hotel.Elevator.RequestedFloor);
-                
-            }
+            Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);
+            Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
 
-            if(Hotel.Elevator.RequestedFloor == Hotel.Elevator.Destination)
+            DrawMe.MoveElevator(Hotel, Hotel.Elevator, Hotel.Elevator.RequestedFloor);
+            
+            if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {
                 Hotel.Elevator.PreviousFloor = Hotel.Elevator.RequestedFloor;
-                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+                
+                if(currentElement < Hotel.Elevator.Requests.Count - 1)
+                    currentElement++;
+                else
+                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
             }
 
             Refresh();
