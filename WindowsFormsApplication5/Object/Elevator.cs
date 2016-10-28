@@ -8,12 +8,15 @@ using System.Drawing;
 
 namespace HotelSimulator.Object
 {
-    public class Elevator: HotelRoom
+    public class Elevator : HotelRoom
     {
         public int Speed { get; set; }
         public Point ElevatorPosition;
+        public int Destination;
+        public int RequestedFloor;
         public ElevatorState CurrentState;
-        
+        public int PreviousFloor = 0;
+
         public List<int> Requests;
 
         public enum ElevatorState
@@ -31,7 +34,7 @@ namespace HotelSimulator.Object
             Width = 35;
             DrawMe = new Draw();
             ElevatorPosition = new Point((int)(DrawMe.xStartPosition + (DrawMe.standardRoomWidth * 0.65)), (DrawMe.yStartPosition - DrawMe.standardRoomHeight));
-            
+
 
             Requests = new List<int>();
             Requests.Add(3);
@@ -50,6 +53,6 @@ namespace HotelSimulator.Object
 
         }
 
-        
+
     }
 }

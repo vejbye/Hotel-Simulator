@@ -20,11 +20,8 @@ namespace HotelSimulator.Object
 
         public Room() : base()
         {
-            //Image = Resources.Room;
             Taken = false;
             Dirty = false;
-
-            
         }
 
         public bool getTaken()
@@ -35,7 +32,6 @@ namespace HotelSimulator.Object
         public void setTaken(bool taken)
         {
             this.Taken = taken;
-
         }
 
     }

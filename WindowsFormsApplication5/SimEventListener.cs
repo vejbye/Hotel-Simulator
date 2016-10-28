@@ -20,7 +20,7 @@ namespace HotelSimulator
             this.hs = hs;
             Guests = new List<Guest>();
             events = new Queue<HotelEvent>();
-        
+
         }
         public void Notify(HotelEvent evt)
         {
@@ -29,7 +29,8 @@ namespace HotelSimulator
 
         }
 
-        public void DoEvent() {
+        public void DoEvent()
+        {
             if (events.Count != 0)
             {
                 HotelEvent evt = events.Peek();
@@ -44,7 +45,7 @@ namespace HotelSimulator
                         }
                         Guest guest = new Guest(null);
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
-                        guest.preference = evt.Data.Values.ElementAt(0).Substring(8,1);
+                        guest.Preference = evt.Data.Values.ElementAt(0).Substring(8, 1);
                         Hotel.Guests.Add(guest);
                         guest.Current = ((HotelRoom)Hotel.Map[0, 0]);
                         guest.Position = new System.Drawing.Point(Hotel.DrawMe.xStartPosition + guest.Width, Hotel.DrawMe.yStartPosition - guest.Height);
@@ -64,30 +65,29 @@ namespace HotelSimulator
                         break;
 
                     case HotelEventType.CHECK_OUT:
-                           foreach (Guest g in Hotel.Guests)
-                           {
-                               if (g.Id == evt.Data.Values.ElementAt(0))
-                               {
-                                   foreach (HotelRoom room in Hotel.Map)
-                                   {
-                                       if (room is Reception)
-                                       {
+                        foreach (Guest g in Hotel.Guests)
+                        {
+                            if (g.Id == evt.Data.Values.ElementAt(0))
+                            {
+                                foreach (HotelRoom room in Hotel.Map)
+                                {
+                                    if (room is Reception)
+                                    {
                                         g.Path.Clear();
                                         g.setPath(Hotel, room);
-                                           break;
-                                       }
-                                   }
+                                        break;
+                                    }
+                                }
                                 break;
-                               }
-                           }
+                            }
+                        }
                         Console.WriteLine("Guest has checked out");
                         break;
                     case HotelEventType.CLEANING_EMERGENCY:
-                        foreach(HotelRoom room in Hotel.Map)
+                        foreach (HotelRoom room in Hotel.Map)
                         {
                             foreach (KeyValuePair<string, string> data in evt.Data)
                             {
-
                                 if (data.Key.Equals("kamer") && room.Id == Int32.Parse(data.Value))
                                 {
                                     ((Room)room).Dirty = true;
@@ -107,9 +107,9 @@ namespace HotelSimulator
                         Console.WriteLine(evt.Message);
                         foreach (Guest g in Hotel.Guests)
                         {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, Hotel.Map[0,0]);
-                                        break;                                
+                            g.Path.Clear();
+                            g.setPath(Hotel, Hotel.Map[0, 0]);
+                            break;
                         }
                         Console.WriteLine("fly, you fools!");
                         break;
@@ -117,55 +117,55 @@ namespace HotelSimulator
                         Console.WriteLine("it will kill us all!");
                         break;
                     case HotelEventType.GOTO_CINEMA:
-                             foreach (Guest g in Hotel.Guests)
-                             {
-                                 if (g.Id == evt.Data.Values.ElementAt(0))
-                                 {
-                                     foreach (HotelRoom room in Hotel.Map)
-                                     {
-                                         if (room is Cinema)
-                                         {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, room);
-                                        g.Walk(Hotel, hs, room);
-                                             break;
-                                         }
-                                     }
-                                 }
-                             }
-                        Console.WriteLine("Guest is going to cinema");
-                        break;
-                    case HotelEventType.GOTO_FITNESS:
-                          foreach (Guest g in Hotel.Guests)
-                          {
-                              if (g.Id == evt.Data.Values.ElementAt(0))
-                              {
-                                  foreach (HotelRoom room in Hotel.Map)
-                                  {
-                                      if (room is Gym)
-                                      {
-                                        g.Path.Clear();
-                                        g.setPath(Hotel, room);
-                                        g.Walk(Hotel, hs, room);
-                                          break;
-                                      }
-                                  }
-                              }
-                          }
-                        Console.WriteLine("Guest is going to the gym");
-                        break;
-                    case HotelEventType.NEED_FOOD:
-                        foreach(Guest g in Hotel.Guests)
+                        foreach (Guest g in Hotel.Guests)
                         {
-                            if(g.Id == evt.Data.Values.ElementAt(0))
+                            if (g.Id == evt.Data.Values.ElementAt(0))
                             {
-                                foreach(HotelRoom room in Hotel.Map)
+                                foreach (HotelRoom room in Hotel.Map)
                                 {
-                                    if(room is Restaurant)
+                                    if (room is Cinema)
                                     {
                                         g.Path.Clear();
                                         g.setPath(Hotel, room);
-                                        g.Walk(Hotel, hs, room);
+                                        g.Walk(Hotel, room);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        Console.WriteLine("Guest is going to cinema");
+                        break;
+                    case HotelEventType.GOTO_FITNESS:
+                        foreach (Guest g in Hotel.Guests)
+                        {
+                            if (g.Id == evt.Data.Values.ElementAt(0))
+                            {
+                                foreach (HotelRoom room in Hotel.Map)
+                                {
+                                    if (room is Gym)
+                                    {
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, room);
+                                        g.Walk(Hotel, room);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        Console.WriteLine("Guest is going to the gym");
+                        break;
+                    case HotelEventType.NEED_FOOD:
+                        foreach (Guest g in Hotel.Guests)
+                        {
+                            if (g.Id == evt.Data.Values.ElementAt(0))
+                            {
+                                foreach (HotelRoom room in Hotel.Map)
+                                {
+                                    if (room is Restaurant)
+                                    {
+                                        g.Path.Clear();
+                                        g.setPath(Hotel, room);
+                                        g.Walk(Hotel, room);
                                         break;
                                     }
                                 }

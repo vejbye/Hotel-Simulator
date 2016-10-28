@@ -9,14 +9,14 @@ using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
-    public class Guest: Moveable
+    public class Guest : Moveable
     {
         public string Id;
         public Room Room;
         public HotelRoom Destination;
-        public int delay = 0;
-        public string preference; // the guests prefered room classification
-        public bool checkedIn = false;
+        public int Delay = 0;
+        public string Preference; // the guests prefered room classification
+        public bool CheckedIn = false;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -47,15 +47,14 @@ namespace HotelSimulator.Object
         }
 
         //let the guest walk;
-        public void Walk(Hotel hotel, HotelSimulator hs, HotelRoom destination)
+        public void Walk(Hotel hotel, HotelRoom destination)
         {
             if (Current != Path.ElementAt(0))
             {
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
                     Direction = Direction.RIGHT;
-                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
-                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X)
+                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + 10 )
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -64,8 +63,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
                     Direction = Direction.LEFT;
-                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
-                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + 10)
+                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + 20)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -73,8 +71,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
                     Direction = Direction.DOWN;
-                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
-                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 20)
+                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 30)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -82,45 +79,36 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.North])
                 {
                     Direction = Direction.UP;
-                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
-                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - 20)
+                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - 5)
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
-                    DrawMe.DrawPersons(hotel, this, hotel.Elevator, hs);
-                    // Path[i].Guests.Remove(this);
-                    //Path[i - 1].Guests.Add(this);
-                    //    DrawMe.DrawHotel(hotel.Map, hotel._hotel);
                 }
+                DrawMe.DrawPersons(hotel, this);
             }
-                           
-                /*if (destination == hotel.Map[0, 0])
+
+            //let the guest request a room
+            if (Room == null && Destination is Reception && Current == Destination)
             {
-                hotel.Map[0, 0].Guests.Remove(this);
-                hs.newcomers.Add(this);
-                }*/
-                //let the guest request a room
-                if (Room == null && Destination is Reception && Current == Destination)
-            {
-                    Room = ((Reception)Destination).findEmptyRoom(hotel, preference);
+                Room = ((Reception)Destination).findEmptyRoom(hotel, Preference);
                 Path.Clear();
                 setPath(hotel, Room);
-                checkedIn = true;
+                CheckedIn = true;
 
             }
-                else if (Room != null && Destination is Reception && Current == Destination)//checkout if guest goes to reception while having a room
+            else if (Room != null && Destination is Reception && Current == Destination)//checkout if guest goes to reception while having a room
             {
                 ((Reception)Destination).checkOut(this);
                 Path.Clear();
-                setPath(hotel, hotel.Map[0,0]);
-                checkedIn = false;
+                setPath(hotel, hotel.Map[0, 0]);
+                CheckedIn = false;
             }
 
-            if (Destination == hotel.Map[0, 0] && Current == Destination && !checkedIn)
+            if (Destination == hotel.Map[0, 0] && Current == Destination && !CheckedIn)
             {
                 hotel.Guests.Remove(this);
             }
-            
+
         }
     }
 }

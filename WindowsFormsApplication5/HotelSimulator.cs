@@ -37,9 +37,6 @@ namespace HotelSimulator
         private int _minPanY = -250;
         private bool _initialized = false;
 
-        private int _previousFloor = 0;
-        private bool _movingUp = true;
-
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
 
@@ -122,7 +119,7 @@ namespace HotelSimulator
                 Hotel.Build(reader.ReadLayout(json));
                 Hotel.Reset();
                 Hotel.Action();
-                screenPB.Image = DrawMe.DrawHotel(Hotel, Hotel.Elevator, true);
+                screenPB.Image = DrawMe.DrawHotel(Hotel, true);
 
                 sl = new SimEventListener(Hotel, this);
                 HotelEventManager.Register(sl);
@@ -201,46 +198,37 @@ namespace HotelSimulator
 
         private void elevatorBTN_Click(object sender, EventArgs e)
         {
-            for (int j = 0; j < Hotel.Elevator.Requests.Count; j++)
-            {
-                int floor = Hotel.Elevator.Requests.ElementAt(j);
-
-                if (floor < _previousFloor)
-                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
-                else
-                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
-
-                for (int i = 0; i < floor * DrawMe.standardRoomHeight; i++)
-                {
-                    if (Hotel.Elevator.ElevatorPosition.Y > DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight) && Hotel.Elevator.CurrentState.Equals(Elevator.ElevatorState.MovingUp))
-                    {
-                        screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, true);
-                        Update();
-                    }
-
-                    if (Hotel.Elevator.ElevatorPosition.Y < DrawMe.yStartPosition - (floor * DrawMe.standardRoomHeight) && Hotel.Elevator.CurrentState.Equals(Elevator.ElevatorState.MovingDown))
-                    {
-                        screenPB.Image = DrawMe.MoveElevator(Hotel, Hotel.Elevator, false);
-                        Update();
-                    }
-                }
-
-                _previousFloor = floor;
-                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
-            }
+            
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                Hotel.Guests[i].Walk(Hotel, this, Hotel.Guests[i].Destination);
+                Hotel.Guests[i].Walk(Hotel, Hotel.Guests[i].Destination);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.Maids[i].Walk(Hotel, this);
+                Hotel.Maids[i].Walk(Hotel);
             }
-            Hotel.DrawMe.DrawHotel(Hotel, Hotel.Elevator, false);
+
+            for (int j = 0; j < Hotel.Elevator.Requests.Count; j++)
+            {
+                Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(j);
+                Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
+                DrawMe.MoveElevator(Hotel, Hotel.Elevator, j, Hotel.Elevator.RequestedFloor);
+                
+            }
+
+            if(Hotel.Elevator.RequestedFloor == Hotel.Elevator.Destination)
+            {
+                Hotel.Elevator.PreviousFloor = Hotel.Elevator.RequestedFloor;
+                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+            }
+
+            Refresh();
+
+            Hotel.DrawMe.DrawHotel(Hotel, false);
         }
 
 

@@ -20,7 +20,7 @@ namespace HotelSimulator.Object
         public bool Added = false;
         private bool _layoutStartsAt0 = false;
         private int _lastArrayDimension = 0;
-        
+
         public Bitmap _hotel;
         public HotelRoom[,] Map;
         public Elevator Elevator;
