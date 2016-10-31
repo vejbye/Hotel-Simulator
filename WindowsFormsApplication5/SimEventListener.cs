@@ -131,7 +131,7 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel, room);
+                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -153,7 +153,7 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel, room);
+                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -174,7 +174,7 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel, room);
+                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }

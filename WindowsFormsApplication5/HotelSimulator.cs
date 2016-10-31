@@ -206,11 +206,11 @@ namespace HotelSimulator
         {
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                Hotel.Guests[i].Walk(Hotel, Hotel.Guests[i].Destination);
+                Hotel.Guests[i].Walk(Hotel);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.Maids[i].Walk(Hotel);
+                Hotel.Maids[i].Walk();
             }
 
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);

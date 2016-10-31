@@ -46,8 +46,11 @@ namespace HotelSimulator.Object
             Destination = destination;
         }
 
-        //let the guest walk;
-        public void Walk(Hotel hotel, HotelRoom destination)
+        /// <summary>
+        /// Moves the guest to it's destination.
+        /// </summary>
+        /// <param name="hotel">Give the hotel the guest resides in.</param>
+        public void Walk(Hotel hotel)
         {
             if (Current != Path.ElementAt(0))
             {
@@ -55,7 +58,7 @@ namespace HotelSimulator.Object
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
                     Direction = Direction.RIGHT;
-                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + MoveDistance * (Path[Path.IndexOf(Current) - 1].Width / DrawMe.standardRoomWidth))
+                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -64,7 +67,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
                     Direction = Direction.LEFT;                   
-                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + MoveDistance * (Path[Path.IndexOf(Current) - 1].Width / DrawMe.standardRoomWidth))
+                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -72,7 +75,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
                     Direction = Direction.DOWN;              
-                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 30)
+                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.standardRoomHeight / 2))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -80,7 +83,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.North])
                 {
                     Direction = Direction.UP;
-                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - 5)
+                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.standardRoomHeight / HeightPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }

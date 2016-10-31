@@ -12,6 +12,8 @@ namespace HotelSimulator.Object
         public HotelRoom Current; // current location of guest
         public List<HotelRoom> Path; // for storing the path to the guests destination
         public int MoveDistance = 10;
+        public int RoomPositioning = 4;
+        public int HeightPositioning = 10;
 
         public void Update()
         {
