@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
 using WindowsFormsApplication5;
+using System.Windows.Forms;
 
 namespace HotelSimulator.Object
 {
@@ -17,6 +18,8 @@ namespace HotelSimulator.Object
         public int Delay = 0;
         public string Preference; // the guests prefered room classification
         public bool CheckedIn = false;
+        public bool dead = false;
+        public int waitTime = 0;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -32,13 +35,14 @@ namespace HotelSimulator.Object
             PathFind pf = new PathFind();
             pf.shortestPathDijkstra(Current, destination); //algorithm to define shortest path
             HotelRoom cur = destination;
-            while (cur != Current)
+            while (cur != Current)// store path in list so guest can walk through it
             {
                 Path.Add(cur);
                 cur = cur.Previous;
             }
             foreach (HotelRoom hr in hotel.Map)
             {
+                //clear any path related values after path has been stored
                 hr.Previous = null;
                 hr.Distance = Int32.MaxValue;
             }
@@ -118,6 +122,24 @@ namespace HotelSimulator.Object
                 hotel.Guests.Remove(this);
             }
 
+            if(Destination is Cinema && Current == Destination)
+            {
+                if (((Cinema)destination).playing)
+                {
+                    Path.Clear();
+                    setPath(hotel, Room);
+                }
+            }
+
+        }
+
+        public void inLine()
+        {
+            waitTime++;
+            if(waitTime > 6)
+            {
+                dead = true;                
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace HotelSimulator.Object
         private int RoomNr { get; set; }
 
         public bool Dirty { get; set; }
+        public bool BeingCleaned { get; set; } = false;
 
         public int Stars { get; set; }
 

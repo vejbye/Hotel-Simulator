@@ -212,8 +212,12 @@ namespace HotelSimulator.Object
         public void Action()
         {
             Maid maid1 = new Maid(Map[0, 0]);
+            Maid maid2 = new Maid(Map[0, 0]);
             maid1.Position = new Point(DrawMe.xStartPosition + maid1.Width, DrawMe.yStartPosition - maid1.Height);
+            maid2.Position = new Point(DrawMe.xStartPosition + maid2.Width, DrawMe.yStartPosition - maid2.Height);
+
             Maids.Add(maid1);
+            Maids.Add(maid2);
         }
 
         private void AddNeighbours(HotelRoom[,] map)

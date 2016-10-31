@@ -15,7 +15,7 @@ namespace HotelSimulator.Object
             Image = Resources.Reception;
         }
 
-        public Room findEmptyRoom(Hotel hotel, string stars)
+        public Room findEmptyRoom(Hotel hotel, string stars) //search for empty room if a guest wants to check in
         {
             for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
             {
@@ -23,7 +23,7 @@ namespace HotelSimulator.Object
                 {
                     if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Stars.ToString() == stars)
                     {
-                        if (!((Room)hotel.GetMap()[i, j]).getTaken())
+                        if (!((Room)hotel.GetMap()[i, j]).getTaken() && !((Room)hotel.GetMap()[i, j]).Dirty && !((Room)hotel.GetMap()[i, j]).BeingCleaned)
                         {
                             ((Room)hotel.GetMap()[i, j]).setTaken(true);
                             return (Room)hotel.GetMap()[i, j];
@@ -36,9 +36,9 @@ namespace HotelSimulator.Object
 
         public void checkOut(Guest guest)
         {
-            guest.Room.setTaken(false);
-            guest.Room.Dirty = true;
-            guest.Room = null;
+            guest.Room.setTaken(false); // Make the room empty
+            guest.Room.Dirty = true; // Make the room dirty after checkout
+            guest.Room = null; //remove room from guest
         }
     }
 }

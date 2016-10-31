@@ -203,7 +203,7 @@ namespace HotelSimulator
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {
+        { //let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
                 Hotel.Guests[i].Walk(Hotel, Hotel.Guests[i].Destination);

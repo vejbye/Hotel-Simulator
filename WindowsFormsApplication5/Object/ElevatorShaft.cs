@@ -8,7 +8,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class ElevatorShaft: HotelRoom
+    public class ElevatorShaft: HotelRoom
     {
         public ElevatorShaft()
         {

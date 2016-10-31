@@ -10,7 +10,7 @@ namespace HotelSimulator.Object
 {
     public class Maid : Moveable
     {
-        public bool moved = false;
+        public bool isBusy = false;
         public Maid(HotelRoom current)
         {
             this.Current = current;
@@ -23,21 +23,24 @@ namespace HotelSimulator.Object
 
         public void setPath(Hotel hotel)
         {
-            foreach (HotelRoom hm in hotel.Map)
+            foreach (HotelRoom hm in hotel.Map)// search for dirty room
             {
                 if (hm is Room && ((Room)hm).Dirty == true)
                 {
                     PathFind pf = new PathFind();
-                    pf.shortestPathDijkstra(Current, hm);
+                    pf.shortestPathDijkstra(Current, hm);//algorithm to define shortest path
                     HotelRoom cur = hm;
-                    while (cur != Current)
+                    while (cur != Current)// store path in list so maid can walk through it
                     {
                         Path.Add(cur);
                         cur = cur.Previous;
                     }
                     Path.Add(cur);
+                    ((Room)hm).BeingCleaned = true;
+                    ((Room)hm).Dirty = false;
                     foreach (HotelRoom hr in hotel.Map)
                     {
+                        //clear any path related values after path has been stored
                         hr.Previous = null;
                         hr.Distance = Int32.MaxValue;
                     }
@@ -49,6 +52,7 @@ namespace HotelSimulator.Object
         {
             if (Path.Count > 0 && Current != Path.ElementAt(0))
             {
+                //give direction and update current room
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
                     Direction = Direction.RIGHT;
@@ -83,6 +87,7 @@ namespace HotelSimulator.Object
                     }
                 }
 
+                //move guest accordingly
                 if (Direction == Direction.RIGHT)
                     Position.X += MoveDistance;
                 if (Direction == Direction.UP)
@@ -91,6 +96,12 @@ namespace HotelSimulator.Object
                     Position.Y -= MoveDistance;
                 if (Direction == Direction.LEFT)
                     Position.X -= MoveDistance;
+            }
+
+            if(Path.Count > 0 && Current == Path.ElementAt(0))
+            {
+                isBusy = false;
+                ((Room)Path.ElementAt(0)).BeingCleaned = false;
             }
 
 

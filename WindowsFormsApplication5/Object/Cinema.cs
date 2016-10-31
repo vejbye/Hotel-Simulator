@@ -9,11 +9,12 @@ namespace HotelSimulator.Object
 {
     class Cinema : HotelRoom
     {
-        bool playing { get; set; }
+        public bool playing { get; set; }
         
         public Cinema()
         {
             Image = Resources.Cinema;
+            playing = false;
         }
     }
 }
