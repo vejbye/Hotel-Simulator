@@ -15,7 +15,7 @@ namespace HotelSimulator.Object
             Image = Resources.Reception;
         }
 
-        public Room findEmptyRoom(Hotel hotel, string stars) //search for empty room if a guest wants to check in
+        public Room findEmptyRoom(Hotel hotel, string stars, Guest guest) //search for empty room if a guest wants to check in
         {
             for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
             {
@@ -36,7 +36,7 @@ namespace HotelSimulator.Object
 
         public void checkOut(Guest guest)
         {
-            guest.Room.setTaken(false); // Make the room empty
+            guest.Room.setTaken(false, guest); // Make the room empty
             guest.Room.Dirty = true; // Make the room dirty after checkout
             guest.Room = null; //remove room from guest
         }

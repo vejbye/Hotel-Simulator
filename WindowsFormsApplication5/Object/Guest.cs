@@ -127,7 +127,7 @@ namespace HotelSimulator.Object
 
             if(Destination is Cinema && Current == Destination)
             {
-                if (((Cinema)destination).playing)
+                if (((Cinema)Destination).playing)
                 {
                     Path.Clear();
                     setPath(hotel, Room);
