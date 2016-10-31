@@ -14,26 +14,39 @@ namespace HotelSimulator.Object
         {
             Image = Resources.Reception;
         }
-
-        public Room findEmptyRoom(Hotel hotel, string stars, Guest guest) //search for empty room if a guest wants to check in
+        /// <summary>
+        /// find a empty room for the guest that is checking in
+        /// </summary>
+        /// <param name="hotel">Give the hotel that belongs to this Reception</param>
+        /// <param name="guest">Give the guest that want to check in</param>
+        /// <returns></returns>
+        public Room findEmptyRoom(Hotel hotel, Guest guest) //search for empty room if a guest wants to check in
         {
-            for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
+            int stars = int.Parse(guest.Preference);
+            while (stars < 6)
             {
-                for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
+                for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
                 {
-                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Classification.ToString() == stars)
+                    for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
                     {
-                        if (!((Room)hotel.GetMap()[i, j]).getTaken() && !((Room)hotel.GetMap()[i, j]).Dirty && !((Room)hotel.GetMap()[i, j]).BeingCleaned)
+                        if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i, j]).Classification.ToString() == stars.ToString())
                         {
-                            ((Room)hotel.GetMap()[i, j]).setTaken(true, guest);
-                            return (Room)hotel.GetMap()[i, j];
+                            if (!((Room)hotel.GetMap()[i, j]).getTaken() && !((Room)hotel.GetMap()[i, j]).Dirty && !((Room)hotel.GetMap()[i, j]).BeingCleaned)
+                            {
+                                ((Room)hotel.GetMap()[i, j]).setTaken(true, guest);
+                                return (Room)hotel.GetMap()[i, j];
+                            }
                         }
                     }
                 }
-            }
+                stars++;
+           }
             return null;
         }
-
+        /// <summary>
+        /// check out the guest
+        /// </summary>
+        /// <param name="guest">Give the guest that is cheking out</param>
         public void checkOut(Guest guest)
         {
             guest.Room.setTaken(false, guest); // Make the room empty
