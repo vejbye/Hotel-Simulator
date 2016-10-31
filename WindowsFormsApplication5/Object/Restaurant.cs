@@ -9,7 +9,7 @@ namespace HotelSimulator.Object
 {
     class Restaurant: HotelRoom
     {
-        int capacity { get; set; }
+        public int Capacity { get; set; }
 
         public Restaurant()
         {

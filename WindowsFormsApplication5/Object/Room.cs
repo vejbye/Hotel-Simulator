@@ -13,11 +13,8 @@ namespace HotelSimulator.Object
     {
         private bool Taken { get; set; }
         private int RoomNr { get; set; }
-
         public bool Dirty { get; set; }
         public bool BeingCleaned { get; set; } = false;
-
-        public int Stars { get; set; }
 
         public Room() : base()
         {
@@ -29,10 +26,14 @@ namespace HotelSimulator.Object
         {
             return Taken;
         }
-
-        public void setTaken(bool taken)
+        
+        public void setTaken(bool taken, Guest guests)
         {
-            this.Taken = taken;
+            Taken = taken;
+            if (taken)
+                Guests.Add(guests);
+            else
+                Guests.Clear();
         }
 
     }

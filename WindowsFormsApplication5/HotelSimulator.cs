@@ -157,7 +157,7 @@ namespace HotelSimulator
             if (e.Button == MouseButtons.Right)
             {
                 Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
-                foreach (SimObject s in Hotel.GetMap())
+                foreach (HotelRoom s in Hotel.GetMap())
                 {
                     if (s.BoundingBox.Contains(boxPosition))
                     {
@@ -206,17 +206,17 @@ namespace HotelSimulator
         { //let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                Hotel.Guests[i].Walk(Hotel, Hotel.Guests[i].Destination);
+                Hotel.Guests[i].Walk(Hotel);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.Maids[i].Walk(Hotel);
+                Hotel.Maids[i].Walk();
             }
 
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);
             Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
 
-            DrawMe.MoveElevator(Hotel, Hotel.Elevator, Hotel.Elevator.RequestedFloor);
+            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor);
             
             if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {

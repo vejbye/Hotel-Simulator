@@ -24,6 +24,9 @@ namespace HotelSimulator.Object
         public HotelRoom Previous;
         public int Distance;
         public int Id;
+        public int Classification;
+        public string Dimensions;
+        public int Floor;
         public Point RoomPosition;
 
         public HotelRoom()
@@ -39,6 +42,7 @@ namespace HotelSimulator.Object
             Previous = null;
             Distance = Int32.MaxValue;
         }
+
 
     }
 }

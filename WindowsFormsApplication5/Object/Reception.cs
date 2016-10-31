@@ -21,11 +21,11 @@ namespace HotelSimulator.Object
             {
                 for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
                 {
-                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Stars.ToString() == stars)
+                    if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i,j]).Classification.ToString() == stars)
                     {
                         if (!((Room)hotel.GetMap()[i, j]).getTaken() && !((Room)hotel.GetMap()[i, j]).Dirty && !((Room)hotel.GetMap()[i, j]).BeingCleaned)
                         {
-                            ((Room)hotel.GetMap()[i, j]).setTaken(true);
+                            ((Room)hotel.GetMap()[i, j]).setTaken(true, guest);
                             return (Room)hotel.GetMap()[i, j];
                         }
                     }
