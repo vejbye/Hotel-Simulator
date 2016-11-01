@@ -9,24 +9,26 @@ namespace HotelSimulator.Object
 {
     public class Hotel
     {
-        private List<int> _hotelWidthList;
-        private List<int> _hotelHeightList;
-        private const int BITMAPHEIGHT = 800;
-        private const int BITMAPWIDTH = 2000;
-        private int amountOfInfrastructure = 3;
-
-        public int HotelWidth;
-        public int HotelHeight;
-        public bool Added = false;
-        private bool _layoutStartsAt0 = false;
-        private int _lastArrayDimension = 0;
-
         public Bitmap _hotel;
         public HotelRoom[,] Map;
         public Elevator Elevator;
         public Draw DrawMe;
+
+        private List<int> _hotelWidthList;
+        private List<int> _hotelHeightList;
         public List<Guest> Guests;
         public List<Maid> Maids;
+
+        private const int BITMAPHEIGHT = 800;
+        private const int BITMAPWIDTH = 2000;
+
+        private int amountOfInfrastructure = 3;
+        private int _lastArrayDimension = 0;
+        public int HotelWidth;
+        public int HotelHeight;
+
+        public bool Added = false;
+        private bool _layoutStartsAt0 = false;
 
         public Hotel()
         {
@@ -167,6 +169,7 @@ namespace HotelSimulator.Object
                             current.Id = l.ID;
                             current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
                             current.Floor = int.Parse(positions[1]);
+                            current.Capacity = l.Capacity;
                             Map[xPos, int.Parse(positions[1])] = current;
                             break;
                         }
@@ -233,6 +236,7 @@ namespace HotelSimulator.Object
             Maids.Add(maid2);
         }
 
+        //Adds neighbours for every direction possible in the layout.
         private void AddNeighbours(HotelRoom[,] map)
         {
             for (int x = 0; x < map.GetLength(0); x++)
@@ -263,6 +267,7 @@ namespace HotelSimulator.Object
             return Map;
         }
 
+        //Resets every list and values
         public void Reset()
         {
             _hotelWidthList.Clear();
