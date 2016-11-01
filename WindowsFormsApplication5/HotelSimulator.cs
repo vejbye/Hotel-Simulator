@@ -176,27 +176,6 @@ namespace HotelSimulator
             sl.DoEvent();
         }
 
-        private void Movement()
-        {
-            if (Hotel.Map != null)
-            {
-                {
-                    try
-                    {
-                        foreach (Guest guest in Hotel.Guests)
-                        {
-                            // HotelRoom destination = guest.setDestination(Hotel);
-                            //guest.Walk(Hotel, this, destination);
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-            }
-        }
-
         private void elevatorBTN_Click(object sender, EventArgs e)
         {
             
@@ -210,7 +189,7 @@ namespace HotelSimulator
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.Maids[i].Walk();
+                Hotel.Maids[i].Walk(Hotel);
             }
 
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);

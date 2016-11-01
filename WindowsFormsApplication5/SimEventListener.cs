@@ -128,6 +128,13 @@ namespace HotelSimulator
                             g.Path.Clear();
                             g.setPath(Hotel, Hotel.Map[0, 0]);
                         }
+                        foreach(Maid maid in Hotel.Maids)
+                        {
+                            maid.isBusy = false;
+                            maid.Evacuation = true;
+                            maid.Path.Clear();
+                            maid.setPath(Hotel);
+                        }
                         Console.WriteLine("fly, you fools!");
                         break;
                     case HotelEventType.GODZILLA:

@@ -29,7 +29,11 @@ namespace HotelSimulator.Object
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
         }
-
+        /// <summary>
+        /// calculate the shrotest path to the guests destination
+        /// </summary>
+        /// <param name="hotel">Give the hotel the guest resides in</param>
+        /// <param name="destination">Give the hotelarea the guest want to go to</param>
         public void setPath(Hotel hotel, HotelRoom destination)
         {
             PathFind pf = new PathFind();
@@ -106,10 +110,18 @@ namespace HotelSimulator.Object
             //let the guest request a room
             if (Room == null && Destination is Reception && Current == Destination)
             {
-                Room = ((Reception)Destination).findEmptyRoom(hotel, Preference, this);
-                Path.Clear();
-                setPath(hotel, Room);
-                CheckedIn = true;
+                Room = ((Reception)Destination).findEmptyRoom(hotel, this);
+                if (Room == null)
+                {
+                    Path.Clear();
+                    setPath(hotel, hotel.Map[0, 0]);
+                    hotel.Guests.Remove(this);
+                }
+                else {
+                    Path.Clear();
+                    setPath(hotel, Room);
+                    CheckedIn = true;
+                }
 
             }
             else if (Room != null && Destination is Reception && Current == Destination)//checkout if guest goes to reception while having a room
