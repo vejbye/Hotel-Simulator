@@ -30,16 +30,17 @@ namespace HotelSimulator
         private Point _original = new Point(0, 0);
         private bool _panning = false;
 
-        //Max pan box
+        //Max pan box settings
         private int _maxPanX = -800;
         private int _minPanX = 0;
         private int _maxPanY = 0;
         private int _minPanY = -250;
         private bool _initialized = false;
+
+        //Current element in list request list.
         private int currentElement = 0;
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-
 
         public HotelSimulator()
         {
@@ -56,6 +57,7 @@ namespace HotelSimulator
                 newcomers.Add(new Guest(null));
         }
 
+        //If left mousebutton is clicked, go in panning mode.
         private void screenPB_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -67,11 +69,13 @@ namespace HotelSimulator
 
         }
 
+        //If left mousebutton isn't clicked, stop panning mode.
         private void screenPB_MouseUp(object sender, MouseEventArgs e)
         {
             _panning = false;
         }
 
+        //Calculates the amount of movement in the world when mouse button is clicked.
         private void screenPB_MouseMove(object sender, MouseEventArgs e)
         {
             if (_panning)
@@ -82,6 +86,7 @@ namespace HotelSimulator
             }
         }
 
+        //Moves the image based on mouse position when clicked.
         private void screenPB_Paint(object sender, PaintEventArgs e)
         {
             if (_initialized)
@@ -105,6 +110,7 @@ namespace HotelSimulator
 
         }
 
+        //When clicked it will show a dialog where you can choose a layout file.
         private void loadlayoutBTN_Click(object sender, EventArgs e)
         {
             OpenFileDialog chosenFile = new OpenFileDialog();
@@ -136,6 +142,7 @@ namespace HotelSimulator
                 MessageBox.Show("Couldn't load file");
         }
 
+        //When clicked on, you can change the settings of the hotel. TO DO
         private void settingsBTN_Click(object sender, EventArgs e)
         {
             SettingsForm settings = new SettingsForm();
@@ -153,6 +160,7 @@ namespace HotelSimulator
 
         }
 
+        //If right mousebutton is clicked show information about the room the mouse is in.
         private void screenPB_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -177,13 +185,9 @@ namespace HotelSimulator
             sl.DoEvent();
         }
 
-        private void elevatorBTN_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void timer_Tick(object sender, EventArgs e)
-        { //let each guest/maid/elevator move one step each * milliseconds
+        {   
+            //let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
                 Hotel.Guests[i].Walk(Hotel);

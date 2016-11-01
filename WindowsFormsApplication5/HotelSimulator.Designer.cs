@@ -80,7 +80,6 @@
             this.elevatorBTN.TabIndex = 3;
             this.elevatorBTN.Text = "Move Elevator";
             this.elevatorBTN.UseVisualStyleBackColor = true;
-            this.elevatorBTN.Click += new System.EventHandler(this.elevatorBTN_Click);
             // 
             // HotelSimulator
             // 

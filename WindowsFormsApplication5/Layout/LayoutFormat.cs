@@ -18,6 +18,7 @@ namespace HotelSimulator
         public string Dimension { get; set; }
         public string Position { get; set; }
         public int ID { get; set; }
+        public int Capacity { get; set; }
     }
 
 }
