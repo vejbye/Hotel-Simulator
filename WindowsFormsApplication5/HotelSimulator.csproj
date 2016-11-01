@@ -75,8 +75,8 @@
     <Compile Include="InfoScreen.Designer.cs">
       <DependentUpon>InfoScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="LayoutReader.cs" />
-    <Compile Include="LayoutFormat.cs" />
+    <Compile Include="Layout\LayoutReader.cs" />
+    <Compile Include="Layout\LayoutFormat.cs" />
     <Compile Include="Object\Cinema.cs" />
     <Compile Include="Object\Guest.cs" />
     <Compile Include="Object\HotelRoom.cs" />

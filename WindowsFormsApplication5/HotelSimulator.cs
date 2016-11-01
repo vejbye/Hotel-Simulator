@@ -119,6 +119,7 @@ namespace HotelSimulator
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
                 Hotel.Reset();
+                currentElement = 0;
                 Hotel.Action();
                 screenPB.Image = DrawMe.DrawHotel(Hotel, true);
 
