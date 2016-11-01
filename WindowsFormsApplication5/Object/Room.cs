@@ -27,14 +27,9 @@ namespace HotelSimulator.Object
             return Taken;
         }
         
-        public void setTaken(bool taken, Guest guests)
+        public void setTaken(bool taken)
         {
             Taken = taken;
-            if (taken)
-                Guests.Add(guests);
-            else
-                Guests.Clear();
         }
-
     }
 }

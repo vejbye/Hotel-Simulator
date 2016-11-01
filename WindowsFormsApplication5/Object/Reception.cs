@@ -33,7 +33,7 @@ namespace HotelSimulator.Object
                         {
                             if (!((Room)hotel.GetMap()[i, j]).getTaken() && !((Room)hotel.GetMap()[i, j]).Dirty && !((Room)hotel.GetMap()[i, j]).BeingCleaned)
                             {
-                                ((Room)hotel.GetMap()[i, j]).setTaken(true, guest);
+                                ((Room)hotel.GetMap()[i, j]).setTaken(true);
                                 return (Room)hotel.GetMap()[i, j];
                             }
                         }
@@ -49,7 +49,7 @@ namespace HotelSimulator.Object
         /// <param name="guest">Give the guest that is cheking out</param>
         public void checkOut(Guest guest)
         {
-            guest.Room.setTaken(false, guest); // Make the room empty
+            guest.Room.setTaken(false); // Make the room empty
             guest.Room.Dirty = true; // Make the room dirty after checkout
             guest.Room = null; //remove room from guest
         }

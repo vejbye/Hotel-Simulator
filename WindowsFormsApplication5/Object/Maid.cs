@@ -67,10 +67,11 @@ namespace HotelSimulator.Object
                 }
             }
         }
-        
+
         /// <summary>
-        /// Moves the maid to a position.
+        /// Moves the maid to it's destination.
         /// </summary>
+        /// <param name="hotel">Give the hotel the maid works for.</param>
         public void Walk(Hotel hotel)
         {
             if (Path.Count > 0 && Current != Path.ElementAt(0))
