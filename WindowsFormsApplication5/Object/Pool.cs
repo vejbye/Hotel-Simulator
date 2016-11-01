@@ -7,7 +7,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Pool : HotelRoom
+    public class Pool : HotelRoom
     {
         public Pool()
         {
