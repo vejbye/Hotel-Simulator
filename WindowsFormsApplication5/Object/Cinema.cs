@@ -7,13 +7,14 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    class Cinema : HotelRoom
+    public class Cinema : HotelRoom
     {
-        bool playing { get; set; }
+        public bool playing { get; set; }
         
         public Cinema()
         {
             Image = Resources.Cinema;
+            playing = false;
         }
     }
 }

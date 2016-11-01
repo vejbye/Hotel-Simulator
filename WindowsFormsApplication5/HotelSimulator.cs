@@ -177,37 +177,16 @@ namespace HotelSimulator
             sl.DoEvent();
         }
 
-        private void Movement()
-        {
-            if (Hotel.Map != null)
-            {
-                {
-                    try
-                    {
-                        foreach (Guest guest in Hotel.Guests)
-                        {
-                            // HotelRoom destination = guest.setDestination(Hotel);
-                            //guest.Walk(Hotel, this, destination);
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-            }
-        }
-
         private void elevatorBTN_Click(object sender, EventArgs e)
         {
             
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {
+        { //let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                Hotel.Guests[i].Walk(Hotel, Hotel.Guests[i].Destination);
+                Hotel.Guests[i].Walk(Hotel);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {

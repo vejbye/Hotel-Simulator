@@ -94,15 +94,30 @@ namespace HotelSimulator
                                 if (data.Key.Equals("kamer") && room.Id == Int32.Parse(data.Value))
                                 {
                                     ((Room)room).Dirty = true;
+                                    foreach (Maid maid in Hotel.Maids)
+                                    {
+                                        if (!maid.isBusy && !((Room)room).BeingCleaned)
+                                        {
+
+                                            maid.Path.Clear();
+                                            maid.setPath(Hotel);
+                                            maid.isBusy = true;
+                                        }
+                                    }
                                 }
                             }
                         }
 
-                        foreach (Maid maid in Hotel.Maids)
+                       /* foreach (Maid maid in Hotel.Maids)
                         {
-                            maid.Path.Clear();
-                            maid.setPath(Hotel);
-                        }
+                            if (!maid.isBusy)
+                            {
+                                
+                                maid.Path.Clear();
+                                maid.setPath(Hotel);
+                                maid.isBusy = true;
+                            }
+                        }*/
 
                         Console.WriteLine("there is a cleaning emergency");
                         break;
@@ -112,6 +127,13 @@ namespace HotelSimulator
                         {
                             g.Path.Clear();
                             g.setPath(Hotel, Hotel.Map[0, 0]);
+                        }
+                        foreach(Maid maid in Hotel.Maids)
+                        {
+                            maid.isBusy = false;
+                            maid.Evacuation = true;
+                            maid.Path.Clear();
+                            maid.setPath(Hotel);
                         }
                         Console.WriteLine("fly, you fools!");
                         break;
@@ -125,13 +147,13 @@ namespace HotelSimulator
                             {
                                 foreach (HotelRoom room in Hotel.Map)
                                 {
-                                    if (room is Cinema)
+                                    if (room is Cinema && !((Cinema)room).playing)
                                     {
                                         if (g.Current == g.Destination)
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel, room);
+                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -153,7 +175,7 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel, room);
+                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -174,7 +196,7 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel, room);
+                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -187,8 +209,13 @@ namespace HotelSimulator
                     case HotelEventType.START_CINEMA:
                         foreach (KeyValuePair<string, string> data in evt.Data)
                         {
-
-                            Console.WriteLine(data.Key + "," + data.Value);
+                            foreach(HotelRoom room in Hotel.Map)
+                            {
+                                if(room is Cinema && ((Cinema)room).Id == Int32.Parse(data.Value))
+                                {
+                                    ((Cinema)room).playing = true;
+                                }
+                            }
                         }
                         Console.WriteLine(evt.Message);
                         Console.WriteLine("a movie has started");

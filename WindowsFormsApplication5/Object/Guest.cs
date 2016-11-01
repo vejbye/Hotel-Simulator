@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication5.Properties;
 using WindowsFormsApplication5;
+using System.Windows.Forms;
 
 namespace HotelSimulator.Object
 {
@@ -17,6 +18,8 @@ namespace HotelSimulator.Object
         public int Delay = 0;
         public string Preference; // the guests prefered room classification
         public bool CheckedIn = false;
+        public bool dead = false;
+        public int waitTime = 0;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -26,19 +29,24 @@ namespace HotelSimulator.Object
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
         }
-
+        /// <summary>
+        /// calculate the shrotest path to the guests destination
+        /// </summary>
+        /// <param name="hotel">Give the hotel the guest resides in</param>
+        /// <param name="destination">Give the hotelarea the guest want to go to</param>
         public void setPath(Hotel hotel, HotelRoom destination)
         {
             PathFind pf = new PathFind();
             pf.shortestPathDijkstra(Current, destination); //algorithm to define shortest path
             HotelRoom cur = destination;
-            while (cur != Current)
+            while (cur != Current)// store path in list so guest can walk through it
             {
                 Path.Add(cur);
                 cur = cur.Previous;
             }
             foreach (HotelRoom hr in hotel.Map)
             {
+                //clear any path related values after path has been stored
                 hr.Previous = null;
                 hr.Distance = Int32.MaxValue;
             }
@@ -46,8 +54,11 @@ namespace HotelSimulator.Object
             Destination = destination;
         }
 
-        //let the guest walk;
-        public void Walk(Hotel hotel, HotelRoom destination)
+        /// <summary>
+        /// Moves the guest to it's destination.
+        /// </summary>
+        /// <param name="hotel">Give the hotel the guest resides in.</param>
+        public void Walk(Hotel hotel)
         {
             if (Current != Path.ElementAt(0))
             {
@@ -55,7 +66,7 @@ namespace HotelSimulator.Object
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
                     Direction = Direction.RIGHT;
-                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + MoveDistance * (Path[Path.IndexOf(Current) - 1].Width / DrawMe.standardRoomWidth))
+                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -64,7 +75,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
                     Direction = Direction.LEFT;                   
-                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + MoveDistance * (Path[Path.IndexOf(Current) - 1].Width / DrawMe.standardRoomWidth))
+                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -72,7 +83,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
                     Direction = Direction.DOWN;              
-                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + 30)
+                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.standardRoomHeight / 2))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -80,7 +91,7 @@ namespace HotelSimulator.Object
                 else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.North])
                 {
                     Direction = Direction.UP;
-                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - 5)
+                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.standardRoomHeight / HeightPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -99,10 +110,18 @@ namespace HotelSimulator.Object
             //let the guest request a room
             if (Room == null && Destination is Reception && Current == Destination)
             {
-                Room = ((Reception)Destination).findEmptyRoom(hotel, Preference, this);
-                Path.Clear();
-                setPath(hotel, Room);
-                CheckedIn = true;
+                Room = ((Reception)Destination).findEmptyRoom(hotel, this);
+                if (Room == null)
+                {
+                    Path.Clear();
+                    setPath(hotel, hotel.Map[0, 0]);
+                    hotel.Guests.Remove(this);
+                }
+                else {
+                    Path.Clear();
+                    setPath(hotel, Room);
+                    CheckedIn = true;
+                }
 
             }
             else if (Room != null && Destination is Reception && Current == Destination)//checkout if guest goes to reception while having a room
@@ -118,6 +137,24 @@ namespace HotelSimulator.Object
                 hotel.Guests.Remove(this);
             }
 
+            if(Destination is Cinema && Current == Destination)
+            {
+                if (((Cinema)Destination).playing)
+                {
+                    Path.Clear();
+                    setPath(hotel, Room);
+                }
+            }
+
+        }
+
+        public void inLine()
+        {
+            waitTime++;
+            if(waitTime > 6)
+            {
+                dead = true;                
+            }
         }
     }
 }

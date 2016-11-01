@@ -14,6 +14,7 @@ namespace HotelSimulator.Object
         private bool Taken { get; set; }
         private int RoomNr { get; set; }
         public bool Dirty { get; set; }
+        public bool BeingCleaned { get; set; } = false;
 
         public Room() : base()
         {
