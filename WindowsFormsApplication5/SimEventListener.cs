@@ -20,15 +20,18 @@ namespace HotelSimulator
             this.hs = hs;
             Guests = new List<Guest>();
             events = new Queue<HotelEvent>();
-
         }
+        /// <summary>
+        /// gets events and stores it in a queue
+        /// </summary>
+        /// <param name="evt">Give the event to store</param>
         public void Notify(HotelEvent evt)
         {
-
             events.Enqueue(evt);
-
         }
-
+        /// <summary>
+        /// handle the hotelevents stored in the queue
+        /// </summary>
         public void DoEvent()
         {
             if (events.Count != 0)
@@ -36,11 +39,9 @@ namespace HotelSimulator
                 HotelEvent evt = events.Peek();
                 switch (evt.EventType)
                 {
-
                     case HotelEventType.CHECK_IN:
                         foreach (KeyValuePair<string, string> data in evt.Data)
                         {
-
                             Console.WriteLine(data.Key.Substring(4) + "," + data.Value);
                         }
                         Guest guest = new Guest(null);
@@ -59,11 +60,8 @@ namespace HotelSimulator
                             }
                         }
                         guest.setPath(Hotel, r);
-                        //guest.Walk(Hotel, hs, r);
-                        //hs.Refresh();
                         Console.WriteLine("Guest has checked in");
                         break;
-
                     case HotelEventType.CHECK_OUT:
                         foreach (Guest g in Hotel.Guests)
                         {
@@ -98,7 +96,6 @@ namespace HotelSimulator
                                     {
                                         if (!maid.isBusy && !((Room)room).BeingCleaned)
                                         {
-
                                             maid.Path.Clear();
                                             maid.setPath(Hotel);
                                             maid.isBusy = true;
@@ -107,18 +104,6 @@ namespace HotelSimulator
                                 }
                             }
                         }
-
-                       /* foreach (Maid maid in Hotel.Maids)
-                        {
-                            if (!maid.isBusy)
-                            {
-                                
-                                maid.Path.Clear();
-                                maid.setPath(Hotel);
-                                maid.isBusy = true;
-                            }
-                        }*/
-
                         Console.WriteLine("there is a cleaning emergency");
                         break;
                     case HotelEventType.EVACUATE:
@@ -153,7 +138,6 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -175,7 +159,6 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -196,7 +179,6 @@ namespace HotelSimulator
                                         {
                                             g.Path.Clear();
                                             g.setPath(Hotel, room);
-                                            g.Walk(Hotel);
                                             break;
                                         }
                                     }
@@ -228,7 +210,6 @@ namespace HotelSimulator
                         Console.WriteLine("this should not happen");
                         break;
                 }
-
                 events.Dequeue();
             }
         }

@@ -52,6 +52,7 @@ namespace HotelSimulator.Object
             }
             Path.Add(cur);
             Destination = destination;
+            Current.Guests.Remove(this);
         }
 
         /// <summary>
@@ -132,11 +133,6 @@ namespace HotelSimulator.Object
                 CheckedIn = false;
             }
 
-            if (Destination == hotel.Map[0, 0] && Current == Destination && !CheckedIn)// remove guest from hotel when checked out
-            {
-                hotel.Guests.Remove(this);
-            }
-
             if(Destination is Cinema && Current == Destination)
             {
                 if (((Cinema)Destination).playing)
@@ -144,6 +140,17 @@ namespace HotelSimulator.Object
                     Path.Clear();
                     setPath(hotel, Room);
                 }
+            }
+
+            if(Current == Destination && !Current.Guests.Contains(this))
+            {
+                Current.Guests.Add(this);
+            }
+
+            if (Destination == hotel.Map[0, 0] && Current == Destination && !CheckedIn)// remove guest from hotel when checked out
+            {
+                Current.Guests.Remove(this);
+                hotel.Guests.Remove(this);
             }
 
         }
