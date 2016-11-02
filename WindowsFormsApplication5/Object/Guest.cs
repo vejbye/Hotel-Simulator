@@ -133,7 +133,7 @@ namespace HotelSimulator.Object
                 CheckedIn = false;
             }
 
-            if(Destination is Cinema && Current == Destination)
+            if(Destination is Cinema && Current == Destination && !Destination.Guests.Contains(this))
             {
                 if (((Cinema)Destination).playing)
                 {
@@ -142,7 +142,14 @@ namespace HotelSimulator.Object
                 }
             }
 
-            if(Current == Destination && !Current.Guests.Contains(this))
+            if (Destination is Restaurant && Current == Destination && Destination.Guests.Count >= ((Restaurant)Destination).Capacity)
+            {
+                    Path.Clear();
+                    setPath(hotel, Room);
+
+            }
+
+            if (Current == Destination && !Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).playing))
             {
                 Current.Guests.Add(this);
             }
