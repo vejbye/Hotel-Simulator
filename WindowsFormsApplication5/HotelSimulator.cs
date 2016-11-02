@@ -128,7 +128,7 @@ namespace HotelSimulator
                 Hotel.Build(reader.ReadLayout(json));
                 Hotel.Reset();
                 currentElement = 0;
-                Hotel.Action();
+                Hotel.AddMaids();
                 screenPB.Image = DrawMe.DrawHotel(Hotel, true);
 
                 sl = new SimEventListener(Hotel, this);
@@ -174,11 +174,9 @@ namespace HotelSimulator
                 }
             }
         }
-
         //when interval is reached, execute next hotelevent
         private void OnTimedEvent(object source, EventArgs e)
         {
-            //HotelEventManager.Pauze();
             sl.DoEvent();
         }
 

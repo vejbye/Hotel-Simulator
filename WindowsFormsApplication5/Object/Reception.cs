@@ -25,16 +25,16 @@ namespace HotelSimulator.Object
             int stars = int.Parse(guest.Preference);
             while (stars < 6)
             {
-                for (int i = 0; i < hotel.GetMap().GetLength(0); i++)
+                for (int i = 0; i < hotel.GetMap().GetLength(1); i++)
                 {
-                    for (int j = 0; j < hotel.GetMap().GetLength(1); j++)
+                    for (int j = 0; j < hotel.GetMap().GetLength(0); j++)
                     {
-                        if (hotel.GetMap()[i, j] is Room && ((Room)hotel.GetMap()[i, j]).Classification.ToString() == stars.ToString())
+                        if (hotel.GetMap()[j,i] is Room && ((Room)hotel.GetMap()[j, i]).Classification.ToString() == stars.ToString())
                         {
-                            if (!((Room)hotel.GetMap()[i, j]).getTaken() && !((Room)hotel.GetMap()[i, j]).Dirty && !((Room)hotel.GetMap()[i, j]).BeingCleaned)
+                            if (!((Room)hotel.GetMap()[j, i]).getTaken() && !((Room)hotel.GetMap()[j, i]).Dirty && !((Room)hotel.GetMap()[j, i]).BeingCleaned)
                             {
-                                ((Room)hotel.GetMap()[i, j]).setTaken(true);
-                                return (Room)hotel.GetMap()[i, j];
+                                ((Room)hotel.GetMap()[j, i]).setTaken(true);
+                                return (Room)hotel.GetMap()[j, i];
                             }
                         }
                     }

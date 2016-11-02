@@ -40,10 +40,6 @@ namespace HotelSimulator
                 switch (evt.EventType)
                 {
                     case HotelEventType.CHECK_IN:
-                        foreach (KeyValuePair<string, string> data in evt.Data)
-                        {
-                            Console.WriteLine(data.Key.Substring(4) + "," + data.Value);
-                        }
                         Guest guest = new Guest(null);
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
                         guest.Preference = evt.Data.Values.ElementAt(0).Substring(8, 1);
@@ -92,15 +88,6 @@ namespace HotelSimulator
                                 if (data.Key.Equals("kamer") && room.Id == Int32.Parse(data.Value))
                                 {
                                     ((Room)room).Dirty = true;
-                                    foreach (Maid maid in Hotel.Maids)
-                                    {
-                                        if (!maid.isBusy && !((Room)room).BeingCleaned)
-                                        {
-                                            maid.Path.Clear();
-                                            maid.setPath(Hotel);
-                                            maid.isBusy = true;
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -111,7 +98,7 @@ namespace HotelSimulator
                         foreach (Guest g in Hotel.Guests)
                         {
                             g.Path.Clear();
-                            g.setPath(Hotel, Hotel.Map[0, 0]);
+                            g.setPath(Hotel, Hotel.Map[Hotel.Map.GetLength(0) - 2, 0]); //-2 because elevator takes the last column in array
                         }
                         foreach(Maid maid in Hotel.Maids)
                         {

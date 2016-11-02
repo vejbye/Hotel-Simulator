@@ -229,8 +229,10 @@ namespace HotelSimulator.Object
 
             AddNeighbours(Map);
         }
-
-        public void Action()
+        /// <summary>
+        /// Adds maids to the hotel
+        /// </summary>
+        public void AddMaids()
         {
             Maid maid1 = new Maid(Map[0, 0]);
             Maid maid2 = new Maid(Map[0, 0]);

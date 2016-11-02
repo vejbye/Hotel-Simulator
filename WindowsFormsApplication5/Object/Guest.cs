@@ -20,6 +20,7 @@ namespace HotelSimulator.Object
         public bool CheckedIn = false;
         public bool dead = false;
         public int waitTime = 0;
+        public bool Evacuation = true;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -112,60 +113,67 @@ namespace HotelSimulator.Object
                 if (Direction == Direction.LEFT)
                     Position.X -= MoveDistance;
             }
-
-            //let the guest request a room
-            if (Room == null && Destination is Reception && Current == Destination)
+            if (Current == Destination)
             {
-                Room = ((Reception)Destination).findEmptyRoom(hotel, this);
-                if (Room == null)
+                //let the guest request a room
+                if (Room == null && Destination is Reception)
+                {
+                    Room = ((Reception)Destination).findEmptyRoom(hotel, this);
+                    if (Room == null)
+                    {
+                        Path.Clear();
+                        setPath(hotel, hotel.Map[0, 0]);
+                        hotel.Guests.Remove(this);
+                    }
+                    else {
+                        Path.Clear();
+                        setPath(hotel, Room);
+                        CheckedIn = true;
+                    }
+
+                }
+                else if (Room != null && Destination is Reception)//checkout if guest goes to reception while having a room
+                {
+                    ((Reception)Destination).checkOut(this);
+                    Path.Clear();
+                    setPath(hotel, hotel.Map[0, 0]);
+                    CheckedIn = false;
+                }
+
+                //guest returns to room if cinema has started
+                if (Destination is Cinema && !Destination.Guests.Contains(this))
+                {
+                    if (((Cinema)Destination).playing)
+                    {
+                        Path.Clear();
+                        setPath(hotel, Room);
+                    }
+                }
+                //guest returns to room if restaurant is full
+                if (Destination is Restaurant && Destination.Guests.Count >= ((Restaurant)Destination).Capacity)
+                {
+                    Path.Clear();
+                    setPath(hotel, Room);
+
+                }
+
+                if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).playing))
+                {
+                    Current.Guests.Add(this);
+                }
+
+                if (Current == hotel.Map[0, 0] && !CheckedIn)// remove guest from hotel when checked out
+                {
+                    Current.Guests.Remove(this);
+                    hotel.Guests.Remove(this);
+                }
+
+                if (Current == hotel.Map[hotel.Map.GetLength(0) - 2, 0]) //-2 because elevator takes the last column in array  
                 {
                     Path.Clear();
                     setPath(hotel, hotel.Map[0, 0]);
-                    hotel.Guests.Remove(this);
-                }
-                else
-                {
-                    Path.Clear();
-                    setPath(hotel, Room);
-                    CheckedIn = true;
-                }
-
-            }
-            else if (Room != null && Destination is Reception && Current == Destination)//checkout if guest goes to reception while having a room
-            {
-                ((Reception)Destination).checkOut(this);
-                Path.Clear();
-                setPath(hotel, hotel.Map[0, 0]);
-                CheckedIn = false;
-            }
-
-            if (Destination is Cinema && Current == Destination && !Destination.Guests.Contains(this))
-            {
-                if (((Cinema)Destination).playing)
-                {
-                    Path.Clear();
-                    setPath(hotel, Room);
                 }
             }
-
-            if (Destination is Restaurant && Current == Destination && Destination.Guests.Count >= ((Restaurant)Destination).Capacity)
-            {
-                Path.Clear();
-                setPath(hotel, Room);
-
-            }
-
-            if (Current == Destination && !Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).playing))
-            {
-                Current.Guests.Add(this);
-            }
-
-            if (Destination == hotel.Map[0, 0] && Current == Destination && !CheckedIn)// remove guest from hotel when checked out
-            {
-                Current.Guests.Remove(this);
-                hotel.Guests.Remove(this);
-            }
-
         }
 
         public void inLine()

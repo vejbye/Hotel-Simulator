@@ -27,11 +27,20 @@ namespace HotelSimulator.Object
         /// <param name="hotel">Give the hotel the maid works in</param>
         public void setPath(Hotel hotel)
         {
+            PathFind pf = new PathFind();
             if (Evacuation)
             {
-                PathFind pf = new PathFind();
-                pf.shortestPathDijkstra(Current, hotel.Map[0,0]);//algorithm to define shortest path
-                HotelRoom cur = hotel.Map[0,0];
+                HotelRoom cur = null;
+                if (Current == hotel.Map[hotel.Map.GetLength(0) - 2, 0])
+                {
+                    pf.shortestPathDijkstra(Current, hotel.Map[0, 0]);//algorithm to define shortest path}
+                    cur = hotel.Map[0, 0];
+                }
+                else
+                {
+                    pf.shortestPathDijkstra(Current, hotel.Map[hotel.Map.GetLength(0) - 2, 0]);//algorithm to define shortest path}
+                    cur = hotel.Map[hotel.Map.GetLength(0) - 2, 0];
+                }
                 while (cur != Current)// store path in list so maid can walk through it
                 {
                     Path.Add(cur);
@@ -42,9 +51,8 @@ namespace HotelSimulator.Object
             else {
                 foreach (HotelRoom hm in hotel.Map)// search for dirty room
                 {
-                    if (hm is Room && ((Room)hm).Dirty == true)
+                    if (hm is Room && (((Room)hm).Dirty == true))
                     {
-                        PathFind pf = new PathFind();
                         pf.shortestPathDijkstra(Current, hm);//algorithm to define shortest path
                         HotelRoom cur = hm;
                         while (cur != Current)// store path in list so maid can walk through it
@@ -58,6 +66,7 @@ namespace HotelSimulator.Object
                         break;
                     }
                 }
+            }
 
                 foreach (HotelRoom hr in hotel.Map)
                 {
@@ -65,7 +74,6 @@ namespace HotelSimulator.Object
                     hr.Previous = null;
                     hr.Distance = Int32.MaxValue;
                 }
-            }
         }
 
         /// <summary>
@@ -113,14 +121,20 @@ namespace HotelSimulator.Object
                     Position.X -= MoveDistance;
             }
 
-            if(Path.Count > 0 && Current is Room && Current == Path.ElementAt(0))
+            if(Path.Count > 0 && Current == Path.ElementAt(0) && !(Evacuation && Current == hotel.Map[0,0]))
             {
-                isBusy = false;
-                ((Room)Path.ElementAt(0)).BeingCleaned = false;
+                if (Current is Room)
+                {
+                    isBusy = false;
+                    ((Room)Path.ElementAt(0)).BeingCleaned = false;
+                }
+                Path.Clear();
+                setPath(hotel);
             }
 
-            if(Path.Count > 0 && Current == Path.ElementAt(0))
+            if(Path.Count <= 0 && !Evacuation)
             {
+                Path.Clear();
                 setPath(hotel);
             }
         }
