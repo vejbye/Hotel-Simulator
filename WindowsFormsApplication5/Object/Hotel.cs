@@ -77,10 +77,12 @@ namespace HotelSimulator.Object
                     _layoutStartsAt0 = true;
                 }
             }
-
-            //Creates double array based on the width and height
-            //Adds height: 1 for reception
-            Map = new HotelRoom[HotelWidth + amountOfInfrastructure + _lastArrayDimension, HotelHeight + 1];
+            if (_lastArrayDimension == 1)
+                Map = new HotelRoom[HotelWidth + amountOfInfrastructure, HotelHeight + 1];
+            else
+                //Creates double array based on the width and height
+                //Adds height: 1 for reception
+                Map = new HotelRoom[HotelWidth + amountOfInfrastructure + _lastArrayDimension, HotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -224,8 +226,10 @@ namespace HotelSimulator.Object
 
             AddNeighbours(Map);
         }
-
-        public void Action()
+        /// <summary>
+        /// Adds maids to the hotel
+        /// </summary>
+        public void AddMaids()
         {
             Maid maid1 = new Maid(Map[0, 0]);
             Maid maid2 = new Maid(Map[0, 0]);
