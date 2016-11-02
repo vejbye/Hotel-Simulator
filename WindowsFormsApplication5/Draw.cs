@@ -88,20 +88,20 @@ namespace HotelSimulator.Object
         /// <param name="hotel">The hotel where the elevator is in.</param>
         /// <param name="hotelElevator"></param>
         /// <param name="floor"></param>
-        public void MoveElevator(Hotel hotel, int floor)
+        public void MoveElevator(Hotel hotel, int floor, int hte)
         {
             if (hotel.Elevator.ElevatorPosition.Y != yStartPosition - (floor * standardRoomHeight))
             {
                 if (hotel.Elevator.ElevatorPosition.Y > yStartPosition - (floor * standardRoomHeight))
                 {
                     hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
-                    hotel.Elevator.ElevatorPosition.Y -= 10;
+                    hotel.Elevator.ElevatorPosition.Y -= 10 * hte;
                 }
 
                 if (hotel.Elevator.ElevatorPosition.Y < yStartPosition - (floor * standardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
                 {
                     hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
-                    hotel.Elevator.ElevatorPosition.Y += 10;
+                    hotel.Elevator.ElevatorPosition.Y += 10 * hte;
                 }
 
             }

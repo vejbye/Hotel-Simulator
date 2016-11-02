@@ -40,6 +40,8 @@ namespace HotelSimulator
         //Current element in list request list.
         private int currentElement = 0;
 
+        public int HTE = 1;
+
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public HotelSimulator()
@@ -139,24 +141,20 @@ namespace HotelSimulator
                 HotelEventTimer.Start();
             }
             else
-                MessageBox.Show("Couldn't load file");
+                MessageBox.Show("No file loaded.");
         }
 
         //When clicked on, you can change the settings of the hotel. TO DO
         private void settingsBTN_Click(object sender, EventArgs e)
         {
             SettingsForm settings = new SettingsForm();
-            var result = settings.ShowDialog();
 
-            if (result == DialogResult.OK)
+            if (settings.ShowDialog() == DialogResult.OK)
             {
-
+                HTE = settings.HTE;
             }
-
-            if (result == DialogResult.Cancel)
-            {
-
-            }
+            else
+                MessageBox.Show("Nothing changed.");
 
         }
 
@@ -173,7 +171,6 @@ namespace HotelSimulator
                         InfoScreen infoScreen = new InfoScreen(s);
                         var result = infoScreen.ShowDialog();
                     }
-
                 }
             }
         }
@@ -187,20 +184,20 @@ namespace HotelSimulator
 
         private void timer_Tick(object sender, EventArgs e)
         {   
-            //let each guest/maid/elevator move one step each * milliseconds
+            //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                Hotel.Guests[i].Walk(Hotel);
+                Hotel.Guests[i].Walk(Hotel, HTE);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.Maids[i].Walk(Hotel);
+                Hotel.Maids[i].Walk(Hotel, HTE);
             }
 
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);
             Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
 
-            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor);
+            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, HTE);
             
             if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {

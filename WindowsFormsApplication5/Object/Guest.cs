@@ -50,6 +50,7 @@ namespace HotelSimulator.Object
                 hr.Previous = null;
                 hr.Distance = Int32.MaxValue;
             }
+
             Path.Add(cur);
             Destination = destination;
             Current.Guests.Remove(this);
@@ -59,7 +60,7 @@ namespace HotelSimulator.Object
         /// Moves the guest to it's destination.
         /// </summary>
         /// <param name="hotel">Give the hotel the guest resides in.</param>
-        public void Walk(Hotel hotel)
+        public void Walk(Hotel hotel, int hte)
         {
             if (Current != Path.ElementAt(0))
             {
@@ -75,7 +76,7 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
-                    Direction = Direction.LEFT;                   
+                    Direction = Direction.LEFT;
                     if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -83,7 +84,7 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
-                    Direction = Direction.DOWN;              
+                    Direction = Direction.DOWN;
                     if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.standardRoomHeight / 2))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -97,6 +98,10 @@ namespace HotelSimulator.Object
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
+
+
+                MoveDistance = MoveDistance * hte;
+
                 //move guest accordingly
                 if (Direction == Direction.RIGHT)
                     Position.X += MoveDistance;
@@ -118,7 +123,8 @@ namespace HotelSimulator.Object
                     setPath(hotel, hotel.Map[0, 0]);
                     hotel.Guests.Remove(this);
                 }
-                else {
+                else
+                {
                     Path.Clear();
                     setPath(hotel, Room);
                     CheckedIn = true;
@@ -133,7 +139,7 @@ namespace HotelSimulator.Object
                 CheckedIn = false;
             }
 
-            if(Destination is Cinema && Current == Destination && !Destination.Guests.Contains(this))
+            if (Destination is Cinema && Current == Destination && !Destination.Guests.Contains(this))
             {
                 if (((Cinema)Destination).playing)
                 {
@@ -144,8 +150,8 @@ namespace HotelSimulator.Object
 
             if (Destination is Restaurant && Current == Destination && Destination.Guests.Count >= ((Restaurant)Destination).Capacity)
             {
-                    Path.Clear();
-                    setPath(hotel, Room);
+                Path.Clear();
+                setPath(hotel, Room);
 
             }
 
@@ -165,9 +171,9 @@ namespace HotelSimulator.Object
         public void inLine()
         {
             waitTime++;
-            if(waitTime > 6)
+            if (waitTime > 6)
             {
-                dead = true;                
+                dead = true;
             }
         }
     }
