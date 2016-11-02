@@ -31,5 +31,10 @@ namespace WindowsFormsApplication5
         {
 
         }
+
+        private void okBTN_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedValue; //TO DO
+        }
     }
 }
