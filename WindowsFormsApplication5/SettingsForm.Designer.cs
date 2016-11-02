@@ -36,6 +36,7 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.okBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // hteLBL
@@ -55,8 +56,6 @@
             this.comboBox1.Items.AddRange(new object[] {
             "1",
             "2",
-            "3",
-            "4",
             "5"});
             this.comboBox1.Location = new System.Drawing.Point(159, 18);
             this.comboBox1.Name = "comboBox1";
@@ -80,8 +79,6 @@
             this.comboBox2.Items.AddRange(new object[] {
             "1",
             "2",
-            "3",
-            "4",
             "5"});
             this.comboBox2.Location = new System.Drawing.Point(159, 45);
             this.comboBox2.Name = "comboBox2";
@@ -94,8 +91,6 @@
             this.comboBox3.Items.AddRange(new object[] {
             "1",
             "2",
-            "3",
-            "4",
             "5"});
             this.comboBox3.Location = new System.Drawing.Point(159, 72);
             this.comboBox3.Name = "comboBox3";
@@ -112,11 +107,22 @@
             this.label2.Text = "Dying Timer";
             this.toolTip1.SetToolTip(this.label2, "Sets a timer for dying when guest or maid waits too long in queue");
             // 
+            // okBTN
+            // 
+            this.okBTN.Location = new System.Drawing.Point(106, 109);
+            this.okBTN.Name = "okBTN";
+            this.okBTN.Size = new System.Drawing.Size(75, 23);
+            this.okBTN.TabIndex = 6;
+            this.okBTN.Text = "OK";
+            this.okBTN.UseVisualStyleBackColor = true;
+            this.okBTN.Click += new System.EventHandler(this.okBTN_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 114);
+            this.ClientSize = new System.Drawing.Size(295, 144);
+            this.Controls.Add(this.okBTN);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
@@ -140,5 +146,6 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button okBTN;
     }
 }

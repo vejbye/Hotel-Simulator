@@ -204,8 +204,10 @@ namespace HotelSimulator.Object
                 if (!Added)
                 {
                     for (int lobbyStart = 1; lobbyStart <= HotelWidth + _lastArrayDimension; lobbyStart++)
+                    {
                         Map[lobbyStart, 0] = new Reception();
-
+                        Map[lobbyStart, 0].Dimensions = String.Format("{0} x {1}", HotelWidth + _lastArrayDimension - 1, 1);
+                    }
                     //Adds elevatorshafts to left side of hotel, and stairs to the right side of the hotel.
                     for (int infrastructureStart = 0; infrastructureStart <= HotelHeight; infrastructureStart++)
                     {
