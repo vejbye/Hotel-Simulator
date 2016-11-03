@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator.Object
 {
-    public class Moveable: SimObject
+    public class Person: SimObject
     {
         public HotelRoom Current; // current location of guest
         public List<HotelRoom> Path; // for storing the path to the guests destination
-
+        public bool dead = false;
+        public int waitTime = 0;
         public int MoveDistance;
         public int RoomPositioning;
         public int HeightPositioning;
         public int hteDuration;
 
-        public Moveable()
+        public Person()
         {
             MoveDistance = 10;
             RoomPositioning = 4;
@@ -26,7 +27,7 @@ namespace HotelSimulator.Object
         }
         
 
-        
-    }
+
+        }
    
 }

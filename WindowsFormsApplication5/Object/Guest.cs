@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HotelSimulator.Object
 {
-    public class Guest : Moveable
+    public class Guest : Person
     {
         public string Id;
         public Room Room;
@@ -18,8 +18,6 @@ namespace HotelSimulator.Object
         public int Delay = 0;
         public string Preference; // the guests prefered room classification
         public bool CheckedIn = false;
-        public bool Dead = false;
-        public int WaitTime = 0;
         public bool Evacuation = true;
         private int _hteCount;
 

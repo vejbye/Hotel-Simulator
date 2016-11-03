@@ -8,7 +8,7 @@ using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
-    public class Maid : Moveable
+    public class Maid : Person
     {
         public bool IsBusy = false;
         public bool Evacuation = false;
@@ -136,6 +136,15 @@ namespace HotelSimulator.Object
             {
                 Path.Clear();
                 setPath(hotel);
+            }
+        }
+
+        public void inLine()
+        {
+            waitTime++;
+            if (waitTime > 6)
+            {
+                dead = true;
             }
         }
     }
