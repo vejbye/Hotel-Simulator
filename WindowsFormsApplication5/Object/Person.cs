@@ -17,10 +17,19 @@ namespace HotelSimulator.Object
         public bool dead = false;
         public int waitTime = 0;
 
-        public void Update()
+        public int MoveDistance;
+        public int RoomPositioning;
+        public int HeightPositioning;
+
+        public Moveable()
         {
+            MoveDistance = 10;
+            RoomPositioning = 4;
+            HeightPositioning = 10;
+        }
+        
+
 
         }
-    }
    
 }

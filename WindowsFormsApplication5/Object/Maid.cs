@@ -22,7 +22,7 @@ namespace HotelSimulator.Object
             DrawMe = new Draw();
         }
         /// <summary>
-        /// calculate the shrotest path to the maids destination
+        /// Calculate the shrotest path to the maids destination
         /// </summary>
         /// <param name="hotel">Give the hotel the maid works in</param>
         public void setPath(Hotel hotel)
@@ -80,7 +80,7 @@ namespace HotelSimulator.Object
         /// Moves the maid to it's destination.
         /// </summary>
         /// <param name="hotel">Give the hotel the maid works for.</param>
-        public void Walk(Hotel hotel)
+        public void Walk(Hotel hotel, int hte)
         {
             if (Path.Count > 0 && Current != Path.ElementAt(0))
             {

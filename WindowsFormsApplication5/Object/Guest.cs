@@ -19,6 +19,7 @@ namespace HotelSimulator.Object
         public string Preference; // the guests prefered room classification
         public bool CheckedIn = false;
         public bool Evacuation = true;
+        public bool _newMoveDistanceCalculated = false;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -27,6 +28,7 @@ namespace HotelSimulator.Object
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
+
         }
         /// <summary>
         /// calculate the shrotest path to the guests destination
@@ -49,6 +51,7 @@ namespace HotelSimulator.Object
                 hr.Previous = null;
                 hr.Distance = Int32.MaxValue;
             }
+
             Path.Add(cur);
             Destination = destination;
             Current.Guests.Remove(this);
@@ -58,7 +61,7 @@ namespace HotelSimulator.Object
         /// Moves the guest to it's destination.
         /// </summary>
         /// <param name="hotel">Give the hotel the guest resides in.</param>
-        public void Walk(Hotel hotel)
+        public void Walk(Hotel hotel, int hte)
         {
             if (Current != Path.ElementAt(0))
             {
@@ -74,7 +77,7 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
-                    Direction = Direction.LEFT;                   
+                    Direction = Direction.LEFT;
                     if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -82,7 +85,7 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
-                    Direction = Direction.DOWN;              
+                    Direction = Direction.DOWN;
                     if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.standardRoomHeight / 2))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
@@ -96,6 +99,14 @@ namespace HotelSimulator.Object
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
+
+
+                if (!_newMoveDistanceCalculated) //TO DO
+                {
+                    MoveDistance = MoveDistance * hte;
+                    _newMoveDistanceCalculated = true;
+                }
+
                 //move guest accordingly
                 if (Direction == Direction.RIGHT)
                     Position.X += MoveDistance;
@@ -106,6 +117,7 @@ namespace HotelSimulator.Object
                 if (Direction == Direction.LEFT)
                     Position.X -= MoveDistance;
             }
+
             if (Current == Destination)
             {
                 //let the guest request a room
@@ -172,9 +184,9 @@ namespace HotelSimulator.Object
         public void inLine()
         {
             waitTime++;
-            if(waitTime > 6)
+            if (waitTime > 6)
             {
-                dead = true;                
+                dead = true;
             }
         }
     }

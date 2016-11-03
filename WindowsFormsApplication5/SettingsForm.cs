@@ -12,29 +12,17 @@ namespace WindowsFormsApplication5
 {
     public partial class SettingsForm : Form
     {
+        public int HTE = 1;
+
         public SettingsForm()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SettingsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void okBTN_Click(object sender, EventArgs e)
         {
-            comboBox1.SelectedValue; //TO DO
+            HTE = int.Parse(hteCB.Text);
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace HotelSimulator
         public Queue<HotelEvent> events;
         public SimEventListener(Hotel hotel, HotelSimulator hs)
         {
-            this.Hotel = hotel;
+            Hotel = hotel;
             this.hs = hs;
             Guests = new List<Guest>();
             events = new Queue<HotelEvent>();

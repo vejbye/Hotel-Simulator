@@ -77,6 +77,7 @@ namespace HotelSimulator.Object
                     _layoutStartsAt0 = true;
                 }
             }
+
             if (_lastArrayDimension == 1)
                 Map = new HotelRoom[HotelWidth + amountOfInfrastructure, HotelHeight + 1];
             else
