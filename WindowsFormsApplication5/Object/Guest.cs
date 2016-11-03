@@ -21,6 +21,7 @@ namespace HotelSimulator.Object
         public bool dead = false;
         public int waitTime = 0;
         public bool Evacuation = true;
+        public bool _newMoveDistanceCalculated = false;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -29,6 +30,7 @@ namespace HotelSimulator.Object
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
+
         }
         /// <summary>
         /// calculate the shrotest path to the guests destination
@@ -101,7 +103,11 @@ namespace HotelSimulator.Object
                 }
 
 
-                MoveDistance = MoveDistance * hte;
+                if (!_newMoveDistanceCalculated) //TO DO
+                {
+                    MoveDistance = MoveDistance * hte;
+                    _newMoveDistanceCalculated = true;
+                }
 
                 //move guest accordingly
                 if (Direction == Direction.RIGHT)
@@ -113,6 +119,7 @@ namespace HotelSimulator.Object
                 if (Direction == Direction.LEFT)
                     Position.X -= MoveDistance;
             }
+
             if (Current == Destination)
             {
                 //let the guest request a room
