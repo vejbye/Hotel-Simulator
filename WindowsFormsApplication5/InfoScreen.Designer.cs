@@ -28,122 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.typeOfRoomLBL = new System.Windows.Forms.Label();
-            this.unknownLBL = new System.Windows.Forms.Label();
-            this.peopleLBL = new System.Windows.Forms.Label();
-            this.unknownLBL2 = new System.Windows.Forms.Label();
-            this.dimensionLBL = new System.Windows.Forms.Label();
-            this.unknownLBL3 = new System.Windows.Forms.Label();
-            this.floorLBL = new System.Windows.Forms.Label();
-            this.unknownLBL4 = new System.Windows.Forms.Label();
+            this.infoTAB = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.guestsDG = new System.Windows.Forms.DataGridView();
+            this.GuestColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DestinationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.infoTAB.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guestsDG)).BeginInit();
             this.SuspendLayout();
             // 
-            // typeOfRoomLBL
+            // infoTAB
             // 
-            this.typeOfRoomLBL.AutoSize = true;
-            this.typeOfRoomLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.typeOfRoomLBL.Location = new System.Drawing.Point(12, 9);
-            this.typeOfRoomLBL.Name = "typeOfRoomLBL";
-            this.typeOfRoomLBL.Size = new System.Drawing.Size(94, 13);
-            this.typeOfRoomLBL.TabIndex = 0;
-            this.typeOfRoomLBL.Text = "Type of Room: ";
+            this.infoTAB.Controls.Add(this.tabPage1);
+            this.infoTAB.Controls.Add(this.tabPage2);
+            this.infoTAB.Location = new System.Drawing.Point(12, 12);
+            this.infoTAB.Name = "infoTAB";
+            this.infoTAB.SelectedIndex = 0;
+            this.infoTAB.Size = new System.Drawing.Size(309, 257);
+            this.infoTAB.TabIndex = 0;
             // 
-            // unknownLBL
+            // tabPage1
             // 
-            this.unknownLBL.AutoSize = true;
-            this.unknownLBL.Location = new System.Drawing.Point(122, 9);
-            this.unknownLBL.Name = "unknownLBL";
-            this.unknownLBL.Size = new System.Drawing.Size(53, 13);
-            this.unknownLBL.TabIndex = 1;
-            this.unknownLBL.Text = "Unknown";
+            this.tabPage1.Controls.Add(this.guestsDG);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(301, 231);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Guests";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // peopleLBL
+            // tabPage2
             // 
-            this.peopleLBL.AutoSize = true;
-            this.peopleLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.peopleLBL.Location = new System.Drawing.Point(14, 41);
-            this.peopleLBL.Name = "peopleLBL";
-            this.peopleLBL.Size = new System.Drawing.Size(54, 13);
-            this.peopleLBL.TabIndex = 2;
-            this.peopleLBL.Text = "People: ";
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(301, 231);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Special Rooms";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // unknownLBL2
+            // guestsDG
             // 
-            this.unknownLBL2.AutoSize = true;
-            this.unknownLBL2.Location = new System.Drawing.Point(122, 41);
-            this.unknownLBL2.Name = "unknownLBL2";
-            this.unknownLBL2.Size = new System.Drawing.Size(53, 13);
-            this.unknownLBL2.TabIndex = 3;
-            this.unknownLBL2.Text = "Unknown";
+            this.guestsDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.guestsDG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GuestColumn,
+            this.DestinationColumn});
+            this.guestsDG.Location = new System.Drawing.Point(0, 0);
+            this.guestsDG.Name = "guestsDG";
+            this.guestsDG.Size = new System.Drawing.Size(298, 231);
+            this.guestsDG.TabIndex = 0;
             // 
-            // dimensionLBL
+            // GuestColumn
             // 
-            this.dimensionLBL.AutoSize = true;
-            this.dimensionLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dimensionLBL.Location = new System.Drawing.Point(14, 74);
-            this.dimensionLBL.Name = "dimensionLBL";
-            this.dimensionLBL.Size = new System.Drawing.Size(73, 13);
-            this.dimensionLBL.TabIndex = 4;
-            this.dimensionLBL.Text = "Dimension: ";
+            this.GuestColumn.HeaderText = "Guest";
+            this.GuestColumn.Name = "GuestColumn";
             // 
-            // unknownLBL3
+            // DestinationColumn
             // 
-            this.unknownLBL3.AutoSize = true;
-            this.unknownLBL3.Location = new System.Drawing.Point(122, 74);
-            this.unknownLBL3.Name = "unknownLBL3";
-            this.unknownLBL3.Size = new System.Drawing.Size(53, 13);
-            this.unknownLBL3.TabIndex = 5;
-            this.unknownLBL3.Text = "Unknown";
-            // 
-            // floorLBL
-            // 
-            this.floorLBL.AutoSize = true;
-            this.floorLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.floorLBL.Location = new System.Drawing.Point(14, 103);
-            this.floorLBL.Name = "floorLBL";
-            this.floorLBL.Size = new System.Drawing.Size(39, 13);
-            this.floorLBL.TabIndex = 6;
-            this.floorLBL.Text = "Floor:";
-            // 
-            // unknownLBL4
-            // 
-            this.unknownLBL4.AutoSize = true;
-            this.unknownLBL4.Location = new System.Drawing.Point(122, 103);
-            this.unknownLBL4.Name = "unknownLBL4";
-            this.unknownLBL4.Size = new System.Drawing.Size(53, 13);
-            this.unknownLBL4.TabIndex = 7;
-            this.unknownLBL4.Text = "Unknown";
+            this.DestinationColumn.HeaderText = "Destination";
+            this.DestinationColumn.Name = "DestinationColumn";
             // 
             // InfoScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 133);
-            this.Controls.Add(this.unknownLBL4);
-            this.Controls.Add(this.floorLBL);
-            this.Controls.Add(this.unknownLBL3);
-            this.Controls.Add(this.dimensionLBL);
-            this.Controls.Add(this.unknownLBL2);
-            this.Controls.Add(this.peopleLBL);
-            this.Controls.Add(this.unknownLBL);
-            this.Controls.Add(this.typeOfRoomLBL);
+            this.ClientSize = new System.Drawing.Size(451, 281);
+            this.Controls.Add(this.infoTAB);
             this.Name = "InfoScreen";
             this.Text = "InfoScreen";
             this.Load += new System.EventHandler(this.InfoScreen_Load);
+            this.infoTAB.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.guestsDG)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label typeOfRoomLBL;
-        private System.Windows.Forms.Label unknownLBL;
-        private System.Windows.Forms.Label peopleLBL;
-        private System.Windows.Forms.Label unknownLBL2;
-        private System.Windows.Forms.Label dimensionLBL;
-        private System.Windows.Forms.Label unknownLBL3;
-        private System.Windows.Forms.Label floorLBL;
-        private System.Windows.Forms.Label unknownLBL4;
+        private System.Windows.Forms.TabControl infoTAB;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView guestsDG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GuestColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DestinationColumn;
     }
 }

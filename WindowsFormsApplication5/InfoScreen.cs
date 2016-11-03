@@ -13,34 +13,25 @@ namespace WindowsFormsApplication5
 {
     public partial class InfoScreen : Form
     {
-        public InfoScreen(HotelRoom s)
+        List<string> guestsNames;
+        public InfoScreen(List<Guest> guests)
         {
             InitializeComponent();
-            string[] roomName = s.ToString().Split('.');
-            string standardDimension = "1 x 1";
-
-            if (s is Room)
+            guestsNames = new List<string>();
+            foreach (Guest g in guests)
             {
-                int star = s.Classification;
-                unknownLBL.Text = String.Format("{0} {1} Star", roomName[2], star.ToString());
+                string[] guestName = guests.ToString().Split('.');
+                guestsNames.Add(guestName[5]);
             }
 
-            else
-                unknownLBL.Text = roomName[2];
-
-            unknownLBL2.Text = s.Guests.Count().ToString();
-
-            if(s is Stair || s is ElevatorShaft)
-                unknownLBL3.Text = standardDimension;
-            else
-                unknownLBL3.Text = s.Dimensions;
-
-            unknownLBL4.Text = s.Floor.ToString();
+            guestsDG.DataSource = guestsNames;
         }
 
         private void InfoScreen_Load(object sender, EventArgs e)
         {
 
         }
+
+        
     }
 }

@@ -30,9 +30,9 @@ namespace HotelSimulatorUnitTest
         public void TestGuestDying()
         {
             Guest guest = new Guest(null);
-            guest.waitTime = 7;
+            guest.WaitTime = 7;
             guest.inLine();
-            Assert.AreEqual(guest.dead, true);
+            Assert.AreEqual(guest.Dead, true);
         }
 
         [TestMethod]
@@ -148,6 +148,12 @@ namespace HotelSimulatorUnitTest
         public void AddNeighbours()
         {
             bool neighboursCreated = false;
+
+            for (int x = 0; x < map.GetLength(0); x++)
+            {
+                for (int y = 0; y < map.GetLength(1); y++)
+                    map[x, y] = new HotelRoom();
+            }
 
             for (int x = 0; x < map.GetLength(0); x++)
             {

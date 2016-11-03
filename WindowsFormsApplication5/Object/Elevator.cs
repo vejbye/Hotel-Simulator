@@ -33,7 +33,7 @@ namespace HotelSimulator.Object
             Height = 50;
             Width = 35;
             DrawMe = new Draw();
-            ElevatorPosition = new Point((int)(DrawMe.xStartPosition + (DrawMe.standardRoomWidth * 0.65)), (DrawMe.yStartPosition - DrawMe.standardRoomHeight));
+            ElevatorPosition = new Point((int)(DrawMe.XStartPosition + (DrawMe.StandardRoomWidth * 0.65)), (DrawMe.YStartPosition - DrawMe.StandardRoomHeight));
 
 
             Requests = new List<int>();

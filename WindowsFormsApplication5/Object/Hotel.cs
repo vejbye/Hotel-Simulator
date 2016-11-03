@@ -22,13 +22,13 @@ namespace HotelSimulator.Object
         private const int BITMAPHEIGHT = 800;
         private const int BITMAPWIDTH = 2000;
 
-        private int amountOfInfrastructure = 3;
+        private int _amountOfInfrastructure = 3;
         private int _lastArrayDimension = 0;
         public int HotelWidth;
         public int HotelHeight;
 
         public bool Added = false;
-        private bool _layoutStartsAt0 = false;
+        private bool _layoutStartsAt0 = false;  
 
         public Hotel()
         {
@@ -79,11 +79,11 @@ namespace HotelSimulator.Object
             }
 
             if (_lastArrayDimension == 1)
-                Map = new HotelRoom[HotelWidth + amountOfInfrastructure, HotelHeight + 1];
+                Map = new HotelRoom[HotelWidth + _amountOfInfrastructure, HotelHeight + 1];
             else
                 //Creates double array based on the width and height
                 //Adds height: 1 for reception
-                Map = new HotelRoom[HotelWidth + amountOfInfrastructure + _lastArrayDimension, HotelHeight + 1];
+                Map = new HotelRoom[HotelWidth + _amountOfInfrastructure + _lastArrayDimension, HotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -236,8 +236,8 @@ namespace HotelSimulator.Object
         {
             Maid maid1 = new Maid(Map[0, 0]);
             Maid maid2 = new Maid(Map[0, 0]);
-            maid1.Position = new Point(DrawMe.xStartPosition + maid1.Width, DrawMe.yStartPosition - maid1.Height);
-            maid2.Position = new Point(DrawMe.xStartPosition + maid2.Width, DrawMe.yStartPosition - maid2.Height);
+            maid1.Position = new Point(DrawMe.XStartPosition + maid1.Width, DrawMe.YStartPosition - maid1.Height);
+            maid2.Position = new Point(DrawMe.XStartPosition + maid2.Width, DrawMe.YStartPosition - maid2.Height);
 
             Maids.Add(maid1);
             Maids.Add(maid2);

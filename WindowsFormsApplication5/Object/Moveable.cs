@@ -15,12 +15,14 @@ namespace HotelSimulator.Object
         public int MoveDistance;
         public int RoomPositioning;
         public int HeightPositioning;
+        public int hteDuration;
 
         public Moveable()
         {
             MoveDistance = 10;
             RoomPositioning = 4;
             HeightPositioning = 10;
+            hteDuration = 1;
         }
         
 
