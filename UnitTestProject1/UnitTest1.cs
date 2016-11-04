@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HotelSimulator.Object;
 using System.Collections.Generic;
 using HotelSimulator;
+using System.Drawing;
 
 namespace HotelSimulatorUnitTest
 {
@@ -33,6 +34,88 @@ namespace HotelSimulatorUnitTest
             guest.WaitTime = 7;
             guest.InLine();
             Assert.AreEqual(guest.Dead, true);
+        }
+        [TestMethod]
+        public void testcheckin()
+        {
+            Initialize();
+            AddNeighbours();
+            hotel.Map = map;
+            Reception r = new Reception();
+            Guest guest = new Guest();
+            guest.Preference = "1";           
+            guest.Room = r.findEmptyRoom(hotel, guest);
+            Assert.IsNotNull(guest.Room);
+        }
+
+        [TestMethod]
+        public void testpathfind()
+        {
+            Initialize();
+            AddNeighbours();
+            hotel.Map = map;
+            Guest guest = new Guest();
+            guest.Current = hotel.Map[0, 0];
+            Point Position = guest.Position;
+            guest.setPath(hotel, hotel.Map[9, 0]);
+            Assert.AreEqual(10, guest.Path.Count);
+        }
+
+        [TestMethod]
+        public void TestWalkRight()
+        {
+            Initialize();
+            AddNeighbours();
+            hotel.Map = map;
+            Guest guest = new Guest();
+            guest.Current = hotel.Map[0, 0];
+            Point Position = guest.Position;
+            guest.setPath(hotel, hotel.Map[9, 0]);
+            guest.Walk(hotel);
+            Assert.AreEqual(Position.X + 10, guest.Position.X);
+
+        }
+        [TestMethod]
+        public void TestWalkDown()
+        {
+            Initialize();
+            AddNeighbours();
+            hotel.Map = map;
+            Guest guest = new Guest();
+            guest.Current = hotel.Map[0, 9];
+            Point Position = guest.Position;
+            guest.setPath(hotel, hotel.Map[0, 0]);
+            guest.Walk(hotel);
+            Assert.AreEqual(Position.Y + 10, guest.Position.Y);
+
+        }
+        [TestMethod]
+        public void TestWalkLeft()
+        {
+            Initialize();
+            AddNeighbours();
+            hotel.Map = map;
+            Guest guest = new Guest();
+            guest.Current = hotel.Map[9, 0];
+            Point Position = guest.Position;
+            guest.setPath(hotel, hotel.Map[0, 0]);
+            guest.Walk(hotel);
+            Assert.AreEqual(Position.X - 10, guest.Position.X);
+
+        }
+        [TestMethod]
+        public void TestWalkUp()
+        {
+            Initialize();
+            AddNeighbours();
+            hotel.Map = map;
+            Guest guest = new Guest();
+            guest.Current = hotel.Map[0, 0];
+            Point Position = guest.Position;
+            guest.setPath(hotel, hotel.Map[0,9]);
+            guest.Walk(hotel);
+            Assert.AreEqual(Position.Y - 10, guest.Position.Y);
+
         }
 
         [TestMethod]
@@ -152,7 +235,16 @@ namespace HotelSimulatorUnitTest
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
-                    map[x, y] = new HotelRoom();
+                    if (x == 0)
+                        map[x, y] = new ElevatorShaft();                   
+                     else if(x == 4 && y == 4){
+                        map[x, y] = new Room();
+                        ((Room)map[x, y]).Classification = 2;
+                    }
+
+                    else
+                         map[x, y] = new HotelRoom();
+
             }
 
             for (int x = 0; x < map.GetLength(0); x++)
