@@ -73,6 +73,7 @@ namespace HotelSimulator.Object
                             break;
                         }
                     }
+                    CleaningDuration = 1;
                 }
                 else
                     CleaningDuration++;
