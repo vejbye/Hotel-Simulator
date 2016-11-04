@@ -65,22 +65,22 @@ namespace HotelSimulator
                         foreach (Guest g in _hotel.Guests)
                         {
                             if (g.Id == evt.Data.Values.ElementAt(0))
-                            {
+                            {                              
                                 if (!g.InQueue)
                                 {
                                     _guestCount--;
                                     foreach (HotelRoom room in _hotel.Map)
+                                {
+                                    if (room is Reception)
                                     {
-                                        if (room is Reception)
-                                        {
                                             if (g.Current == g.Destination && !g.InQueue)
-                                            {
-                                                g.Path.Clear();
-                                                g.setPath(_hotel, room);
-                                                break;
-                                            }
+                                        {
+                                            g.Path.Clear();
+                                            g.setPath(_hotel, room);
+                                            break;
                                         }
                                     }
+                                }
                                 }
                                 break;
                             }
@@ -138,19 +138,19 @@ namespace HotelSimulator
                                 if (!g.InQueue)
                                 {
                                     foreach (HotelRoom room in _hotel.Map)
+                                {
+                                    if (room is Cinema && !((Cinema)room).Playing)
                                     {
-                                        if (room is Cinema && !((Cinema)room).Playing)
+                                        if (g.Current == g.Destination)
                                         {
-                                            if (g.Current == g.Destination)
-                                            {
-                                                g.Path.Clear();
-                                                g.setPath(_hotel, room);
-                                                break;
-                                            }
+                                            g.Path.Clear();
+                                            g.setPath(_hotel, room);
+                                            break;
                                         }
                                     }
                                 }
                             }
+                        }
                         }
                         Console.WriteLine("Guest is going to cinema");
                         break;
@@ -159,22 +159,23 @@ namespace HotelSimulator
                         {
                             if (!g.InQueue)
                             {
-                                if (g.Id == evt.Data.Values.ElementAt(0))
+                            if (g.Id == evt.Data.Values.ElementAt(0))
+                            {
+                                foreach (HotelRoom room in _hotel.Map)
                                 {
-                                    foreach (HotelRoom room in _hotel.Map)
+                                    if (room is Gym)
                                     {
-                                        if (room is Gym)
+                                        if (g.Current == g.Destination)
                                         {
-                                            if (g.Current == g.Destination)
-                                            {
-                                                g.Path.Clear();
-                                                g.setPath(_hotel, room);
-                                                break;
-                                            }
+                                            g.fitnessHTE = Int32.Parse(evt.Data.Values.ElementAt(1));
+                                            g.Path.Clear();
+                                            g.setPath(_hotel, room);
+                                            break;
                                         }
                                     }
                                 }
                             }
+                        }
                         }
                         Console.WriteLine("Guest is going to the gym");
                         break;
@@ -186,19 +187,19 @@ namespace HotelSimulator
                                 if (!g.InQueue)
                                 {
                                     foreach (HotelRoom room in _hotel.Map)
-                                    {
-                                        if (room is Restaurant)
+                                {
+                                    if (room is Restaurant)
                                         {
                                             if (g.Current == g.Destination)
-                                            {
-                                                g.Path.Clear();
-                                                g.setPath(_hotel, room);
-                                                break;
-                                            }
+                                        {
+                                            g.Path.Clear();
+                                            g.setPath(_hotel, room);
+                                            break;
                                         }
                                     }
                                 }
                             }
+                        }
                         }
                         Console.WriteLine(evt.Message);
                         Console.WriteLine("Guest is hungry and is going to the restaurant");
