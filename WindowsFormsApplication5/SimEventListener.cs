@@ -46,6 +46,7 @@ namespace HotelSimulator
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
                         guest.Preference = evt.Data.Values.ElementAt(0).Substring(8, 1);
                         _hotel.Guests.Add(guest);
+                        guest.EatingDuration = _hs.EatingDuration;
                         guest.Current = ((HotelRoom)_hotel.Map[0, 0]);
                         guest.Position = new System.Drawing.Point(_hotel.DrawMe.XStartPosition + guest.Width, _hotel.DrawMe.YStartPosition - guest.Height);
                         guest.HteDuration = hteDuration;
@@ -167,7 +168,7 @@ namespace HotelSimulator
                                     {
                                         if (g.Current == g.Destination)
                                         {
-                                            g.fitnessHTE = Int32.Parse(evt.Data.Values.ElementAt(1));
+                                            g.FitnessHTE = Int32.Parse(evt.Data.Values.ElementAt(1));
                                             g.Path.Clear();
                                             g.setPath(_hotel, room);
                                             break;

@@ -19,8 +19,12 @@ namespace HotelSimulator.Object
         public string Preference { get; set; }// the guests prefered room classification
         protected bool CheckedIn { get; set; }
         public bool InQueue { get; set; }
+        public int EatingDuration { get; set; }
         private int _hteCount;
-        public int fitnessHTE;
+        private int _queueCount;
+        public int EatingHTE;
+        public int FitnessHTE;
+
 
         public Guest()
         {
@@ -32,8 +36,10 @@ namespace HotelSimulator.Object
             InQueue = false;
             CheckedIn = false;
             HteDuration = 1;
+            EatingHTE = 1;
             _hteCount = 1;
-            fitnessHTE = 0;
+            _queueCount = 3;
+            FitnessHTE = 0;
         }
         /// <summary>
         /// calculate the shrotest path to the guests destination
@@ -160,7 +166,7 @@ namespace HotelSimulator.Object
                     //guest returns to room if restaurant is full
                     if (Destination is Restaurant && Destination.Guests.Count >= ((Restaurant)Destination).Capacity)
                     {
-                        if (((Restaurant)Destination).Waitingline.Count < 3)
+                        if (((Restaurant)Destination).Waitingline.Count < _queueCount)
                         {
                             if (((Restaurant)Destination).Waitingline.Contains(this))
                             {
@@ -176,13 +182,13 @@ namespace HotelSimulator.Object
 
                     }
 
-                    if(Destination is Gym && fitnessHTE > 0)
+                    if (Destination is Gym && FitnessHTE > 0)
                     {
-                        HteDuration = fitnessHTE;
-                        fitnessHTE = 0;
+                        HteDuration = FitnessHTE;
+                        FitnessHTE = 0;
                     }
 
-                    if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity));
+                    if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity)) ;
                     {
                         Current.Guests.Add(this);
                     }
@@ -221,7 +227,13 @@ namespace HotelSimulator.Object
 
         public void Eating()
         {
-
+            if (EatingHTE == EatingDuration)
+            {
+                Console.WriteLine("Guest finished eating.");
+                EatingHTE = 1;
+            }
+            else
+                EatingHTE++;
         }
     }
 }

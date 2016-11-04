@@ -26,6 +26,7 @@ namespace HotelSimulator.Object
                 {
                     Guest guest = Waitingline.Peek();
                     Guests.Add(guest);
+                    guest.Eating();
                     Waitingline.Dequeue();
                 }
                 else
