@@ -132,19 +132,23 @@ namespace HotelSimulator.Object
                 setPath(hotel);
             }
 
-            if(Path.Count <= 0 && !Evacuation)
+            if(Path.Count <= 0)
             {
                 Path.Clear();
                 setPath(hotel);
             }
         }
 
-        public void inLine()
+        public void inLine(Hotel hotel)
         {
             waitTime++;
             if (waitTime > 6)
             {
                 dead = true;
+                Path.Clear();
+                Position = new System.Drawing.Point(DrawMe.xStartPosition + Width, DrawMe.yStartPosition - Height);
+                dead = false;
+                setPath(hotel);
             }
         }
     }

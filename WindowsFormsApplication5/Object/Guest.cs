@@ -20,6 +20,7 @@ namespace HotelSimulator.Object
         public bool CheckedIn = false;
         public bool Evacuation = true;
         public bool _newMoveDistanceCalculated = false;
+        public bool inQueue;
         public Guest(HotelRoom current)
         {
             this.Current = current;
@@ -28,6 +29,7 @@ namespace HotelSimulator.Object
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
+            inQueue = false;
 
         }
         /// <summary>
@@ -157,8 +159,19 @@ namespace HotelSimulator.Object
                 //guest returns to room if restaurant is full
                 if (Destination is Restaurant && Destination.Guests.Count >= ((Restaurant)Destination).Capacity)
                 {
-                    Path.Clear();
-                    setPath(hotel, Room);
+                    if (((Restaurant)Destination).waitingline.Count < 3)
+                    {
+                        if (((Restaurant)Destination).waitingline.Contains(this))
+                        {
+                            ((Restaurant)Destination).waitingline.Enqueue(this);
+                            inQueue = true;
+                        }                        
+                    }
+                    else
+                    {
+                        Path.Clear();
+                        setPath(hotel, Room);
+                    }
 
                 }
 
@@ -187,6 +200,7 @@ namespace HotelSimulator.Object
             if (waitTime > 6)
             {
                 dead = true;
+                Current.Guests.Remove(this);
             }
         }
     }

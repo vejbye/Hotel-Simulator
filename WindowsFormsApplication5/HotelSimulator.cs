@@ -185,11 +185,19 @@ namespace HotelSimulator
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                Hotel.Guests[i].Walk(Hotel, HTE);
+                    Hotel.Guests[i].Walk(Hotel, HTE);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
                 Hotel.Maids[i].Walk(Hotel, HTE);
+            }
+
+            foreach (HotelRoom hr in Hotel.Map)
+            {
+                if(hr is Restaurant)
+                {
+                    ((Restaurant)hr).handleWaitingline();
+                }
             }
 
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);
