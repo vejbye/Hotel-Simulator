@@ -42,6 +42,9 @@ namespace HotelSimulator
         public int GuestHteDuration = 1;
         public int ElevatorHteDuration = 1;
         public int MaidCleaningDuration = 1;
+        public int MovieDuration = 1;
+        public int EatingDuration = 1;
+        private int _standardMovieLength = 10;
 
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -158,6 +161,10 @@ namespace HotelSimulator
                     ElevatorHteDuration = int.Parse(settings.elevatorCB.Text);
                 if (!settings.cleaningCB.Text.Equals(""))
                     MaidCleaningDuration = int.Parse(settings.cleaningCB.Text);
+                if (!settings.moviedurationCB.Text.Equals(""))
+                    MovieDuration = int.Parse(settings.moviedurationCB.Text);
+                if (!settings.eatingdurationCB.Text.Equals(""))
+                    EatingDuration = int.Parse(settings.eatingdurationCB.Text);
             }
             else
                 MessageBox.Show("Nothing changed.");
@@ -215,6 +222,15 @@ namespace HotelSimulator
                 }
             }
 
+            foreach (HotelRoom hr in Hotel.Map)
+            {
+                if (hr is Cinema)
+                {
+                    if(((Cinema)hr).Playing )
+                        ((Cinema)hr).PlayMovie(MovieDuration * _standardMovieLength);
+                }
+            }
+
             //Gets the requestedfloor and calculates what y coordinate the floor is in.
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
             Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
@@ -233,6 +249,8 @@ namespace HotelSimulator
                     CurrentElement = 0;
                 }
             }
+
+
 
             Refresh();
 

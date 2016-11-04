@@ -39,6 +39,10 @@
             this.elevatorspeedLBL = new System.Windows.Forms.Label();
             this.okBTN = new System.Windows.Forms.Button();
             this.elevatorCB = new System.Windows.Forms.ComboBox();
+            this.moviedurationLBL = new System.Windows.Forms.Label();
+            this.moviedurationCB = new System.Windows.Forms.ComboBox();
+            this.eatingdurationLBL = new System.Windows.Forms.Label();
+            this.eatingdurationCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // guestdurationLBL
@@ -106,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 71);
+            this.label2.Location = new System.Drawing.Point(12, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 5;
@@ -116,7 +120,7 @@
             // elevatorspeedLBL
             // 
             this.elevatorspeedLBL.AutoSize = true;
-            this.elevatorspeedLBL.Location = new System.Drawing.Point(12, 100);
+            this.elevatorspeedLBL.Location = new System.Drawing.Point(12, 102);
             this.elevatorspeedLBL.Name = "elevatorspeedLBL";
             this.elevatorspeedLBL.Size = new System.Drawing.Size(80, 13);
             this.elevatorspeedLBL.TabIndex = 7;
@@ -147,11 +151,64 @@
             this.elevatorCB.Size = new System.Drawing.Size(121, 21);
             this.elevatorCB.TabIndex = 8;
             // 
+            // moviedurationLBL
+            // 
+            this.moviedurationLBL.AutoSize = true;
+            this.moviedurationLBL.Location = new System.Drawing.Point(12, 132);
+            this.moviedurationLBL.Name = "moviedurationLBL";
+            this.moviedurationLBL.Size = new System.Drawing.Size(79, 13);
+            this.moviedurationLBL.TabIndex = 9;
+            this.moviedurationLBL.Text = "Movie Duration";
+            this.toolTip1.SetToolTip(this.moviedurationLBL, "Sets a timer for dying when guest or maid waits too long in queue");
+            // 
+            // moviedurationCB
+            // 
+            this.moviedurationCB.FormattingEnabled = true;
+            this.moviedurationCB.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            ""});
+            this.moviedurationCB.Location = new System.Drawing.Point(159, 127);
+            this.moviedurationCB.Name = "moviedurationCB";
+            this.moviedurationCB.Size = new System.Drawing.Size(121, 21);
+            this.moviedurationCB.TabIndex = 10;
+            // 
+            // eatingdurationLBL
+            // 
+            this.eatingdurationLBL.AutoSize = true;
+            this.eatingdurationLBL.Location = new System.Drawing.Point(12, 160);
+            this.eatingdurationLBL.Name = "eatingdurationLBL";
+            this.eatingdurationLBL.Size = new System.Drawing.Size(80, 13);
+            this.eatingdurationLBL.TabIndex = 11;
+            this.eatingdurationLBL.Text = "Eating Duration";
+            this.toolTip1.SetToolTip(this.eatingdurationLBL, "Sets a timer for dying when guest or maid waits too long in queue");
+            // 
+            // eatingdurationCB
+            // 
+            this.eatingdurationCB.FormattingEnabled = true;
+            this.eatingdurationCB.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.eatingdurationCB.Location = new System.Drawing.Point(159, 156);
+            this.eatingdurationCB.Name = "eatingdurationCB";
+            this.eatingdurationCB.Size = new System.Drawing.Size(121, 21);
+            this.eatingdurationCB.TabIndex = 12;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(295, 260);
+            this.Controls.Add(this.eatingdurationCB);
+            this.Controls.Add(this.eatingdurationLBL);
+            this.Controls.Add(this.moviedurationCB);
+            this.Controls.Add(this.moviedurationLBL);
             this.Controls.Add(this.elevatorCB);
             this.Controls.Add(this.elevatorspeedLBL);
             this.Controls.Add(this.okBTN);
@@ -180,5 +237,9 @@
         private System.Windows.Forms.Label elevatorspeedLBL;
         public System.Windows.Forms.ComboBox elevatorCB;
         public System.Windows.Forms.ComboBox cleaningCB;
+        private System.Windows.Forms.Label moviedurationLBL;
+        public System.Windows.Forms.ComboBox moviedurationCB;
+        private System.Windows.Forms.Label eatingdurationLBL;
+        public System.Windows.Forms.ComboBox eatingdurationCB;
     }
 }

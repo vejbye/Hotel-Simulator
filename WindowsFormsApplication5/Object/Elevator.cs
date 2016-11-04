@@ -50,11 +50,7 @@ namespace HotelSimulator.Object
             //_requests.Sort();
             //_requests.ForEach(i => Console.Write("{0}\n", i));
         }
-
-        private void CalculateSeekingTime()
-        {
-
-        }
+        
 
         /// <summary>
         /// Moves the elevator in steps.
