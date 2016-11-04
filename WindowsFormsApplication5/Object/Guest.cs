@@ -204,7 +204,10 @@ namespace HotelSimulator.Object
             if (WaitTime > 6)
             {
                 Dead = true;
-                Current.Guests.Remove(this);
+                if (Current != null)
+                {
+                    Current.Guests.Remove(this);
+                }
             }
         }
     }
