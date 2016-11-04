@@ -223,5 +223,10 @@ namespace HotelSimulator.Object
                 }
             }
         }
+
+        public void Eating()
+        {
+
+        }
     }
 }

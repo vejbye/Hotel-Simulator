@@ -102,11 +102,11 @@ namespace HotelSimulator
                         break;
                     case HotelEventType.EVACUATE:
                         Console.WriteLine(evt.Message);
-                        foreach(HotelRoom hr in _hotel.Map)
+                        foreach (HotelRoom hr in _hotel.Map)
                         {
-                            if(hr is Restaurant)
+                            if (hr is Restaurant)
                             {
-                                foreach(Guest wg in ((Restaurant)hr).Waitingline)
+                                foreach (Guest wg in ((Restaurant)hr).Waitingline)
                                 {
                                     wg.InQueue = false;
                                 }
@@ -118,7 +118,7 @@ namespace HotelSimulator
                             g.Path.Clear();
                             g.setPath(_hotel, _hotel.Map[_hotel.Map.GetLength(0) - 2, 0]); //-2 because elevator takes the last column in array
                         }
-                        foreach(Maid maid in _hotel.Maids)
+                        foreach (Maid maid in _hotel.Maids)
                         {
                             maid.Evacuation = true;
                         }
@@ -207,9 +207,9 @@ namespace HotelSimulator
                     case HotelEventType.START_CINEMA:
                         foreach (KeyValuePair<string, string> data in evt.Data)
                         {
-                            foreach(HotelRoom room in _hotel.Map)
+                            foreach (HotelRoom room in _hotel.Map)
                             {
-                                if(room is Cinema && ((Cinema)room).Id == Int32.Parse(data.Value))
+                                if (room is Cinema && ((Cinema)room).Id == Int32.Parse(data.Value))
                                 {
                                     ((Cinema)room).Playing = true;
                                 }
