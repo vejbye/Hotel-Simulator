@@ -8,15 +8,6 @@ using WindowsFormsApplication5;
 
 namespace HotelSimulator.Object
 {
-    public enum Direction
-    {
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN,
-        NONE
-
-    }
     public abstract class SimObject
     {
         public Draw DrawMe;
@@ -25,6 +16,6 @@ namespace HotelSimulator.Object
         public Image Image { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public Direction Direction { get; set; }
+        
     }
 }

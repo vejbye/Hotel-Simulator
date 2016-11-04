@@ -40,7 +40,7 @@ namespace HotelSimulator
                 switch (evt.EventType)
                 {
                     case HotelEventType.CHECK_IN:
-                        Guest guest = new Guest(null);
+                        Guest guest = new Guest();
                         _guestCount++;
                         guest.guestName = String.Format("Guest {0}", _guestCount);
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
@@ -109,7 +109,7 @@ namespace HotelSimulator
                             maid.IsBusy = false;
                             maid.Evacuation = true;
                             maid.Path.Clear();
-                            maid.setPath(_hotel);
+                            maid.SetPath(_hotel);
                         }
                         _hotel.Elevator.Requests.Clear();
                         _hs.CurrentElement = 0;

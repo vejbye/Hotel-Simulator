@@ -17,7 +17,7 @@ namespace HotelSimulator
 {
     public partial class HotelSimulator : Form
     {
-        public Hotel Hotel;
+        public Hotel Hotel { get; set; }
         public System.Windows.Forms.Timer HotelEventTimer;
         private Draw DrawMe;
         public SimEventListener EventListener;
@@ -38,7 +38,7 @@ namespace HotelSimulator
         //Current element in list request list.
         public int CurrentElement = 0;
 
-        public int guestHteDuration = 1;
+        public int GuestHteDuration = 1;
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -144,7 +144,7 @@ namespace HotelSimulator
 
             if (settings.ShowDialog() == DialogResult.OK)
             {
-                guestHteDuration = int.Parse(settings.hteCB.Text);
+                GuestHteDuration = int.Parse(settings.hteCB.Text);
             }
             else
                 MessageBox.Show("Nothing changed.");
@@ -163,7 +163,7 @@ namespace HotelSimulator
                     {
                         HotelEventTimer.Stop();
                         timer.Stop(); 
-                        InfoScreen infoScreen = new InfoScreen(Hotel.Guests);
+                        InfoScreen infoScreen = new InfoScreen(Hotel.Guests, Hotel.GetMap(), Hotel.Elevator);
                         var result = infoScreen.ShowDialog();
                     }
                 }
@@ -175,7 +175,7 @@ namespace HotelSimulator
         //when interval is reached, execute next hotelevent
         private void onTimedEvent(object source, EventArgs e)
         {
-            EventListener.DoEvent(guestHteDuration);
+            EventListener.DoEvent(GuestHteDuration);
         }
 
         private void timer_Tick(object sender, EventArgs e)

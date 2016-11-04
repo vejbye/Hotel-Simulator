@@ -29,7 +29,7 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestGuestDying()
         {
-            Guest guest = new Guest(null);
+            Guest guest = new Guest();
             guest.WaitTime = 7;
             guest.inLine();
             Assert.AreEqual(guest.Dead, true);

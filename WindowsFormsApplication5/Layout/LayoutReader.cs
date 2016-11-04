@@ -10,16 +10,16 @@ namespace HotelSimulator.Object
 {
     public class LayoutReader
     {
-        private List<LayoutFormat> Formats;
+        private List<LayoutFormat> _formats;
 
         public List<LayoutFormat> ReadLayout(string jsonPath)
         {
-            Formats = new List<LayoutFormat>();
+            _formats = new List<LayoutFormat>();
 
             string jsonText = File.ReadAllText(jsonPath);
-            Formats = JsonConvert.DeserializeObject<List<LayoutFormat>>(jsonText);
+            _formats = JsonConvert.DeserializeObject<List<LayoutFormat>>(jsonText);
 
-            return Formats;
+            return _formats;
         }
     }
 
