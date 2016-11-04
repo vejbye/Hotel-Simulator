@@ -232,12 +232,14 @@ namespace HotelSimulator.Object
         /// <summary>
         /// Adds maids to the hotel
         /// </summary>
-        public void AddMaids()
+        public void AddMaids(int cleaningHTE)
         {
             Maid maid1 = new Maid(Map[0, 0]);
             Maid maid2 = new Maid(Map[0, 0]);
             maid1.Position = new Point(DrawMe.XStartPosition + maid1.Width, DrawMe.YStartPosition - maid1.Height);
             maid2.Position = new Point(DrawMe.XStartPosition + maid2.Width, DrawMe.YStartPosition - maid2.Height);
+            maid1.CleaningHTE = cleaningHTE;
+            maid2.CleaningHTE = cleaningHTE;
 
             Maids.Add(maid1);
             Maids.Add(maid2);

@@ -12,7 +12,6 @@ namespace WindowsFormsApplication5
 {
     public partial class SettingsForm : Form
     {
-        public int HTE = 1;
 
         public SettingsForm()
         {
@@ -21,8 +20,7 @@ namespace WindowsFormsApplication5
 
         private void okBTN_Click(object sender, EventArgs e)
         {
-            HTE = int.Parse(hteCB.Text);
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
         }
     }
 }

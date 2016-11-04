@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
@@ -17,7 +18,15 @@ namespace HotelSimulator.Object
             _formats = new List<LayoutFormat>();
 
             string jsonText = File.ReadAllText(jsonPath);
-            _formats = JsonConvert.DeserializeObject<List<LayoutFormat>>(jsonText);
+            try
+            {
+                _formats = JsonConvert.DeserializeObject<List<LayoutFormat>>(jsonText);
+            }
+            catch
+            {
+                Console.WriteLine("This file contains unsupported characters! Please select another file.");
+                _formats = null;
+            }
 
             return _formats;
         }

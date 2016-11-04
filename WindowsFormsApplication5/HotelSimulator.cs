@@ -38,7 +38,11 @@ namespace HotelSimulator
         //Current element in list request list.
         public int CurrentElement = 0;
 
+        //Standard hte settings
         public int GuestHteDuration = 1;
+        public int ElevatorHteDuration = 1;
+        public int MaidCleaningDuration = 1;
+
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -48,7 +52,7 @@ namespace HotelSimulator
             Hotel = new Hotel();
             DrawMe = new Draw();
 
-            timer.Interval = 1; // 000.1 sec
+            timer.Interval = (1000 / 120); // Refreshes 120 times a second
             timer.Tick += new EventHandler(timer_Tick);
         }
 
@@ -116,22 +120,25 @@ namespace HotelSimulator
             if (chosenFile.ShowDialog() == DialogResult.OK)
             {
                 string json = chosenFile.FileName;
-                _initialized = true;
                 LayoutReader reader = new LayoutReader();
-                Hotel.Build(reader.ReadLayout(json));
-                Hotel.Reset();
-                CurrentElement = 0;
-                Hotel.AddMaids();
-                screenPB.Image = DrawMe.DrawHotel(Hotel, true);
+                if (reader.ReadLayout(json) != null)
+                {
+                    _initialized = true;
+                    Hotel.Build(reader.ReadLayout(json));
+                    Hotel.Reset();
+                    CurrentElement = 0;
+                    Hotel.AddMaids(MaidCleaningDuration);
+                    screenPB.Image = DrawMe.DrawHotel(Hotel, true);
 
-                EventListener = new SimEventListener(Hotel, this);
-                HotelEventManager.Register(EventListener);
-                HotelEventManager.Start();
-                timer.Start();
-                HotelEventTimer = new System.Windows.Forms.Timer();
-                HotelEventTimer.Interval = 1000;
-                HotelEventTimer.Tick += new EventHandler(onTimedEvent);
-                HotelEventTimer.Start();
+                    EventListener = new SimEventListener(Hotel, this);
+                    HotelEventManager.Register(EventListener);
+                    HotelEventManager.Start();
+                    timer.Start();
+                    HotelEventTimer = new System.Windows.Forms.Timer();
+                    HotelEventTimer.Interval = 1000;
+                    HotelEventTimer.Tick += new EventHandler(onTimedEvent);
+                    HotelEventTimer.Start();
+                }
             }
             else
                 MessageBox.Show("No file loaded.");
@@ -144,7 +151,13 @@ namespace HotelSimulator
 
             if (settings.ShowDialog() == DialogResult.OK)
             {
-                GuestHteDuration = int.Parse(settings.hteCB.Text);
+                //Gets all the hte values from the settings form. If nothing is chosen the standard value will be 1.
+                if (!settings.hteCB.Text.Equals(""))
+                    GuestHteDuration = int.Parse(settings.hteCB.Text);
+                if (!settings.elevatorCB.Text.Equals(""))
+                    ElevatorHteDuration = int.Parse(settings.elevatorCB.Text);
+                if (!settings.cleaningCB.Text.Equals(""))
+                    MaidCleaningDuration = int.Parse(settings.cleaningCB.Text);
             }
             else
                 MessageBox.Show("Nothing changed.");
@@ -154,23 +167,27 @@ namespace HotelSimulator
         //If right mousebutton is clicked show information about the room the mouse is in.
         private void screenPB_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (_initialized)
             {
-                Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
-                foreach (HotelRoom s in Hotel.GetMap())
+                if (e.Button == MouseButtons.Right)
                 {
-                    if (s.BoundingBox.Contains(boxPosition))
+                    Point boxPosition = new Point(e.Location.X - _movingPoint.X, e.Location.Y - _movingPoint.Y);
+                    foreach (HotelRoom s in Hotel.GetMap())
                     {
-                        HotelEventTimer.Stop();
-                        timer.Stop(); 
-                        InfoScreen infoScreen = new InfoScreen(Hotel.Guests, Hotel.GetMap(), Hotel.Elevator);
-                        var result = infoScreen.ShowDialog();
+                        if (s.BoundingBox.Contains(boxPosition))
+                        {
+                            //Pauses the dll and the form timer when reception is clicked.
+                            HotelEventTimer.Stop();
+                            timer.Stop();
+                            InfoScreen infoScreen = new InfoScreen(Hotel.Guests, Hotel.GetMap(), Hotel.Elevator);
+                            var result = infoScreen.ShowDialog();
+                        }
                     }
                 }
-            }
 
-            HotelEventTimer.Start();
-            timer.Start();
+                HotelEventTimer.Start();
+                timer.Start();
+            }
         }
         //when interval is reached, execute next hotelevent
         private void onTimedEvent(object source, EventArgs e)
@@ -179,7 +196,7 @@ namespace HotelSimulator
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {   
+        {
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
@@ -192,21 +209,22 @@ namespace HotelSimulator
 
             foreach (HotelRoom hr in Hotel.Map)
             {
-                if(hr is Restaurant)
+                if (hr is Restaurant)
                 {
-                    ((Restaurant)hr).handleWaitingline();
+                    ((Restaurant)hr).HandleWaitingline();
                 }
             }
 
+            //Gets the requestedfloor and calculates what y coordinate the floor is in.
             Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
             Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
 
-            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor);
-            
-            if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
+            Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
+
+            if (Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {
                 Hotel.Elevator.PreviousFloor = Hotel.Elevator.RequestedFloor;
-                
+
                 if (CurrentElement < Hotel.Elevator.Requests.Count - 1)
                     CurrentElement++;
                 else
@@ -220,8 +238,6 @@ namespace HotelSimulator
 
             Hotel.DrawMe.DrawHotel(Hotel, false);
         }
-
-
-
+        
     }
 }

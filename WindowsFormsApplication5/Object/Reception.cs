@@ -47,7 +47,7 @@ namespace HotelSimulator.Object
         /// check out the guest
         /// </summary>
         /// <param name="guest">Give the guest that is cheking out</param>
-        public void checkOut(Guest guest)
+        public void CheckOut(Guest guest)
         {
             guest.Room.setTaken(false); // Make the room empty
             guest.Room.Dirty = true; // Make the room dirty after checkout

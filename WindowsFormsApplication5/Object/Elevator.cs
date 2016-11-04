@@ -33,6 +33,7 @@ namespace HotelSimulator.Object
             CurrentState = ElevatorState.Idle;
             Height = 50;
             Width = 35;
+            Speed = 1;
             DrawMe = new Draw();
             ElevatorPosition = new Point((int)(DrawMe.XStartPosition + (DrawMe.StandardRoomWidth * 0.65)), (DrawMe.YStartPosition - DrawMe.StandardRoomHeight));
             PersonsInElevator = new List<Person>();
@@ -53,6 +54,37 @@ namespace HotelSimulator.Object
         private void CalculateSeekingTime()
         {
 
+        }
+
+        /// <summary>
+        /// Moves the elevator in steps.
+        /// </summary>
+        /// <param name="hotel">The hotel where the elevator is in.</param>
+        /// <param name="hotelElevator"></param>
+        /// <param name="floor"></param>
+        public void MoveElevator(Hotel hotel, int floor, int elevatorHTE)
+        {
+            if (Speed == elevatorHTE)
+            {
+                if (hotel.Elevator.ElevatorPosition.Y != hotel.DrawMe.YStartPosition - (floor * hotel.DrawMe.StandardRoomHeight))
+                {
+                    if (hotel.Elevator.ElevatorPosition.Y > hotel.DrawMe.YStartPosition - (floor * hotel.DrawMe.StandardRoomHeight))
+                    {
+                        hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
+                        hotel.Elevator.ElevatorPosition.Y -= 10;
+                    }
+
+                    if (hotel.Elevator.ElevatorPosition.Y < hotel.DrawMe.YStartPosition - (floor * hotel.DrawMe.StandardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
+                    {
+                        hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
+                        hotel.Elevator.ElevatorPosition.Y += 10;
+                    }
+                }
+
+                Speed = 1;
+            }
+            else
+                Speed++;
         }
 
 

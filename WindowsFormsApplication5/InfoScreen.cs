@@ -31,9 +31,9 @@ namespace WindowsFormsApplication5
             {
                 roomName = g.Destination.ToString().Split('.');
                 if(g.Destination is Room)
-                    guestInfo.Rows.Add(g.guestName, roomName[2] + String.Format(" {0} stars", g.Destination.Classification), g.Destination.Floor, g.Destination.Id);
+                    guestInfo.Rows.Add(g.GuestName, roomName[2] + String.Format(" {0} stars", g.Destination.Classification), g.Destination.Floor, g.Destination.Id);
                 else
-                    guestInfo.Rows.Add(g.guestName, roomName[2], g.Destination.Floor, g.Destination.Id);
+                    guestInfo.Rows.Add(g.GuestName, roomName[2], g.Destination.Floor, g.Destination.Id);
             }
 
             guestDV = guestInfo.DefaultView;

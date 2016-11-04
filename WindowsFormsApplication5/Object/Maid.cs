@@ -10,17 +10,21 @@ namespace HotelSimulator.Object
 {
     public class Maid : Person
     {
-        public bool IsBusy = false;
-        public bool Evacuation = false;
+        public bool Evacuation { get; set; }
+        public int CleaningDuration { get; set; }
+        public int CleaningHTE { get; set; }
         public Maid(HotelRoom current)
         {
-            this.Current = current;
+            Current = current;
             Image = Resources.Maid;
             Width = 20;
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
+            Evacuation = false;
+            CleaningDuration = 1;
         }
+        
         /// <summary>
         /// Calculate the shrotest path to the maids destination
         /// </summary>
@@ -48,24 +52,30 @@ namespace HotelSimulator.Object
                 }
                 Path.Add(cur);
             }
-            else {
-                foreach (HotelRoom hm in hotel.Map)// search for dirty room
+            else
+            {
+                if (CleaningDuration == CleaningHTE)
                 {
-                    if (hm is Room && (((Room)hm).Dirty == true))
+                    foreach (HotelRoom hm in hotel.Map)// search for dirty room
                     {
-                        pf.shortestPathDijkstra(Current, hm);//algorithm to define shortest path
-                        HotelRoom cur = hm;
-                        while (cur != Current)// store path in list so maid can walk through it
+                        if (hm is Room && (((Room)hm).Dirty == true))
                         {
+                            pf.shortestPathDijkstra(Current, hm);//algorithm to define shortest path
+                            HotelRoom cur = hm;
+                            while (cur != Current)// store path in list so maid can walk through it
+                            {
+                                Path.Add(cur);
+                                cur = cur.Previous;
+                            }
                             Path.Add(cur);
-                            cur = cur.Previous;
+                            ((Room)hm).BeingCleaned = true;
+                            ((Room)hm).Dirty = false;
+                            break;
                         }
-                        Path.Add(cur);
-                        ((Room)hm).BeingCleaned = true;
-                        ((Room)hm).Dirty = false;
-                        break;
                     }
                 }
+                else
+                    CleaningDuration++;
             }
 
                 foreach (HotelRoom hr in hotel.Map)
@@ -124,10 +134,8 @@ namespace HotelSimulator.Object
             if(Path.Count > 0 && Current == Path.ElementAt(0) && !(Evacuation && Current == hotel.Map[0,0]))
             {
                 if (Current is Room)
-                {
-                    IsBusy = false;
                     ((Room)Path.ElementAt(0)).BeingCleaned = false;
-                }
+
                 Path.Clear();
                 SetPath(hotel);
             }

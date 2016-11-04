@@ -42,7 +42,7 @@ namespace HotelSimulator
                     case HotelEventType.CHECK_IN:
                         Guest guest = new Guest();
                         _guestCount++;
-                        guest.guestName = String.Format("Guest {0}", _guestCount);
+                        guest.GuestName = String.Format("Guest {0}", _guestCount);
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
                         guest.Preference = evt.Data.Values.ElementAt(0).Substring(8, 1);
                         _hotel.Guests.Add(guest);
@@ -66,14 +66,14 @@ namespace HotelSimulator
                         {
                             if (g.Id == evt.Data.Values.ElementAt(0))
                             {                              
-                                if (!g.inQueue)
+                                if (!g.InQueue)
                                 {
                                     _guestCount--;
                                     foreach (HotelRoom room in _hotel.Map)
                                 {
                                     if (room is Reception)
                                     {
-                                            if (g.Current == g.Destination && !g.inQueue)
+                                            if (g.Current == g.Destination && !g.InQueue)
                                         {
                                             g.Path.Clear();
                                             g.setPath(_hotel, room);
@@ -98,7 +98,7 @@ namespace HotelSimulator
                                 }
                             }
                         }
-                        Console.WriteLine("there is a cleaning emergency");
+                        Console.WriteLine("There is a cleaning emergency");
                         break;
                     case HotelEventType.EVACUATE:
                         Console.WriteLine(evt.Message);
@@ -106,11 +106,11 @@ namespace HotelSimulator
                         {
                             if(hr is Restaurant)
                             {
-                                foreach(Guest wg in ((Restaurant)hr).waitingline)
+                                foreach(Guest wg in ((Restaurant)hr).Waitingline)
                                 {
-                                    wg.inQueue = false;
+                                    wg.InQueue = false;
                                 }
-                               ((Restaurant)hr).waitingline.Clear();
+                               ((Restaurant)hr).Waitingline.Clear();
                             }
                         }
                         foreach (Guest g in _hotel.Guests)
@@ -135,11 +135,11 @@ namespace HotelSimulator
                         {
                             if (g.Id == evt.Data.Values.ElementAt(0))
                             {
-                                if (!g.inQueue)
+                                if (!g.InQueue)
                                 {
                                     foreach (HotelRoom room in _hotel.Map)
                                 {
-                                    if (room is Cinema && !((Cinema)room).playing)
+                                    if (room is Cinema && !((Cinema)room).Playing)
                                     {
                                         if (g.Current == g.Destination)
                                         {
@@ -157,7 +157,7 @@ namespace HotelSimulator
                     case HotelEventType.GOTO_FITNESS:
                         foreach (Guest g in _hotel.Guests)
                         {
-                            if (!g.inQueue)
+                            if (!g.InQueue)
                             {
                             if (g.Id == evt.Data.Values.ElementAt(0))
                             {
@@ -183,7 +183,7 @@ namespace HotelSimulator
                         {
                             if (g.Id == evt.Data.Values.ElementAt(0))
                             {
-                                if (!g.inQueue)
+                                if (!g.InQueue)
                                 {
                                     foreach (HotelRoom room in _hotel.Map)
                                 {
@@ -210,7 +210,7 @@ namespace HotelSimulator
                             {
                                 if(room is Cinema && ((Cinema)room).Id == Int32.Parse(data.Value))
                                 {
-                                    ((Cinema)room).playing = true;
+                                    ((Cinema)room).Playing = true;
                                 }
                             }
                         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator.Object
 {
-    public class Person: SimObject
+    public class Person : SimObject
     {
         public enum Directions
         {
@@ -18,15 +18,15 @@ namespace HotelSimulator.Object
             NONE
         }
 
-        public Directions Direction { get; set; }
-        public HotelRoom Current; // current location of guest
-        public List<HotelRoom> Path; // for storing the path to the guests destination
-        public bool Dead = false;
-        public int WaitTime = 0;
-        public int MoveDistance;
-        public int RoomPositioning;
-        public int HeightPositioning;
-        public int HteDuration;
+        public HotelRoom Current { get; set; } // current location of guest
+        public List<HotelRoom> Path { get; set; }// for storing the path to the guests destination
+        public int HteDuration { get; set; }
+        protected bool Dead;
+        protected int WaitTime;
+        protected int MoveDistance;
+        protected int RoomPositioning;
+        protected int HeightPositioning;
+        protected Directions Direction;
 
         public Person()
         {
@@ -34,10 +34,12 @@ namespace HotelSimulator.Object
             RoomPositioning = 4;
             HeightPositioning = 10;
             HteDuration = 1;
+            WaitTime = 0;
+            Dead = false;
         }
-        
 
 
-        }
-   
+
+    }
+
 }

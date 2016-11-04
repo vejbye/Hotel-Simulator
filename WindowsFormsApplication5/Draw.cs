@@ -79,29 +79,6 @@ namespace HotelSimulator.Object
             return hotel.HotelBitmap;
         }
         
-        /// <summary>
-        /// Moves the elevator in steps.
-        /// </summary>
-        /// <param name="hotel">The hotel where the elevator is in.</param>
-        /// <param name="hotelElevator"></param>
-        /// <param name="floor"></param>
-        public void MoveElevator(Hotel hotel, int floor)
-        {
-            if (hotel.Elevator.ElevatorPosition.Y != YStartPosition - (floor * StandardRoomHeight))
-            {
-                if (hotel.Elevator.ElevatorPosition.Y > YStartPosition - (floor * StandardRoomHeight))
-                {
-                    hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
-                    hotel.Elevator.ElevatorPosition.Y -= 10;
-                }
-
-                if (hotel.Elevator.ElevatorPosition.Y < YStartPosition - (floor * StandardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
-                {
-                    hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
-                    hotel.Elevator.ElevatorPosition.Y += 10;
-                }
-            }
-        }
 
         private void DrawBoundingBoxes(HotelRoom[,] map, int x, int y)
         {

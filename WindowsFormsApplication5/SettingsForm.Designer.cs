@@ -36,7 +36,9 @@
             this.dyingCB = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.elevatorspeedLBL = new System.Windows.Forms.Label();
             this.okBTN = new System.Windows.Forms.Button();
+            this.elevatorCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // guestdurationLBL
@@ -111,6 +113,16 @@
             this.label2.Text = "Dying Timer";
             this.toolTip1.SetToolTip(this.label2, "Sets a timer for dying when guest or maid waits too long in queue");
             // 
+            // elevatorspeedLBL
+            // 
+            this.elevatorspeedLBL.AutoSize = true;
+            this.elevatorspeedLBL.Location = new System.Drawing.Point(12, 100);
+            this.elevatorspeedLBL.Name = "elevatorspeedLBL";
+            this.elevatorspeedLBL.Size = new System.Drawing.Size(80, 13);
+            this.elevatorspeedLBL.TabIndex = 7;
+            this.elevatorspeedLBL.Text = "Elevator Speed";
+            this.toolTip1.SetToolTip(this.elevatorspeedLBL, "Sets a timer for dying when guest or maid waits too long in queue");
+            // 
             // okBTN
             // 
             this.okBTN.Location = new System.Drawing.Point(112, 225);
@@ -121,11 +133,27 @@
             this.okBTN.UseVisualStyleBackColor = true;
             this.okBTN.Click += new System.EventHandler(this.okBTN_Click);
             // 
+            // elevatorCB
+            // 
+            this.elevatorCB.FormattingEnabled = true;
+            this.elevatorCB.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.elevatorCB.Location = new System.Drawing.Point(159, 97);
+            this.elevatorCB.Name = "elevatorCB";
+            this.elevatorCB.Size = new System.Drawing.Size(121, 21);
+            this.elevatorCB.TabIndex = 8;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(295, 260);
+            this.Controls.Add(this.elevatorCB);
+            this.Controls.Add(this.elevatorspeedLBL);
             this.Controls.Add(this.okBTN);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dyingCB);
@@ -144,11 +172,13 @@
 
         private System.Windows.Forms.Label guestdurationLBL;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cleaningCB;
         private System.Windows.Forms.ComboBox dyingCB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button okBTN;
         public System.Windows.Forms.ComboBox hteCB;
+        private System.Windows.Forms.Label elevatorspeedLBL;
+        public System.Windows.Forms.ComboBox elevatorCB;
+        public System.Windows.Forms.ComboBox cleaningCB;
     }
 }
