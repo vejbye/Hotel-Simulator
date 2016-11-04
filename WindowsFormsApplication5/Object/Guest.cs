@@ -174,7 +174,7 @@ namespace HotelSimulator.Object
 
                     }
 
-                    if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing))
+                    if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity));
                     {
                         Current.Guests.Add(this);
                     }
