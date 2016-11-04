@@ -1047,7 +1047,7 @@
         <ownedAttributesInternal>
           <property
             Id="70c4e814-9429-42b6-94ec-ed83601f7cdb"
-            name="hotelWidth"
+            name="_hotelRoomWidths"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -1066,7 +1066,7 @@
           </property>
           <property
             Id="02ef4ae2-7a00-431b-9a74-66e69f1b00da"
-            name="hotelHeight"
+            name="_hotelRoomHeights"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -1085,7 +1085,7 @@
           </property>
           <property
             Id="a9e48076-9214-4d20-8c3f-5fea6d3471db"
-            name="hotelHeight"
+            name="_hotelHeight"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -1104,7 +1104,7 @@
           </property>
           <property
             Id="5cc2ba46-7e51-4714-863f-0e6da3486cb1"
-            name="hotelWidth"
+            name="_hotelWidth"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -1123,7 +1123,7 @@
           </property>
           <property
             Id="493e9547-76c0-4559-9c08-fc4a04d4a5b5"
-            name="_hotel"
+            name="HotelBitmap"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1136,6 +1136,185 @@
               <undefinedTypeMoniker
                 Id="4455cb34-e3b6-4f84-96a5-e144d0081ec5"
                 LastKnownName="Bitmap"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="df407562-bad5-49b2-acd3-607ca0f936a8"
+            name="Map"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <lowerValueInternal>
+              <literalString
+                Id="432dda64-e2c7-462c-b928-b48d4af5d037"
+                name="Lower"
+                value="," />
+            </lowerValueInternal>
+            <upperValueInternal>
+              <literalString
+                Id="a1bcdecc-b668-4cce-b31a-8ce9b3e3b048"
+                name="Upper"
+                value="," />
+            </upperValueInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
+                LastKnownName="HotelRoom"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="31e50bd7-04a6-4b42-ab9b-42b8f5f649c3"
+            name="Elevator"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="a8740f82-de36-44dd-8820-5a54815249ba"
+                LastKnownName="Elevator"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="2e39d9e4-aebd-4017-9ac1-60b5c090caf4"
+            name="Guests"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="42eb2f18-318d-4874-bc8b-08f89ddea8ff"
+                LastKnownName="List&lt;Guest&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5203e23f-affc-4e2f-b9bc-9cb7d5f2039d"
+            name="Maids"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="e808fd6c-1e0a-407f-a0d5-032230401263"
+                LastKnownName="List&lt;Maid&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b4ea7101-1585-4ec5-ae83-8b0898b422d2"
+            name="BITMAPHEIGHT"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b015debb-5781-46b0-a5d8-75781ef738a7"
+            name="BITMAPWIDTH"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5436e47b-e2b9-4998-9771-3f1f3225f43b"
+            name="_layoutStartsAt0"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="0fc7210e-d6ce-4385-b450-c209bc07c1b5"
+                LastKnownName="bool"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="599fc837-241b-47f0-9e27-b6e5a7b57054"
+            name="_amountOfInfrastructure"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="be774785-76c7-4fb8-8d83-a1221d234dee"
+            name="_lastArrayDimension"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -1602,7 +1781,7 @@
         <ownedAttributesInternal>
           <property
             Id="f7bafe3e-4801-4b0f-adf9-f4e6095f78f8"
-            name="image"
+            name="Image"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1620,7 +1799,7 @@
           </property>
           <property
             Id="d1e59980-96d7-4094-8d0b-f6f9ce455746"
-            name="width"
+            name="Width"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1638,7 +1817,7 @@
           </property>
           <property
             Id="6ec8a55e-afcc-4be1-915f-4677b2853d76"
-            name="height"
+            name="Height"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -3369,6 +3548,16 @@
       <undefinedType
         Id="b4a0565e-f858-4416-93a4-4ed3f6c45bb9"
         name="Point" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="42eb2f18-318d-4874-bc8b-08f89ddea8ff"
+        name="List&lt;Guest&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="e808fd6c-1e0a-407f-a0d5-032230401263"
+        name="List&lt;Maid&gt;" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

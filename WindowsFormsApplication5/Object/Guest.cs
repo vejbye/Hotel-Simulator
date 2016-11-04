@@ -12,6 +12,7 @@ namespace HotelSimulator.Object
 {
     public class Guest : Person
     {
+        public string guestName { get; set; }
         public string Id;
         public Room Room;
         public HotelRoom Destination;
@@ -29,7 +30,7 @@ namespace HotelSimulator.Object
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
-            hteDuration = 1;
+            HteDuration = 1;
             _hteCount = 1;
 
         }
@@ -66,7 +67,7 @@ namespace HotelSimulator.Object
         /// <param name="hotel">Give the hotel the guest resides in.</param>
         public void Walk(Hotel hotel)
         {
-            if (_hteCount == hteDuration)
+            if (_hteCount == HteDuration)
             {
                 if (Current != Path.ElementAt(0))
                 {

@@ -25,13 +25,13 @@ namespace HotelSimulator.Object
         public Bitmap DrawHotel(Hotel hotel, bool newHotel)
         {
             //Drawing the hotel on a bitmap
-            Gfx = Graphics.FromImage(hotel._hotel);
+            Gfx = Graphics.FromImage(hotel.HotelBitmap);
 
             CurrentXPos = XStartPosition;
             CurrentYPos = YStartPosition;
 
             //Background image of the hotel
-            Gfx.DrawImage(Img, (XStartPosition - XStartPosition), (YStartPosition - YStartPosition), hotel._hotel.Width, hotel._hotel.Height);
+            Gfx.DrawImage(Img, (XStartPosition - XStartPosition), (YStartPosition - YStartPosition), hotel.HotelBitmap.Width, hotel.HotelBitmap.Height);
 
             //Fills space with a room if there is one
             for (int x = 0; x < hotel.Map.GetLength(0); x++)
@@ -76,7 +76,7 @@ namespace HotelSimulator.Object
             foreach (Maid maid in hotel.Maids)
                 Gfx.DrawImage(maid.Image, maid.Position.X, maid.Position.Y, maid.Width, maid.Height);
 
-            return hotel._hotel;
+            return hotel.HotelBitmap;
         }
         
         /// <summary>

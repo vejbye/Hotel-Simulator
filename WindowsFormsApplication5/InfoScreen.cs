@@ -13,18 +13,21 @@ namespace WindowsFormsApplication5
 {
     public partial class InfoScreen : Form
     {
-        List<string> guestsNames;
         public InfoScreen(List<Guest> guests)
         {
             InitializeComponent();
-            guestsNames = new List<string>();
-            foreach (Guest g in guests)
+            
+
+            DataTable guestInfo = new DataTable();
+            guestInfo.Columns.Add("Guest Name", typeof(string));
+            guestInfo.Columns.Add("Destination", typeof(HotelRoom));
+
+            foreach(Guest g in guests)
             {
-                string[] guestName = guests.ToString().Split('.');
-                guestsNames.Add(guestName[5]);
+                guestInfo.Rows.Add(g.guestName);
             }
 
-            guestsDG.DataSource = guestsNames;
+            guestsDG.DataSource = guestInfo;
         }
 
         private void InfoScreen_Load(object sender, EventArgs e)
@@ -32,6 +35,9 @@ namespace WindowsFormsApplication5
 
         }
 
-        
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

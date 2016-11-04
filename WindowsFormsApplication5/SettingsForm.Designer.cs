@@ -55,6 +55,8 @@
             this.hteCB.Items.AddRange(new object[] {
             "1",
             "2",
+            "3",
+            "4",
             "5"});
             this.hteCB.Location = new System.Drawing.Point(159, 14);
             this.hteCB.Name = "hteCB";
@@ -77,6 +79,8 @@
             this.cleaningCB.Items.AddRange(new object[] {
             "1",
             "2",
+            "3",
+            "4",
             "5"});
             this.cleaningCB.Location = new System.Drawing.Point(159, 41);
             this.cleaningCB.Name = "cleaningCB";
@@ -89,6 +93,8 @@
             this.dyingCB.Items.AddRange(new object[] {
             "1",
             "2",
+            "3",
+            "4",
             "5"});
             this.dyingCB.Location = new System.Drawing.Point(159, 68);
             this.dyingCB.Name = "dyingCB";

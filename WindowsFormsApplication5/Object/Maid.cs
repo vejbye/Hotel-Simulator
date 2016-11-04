@@ -141,10 +141,10 @@ namespace HotelSimulator.Object
 
         public void inLine()
         {
-            waitTime++;
-            if (waitTime > 6)
+            WaitTime++;
+            if (WaitTime > 6)
             {
-                dead = true;
+                Dead = true;
             }
         }
     }

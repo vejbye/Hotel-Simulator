@@ -9,13 +9,13 @@ namespace HotelSimulator.Object
 {
     public class Hotel
     {
-        public Bitmap _hotel;
+        public Bitmap HotelBitmap;
         public HotelRoom[,] Map;
         public Elevator Elevator;
         public Draw DrawMe;
 
-        private List<int> _hotelWidthList;
-        private List<int> _hotelHeightList;
+        private List<int> _hotelRoomWidths;
+        private List<int> _hotelRoomHeights;
         public List<Guest> Guests;
         public List<Maid> Maids;
 
@@ -24,8 +24,8 @@ namespace HotelSimulator.Object
 
         private int _amountOfInfrastructure = 3;
         private int _lastArrayDimension = 0;
-        public int HotelWidth;
-        public int HotelHeight;
+        private int _hotelWidth;
+        private int _hotelHeight;
 
         public bool Added = false;
         private bool _layoutStartsAt0 = false;  
@@ -42,9 +42,9 @@ namespace HotelSimulator.Object
         /// <param name="layout">List of every room in the hotel</param>
         public void Build(List<LayoutFormat> layout)
         {
-            _hotelHeightList = new List<int>();
-            _hotelWidthList = new List<int>();
-            _hotel = new Bitmap(BITMAPWIDTH, BITMAPHEIGHT);
+            _hotelRoomHeights = new List<int>();
+            _hotelRoomWidths = new List<int>();
+            HotelBitmap = new Bitmap(BITMAPWIDTH, BITMAPHEIGHT);
             DrawMe = new Draw();
             Elevator = new Elevator();
 
@@ -54,36 +54,36 @@ namespace HotelSimulator.Object
                 string[] positions = l.Position.Split(',');
                 string[] dimensions = l.Dimension.Split(',');
 
-                _hotelWidthList.Add(int.Parse(positions[0]));
-                _hotelHeightList.Add(int.Parse(positions[1]));
+                _hotelRoomWidths.Add(int.Parse(positions[0]));
+                _hotelRoomHeights.Add(int.Parse(positions[1]));
 
-                for (int i = 0; i < _hotelWidthList.Count; i++)
+                for (int i = 0; i < _hotelRoomWidths.Count; i++)
                 {
-                    if (_hotelWidthList[i] > HotelWidth)
+                    if (_hotelRoomWidths[i] > _hotelWidth)
                     {
-                        HotelWidth = _hotelWidthList[i];
+                        _hotelWidth = _hotelRoomWidths[i];
                         _lastArrayDimension = int.Parse(dimensions[0]);
                     }
                 }
 
-                for (int i = 0; i < _hotelHeightList.Count; i++)
+                for (int i = 0; i < _hotelRoomHeights.Count; i++)
                 {
-                    if (_hotelHeightList[i] > HotelHeight)
-                        HotelHeight = _hotelHeightList[i];
+                    if (_hotelRoomHeights[i] > _hotelHeight)
+                        _hotelHeight = _hotelRoomHeights[i];
                 }
 
-                if (_hotelWidthList.Contains(0))
+                if (_hotelRoomWidths.Contains(0))
                 {
                     _layoutStartsAt0 = true;
                 }
             }
 
             if (_lastArrayDimension == 1)
-                Map = new HotelRoom[HotelWidth + _amountOfInfrastructure, HotelHeight + 1];
+                Map = new HotelRoom[_hotelWidth + _amountOfInfrastructure, _hotelHeight + 1];
             else
                 //Creates double array based on the width and height
                 //Adds height: 1 for reception
-                Map = new HotelRoom[HotelWidth + _amountOfInfrastructure + _lastArrayDimension, HotelHeight + 1];
+                Map = new HotelRoom[_hotelWidth + _amountOfInfrastructure + _lastArrayDimension, _hotelHeight + 1];
 
             //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -97,7 +97,7 @@ namespace HotelSimulator.Object
             {
                 string[] dimensions = l.Dimension.Split(',');
                 string[] positions = l.Position.Split(',');
-                int stairXpos = HotelWidth + _lastArrayDimension;
+                int stairXpos = _hotelWidth + _lastArrayDimension;
                 int xPos = int.Parse(positions[0]);
 
                 int roomImg = 1;
@@ -204,13 +204,13 @@ namespace HotelSimulator.Object
 
                 if (!Added)
                 {
-                    for (int lobbyStart = 1; lobbyStart <= HotelWidth + _lastArrayDimension; lobbyStart++)
+                    for (int lobbyStart = 1; lobbyStart <= _hotelWidth + _lastArrayDimension; lobbyStart++)
                     {
                         Map[lobbyStart, 0] = new Reception();
-                        Map[lobbyStart, 0].Dimensions = String.Format("{0} x {1}", HotelWidth + _lastArrayDimension - 1, 1);
+                        Map[lobbyStart, 0].Dimensions = String.Format("{0} x {1}", _hotelWidth + _lastArrayDimension - 1, 1);
                     }
                     //Adds elevatorshafts to left side of hotel, and stairs to the right side of the hotel.
-                    for (int infrastructureStart = 0; infrastructureStart <= HotelHeight; infrastructureStart++)
+                    for (int infrastructureStart = 0; infrastructureStart <= _hotelHeight; infrastructureStart++)
                     {
                         Map[0, infrastructureStart] = new ElevatorShaft();
                         Map[0, infrastructureStart].Floor = infrastructureStart;
@@ -277,12 +277,12 @@ namespace HotelSimulator.Object
         //Resets every list and values
         public void Reset()
         {
-            _hotelWidthList.Clear();
-            _hotelHeightList.Clear();
+            _hotelRoomWidths.Clear();
+            _hotelRoomHeights.Clear();
             Guests.Clear();
             Maids.Clear();
-            HotelWidth = 0;
-            HotelHeight = 0;
+            _hotelWidth = 0;
+            _hotelHeight = 0;
             _lastArrayDimension = 0;
             Added = false;
             _layoutStartsAt0 = false;

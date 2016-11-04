@@ -47,7 +47,7 @@ namespace HotelSimulatorUnitTest
         public void CreateHotelBitmap()
         {
             hotel.Build(layoutFormatList);
-            Assert.IsNotNull(hotel._hotel);
+            Assert.IsNotNull(hotel.HotelBitmap);
         }
 
         [TestMethod]

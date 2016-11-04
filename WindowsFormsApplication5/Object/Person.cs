@@ -11,19 +11,19 @@ namespace HotelSimulator.Object
     {
         public HotelRoom Current; // current location of guest
         public List<HotelRoom> Path; // for storing the path to the guests destination
-        public bool dead = false;
-        public int waitTime = 0;
+        public bool Dead = false;
+        public int WaitTime = 0;
         public int MoveDistance;
         public int RoomPositioning;
         public int HeightPositioning;
-        public int hteDuration;
+        public int HteDuration;
 
         public Person()
         {
             MoveDistance = 10;
             RoomPositioning = 4;
             HeightPositioning = 10;
-            hteDuration = 1;
+            HteDuration = 1;
         }
         
 

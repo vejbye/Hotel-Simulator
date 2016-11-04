@@ -19,12 +19,12 @@ namespace HotelSimulator.Object
     }
     public abstract class SimObject
     {
-        public Rectangle BoundingBox { get; set; }
         public Draw DrawMe;
-        public Image Image;
-        public int Width;
-        public int Height;
         public Point Position;
-        public Direction Direction;
+        public Rectangle BoundingBox { get; set; }
+        public Image Image { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Direction Direction { get; set; }
     }
 }

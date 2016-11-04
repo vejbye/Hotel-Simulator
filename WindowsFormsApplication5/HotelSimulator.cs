@@ -161,11 +161,16 @@ namespace HotelSimulator
                 {
                     if (s.BoundingBox.Contains(boxPosition))
                     {
+                        HotelEventTimer.Stop();
+                        timer.Stop(); 
                         InfoScreen infoScreen = new InfoScreen(Hotel.Guests);
                         var result = infoScreen.ShowDialog();
                     }
                 }
             }
+
+            HotelEventTimer.Start();
+            timer.Start();
         }
         //when interval is reached, execute next hotelevent
         private void onTimedEvent(object source, EventArgs e)
@@ -193,11 +198,14 @@ namespace HotelSimulator
             if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {
                 Hotel.Elevator.PreviousFloor = Hotel.Elevator.RequestedFloor;
-                
-                if(CurrentElement < Hotel.Elevator.Requests.Count - 1)
+
+                if (CurrentElement < Hotel.Elevator.Requests.Count - 1)
                     CurrentElement++;
                 else
+                {
                     Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+                    CurrentElement = 0;
+                }
             }
 
             Refresh();

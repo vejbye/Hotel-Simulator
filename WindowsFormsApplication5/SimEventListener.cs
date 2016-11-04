@@ -13,10 +13,12 @@ namespace HotelSimulator
         private Hotel _hotel;
         private HotelSimulator _hs;
         public Queue<HotelEvent> events;
+        private int _guestCount = 0;
+
         public SimEventListener(Hotel hotel, HotelSimulator hs)
         {
             _hotel = hotel;
-            this._hs = hs;
+            _hs = hs;
             events = new Queue<HotelEvent>();
         }
         /// <summary>
@@ -39,12 +41,14 @@ namespace HotelSimulator
                 {
                     case HotelEventType.CHECK_IN:
                         Guest guest = new Guest(null);
+                        _guestCount++;
+                        guest.guestName = String.Format("Guest {0}", _guestCount);
                         guest.Id = evt.Data.Keys.ElementAt(0).Substring(4);
                         guest.Preference = evt.Data.Values.ElementAt(0).Substring(8, 1);
                         _hotel.Guests.Add(guest);
                         guest.Current = ((HotelRoom)_hotel.Map[0, 0]);
                         guest.Position = new System.Drawing.Point(_hotel.DrawMe.XStartPosition + guest.Width, _hotel.DrawMe.YStartPosition - guest.Height);
-                        guest.hteDuration = hteDuration;
+                        guest.HteDuration = hteDuration;
                         Reception r = null;
                         foreach (HotelRoom hr in _hotel.Map)
                         {
@@ -62,6 +66,7 @@ namespace HotelSimulator
                         {
                             if (g.Id == evt.Data.Values.ElementAt(0))
                             {
+                                _guestCount--;
                                 foreach (HotelRoom room in _hotel.Map)
                                 {
                                     if (room is Reception)
