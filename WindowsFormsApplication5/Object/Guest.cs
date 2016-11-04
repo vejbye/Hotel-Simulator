@@ -193,6 +193,11 @@ namespace HotelSimulator.Object
                         Current.Guests.Add(this);
                     }
 
+                    if(Destination is Restaurant && ((Restaurant)Destination).Guests.Count < ((Restaurant)Destination).Capacity)
+                    {
+                        Eating();
+                    }
+
                     if (Current == hotel.Map[0, 0] && !CheckedIn)// remove guest from hotel when checked out
                     {
                         Current.Guests.Remove(this);
