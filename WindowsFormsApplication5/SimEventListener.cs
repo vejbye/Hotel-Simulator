@@ -167,6 +167,7 @@ namespace HotelSimulator
                                     {
                                         if (g.Current == g.Destination)
                                         {
+                                            g.fitnessHTE = Int32.Parse(evt.Data.Values.ElementAt(1));
                                             g.Path.Clear();
                                             g.setPath(_hotel, room);
                                             break;

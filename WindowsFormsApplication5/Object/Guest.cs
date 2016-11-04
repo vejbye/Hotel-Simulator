@@ -20,6 +20,7 @@ namespace HotelSimulator.Object
         protected bool CheckedIn { get; set; }
         public bool InQueue { get; set; }
         private int _hteCount;
+        public int fitnessHTE;
 
         public Guest()
         {
@@ -32,6 +33,7 @@ namespace HotelSimulator.Object
             CheckedIn = false;
             HteDuration = 1;
             _hteCount = 1;
+            fitnessHTE = 0;
         }
         /// <summary>
         /// calculate the shrotest path to the guests destination
@@ -172,6 +174,12 @@ namespace HotelSimulator.Object
                             setPath(hotel, Room);
                         }
 
+                    }
+
+                    if(Destination is Gym && fitnessHTE > 0)
+                    {
+                        HteDuration = fitnessHTE;
+                        fitnessHTE = 0;
                     }
 
                     if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity));
