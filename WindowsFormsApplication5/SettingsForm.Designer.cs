@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.hteLBL = new System.Windows.Forms.Label();
+            this.guestdurationLBL = new System.Windows.Forms.Label();
             this.hteCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cleaningCB = new System.Windows.Forms.ComboBox();
@@ -39,15 +39,15 @@
             this.okBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // hteLBL
+            // guestdurationLBL
             // 
-            this.hteLBL.AutoSize = true;
-            this.hteLBL.Location = new System.Drawing.Point(12, 21);
-            this.hteLBL.Name = "hteLBL";
-            this.hteLBL.Size = new System.Drawing.Size(29, 13);
-            this.hteLBL.TabIndex = 0;
-            this.hteLBL.Text = "HTE";
-            this.toolTip1.SetToolTip(this.hteLBL, "The hotel\'s time unit");
+            this.guestdurationLBL.AutoSize = true;
+            this.guestdurationLBL.Location = new System.Drawing.Point(12, 17);
+            this.guestdurationLBL.Name = "guestdurationLBL";
+            this.guestdurationLBL.Size = new System.Drawing.Size(78, 13);
+            this.guestdurationLBL.TabIndex = 0;
+            this.guestdurationLBL.Text = "Guest Duration";
+            this.toolTip1.SetToolTip(this.guestdurationLBL, "The hotel\'s time unit");
             // 
             // hteCB
             // 
@@ -55,8 +55,10 @@
             this.hteCB.Items.AddRange(new object[] {
             "1",
             "2",
+            "3",
+            "4",
             "5"});
-            this.hteCB.Location = new System.Drawing.Point(159, 18);
+            this.hteCB.Location = new System.Drawing.Point(159, 14);
             this.hteCB.Name = "hteCB";
             this.hteCB.Size = new System.Drawing.Size(121, 21);
             this.hteCB.TabIndex = 1;
@@ -64,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Location = new System.Drawing.Point(12, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 2;
@@ -77,8 +79,10 @@
             this.cleaningCB.Items.AddRange(new object[] {
             "1",
             "2",
+            "3",
+            "4",
             "5"});
-            this.cleaningCB.Location = new System.Drawing.Point(159, 45);
+            this.cleaningCB.Location = new System.Drawing.Point(159, 41);
             this.cleaningCB.Name = "cleaningCB";
             this.cleaningCB.Size = new System.Drawing.Size(121, 21);
             this.cleaningCB.TabIndex = 3;
@@ -89,8 +93,10 @@
             this.dyingCB.Items.AddRange(new object[] {
             "1",
             "2",
+            "3",
+            "4",
             "5"});
-            this.dyingCB.Location = new System.Drawing.Point(159, 72);
+            this.dyingCB.Location = new System.Drawing.Point(159, 68);
             this.dyingCB.Name = "dyingCB";
             this.dyingCB.Size = new System.Drawing.Size(121, 21);
             this.dyingCB.TabIndex = 4;
@@ -98,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 75);
+            this.label2.Location = new System.Drawing.Point(12, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 5;
@@ -107,7 +113,7 @@
             // 
             // okBTN
             // 
-            this.okBTN.Location = new System.Drawing.Point(106, 109);
+            this.okBTN.Location = new System.Drawing.Point(112, 225);
             this.okBTN.Name = "okBTN";
             this.okBTN.Size = new System.Drawing.Size(75, 23);
             this.okBTN.TabIndex = 6;
@@ -119,14 +125,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 144);
+            this.ClientSize = new System.Drawing.Size(295, 260);
             this.Controls.Add(this.okBTN);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dyingCB);
             this.Controls.Add(this.cleaningCB);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.hteCB);
-            this.Controls.Add(this.hteLBL);
+            this.Controls.Add(this.guestdurationLBL);
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.ResumeLayout(false);
@@ -136,7 +142,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label hteLBL;
+        private System.Windows.Forms.Label guestdurationLBL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cleaningCB;
         private System.Windows.Forms.ComboBox dyingCB;

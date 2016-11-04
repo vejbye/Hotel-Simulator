@@ -18,18 +18,18 @@ namespace HotelSimulator.Object
     public class HotelRoom : SimObject
     {
         public Dictionary<Neighbours, HotelRoom> Neighbours = new Dictionary<Neighbours, HotelRoom>();
-        public HotelRoom CurrentRoom;
-        public HotelRoom Previous;
-        public List<Guest> Guests;
-        public List<Maid> Maids;
-        public Point RoomPosition;
+        public HotelRoom CurrentRoom { get; set; }
+        public HotelRoom Previous { get; set; }
+        public List<Guest> Guests { get; set; }
+        public List<Maid> Maids { get; set; }
+        public Point RoomPosition { get; set; }
 
         //General information of a hotelroom.
-        public int Distance;
-        public int Id;
-        public int Classification;
-        public int Floor;
-        public string Dimensions;
+        public int Distance { get; set; }
+        public int Id { get; set; }
+        public int Classification { get; set; }
+        public int Floor { get; set; }
+        public string Dimensions { get; set; }
 
         public HotelRoom()
         {

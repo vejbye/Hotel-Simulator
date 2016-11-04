@@ -10,12 +10,13 @@ namespace HotelSimulator
 {
     class PathFind
     {
-        List<HotelRoom> open;
+        private List<HotelRoom> _open;
 
         public PathFind()
         {
-            open = new List<HotelRoom>();
+            _open = new List<HotelRoom>();
         }
+        
         /// <summary>
         /// Calaculates the shortest path
         /// </summary>
@@ -26,9 +27,9 @@ namespace HotelSimulator
             HotelRoom current = start;
             while (Completed(current, end) == false)
             {
-                if (open.Count > 0)
+                if (_open.Count > 0)
                 {
-                    current = open.Aggregate((l, r) => l.Distance < r.Distance ? l : r);
+                    current = _open.Aggregate((l, r) => l.Distance < r.Distance ? l : r);
                 }
                 else
                 {
@@ -37,22 +38,23 @@ namespace HotelSimulator
                 }
             }
         }
-/// <summary>
-/// Checks if the end has been reached
-/// </summary>
-/// <param name="current">Give the current position in the path</param>
-/// <param name="end">Give the end of the Path</param>
-/// <returns>true if the end has been reached, false if not</returns>
+        
+        /// <summary>
+        /// Checks if the end has been reached
+        /// </summary>
+        /// <param name="current">Give the current position in the path</param>
+        /// <param name="end">Give the end of the Path</param>
+        /// <returns>true if the end has been reached, false if not</returns>
         public bool Completed(HotelRoom current, HotelRoom end)
         {
             if (current == end)
             {
                 return true;
             }
-            if (open.Contains(current))
+            if (_open.Contains(current))
             {
 
-                open.Remove(current);
+                _open.Remove(current);
             }
             foreach (KeyValuePair<Neighbours, HotelRoom> weight in current.Neighbours)
             {
@@ -64,7 +66,7 @@ namespace HotelSimulator
                    if (weight.Value.Previous == null)
                     {
                         weight.Value.Previous = current;
-                        open.Add(weight.Value);
+                        _open.Add(weight.Value);
                     }
 
                 }

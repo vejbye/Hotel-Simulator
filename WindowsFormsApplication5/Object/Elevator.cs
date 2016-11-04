@@ -11,11 +11,12 @@ namespace HotelSimulator.Object
     public class Elevator : HotelRoom
     {
         public int Speed { get; set; }
+        public List<Person> PersonsInElevator { get; set; }
         public Point ElevatorPosition;
         public int Destination;
         public int RequestedFloor;
-        public ElevatorState CurrentState;
         public int PreviousFloor = 0;
+        public ElevatorState CurrentState;
 
         public List<int> Requests;
 
@@ -33,7 +34,8 @@ namespace HotelSimulator.Object
             Height = 50;
             Width = 35;
             DrawMe = new Draw();
-            ElevatorPosition = new Point((int)(DrawMe.xStartPosition + (DrawMe.standardRoomWidth * 0.65)), (DrawMe.yStartPosition - DrawMe.standardRoomHeight));
+            ElevatorPosition = new Point((int)(DrawMe.XStartPosition + (DrawMe.StandardRoomWidth * 0.65)), (DrawMe.YStartPosition - DrawMe.StandardRoomHeight));
+            PersonsInElevator = new List<Person>();
 
 
             Requests = new List<int>();

@@ -11,27 +11,27 @@ namespace HotelSimulator.Object
 {
     public class Draw
     {
-        public Image img = Resources.SimulatorBG;
-        public Graphics gfx;
-        public int yStartPosition = 735;
-        public int xStartPosition = 500;
+        public Image Img = Resources.SimulatorBG;
+        public Graphics Gfx;
+        public int YStartPosition = 735;
+        public int XStartPosition = 500;
 
-        public int currentXPos;
-        public int currentYPos;
+        public int CurrentXPos;
+        public int CurrentYPos;
 
-        public int standardRoomWidth = 100;
-        public int standardRoomHeight = 50;
+        public int StandardRoomWidth = 100;
+        public int StandardRoomHeight = 50;
 
         public Bitmap DrawHotel(Hotel hotel, bool newHotel)
         {
             //Drawing the hotel on a bitmap
-            gfx = Graphics.FromImage(hotel._hotel);
+            Gfx = Graphics.FromImage(hotel.HotelBitmap);
 
-            currentXPos = xStartPosition;
-            currentYPos = yStartPosition;
+            CurrentXPos = XStartPosition;
+            CurrentYPos = YStartPosition;
 
             //Background image of the hotel
-            gfx.DrawImage(img, (xStartPosition - xStartPosition), (yStartPosition - yStartPosition), hotel._hotel.Width, hotel._hotel.Height);
+            Gfx.DrawImage(Img, (XStartPosition - XStartPosition), (YStartPosition - YStartPosition), hotel.HotelBitmap.Width, hotel.HotelBitmap.Height);
 
             //Fills space with a room if there is one
             for (int x = 0; x < hotel.Map.GetLength(0); x++)
@@ -43,43 +43,40 @@ namespace HotelSimulator.Object
                         if (hotel.Map[x, y].Image != null)
                         {
                             if (hotel.Map[x, y] is Elevator)
-                                gfx.DrawImage(hotel.Map[x, y].Image, hotel.Elevator.ElevatorPosition.X, hotel.Elevator.ElevatorPosition.Y, hotel.Elevator.Width, hotel.Elevator.Height);
+                                Gfx.DrawImage(hotel.Map[x, y].Image, hotel.Elevator.ElevatorPosition.X, hotel.Elevator.ElevatorPosition.Y, hotel.Elevator.Width, hotel.Elevator.Height);
                             else
                             {
-                                gfx.DrawImage(hotel.Map[x, y].Image, currentXPos, currentYPos - hotel.Map[x, y].Height, hotel.Map[x, y].Width, hotel.Map[x, y].Height);
+                                Gfx.DrawImage(hotel.Map[x, y].Image, CurrentXPos, CurrentYPos - hotel.Map[x, y].Height, hotel.Map[x, y].Width, hotel.Map[x, y].Height);
 
-                                if (newHotel)
-                                    DrawBoundingBoxes(hotel.Map, x, y);
+                                if (hotel.Map[x, y] is Reception)
+                                {
+                                    if (newHotel)
+                                        DrawBoundingBoxes(hotel.Map, x, y);
+                                }
                             }
                         }
                         if (hotel.Map[x, y].RoomPosition == new Point(0, 0))
-                        {
-                            hotel.Map[x, y].RoomPosition = new Point(currentXPos, currentYPos - hotel.Map[x, y].Height);
-                        }
+                            hotel.Map[x, y].RoomPosition = new Point(CurrentXPos, CurrentYPos - hotel.Map[x, y].Height);
                     }
 
                     //Builds down
-                    currentYPos -= standardRoomHeight;
+                    CurrentYPos -= StandardRoomHeight;
                 }
 
                 //Builds to right and sets start position on the ground again.
-                currentXPos += standardRoomWidth;
-                currentYPos = yStartPosition;
+                CurrentXPos += StandardRoomWidth;
+                CurrentYPos = YStartPosition;
             }
 
-            currentXPos = 500;
+            CurrentXPos = 500;
 
             foreach (Guest guest in hotel.Guests)
-            {
-                gfx.DrawImage(guest.Image, guest.Position.X, guest.Position.Y, guest.Width, guest.Height);
-            }
+                Gfx.DrawImage(guest.Image, guest.Position.X, guest.Position.Y, guest.Width, guest.Height);
 
             foreach (Maid maid in hotel.Maids)
-            {
-                gfx.DrawImage(maid.Image, maid.Position.X, maid.Position.Y, maid.Width, maid.Height);
-            }
+                Gfx.DrawImage(maid.Image, maid.Position.X, maid.Position.Y, maid.Width, maid.Height);
 
-            return hotel._hotel;
+            return hotel.HotelBitmap;
         }
         
         /// <summary>
@@ -88,29 +85,27 @@ namespace HotelSimulator.Object
         /// <param name="hotel">The hotel where the elevator is in.</param>
         /// <param name="hotelElevator"></param>
         /// <param name="floor"></param>
-        public void MoveElevator(Hotel hotel, int floor, int hte)
+        public void MoveElevator(Hotel hotel, int floor)
         {
-            if (hotel.Elevator.ElevatorPosition.Y != yStartPosition - (floor * standardRoomHeight))
+            if (hotel.Elevator.ElevatorPosition.Y != YStartPosition - (floor * StandardRoomHeight))
             {
-                if (hotel.Elevator.ElevatorPosition.Y > yStartPosition - (floor * standardRoomHeight))
+                if (hotel.Elevator.ElevatorPosition.Y > YStartPosition - (floor * StandardRoomHeight))
                 {
                     hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
-                    hotel.Elevator.ElevatorPosition.Y -= 10 * hte;
+                    hotel.Elevator.ElevatorPosition.Y -= 10;
                 }
 
-                if (hotel.Elevator.ElevatorPosition.Y < yStartPosition - (floor * standardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
+                if (hotel.Elevator.ElevatorPosition.Y < YStartPosition - (floor * StandardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
                 {
                     hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
-                    hotel.Elevator.ElevatorPosition.Y += 10 * hte;
+                    hotel.Elevator.ElevatorPosition.Y += 10;
                 }
-
             }
-
         }
 
         private void DrawBoundingBoxes(HotelRoom[,] map, int x, int y)
         {
-            map[x, y].BoundingBox = new Rectangle(currentXPos, currentYPos - map[x, y].Height, map[x, y].Width, map[x, y].Height);
+            map[x, y].BoundingBox = new Rectangle(CurrentXPos, CurrentYPos - map[x, y].Height, map[x, y].Width, map[x, y].Height);
         }
     }
 }

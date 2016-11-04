@@ -12,19 +12,17 @@ using WindowsFormsApplication5;
 using System.Threading;
 using System.Timers;
 using HotelEvents;
-using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator
 {
     public partial class HotelSimulator : Form
     {
-        public Hotel Hotel;
-        public List<Guest> newcomers;
+        public Hotel Hotel { get; set; }
         public System.Windows.Forms.Timer HotelEventTimer;
         private Draw DrawMe;
+        public SimEventListener EventListener;
 
         //Parameters for panning
-        public SimEventListener sl;
         private Point _startingPoint = Point.Empty;
         private Point _movingPoint = Point.Empty;
         private Point _original = new Point(0, 0);
@@ -38,9 +36,9 @@ namespace HotelSimulator
         private bool _initialized = false;
 
         //Current element in list request list.
-        private int currentElement = 0;
+        public int CurrentElement = 0;
 
-        public int HTE = 1;
+        public int GuestHteDuration = 1;
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -49,14 +47,9 @@ namespace HotelSimulator
             InitializeComponent();
             Hotel = new Hotel();
             DrawMe = new Draw();
-            newcomers = new List<Guest>();
 
-            timer.Interval = 1; // 10 sec
+            timer.Interval = 1; // 000.1 sec
             timer.Tick += new EventHandler(timer_Tick);
-            //timer.Start();
-
-            for (int i = 0; i < 10; i++)
-                newcomers.Add(new Guest(null));
         }
 
         //If left mousebutton is clicked, go in panning mode.
@@ -127,17 +120,17 @@ namespace HotelSimulator
                 LayoutReader reader = new LayoutReader();
                 Hotel.Build(reader.ReadLayout(json));
                 Hotel.Reset();
-                currentElement = 0;
+                CurrentElement = 0;
                 Hotel.AddMaids();
                 screenPB.Image = DrawMe.DrawHotel(Hotel, true);
 
-                sl = new SimEventListener(Hotel, this);
-                HotelEventManager.Register(sl);
+                EventListener = new SimEventListener(Hotel, this);
+                HotelEventManager.Register(EventListener);
                 HotelEventManager.Start();
                 timer.Start();
                 HotelEventTimer = new System.Windows.Forms.Timer();
                 HotelEventTimer.Interval = 1000;
-                HotelEventTimer.Tick += new EventHandler(OnTimedEvent);
+                HotelEventTimer.Tick += new EventHandler(onTimedEvent);
                 HotelEventTimer.Start();
             }
             else
@@ -151,7 +144,7 @@ namespace HotelSimulator
 
             if (settings.ShowDialog() == DialogResult.OK)
             {
-                HTE = settings.HTE;
+                GuestHteDuration = int.Parse(settings.hteCB.Text);
             }
             else
                 MessageBox.Show("Nothing changed.");
@@ -168,16 +161,21 @@ namespace HotelSimulator
                 {
                     if (s.BoundingBox.Contains(boxPosition))
                     {
-                        InfoScreen infoScreen = new InfoScreen(s);
+                        HotelEventTimer.Stop();
+                        timer.Stop(); 
+                        InfoScreen infoScreen = new InfoScreen(Hotel.Guests, Hotel.GetMap(), Hotel.Elevator);
                         var result = infoScreen.ShowDialog();
                     }
                 }
             }
+
+            HotelEventTimer.Start();
+            timer.Start();
         }
         //when interval is reached, execute next hotelevent
-        private void OnTimedEvent(object source, EventArgs e)
+        private void onTimedEvent(object source, EventArgs e)
         {
-            sl.DoEvent();
+            EventListener.DoEvent(GuestHteDuration);
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -185,11 +183,11 @@ namespace HotelSimulator
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
             {
-                    Hotel.Guests[i].Walk(Hotel, HTE);
+                Hotel.Guests[i].Walk(Hotel);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
-                Hotel.Maids[i].Walk(Hotel, HTE);
+                Hotel.Maids[i].Walk(Hotel);
             }
 
             foreach (HotelRoom hr in Hotel.Map)
@@ -200,19 +198,22 @@ namespace HotelSimulator
                 }
             }
 
-            Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(currentElement);
-            Hotel.Elevator.Destination = DrawMe.yStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.standardRoomHeight);
+            Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
+            Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
 
-            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, HTE);
+            DrawMe.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor);
             
             if(Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {
                 Hotel.Elevator.PreviousFloor = Hotel.Elevator.RequestedFloor;
                 
-                if(currentElement < Hotel.Elevator.Requests.Count - 1)
-                    currentElement++;
+                if (CurrentElement < Hotel.Elevator.Requests.Count - 1)
+                    CurrentElement++;
                 else
+                {
                     Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+                    CurrentElement = 0;
+                }
             }
 
             Refresh();

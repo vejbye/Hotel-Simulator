@@ -12,6 +12,7 @@ namespace HotelSimulator.Object
 {
     public class Guest : Person
     {
+        public string guestName { get; set; }
         public string Id;
         public Room Room;
         public HotelRoom Destination;
@@ -21,15 +22,18 @@ namespace HotelSimulator.Object
         public bool Evacuation = true;
         public bool _newMoveDistanceCalculated = false;
         public bool inQueue;
-        public Guest(HotelRoom current)
+        private int _hteCount;
+
+        public Guest()
         {
-            this.Current = current;
             Image = Resources.Guest;
             Width = 30;
             Height = 40;
             Path = new List<HotelRoom>();
             DrawMe = new Draw();
             inQueue = false;
+            HteDuration = 1;
+            _hteCount = 1;
 
         }
         /// <summary>
@@ -63,15 +67,17 @@ namespace HotelSimulator.Object
         /// Moves the guest to it's destination.
         /// </summary>
         /// <param name="hotel">Give the hotel the guest resides in.</param>
-        public void Walk(Hotel hotel, int hte)
+        public void Walk(Hotel hotel)
         {
+            if (_hteCount == HteDuration)
+            {
             if (Current != Path.ElementAt(0))
             {
                 //give direction and update current room
                 if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                 {
-                    Direction = Direction.RIGHT;
-                    if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
+                        Direction = Directions.RIGHT;
+                        if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.StandardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
@@ -79,44 +85,38 @@ namespace HotelSimulator.Object
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.West) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.West])
                 {
-                    Direction = Direction.LEFT;
-                    if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.standardRoomWidth / RoomPositioning))
+                        Direction = Directions.LEFT;
+                        if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.StandardRoomWidth / RoomPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.South) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.South])
                 {
-                    Direction = Direction.DOWN;
-                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.standardRoomHeight / 2))
+                        Direction = Directions.DOWN;
+                        if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
                 else if (Current.Neighbours.ContainsKey(Neighbours.North) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.North])
                 {
-                    Direction = Direction.UP;
-                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.standardRoomHeight / HeightPositioning))
+                        Direction = Directions.UP;
+                        if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
                     {
                         Current = Path[Path.IndexOf(Current) - 1];
                     }
                 }
 
 
-                if (!_newMoveDistanceCalculated) //TO DO
-                {
-                    MoveDistance = MoveDistance * hte;
-                    _newMoveDistanceCalculated = true;
-                }
-
                 //move guest accordingly
-                if (Direction == Direction.RIGHT)
+                    if (Direction == Directions.RIGHT)
                     Position.X += MoveDistance;
-                if (Direction == Direction.UP)
+                    if (Direction == Directions.UP)
                     Position.Y += MoveDistance;
-                if (Direction == Direction.DOWN)
+                    if (Direction == Directions.DOWN)
                     Position.Y -= MoveDistance;
-                if (Direction == Direction.LEFT)
+                    if (Direction == Directions.LEFT)
                     Position.X -= MoveDistance;
             }
 
@@ -132,7 +132,8 @@ namespace HotelSimulator.Object
                         setPath(hotel, hotel.Map[0, 0]);
                         hotel.Guests.Remove(this);
                     }
-                    else {
+                        else
+                        {
                         Path.Clear();
                         setPath(hotel, Room);
                         CheckedIn = true;
@@ -169,8 +170,8 @@ namespace HotelSimulator.Object
                     }
                     else
                     {
-                        Path.Clear();
-                        setPath(hotel, Room);
+                    Path.Clear();
+                    setPath(hotel, Room);
                     }
 
                 }
@@ -191,15 +192,20 @@ namespace HotelSimulator.Object
                     Path.Clear();
                     setPath(hotel, hotel.Map[0, 0]);
                 }
+                }
+
+                _hteCount = 1;
             }
+            else
+                _hteCount++;
         }
 
-        public void inLine()
+        public void InLine()
         {
-            waitTime++;
-            if (waitTime > 6)
+            WaitTime++;
+            if (WaitTime > 6)
             {
-                dead = true;
+                Dead = true;
                 Current.Guests.Remove(this);
             }
         }
