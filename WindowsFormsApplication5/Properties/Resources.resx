@@ -121,6 +121,15 @@
   <data name="Cinema" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cinema.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DirtyRoom2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirtyRoom2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirtyRoom3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirtyRoom3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirtyRoom5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirtyRoom5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Elevator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Elevator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

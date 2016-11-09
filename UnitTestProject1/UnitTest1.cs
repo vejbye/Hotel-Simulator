@@ -44,7 +44,7 @@ namespace HotelSimulatorUnitTest
             Reception r = new Reception();
             Guest guest = new Guest();
             guest.Preference = "1";           
-            guest.Room = r.findEmptyRoom(hotel, guest);
+            guest.Room = r.FindEmptyRoom(hotel, guest);
             Assert.IsNotNull(guest.Room);
         }
 

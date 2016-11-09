@@ -42,6 +42,13 @@ namespace HotelSimulator.Object
                     {
                         if (hotel.Map[x, y].Image != null)
                         {
+                            if (hotel.Map[x, y] is Room)
+                            {
+                                Room currentRoom = (Room)hotel.Map[x, y];
+                                if (currentRoom.Dirty)
+                                    Gfx.DrawImage(((Room)hotel.Map[x, y]).DirtyRoom, CurrentXPos, CurrentYPos - hotel.Map[x, y].Height, hotel.Map[x, y].Width, hotel.Map[x, y].Height);
+                            }
+
                             if (hotel.Map[x, y] is Elevator)
                                 Gfx.DrawImage(hotel.Map[x, y].Image, hotel.Elevator.ElevatorPosition.X, hotel.Elevator.ElevatorPosition.Y, hotel.Elevator.Width, hotel.Elevator.Height);
                             else
@@ -55,6 +62,7 @@ namespace HotelSimulator.Object
                                 }
                             }
                         }
+
                         if (hotel.Map[x, y].RoomPosition == new Point(0, 0))
                             hotel.Map[x, y].RoomPosition = new Point(CurrentXPos, CurrentYPos - hotel.Map[x, y].Height);
                     }
@@ -78,7 +86,7 @@ namespace HotelSimulator.Object
 
             return hotel.HotelBitmap;
         }
-        
+
 
         private void DrawBoundingBoxes(HotelRoom[,] map, int x, int y)
         {

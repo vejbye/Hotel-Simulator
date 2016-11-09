@@ -22,7 +22,7 @@ namespace HotelSimulator
         /// </summary>
         /// <param name="start">Give the start of the path</param>
         /// <param name="end">Give the end of the path</param>
-        public void shortestPathDijkstra(HotelRoom start, HotelRoom end)
+        public void ShortestPathDijkstra(HotelRoom start, HotelRoom end)
         {
             HotelRoom current = start;
             while (Completed(current, end) == false)

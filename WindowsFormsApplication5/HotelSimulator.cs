@@ -165,6 +165,8 @@ namespace HotelSimulator
                     MovieDuration = int.Parse(settings.moviedurationCB.Text);
                 if (!settings.eatingdurationCB.Text.Equals(""))
                     EatingDuration = int.Parse(settings.eatingdurationCB.Text);
+                if (!settings.checkinoutCB.Text.Equals(""))
+                    EatingDuration = int.Parse(settings.checkinoutCB.Text);
             }
             else
                 MessageBox.Show("Nothing changed.");

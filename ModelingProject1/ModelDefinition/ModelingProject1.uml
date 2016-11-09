@@ -382,6 +382,25 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="77e884cb-d01e-4b7d-8d04-17ef4fab596b"
+            name="_movieAt"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -2089,6 +2108,13 @@
               LastKnownName="infrastructuur"
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
+          <dependency
+            Id="da624faa-e2c7-4e8d-bd54-0a04ac6fe001">
+            <enumerationMoniker
+              Id="d5b3d9ec-3af3-43ab-bb34-7c367f16a89b"
+              LastKnownName="ElevatorState"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -2295,6 +2321,24 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="529d874a-3873-49d1-a8e6-c848548eecff"
+            name="Requests"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="7b0f3d9e-e4fb-4458-aa74-26482a0ca369"
+                LastKnownName="List&lt;int&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -2305,6 +2349,51 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="96d2e030-4a70-4c36-89e6-ea478241c710"
+            name="MoveElevator"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6db76070-0f82-4ffa-b19f-580e64b79afb"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="994ecb5a-4f22-499c-964a-088af74761a0"
+                      LastKnownName="Void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e9d7fb1d-1c97-430d-8103-d75aa5f6641b"
+                  name="Hotel hotel"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="53f3fa15-e8a7-481c-8561-ad4ce02dde64"
+                  name="int floor"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="706c1b55-bb14-4b17-b57d-679774c2fe41"
+                  name="int elevatorHTE"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -2977,6 +3066,24 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="984c3a32-c77d-42ed-b145-731e4bd500ec"
+            name="DirtyRoom"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="2ae92350-4cf0-44f5-920e-af22c198e5e2"
+                LastKnownName="Image"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -3562,8 +3669,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="b5af6460-e6ba-426c-b5ed-113a10b1e9b8"
-            name="_delay"
+            Id="4465437d-82ca-4a47-a205-0a58e97c260a"
+            name="_hteCount"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -3581,9 +3688,45 @@
             </type_NamedElement>
           </property>
           <property
-            Id="4465437d-82ca-4a47-a205-0a58e97c260a"
-            name="hteCount"
+            Id="99204c7e-e2fc-44a9-8d40-b5064cb30daa"
+            name="_queueCount"
             visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e99e8591-0042-4667-97cb-353ae5fa8042"
+            name="EatingHTE"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="025d2c6a-1623-4b71-8d30-07a02d31f165"
+            name="FitnessHTE"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -3641,6 +3784,54 @@
                   name="Hotelroom destination"
                   direction="In"
                   isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="836b1211-d703-495b-a30a-38667c07b060"
+            name="InLine"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4b5b11ee-a019-46ce-b754-2bf77ec66402"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="cf75fec7-6035-424c-b417-6716474aa4fe"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="baed8942-f31c-47f3-88f7-cdbe8ae536dc"
+            name="Eating"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="24a23974-6fd0-4bf4-8ed5-abe9039ed8be"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="cf75fec7-6035-424c-b417-6716474aa4fe"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -3707,6 +3898,24 @@
               <undefinedTypeMoniker
                 Id="0fc7210e-d6ce-4385-b450-c209bc07c1b5"
                 LastKnownName="bool"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e6ab42c3-dc7b-40b2-b5ba-008c4dd66565"
+            name="CleaningHTE"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
+                LastKnownName="int"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -4060,27 +4269,13 @@
         <ownedOperationsInternal>
           <operation
             Id="b5368577-2fe1-4347-9905-126dd4c03b89"
-            name="shortestPathDijkstra"
+            name="ShortestPathDijkstra"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
             <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="085d7837-3ab5-45de-b999-95251b5d65b1"
-                  name="HotelRoom start"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="b0ca53a1-cd53-419f-afbf-d730dbc38df9"
-                  name="Hotelroom end"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
                   Id="ac70a8f9-52eb-43eb-b365-4941941f684b"
@@ -4093,6 +4288,20 @@
                       LastKnownLocation="ModelingProject1.uml" />
                   </type_NamedElement>
                 </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="218e6402-b07c-4707-bf99-1592249fd79f"
+                  name="HotelRoom start"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2bc4181a-7431-4b9d-9053-3ff75eea0090"
+                  name="Hotelroom end"
+                  direction="In"
+                  isUnique="false" />
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -4403,51 +4612,6 @@
                 <parameter
                   Id="130b179c-8179-4f4d-b18c-4c715059676f"
                   name="int floor"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
-            Id="19556d9a-4a8e-4c20-85d4-b73996df185f"
-            name="MoveElevator"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="769e8f27-6d31-4c45-95eb-3ac5fb340803"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="4455cb34-e3b6-4f84-96a5-e144d0081ec5"
-                      LastKnownName="Bitmap"
-                      LastKnownLocation="ModelingProject1.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="95137eea-27f4-4423-84fc-c0c4db1cb94d"
-                  name="Hotel hotel"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="25a33b01-d91c-4400-861e-0e3616284a1e"
-                  name="Elevator hotelElevator"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="2fcc78a2-8212-48ee-bc3d-6bcb8f80821d"
-                  name="int move"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
@@ -5013,6 +5177,30 @@
       <undefinedType
         Id="1cbc7623-6c46-4634-9d2d-309c8ebdfd10"
         name="Queue&lt;Guest&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="d5b3d9ec-3af3-43ab-bb34-7c367f16a89b"
+        name="ElevatorState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="cddff4b7-ddad-4c13-9baa-d02a2a80619e"
+            name="MovingUp" />
+          <enumerationLiteral
+            Id="1f79eb03-06f9-4571-8ce9-9e3701bcb4f1"
+            name="MovingDown" />
+          <enumerationLiteral
+            Id="8b02a233-db69-46ba-851d-aeb51ce06038"
+            name="Idle" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="994ecb5a-4f22-499c-964a-088af74761a0"
+        name="Void" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

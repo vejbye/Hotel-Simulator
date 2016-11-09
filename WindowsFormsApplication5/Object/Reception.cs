@@ -8,19 +8,20 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    public class Reception: HotelRoom
+    public class Reception : HotelRoom
     {
         public Reception() : base()
         {
             Image = Resources.Reception;
         }
+
         /// <summary>
         /// find a empty room for the guest that is checking in
         /// </summary>
         /// <param name="hotel">Give the hotel that belongs to this Reception</param>
         /// <param name="guest">Give the guest that want to check in</param>
         /// <returns></returns>
-        public Room findEmptyRoom(Hotel hotel, Guest guest) //search for empty room if a guest wants to check in
+        public Room FindEmptyRoom(Hotel hotel, Guest guest) //search for empty room if a guest wants to check in
         {
             int stars = int.Parse(guest.Preference);
             while (stars < 6)
@@ -29,7 +30,7 @@ namespace HotelSimulator.Object
                 {
                     for (int j = 0; j < hotel.GetMap().GetLength(0); j++)
                     {
-                        if (hotel.GetMap()[j,i] is Room && ((Room)hotel.GetMap()[j, i]).Classification.ToString() == stars.ToString())
+                        if (hotel.GetMap()[j, i] is Room && ((Room)hotel.GetMap()[j, i]).Classification.ToString() == stars.ToString())
                         {
                             if (!((Room)hotel.GetMap()[j, i]).getTaken() && !((Room)hotel.GetMap()[j, i]).Dirty && !((Room)hotel.GetMap()[j, i]).BeingCleaned)
                             {
@@ -39,10 +40,12 @@ namespace HotelSimulator.Object
                         }
                     }
                 }
+
                 stars++;
-           }
+            }
             return null;
         }
+
         /// <summary>
         /// check out the guest
         /// </summary>

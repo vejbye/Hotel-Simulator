@@ -129,17 +129,20 @@ namespace HotelSimulator.Object
                             {
                                 case 1:
                                     {
-                                        current.Image = Resources.Room;
+                                        current.Image = Resources.Room2;
+                                        current.DirtyRoom = Resources.DirtyRoom2;
                                         break;
                                     }
                                 case 2:
                                     {
                                         current.Image = Resources.Room3;
+                                        current.DirtyRoom = Resources.DirtyRoom3;
                                         break;
                                     }
                                 case 4:
                                     {
                                         current.Image = Resources.Room5;
+                                        current.DirtyRoom = Resources.DirtyRoom5;
                                         break;
                                     }
                                 default:
