@@ -31,7 +31,7 @@ namespace HotelSimulator
         //Max pan box settings
         private int _maxPanX = -800;
         private int _minPanX = 0;
-        private int _maxPanY = 0;
+        private int _maxPanY = 200;
         private int _minPanY = -250;
         private bool _initialized = false;
 

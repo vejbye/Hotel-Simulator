@@ -130,6 +130,10 @@ namespace HotelSimulator
                         Console.WriteLine("fly, you fools!");
                         break;
                     case HotelEventType.GODZILLA:
+                        foreach(Guest g in _hotel.Guests){
+                            g.Dead = true;
+                        }
+                        _hotel.Guests.Clear();
                         Console.WriteLine("it will kill us all!");
                         break;
                     case HotelEventType.GOTO_CINEMA:
