@@ -141,8 +141,8 @@ namespace HotelSimulatorUnitTest
             //Creates a space for objects to be placed in
             for (int x = 0; x < map.GetLength(0); x++)
             {
-                for (int y = 0; y < map.GetLength(1); y++)
-                    map[x, y] = new HotelRoom();
+                for (int y = 0; y < map.GetLength(1); y++) ;
+                   // map[x, y] = new HotelRoom();
             }
 
             Assert.IsNotNull(map);
@@ -236,14 +236,14 @@ namespace HotelSimulatorUnitTest
             {
                 for (int y = 0; y < map.GetLength(1); y++)
                     if (x == 0)
-                        map[x, y] = new ElevatorShaft();                   
-                     else if(x == 4 && y == 4){
+                        map[x, y] = new ElevatorShaft();
+                    else if (x == 4 && y == 4) {
                         map[x, y] = new Room();
                         ((Room)map[x, y]).Classification = 2;
                     }
 
-                    else
-                         map[x, y] = new HotelRoom();
+                    else;
+                         //map[x, y] = new HotelRoom();
 
             }
 

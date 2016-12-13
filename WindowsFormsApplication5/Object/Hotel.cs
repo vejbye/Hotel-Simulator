@@ -85,12 +85,12 @@ namespace HotelSimulator.Object
                 //Adds height: 1 for reception
                 Map = new HotelRoom[_hotelWidth + _amountOfInfrastructure + _lastArrayDimension, _hotelHeight + 1];
 
-            //Creates a space for objects to be placed in
+            /* //Creates a space for objects to be placed in
             for (int x = 0; x < Map.GetLength(0); x++)
             {
                 for (int y = 0; y < Map.GetLength(1); y++)
-                    Map[x, y] = new HotelRoom();
-            }
+                    Map = new HotelRoom[x, y];
+            }*/
 
             //Looks for every room in the layout file and gives it a position in the hotel
             foreach (LayoutFormat l in layout)
