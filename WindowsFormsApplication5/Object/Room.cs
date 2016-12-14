@@ -30,5 +30,18 @@ namespace HotelSimulator.Object
         {
             _taken = taken;
         }
+
+        public void SetRoomImage(string[] RoomDimension)
+        {
+            if (int.Parse(RoomDimension[0]) == 2)
+            {
+                if (int.Parse(RoomDimension[1]) == 2)
+                    Image = Resources.Room5;
+                else
+                    Image = Resources.Room3;
+            }
+            else
+                Image = Resources.Room;
+        }
     }
 }

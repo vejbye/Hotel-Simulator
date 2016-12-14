@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Draw.cs" />
+    <Compile Include="HotelRoomFactory.cs" />
     <Compile Include="InfoScreen.cs">
       <SubType>Form</SubType>
     </Compile>

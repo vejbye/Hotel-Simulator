@@ -13,6 +13,7 @@ namespace HotelSimulator.Object
         public HotelRoom[,] Map;
         public Elevator Elevator;
         public Draw DrawMe;
+        private HotelRoomFactory _hrFactory;
 
         private List<int> _hotelRoomWidths;
         private List<int> _hotelRoomHeights;
@@ -34,6 +35,7 @@ namespace HotelSimulator.Object
         {
             Guests = new List<Guest>();
             Maids = new List<Maid>();
+            _hrFactory = new HotelRoomFactory();
         }
 
         /// <summary>
@@ -95,12 +97,12 @@ namespace HotelSimulator.Object
             //Looks for every room in the layout file and gives it a position in the hotel
             foreach (LayoutFormat l in layout)
             {
+                HotelRoom currentRoom;
                 string[] dimensions = l.Dimension.Split(',');
                 string[] positions = l.Position.Split(',');
                 int stairXpos = _hotelWidth + _lastArrayDimension;
                 int xPos = int.Parse(positions[0]);
-
-                int roomImg = 1;
+                
 
                 //If the layout has a room that starts at x = 0 then add them in the next array.
                 if (_layoutStartsAt0 == true)
@@ -111,96 +113,15 @@ namespace HotelSimulator.Object
                 }
 
                 //Looks for every type of room in the layout and assigns the information accordingly.
-                switch (l.AreaType)
-                {
-                    case "Room":
-                        {
-                            Room current = new Room();
-                            current.Width = current.Width * int.Parse(dimensions[0]);
-                            current.Height = current.Height * int.Parse(dimensions[1]);
-                            current.Id = l.ID;
-                            current.Classification = int.Parse(l.Classification.Substring(0, 1));
-                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
-                            current.Floor = int.Parse(positions[1]);
-                            Map[xPos, int.Parse(positions[1])] = current;
-                            roomImg = int.Parse(dimensions[0]) * int.Parse(dimensions[1]);
+                currentRoom = _hrFactory.CreateHotelRoom(l.AreaType, dimensions, l.Classification, l.Capacity);
 
-                            switch (roomImg)
-                            {
-                                case 1:
-                                    {
-                                        current.Image = Resources.Room;
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        current.Image = Resources.Room3;
-                                        break;
-                                    }
-                                case 4:
-                                    {
-                                        current.Image = Resources.Room5;
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        Console.WriteLine("There is no image of this room.");
-                                        break;
-                                    }
-                            }
+                currentRoom.Width = currentRoom.Width * int.Parse(dimensions[0]);
+                currentRoom.Height = currentRoom.Height * int.Parse(dimensions[1]);
+                currentRoom.Id = l.ID;
+                currentRoom.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
+                currentRoom.Floor = int.Parse(positions[1]);
 
-                            break;
-                        }
-
-                    case "Cinema":
-                        {
-                            Cinema current = new Cinema();
-                            current.Width = current.Width * int.Parse(dimensions[0]);
-                            current.Height = current.Height * int.Parse(dimensions[1]);
-                            current.Id = l.ID;
-                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
-                            current.Floor = int.Parse(positions[1]);
-                            Map[xPos, int.Parse(positions[1])] = current;
-                            break;
-                        }
-
-                    case "Restaurant":
-                        {
-                            Restaurant current = new Restaurant();
-                            current.Width = current.Width * int.Parse(dimensions[0]);
-                            current.Height = current.Height * int.Parse(dimensions[1]);
-                            current.Id = l.ID;
-                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
-                            current.Floor = int.Parse(positions[1]);
-                            current.Capacity = l.Capacity;
-                            Map[xPos, int.Parse(positions[1])] = current;
-                            break;
-                        }
-
-                    case "Fitness":
-                        {
-                            Gym current = new Gym();
-                            current.Width = current.Width * int.Parse(dimensions[0]);
-                            current.Height = current.Height * int.Parse(dimensions[1]);
-                            current.Id = l.ID;
-                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
-                            current.Floor = int.Parse(positions[1]);
-                            Map[xPos, int.Parse(positions[1])] = current;
-                            break;
-                        }
-                    case "Pool":
-                        {
-                            Pool current = new Pool();
-                            current.Width = current.Width * int.Parse(dimensions[0]);
-                            current.Height = current.Height * int.Parse(dimensions[1]);
-                            current.Id = l.ID;
-                            current.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
-                            current.Floor = int.Parse(positions[1]);
-                            Map[xPos, int.Parse(positions[1])] = current;
-                            break;
-                        }
-
-                }
+                Map[xPos, int.Parse(positions[1])] = currentRoom;
 
                 if (!Added)
                 {
