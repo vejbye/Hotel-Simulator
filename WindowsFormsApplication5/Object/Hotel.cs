@@ -93,13 +93,7 @@ namespace HotelSimulator.Object
                 //Adds height: 1 for reception
                 Map = new HotelRoom[_hotelWidth + _amountOfInfrastructure + _lastArrayDimension, _hotelHeight + 1];
 
-            /* //Creates a space for objects to be placed in
-            for (int x = 0; x < Map.GetLength(0); x++)
-            {
-                for (int y = 0; y < Map.GetLength(1); y++)
-                    Map = new HotelRoom[x, y];
-            }*/
-
+            
             //Looks for every room in the layout file and gives it a position in the hotel
             foreach (LayoutFormat l in layout)
             {
@@ -109,7 +103,6 @@ namespace HotelSimulator.Object
                 int stairXpos = _hotelWidth + _lastArrayDimension;
                 int xPos = int.Parse(positions[0]);
                 
-
                 //If the layout has a room that starts at x = 0 then add them in the next array.
                 if (_layoutStartsAt0 == true)
                 {
@@ -118,15 +111,17 @@ namespace HotelSimulator.Object
                     _lastArrayDimension++;
                 }
 
-                //Looks for every type of room in the layout and assigns the information accordingly.
+                //Creates the corresponding room and makes a new object of it.
                 currentRoom = _hrFactory.CreateHotelRoom(l.AreaType, dimensions, l.Classification, l.Capacity);
 
+                //Assigns all the basic information to the hotelroom.
                 currentRoom.Width = currentRoom.Width * int.Parse(dimensions[0]);
                 currentRoom.Height = currentRoom.Height * int.Parse(dimensions[1]);
                 currentRoom.Id = l.ID;
                 currentRoom.Dimensions = String.Format("{0} x {1}", int.Parse(dimensions[0]), int.Parse(dimensions[1]));
                 currentRoom.Floor = int.Parse(positions[1]);
-
+               
+                //Assigns the position of the room in the hotel.
                 Map[xPos, int.Parse(positions[1])] = currentRoom;
 
                 if (!Added)
@@ -153,9 +148,19 @@ namespace HotelSimulator.Object
                 }
             }
 
+            //Checks for empty rooms in the hotel and creates a node for the guests to walk on.
+            for (int i = 0; i < Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < Map.GetLength(1); j++)
+                {
+                    if (Map[i, j] == null)
+                        Map[i, j] = new Node();
+                }
+            }
 
             AddNeighbours(Map);
         }
+        
         /// <summary>
         /// Adds maids to the hotel
         /// </summary>
