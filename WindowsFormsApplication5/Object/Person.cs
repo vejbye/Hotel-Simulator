@@ -11,6 +11,10 @@ namespace HotelSimulator.Object
     {
         public enum Directions
         {
+            North,
+            East,
+            South,
+            West,
             LEFT,
             RIGHT,
             UP,

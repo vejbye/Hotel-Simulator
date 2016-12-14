@@ -69,6 +69,18 @@ namespace HotelSimulator.Object
             Current.Guests.Remove(this);
         }
 
+        public void setDirection()
+        {
+            foreach(KeyValuePair<Neighbours, HotelRoom> kvp in Current.Neighbours)
+            {
+                if(Path[Path.IndexOf(Current) - 1] == kvp.Value)
+                {
+                    
+                    Direction = (Directions)kvp.Key;
+                }
+            }
+        }
+
         /// <summary>
         /// Moves the guest to it's destination.
         /// </summary>
@@ -79,8 +91,9 @@ namespace HotelSimulator.Object
             {
                 if (Current != Path.ElementAt(0))
                 {
+                    setDirection();
                     //give direction and update current room
-                    if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
+                 /*   if (Current.Neighbours.ContainsKey(Neighbours.East) && Path[Path.IndexOf(Current) - 1] == Current.Neighbours[Neighbours.East])
                     {
                         Direction = Directions.RIGHT;
                         if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.StandardRoomWidth / RoomPositioning))
@@ -112,18 +125,42 @@ namespace HotelSimulator.Object
                         {
                             Current = Path[Path.IndexOf(Current) - 1];
                         }
-                    }
+                    }*/
 
 
                     //move guest accordingly
                     if (Direction == Directions.RIGHT)
+                    {
+                        if (Position.X > Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.StandardRoomWidth / RoomPositioning))
+                        {
+                            Current = Path[Path.IndexOf(Current) - 1];
+                        }
                         Position.X += MoveDistance;
+                    }
                     if (Direction == Directions.UP)
+                    {
+                        if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                        {
+                            Current = Path[Path.IndexOf(Current) - 1];
+                        }
                         Position.Y += MoveDistance;
+                    }
                     if (Direction == Directions.DOWN)
-                        Position.Y -= MoveDistance;
+                    {
+                        if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                        {
+                            Current = Path[Path.IndexOf(Current) - 1];
+                        }
+                        Position.Y -= MoveDistance;                       
+                    }
                     if (Direction == Directions.LEFT)
+                    {
+                        if (Position.X < Path[Path.IndexOf(Current) - 1].RoomPosition.X + (DrawMe.StandardRoomWidth / RoomPositioning))
+                        {
+                            Current = Path[Path.IndexOf(Current) - 1];
+                        }
                         Position.X -= MoveDistance;
+                    }
                 }
 
                 if (Current == Destination)
