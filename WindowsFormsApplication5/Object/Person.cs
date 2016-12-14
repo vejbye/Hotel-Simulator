@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelSimulator.Object
 {
-    public class Person : SimObject
+    public abstract class Person : SimObject
     {
         public enum Directions
         {
@@ -38,7 +38,7 @@ namespace HotelSimulator.Object
             Dead = false;
         }
 
-
+        public abstract void Walk(Hotel hotel);
 
     }
 

@@ -9,6 +9,7 @@ namespace HotelSimulator.Object
 {
     public class Hotel
     {
+        private static Hotel hotel = new Hotel();
         public Bitmap HotelBitmap;
         public HotelRoom[,] Map;
         public Elevator Elevator;
@@ -30,10 +31,15 @@ namespace HotelSimulator.Object
         public bool Added = false;
         private bool _layoutStartsAt0 = false;  
 
-        public Hotel()
+        private Hotel()
         {
             Guests = new List<Guest>();
             Maids = new List<Maid>();
+        }
+
+        public static Hotel getHotel()
+        {
+            return hotel;
         }
 
         /// <summary>

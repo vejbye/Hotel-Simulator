@@ -52,7 +52,7 @@ namespace HotelSimulator
         public HotelSimulator()
         {
             InitializeComponent();
-            Hotel = new Hotel();
+            Hotel = Hotel.getHotel();
             DrawMe = new Draw();
 
             timer.Interval = (1000 / 120); // Refreshes 120 times a second

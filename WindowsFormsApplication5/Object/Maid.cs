@@ -91,7 +91,7 @@ namespace HotelSimulator.Object
         /// Moves the maid to it's destination.
         /// </summary>
         /// <param name="hotel">Give the hotel the maid works for.</param>
-        public void Walk(Hotel hotel)
+        public override void Walk(Hotel hotel)
         {
             if (Path.Count > 0 && Current != Path.ElementAt(0))
             {

@@ -20,7 +20,7 @@ namespace HotelSimulatorUnitTest
         [TestInitialize]
         public void Initialize()
         {
-            hotel = new Hotel();
+            hotel = Hotel.getHotel();
             layoutFormatList = new List<LayoutFormat>();
             map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
@@ -149,22 +149,6 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void SplitString()
-        {
-            string Dimension = "2, 1";
-            string Position = "8, 5";
-
-            string[] positions = Position.Split(',');
-            string[] dimensions = Dimension.Split(',');
-
-            hotelWidth.Add(int.Parse(dimensions[0]));
-            hotelPosition.Add(int.Parse(positions[0]));
-            
-            Assert.AreEqual(hotelWidth[0], 2);
-            Assert.AreEqual(hotelPosition[0], 8);
-        }
-
-        [TestMethod]
         public void CreateRoom()
         {
             bool thisIsARoom = false;
@@ -210,22 +194,7 @@ namespace HotelSimulatorUnitTest
             Assert.IsTrue(thisIsARoom);
         }
 
-        [TestMethod]
-        public void Reset()
-        {
-            bool resetted = false;
 
-            hotelWidth.Add(1);
-            hotelPosition.Add(2);
-
-            hotelWidth.Clear();
-            hotelPosition.Clear();
-
-            if (hotelWidth.Count == 0 && hotelPosition.Count == 0)
-                resetted = true;
-
-            Assert.IsTrue(resetted);
-        }
 
         [TestMethod]
         public void AddNeighbours()

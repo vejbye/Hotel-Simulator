@@ -17,7 +17,7 @@ namespace HotelSimulator.Object
         public Room Room { get; set; }
         public HotelRoom Destination { get; set; }
         public string Preference { get; set; }// the guests prefered room classification
-        protected bool CheckedIn { get; set; }
+        private bool CheckedIn { get; set; }
         public bool InQueue { get; set; }
         public int EatingDuration { get; set; }
         private int _hteCount;
@@ -73,7 +73,7 @@ namespace HotelSimulator.Object
         /// Moves the guest to it's destination.
         /// </summary>
         /// <param name="hotel">Give the hotel the guest resides in.</param>
-        public void Walk(Hotel hotel)
+        public override void Walk(Hotel hotel)
         {
             if (_hteCount == HteDuration)
             {
