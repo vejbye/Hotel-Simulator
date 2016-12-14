@@ -37,12 +37,12 @@ namespace HotelSimulator.Object
                 HotelRoom cur = null;
                 if (Current == hotel.Map[hotel.Map.GetLength(0) - 2, 0])
                 {
-                    pf.shortestPathDijkstra(Current, hotel.Map[0, 0]);//algorithm to define shortest path}
+                    pf.ShortestPathDijkstra(Current, hotel.Map[0, 0]);//algorithm to define shortest path}
                     cur = hotel.Map[0, 0];
                 }
                 else
                 {
-                    pf.shortestPathDijkstra(Current, hotel.Map[hotel.Map.GetLength(0) - 2, 0]);//algorithm to define shortest path}
+                    pf.ShortestPathDijkstra(Current, hotel.Map[hotel.Map.GetLength(0) - 2, 0]);//algorithm to define shortest path}
                     cur = hotel.Map[hotel.Map.GetLength(0) - 2, 0];
                 }
                 while (cur != Current)// store path in list so maid can walk through it
@@ -60,7 +60,7 @@ namespace HotelSimulator.Object
                     {
                         if (hm is Room && (((Room)hm).Dirty == true))
                         {
-                            pf.shortestPathDijkstra(Current, hm);//algorithm to define shortest path
+                            pf.ShortestPathDijkstra(Current, hm);//algorithm to define shortest path
                             HotelRoom cur = hm;
                             while (cur != Current)// store path in list so maid can walk through it
                             {

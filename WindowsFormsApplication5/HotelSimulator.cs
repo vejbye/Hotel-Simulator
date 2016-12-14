@@ -31,7 +31,7 @@ namespace HotelSimulator
         //Max pan box settings
         private int _maxPanX = -800;
         private int _minPanX = 0;
-        private int _maxPanY = 0;
+        private int _maxPanY = 200;
         private int _minPanY = -250;
         private bool _initialized = false;
 
@@ -165,6 +165,8 @@ namespace HotelSimulator
                     MovieDuration = int.Parse(settings.moviedurationCB.Text);
                 if (!settings.eatingdurationCB.Text.Equals(""))
                     EatingDuration = int.Parse(settings.eatingdurationCB.Text);
+                if (!settings.checkinoutCB.Text.Equals(""))
+                    EatingDuration = int.Parse(settings.checkinoutCB.Text);
             }
             else
                 MessageBox.Show("Nothing changed.");

@@ -7,7 +7,7 @@ using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulator.Object
 {
-    public class Restaurant: HotelRoom
+    public class Restaurant : HotelRoom
     {
         public int Capacity { get; set; }
         public Queue<Guest> Waitingline { get; set; }
@@ -20,8 +20,9 @@ namespace HotelSimulator.Object
 
         public void HandleWaitingline()
         {
-            while(Guests.Count < Capacity)
+            while (Guests.Count < Capacity)
             {
+                //The first one in the queue gets a seat in the restaurant and starts eating
                 if (Waitingline.Count > 0)
                 {
                     Guest guest = Waitingline.Peek();
@@ -35,6 +36,6 @@ namespace HotelSimulator.Object
                 }
             }
         }
-        
+
     }
 }

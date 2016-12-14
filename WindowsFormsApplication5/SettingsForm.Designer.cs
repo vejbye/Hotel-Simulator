@@ -43,6 +43,8 @@
             this.moviedurationCB = new System.Windows.Forms.ComboBox();
             this.eatingdurationLBL = new System.Windows.Forms.Label();
             this.eatingdurationCB = new System.Windows.Forms.ComboBox();
+            this.checkinoutLBL = new System.Windows.Forms.Label();
+            this.checkinoutCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // guestdurationLBL
@@ -200,11 +202,37 @@
             this.eatingdurationCB.Size = new System.Drawing.Size(121, 21);
             this.eatingdurationCB.TabIndex = 12;
             // 
+            // checkinoutLBL
+            // 
+            this.checkinoutLBL.AutoSize = true;
+            this.checkinoutLBL.Location = new System.Drawing.Point(12, 189);
+            this.checkinoutLBL.Name = "checkinoutLBL";
+            this.checkinoutLBL.Size = new System.Drawing.Size(106, 13);
+            this.checkinoutLBL.TabIndex = 13;
+            this.checkinoutLBL.Text = "Check In/Check Out";
+            this.toolTip1.SetToolTip(this.checkinoutLBL, "Sets a timer for dying when guest or maid waits too long in queue");
+            // 
+            // checkinoutCB
+            // 
+            this.checkinoutCB.FormattingEnabled = true;
+            this.checkinoutCB.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.checkinoutCB.Location = new System.Drawing.Point(159, 183);
+            this.checkinoutCB.Name = "checkinoutCB";
+            this.checkinoutCB.Size = new System.Drawing.Size(121, 21);
+            this.checkinoutCB.TabIndex = 14;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(295, 260);
+            this.Controls.Add(this.checkinoutCB);
+            this.Controls.Add(this.checkinoutLBL);
             this.Controls.Add(this.eatingdurationCB);
             this.Controls.Add(this.eatingdurationLBL);
             this.Controls.Add(this.moviedurationCB);
@@ -241,5 +269,7 @@
         public System.Windows.Forms.ComboBox moviedurationCB;
         private System.Windows.Forms.Label eatingdurationLBL;
         public System.Windows.Forms.ComboBox eatingdurationCB;
+        private System.Windows.Forms.Label checkinoutLBL;
+        public System.Windows.Forms.ComboBox checkinoutCB;
     }
 }

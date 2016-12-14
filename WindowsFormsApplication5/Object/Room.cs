@@ -14,6 +14,7 @@ namespace HotelSimulator.Object
         private bool _taken;
         public bool Dirty { get; set; }
         public bool BeingCleaned { get; set; } = false;
+        public Image DirtyRoom { get; set; }
 
         public Room() : base()
         {
@@ -25,7 +26,7 @@ namespace HotelSimulator.Object
         {
             return _taken;
         }
-        
+
         public void setTaken(bool taken)
         {
             _taken = taken;

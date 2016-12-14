@@ -50,7 +50,7 @@ namespace HotelSimulator.Object
             //_requests.Sort();
             //_requests.ForEach(i => Console.Write("{0}\n", i));
         }
-        
+
 
         /// <summary>
         /// Moves the elevator in steps.

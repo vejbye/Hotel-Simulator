@@ -15,7 +15,7 @@ namespace HotelSimulator.Object
         West
     }
 
-    public class HotelRoom : SimObject
+    public abstract class HotelRoom : SimObject
     {
         public Dictionary<Neighbours, HotelRoom> Neighbours = new Dictionary<Neighbours, HotelRoom>();
         public HotelRoom CurrentRoom { get; set; }

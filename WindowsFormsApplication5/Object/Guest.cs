@@ -49,7 +49,7 @@ namespace HotelSimulator.Object
         public void setPath(Hotel hotel, HotelRoom destination)
         {
             PathFind pf = new PathFind();
-            pf.shortestPathDijkstra(Current, destination); //algorithm to define shortest path
+            pf.ShortestPathDijkstra(Current, destination); //algorithm to define shortest path
             HotelRoom cur = destination;
 
             while (cur != Current)// store path in list so guest can walk through it
@@ -131,7 +131,7 @@ namespace HotelSimulator.Object
                     //let the guest request a room
                     if (Room == null && Destination is Reception)
                     {
-                        Room = ((Reception)Destination).findEmptyRoom(hotel, this);
+                        Room = ((Reception)Destination).FindEmptyRoom(hotel, this);
                         if (Room == null)
                         {
                             Path.Clear();
@@ -188,12 +188,12 @@ namespace HotelSimulator.Object
                         FitnessHTE = 0;
                     }
 
-                    if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity)) ;
+                    if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity))
                     {
                         Current.Guests.Add(this);
                     }
 
-                    if(Destination is Restaurant && ((Restaurant)Destination).Guests.Count < ((Restaurant)Destination).Capacity)
+                    if (Destination is Restaurant && ((Restaurant)Destination).Guests.Count < ((Restaurant)Destination).Capacity)
                     {
                         Eating();
                     }
@@ -230,6 +230,9 @@ namespace HotelSimulator.Object
             }
         }
 
+        /// <summary>
+        /// Time for lunch!
+        /// </summary>
         public void Eating()
         {
             if (EatingHTE == EatingDuration)

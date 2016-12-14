@@ -10,23 +10,27 @@ namespace HotelSimulator.Object
     public class Cinema : HotelRoom
     {
         public bool Playing { get; set; }
-        private int MovieAt;
-        
+        private int _movieAt;
+
         public Cinema()
         {
             Image = Resources.Cinema;
             Playing = false;
         }
 
+        /// <summary>
+        /// Enjoy and watch.
+        /// </summary>
+        /// <param name="duration">The movielength in hte.</param>
         public void PlayMovie(int duration)
         {
-            if (MovieAt == duration)
+            if (_movieAt == duration)
             {
                 Playing = false;
-                MovieAt = 1;
+                _movieAt = 1;
             }
             else
-                MovieAt++;
+                _movieAt++;
         }
     }
 }
