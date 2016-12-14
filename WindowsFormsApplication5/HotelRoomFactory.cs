@@ -48,7 +48,7 @@ namespace HotelSimulator.Object
 
                 default:
                     {
-                        _current = null;
+                        Node _current = new Node();
                         return _current;
                     }
 
