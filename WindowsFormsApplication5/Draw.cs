@@ -45,8 +45,8 @@ namespace HotelSimulator.Object
                             if (hotel.Map[x, y] is Room)
                             {
                                 Room currentRoom = (Room)hotel.Map[x, y];
-                                if (currentRoom.Dirty)
-                                    Gfx.DrawImage(((Room)hotel.Map[x, y]).DirtyRoom, CurrentXPos, CurrentYPos - hotel.Map[x, y].Height, hotel.Map[x, y].Width, hotel.Map[x, y].Height);
+                                if (currentRoom.Dirty) ;
+                                  //  Gfx.DrawImage(((Room)hotel.Map[x, y]).DirtyRoom, CurrentXPos, CurrentYPos - hotel.Map[x, y].Height, hotel.Map[x, y].Width, hotel.Map[x, y].Height);
                             }
 
                             if (hotel.Map[x, y] is Elevator)
