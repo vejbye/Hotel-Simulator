@@ -61,16 +61,18 @@ namespace HotelSimulatorUnitTest
             Assert.AreEqual(10, guest.Path.Count);
         }
 
-
+        [TestMethod]
         public void testMaidpathfind()
         {
             Initialize();
             AddNeighbours();
             hotel.Map = map;
             Maid maid = new Maid(hotel.Map[0, 0]);
+            maid.CleaningHTE = 1;
+            ((Room)hotel.Map[4,4]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
-            Assert.AreEqual(10, maid.Path.Count);
+            Assert.AreEqual(9, maid.Path.Count);
         }
 
         [TestMethod]
@@ -221,7 +223,6 @@ namespace HotelSimulatorUnitTest
                     else if (x == 4 && y == 4) {
                         map[x, y] = new Room();
                         ((Room)map[x, y]).Classification = 2;
-                        ((Room)map[x, y]).Dirty = true;
                     }
                     else
                     map[x, y] = new Node();
