@@ -156,15 +156,6 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void Neighbours()
-                    {
-
-            }
-
-
-
-
-        [TestMethod]
         public void AddNeighbours()
         {
             bool neighboursCreated = false;
