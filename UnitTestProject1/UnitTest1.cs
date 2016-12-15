@@ -21,6 +21,7 @@ namespace HotelSimulatorUnitTest
         public void Initialize()
         {
             hotel = Hotel.getHotel();
+            
             layoutFormatList = new List<LayoutFormat>();
             map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
@@ -40,6 +41,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Reception r = new Reception();
             Guest guest = new Guest();
             guest.Preference = "1";           
@@ -52,6 +54,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
             Point Position = guest.Position;
@@ -64,6 +67,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Maid maid = new Maid(hotel.Map[0, 0]);
             maid.CleaningHTE = 1;
             ((Room)hotel.Map[4,4]).Dirty = true;
@@ -77,6 +81,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
             Point Position = guest.Position;
@@ -90,6 +95,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 9];
             Point Position = guest.Position;
@@ -103,6 +109,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Guest guest = new Guest();
             guest.Current = hotel.Map[9, 0];
             Point Position = guest.Position;
@@ -116,6 +123,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             hotel.Map = map;
+            AddNeighbours();
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
             Point Position = guest.Position;
