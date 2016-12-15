@@ -57,7 +57,7 @@ namespace HotelSimulator.Object
 
                                 if (hotel.Map[x, y] is Reception)
                                 {
-                                    if (newHotel)
+                                    if (newHotel) 
                                         DrawBoundingBoxes(hotel.Map, x, y);
                                 }
                             }
