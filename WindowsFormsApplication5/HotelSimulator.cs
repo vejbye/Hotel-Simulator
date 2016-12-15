@@ -17,10 +17,10 @@ namespace HotelSimulator
 {
     public partial class HotelSimulator : Form
     {
-        public Hotel Hotel { get; set; }
-        public System.Windows.Forms.Timer HotelEventTimer;
-        private Draw DrawMe;
-        public SimEventListener EventListener;
+        private Hotel Hotel { get; set; }
+        private System.Windows.Forms.Timer HotelEventTimer;
+        public Draw DrawMe;
+        private SimEventListener EventListener;
 
         //Parameters for panning
         private Point _startingPoint = Point.Empty;
@@ -257,7 +257,7 @@ namespace HotelSimulator
 
             Refresh();
 
-            Hotel.DrawMe.DrawHotel(Hotel, false);
+            DrawMe.DrawHotel(Hotel, false);
         }
         
     }

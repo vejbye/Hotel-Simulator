@@ -31,7 +31,6 @@
             this.screenPB = new System.Windows.Forms.PictureBox();
             this.loadlayoutBTN = new System.Windows.Forms.Button();
             this.settingsBTN = new System.Windows.Forms.Button();
-            this.elevatorBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,9 +53,9 @@
             // 
             // loadlayoutBTN
             // 
-            this.loadlayoutBTN.Location = new System.Drawing.Point(1030, 562);
+            this.loadlayoutBTN.Location = new System.Drawing.Point(1030, 554);
             this.loadlayoutBTN.Name = "loadlayoutBTN";
-            this.loadlayoutBTN.Size = new System.Drawing.Size(114, 28);
+            this.loadlayoutBTN.Size = new System.Drawing.Size(114, 44);
             this.loadlayoutBTN.TabIndex = 1;
             this.loadlayoutBTN.Text = "Load layout";
             this.loadlayoutBTN.UseVisualStyleBackColor = true;
@@ -64,29 +63,19 @@
             // 
             // settingsBTN
             // 
-            this.settingsBTN.Location = new System.Drawing.Point(915, 562);
+            this.settingsBTN.Location = new System.Drawing.Point(903, 554);
             this.settingsBTN.Name = "settingsBTN";
-            this.settingsBTN.Size = new System.Drawing.Size(109, 28);
+            this.settingsBTN.Size = new System.Drawing.Size(109, 43);
             this.settingsBTN.TabIndex = 2;
             this.settingsBTN.Text = "Settings";
             this.settingsBTN.UseVisualStyleBackColor = true;
             this.settingsBTN.Click += new System.EventHandler(this.settingsBTN_Click);
-            // 
-            // elevatorBTN
-            // 
-            this.elevatorBTN.Location = new System.Drawing.Point(800, 562);
-            this.elevatorBTN.Name = "elevatorBTN";
-            this.elevatorBTN.Size = new System.Drawing.Size(109, 28);
-            this.elevatorBTN.TabIndex = 3;
-            this.elevatorBTN.Text = "Move Elevator";
-            this.elevatorBTN.UseVisualStyleBackColor = true;
             // 
             // HotelSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 614);
-            this.Controls.Add(this.elevatorBTN);
             this.Controls.Add(this.settingsBTN);
             this.Controls.Add(this.loadlayoutBTN);
             this.Controls.Add(this.screenPB);
@@ -102,7 +91,6 @@
         private System.Windows.Forms.PictureBox screenPB;
         private System.Windows.Forms.Button loadlayoutBTN;
         private System.Windows.Forms.Button settingsBTN;
-        private System.Windows.Forms.Button elevatorBTN;
     }
 }
 

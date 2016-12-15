@@ -39,7 +39,6 @@ namespace HotelSimulatorUnitTest
         public void testcheckin()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Reception r = new Reception();
             Guest guest = new Guest();
@@ -52,7 +51,6 @@ namespace HotelSimulatorUnitTest
         public void testGuestpathfind()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
@@ -65,7 +63,6 @@ namespace HotelSimulatorUnitTest
         public void testMaidpathfind()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Maid maid = new Maid(hotel.Map[0, 0]);
             maid.CleaningHTE = 1;
@@ -79,7 +76,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkRight()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
@@ -93,7 +89,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkDown()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 9];
@@ -107,7 +102,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkLeft()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[9, 0];
@@ -121,7 +115,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkUp()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
@@ -163,50 +156,11 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void CreateRoom()
-        {
-            bool thisIsARoom = false;
-            string RoomType = "Room";
-
-            switch (RoomType)
-            {
-                case "Room":
+        public void Neighbours()
                     {
-                        current = new Room();
-                        break;
-                    }
-
-                case "Cinema":
-                    {
-                        current = new Cinema();
-                        break;
-                    }
-
-                case "Restaurant":
-                    {
-                        current = new Restaurant();
-                        break;
-                    }
-
-                case "Fitness":
-                    {
-                        current = new Gym();
-                        break;
-                    }
-                case "Pool":
-                    {
-                        current = new Pool();
-                        break;
-                    }
-
 
             }
 
-            if (current is Room)
-                thisIsARoom = true;
-
-            Assert.IsTrue(thisIsARoom);
-        }
 
 
 

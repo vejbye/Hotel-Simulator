@@ -8,8 +8,6 @@ namespace HotelSimulator.Object
 {
     public class HotelRoomFactory
     {
-        private HotelRoom _current;
-
         public HotelRoom CreateHotelRoom(string AreaType, string[] Dimensions, string Classification, int Capacity)
         {
             switch (AreaType)
