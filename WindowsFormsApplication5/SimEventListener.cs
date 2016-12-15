@@ -49,7 +49,7 @@ namespace HotelSimulator
                         _hotel.Guests.Add(guest);
                         guest.EatingDuration = _hs.EatingDuration;
                         guest.Current = ((HotelRoom)_hotel.Map[0, 0]);
-                        guest.Position = new System.Drawing.Point(_hotel.DrawMe.XStartPosition + guest.Width, _hotel.DrawMe.YStartPosition - guest.Height);
+                        guest.Position = new System.Drawing.Point(_hs.DrawMe.XStartPosition + guest.Width, _hs.DrawMe.YStartPosition - guest.Height);
                         guest.HteDuration = hteDuration;
                         Reception r = null;
                         foreach (HotelRoom hr in _hotel.Map)

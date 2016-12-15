@@ -13,7 +13,7 @@ namespace HotelSimulator.Object
         public Bitmap HotelBitmap;
         public HotelRoom[,] Map;
         public Elevator Elevator;
-        public Draw DrawMe;
+        private Draw DrawMe;
         private HotelRoomFactory _hrFactory;
 
         private List<int> _hotelRoomWidths;

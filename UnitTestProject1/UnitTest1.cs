@@ -39,7 +39,6 @@ namespace HotelSimulatorUnitTest
         public void testcheckin()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Reception r = new Reception();
             Guest guest = new Guest();
@@ -52,7 +51,6 @@ namespace HotelSimulatorUnitTest
         public void testGuestpathfind()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
@@ -65,7 +63,6 @@ namespace HotelSimulatorUnitTest
         public void testMaidpathfind()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Maid maid = new Maid(hotel.Map[0, 0]);
             Point Position = maid.Position;
@@ -77,7 +74,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkRight()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
@@ -91,7 +87,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkDown()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 9];
@@ -105,7 +100,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkLeft()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[9, 0];
@@ -119,7 +113,6 @@ namespace HotelSimulatorUnitTest
         public void TestWalkUp()
         {
             Initialize();
-            AddNeighbours();
             hotel.Map = map;
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
@@ -161,100 +154,14 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void CreateRoom()
+        public void Neighbours()
         {
-            bool thisIsARoom = false;
-            string RoomType = "Room";
-
-            switch (RoomType)
-            {
-                case "Room":
-                    {
-                        current = new Room();
-                        break;
-                    }
-
-                case "Cinema":
-                    {
-                        current = new Cinema();
-                        break;
-                    }
-
-                case "Restaurant":
-                    {
-                        current = new Restaurant();
-                        break;
-                    }
-
-                case "Fitness":
-                    {
-                        current = new Gym();
-                        break;
-                    }
-                case "Pool":
-                    {
-                        current = new Pool();
-                        break;
-                    }
-
-
-            }
-
-            if (current is Room)
-                thisIsARoom = true;
-
-            Assert.IsTrue(thisIsARoom);
+            
         }
+       
 
 
-
-        [TestMethod]
-        public void AddNeighbours()
-        {
-            bool neighboursCreated = false;
-
-            for (int x = 0; x < map.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.GetLength(1); y++) {
-                    if (x == 0)
-                        map[x, y] = new ElevatorShaft();
-                    else if (x == 4 && y == 4) {
-                        map[x, y] = new Room();
-                        ((Room)map[x, y]).Classification = 2;
-                        ((Room)map[x, y]).Dirty = true;
-                    }
-                    else
-                    map[x, y] = new Node();
-                }
-            }
-
-            for (int x = 0; x < map.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.GetLength(1); y++)
-                {
-                    if (y > 0 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
-                        map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
-
-                    if (y < map.GetLength(1) - 1 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
-                        map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);
-
-                    if (x < map.GetLength(0) - 1)
-                        map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
-
-                    if (x > 0)
-                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
-
-                    if (map[x, y] != null)
-                        map[x, y].CurrentRoom = map[x, y];
-
-                }
-            }
-
-            if (map[2, 5].Neighbours.Count == 2)
-                neighboursCreated = true;
-
-            Assert.IsTrue(neighboursCreated);
-        }
+       
     }
 
     
