@@ -12,7 +12,6 @@ namespace HotelSimulatorUnitTest
     {
         Hotel hotel;
         HotelRoom[,] map;
-        HotelRoom current;
         List<LayoutFormat> layoutFormatList;
         List<int> hotelWidth;
         List<int> hotelPosition;
@@ -21,7 +20,6 @@ namespace HotelSimulatorUnitTest
         public void Initialize()
         {
             hotel = Hotel.getHotel();
-            
             layoutFormatList = new List<LayoutFormat>();
             map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
@@ -37,7 +35,7 @@ namespace HotelSimulatorUnitTest
             //Assert.AreEqual(guest.Dead, true);
         }
         [TestMethod]
-        public void testcheckin()
+        public void Testcheckin()
         {
             Initialize();
             hotel.Map = map;
@@ -50,7 +48,7 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void testGuestpathfind()
+        public void TestGuestpathfind()
         {
             Initialize();
             hotel.Map = map;
@@ -63,7 +61,7 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void testMaidpathfind()
+        public void TestMaidpathfind()
         {
             Initialize();
             hotel.Map = map;
@@ -139,35 +137,20 @@ namespace HotelSimulatorUnitTest
             Initialize();
             Assert.IsNotNull(hotel);
         }
-
-
+        
         [TestMethod]
         public void CreateHotelBitmap()
         {
             hotel.Build(layoutFormatList);
             Assert.IsNotNull(hotel.HotelBitmap);
         }
-
-        [TestMethod]
-        public void Create2DArrayOfRooms()
-        {
-            map = new HotelRoom[10, 10];
-
-            //Creates a space for objects to be placed in
-            for (int x = 0; x < map.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.GetLength(1); y++) ;
-                   // map[x, y] = new HotelRoom();
-            }
-
-            Assert.IsNotNull(map);
-        }
-
+        
         [TestMethod]
         public void AddNeighbours()
         {
             bool neighboursCreated = false;
 
+            //Creating a little example hotel to test for adding neighbours
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++) {
@@ -182,6 +165,7 @@ namespace HotelSimulatorUnitTest
                 }
             }
 
+            //Adding neighbours to every hotelroom.
             for (int x = 0; x < map.GetLength(0); x++)
             {
                 for (int y = 0; y < map.GetLength(1); y++)
@@ -209,6 +193,54 @@ namespace HotelSimulatorUnitTest
 
             Assert.IsTrue(neighboursCreated);
         }
+
+        [TestMethod]
+        public void TestMovingElevator()
+        {
+            bool elevatorArrived = false;
+            hotel.Build(layoutFormatList);
+            //Testing if the elevator movement is correct. Given are the hotel the elevator is in, the requested floor (3), and the speed of the elevator. (1)
+
+            while (!elevatorArrived)
+            {
+                hotel.Elevator.MoveElevator(hotel, 3, 1);
+
+                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (3 * hotel.DrawMe.StandardRoomHeight))
+                {
+                    elevatorArrived = true;
+                }
+            }
+
+            
+
+            Assert.IsTrue(elevatorArrived);
+        }
+
+        [TestMethod]
+        public void TestResetMethod()
+        {
+            //Only the guestlist is tested since every other list gets resetted exactly the same way.
+            bool hotelCleared = false;
+            Guest testGuest = new Guest();
+            hotel.Guests.Add(testGuest);
+
+            hotel.Reset();
+
+            if (hotel.Guests.Count == 0)
+                hotelCleared = true;
+
+            Assert.IsTrue(hotelCleared);
+        }
+
+        [TestMethod]
+        public void TestAddingMaid()
+        {
+            hotel.Build(layoutFormatList);
+            hotel.AddMaids(1);
+            Assert.AreEqual(hotel.Maids.Count, 2);
+        }
+
+
     }
 
     
