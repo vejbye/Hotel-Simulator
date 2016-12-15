@@ -265,6 +265,26 @@ namespace HotelSimulatorUnitTest
             Assert.AreEqual(hotel.Maids.Count, 2);
         }
 
+        [TestMethod]
+        public void TestBoundingBox()
+        {
+            bool hasDrawingBoxes = false;
+            Initialize();
+            hotel.DrawMe.DrawHotel(hotel, true);
+
+            for (int i = 0; i < hotel.Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < hotel.Map.GetLength(1); j++)
+                {
+                    if (hotel.Map[i, j].BoundingBox.Height != 0 && hotel.Map[i, j].BoundingBox.Width != 0)
+                        hasDrawingBoxes = true;
+                }
+            }
+
+            Assert.IsTrue(hasDrawingBoxes);
+
+        }
+
 
     }
 
