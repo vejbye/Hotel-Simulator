@@ -24,6 +24,46 @@ namespace HotelSimulatorUnitTest
             map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
             hotelPosition = new List<int>();
+            //Creating a little example hotel to test for adding neighbours
+            for (int x = 0; x < map.GetLength(0); x++)
+            {
+                for (int y = 0; y < map.GetLength(1); y++)
+                {
+                    if (x == 0)
+                        map[x, y] = new ElevatorShaft();
+                    else if (x == 4 && y == 4)
+                    {
+                        map[x, y] = new Room();
+                        ((Room)map[x, y]).Classification = 2;
+                    }else if(x == 1 && y == 1)
+                    {
+                        map[x, y] = new Restaurant();
+                    }
+                    else if (x == 2 && y == 2)
+                    {
+                        map[x, y] = new Cinema();
+                    }
+                    else
+                        map[x, y] = new Node();
+                }
+            }
+        }
+        [TestMethod]
+        public void TestMovieStart()
+        {
+            ((Cinema)map[2, 2]).Playing = true;
+            ((Cinema)map[2, 2]).PlayMovie(0);
+            Assert.AreEqual(false, ((Cinema)map[2, 2]).Playing);
+        }
+
+        [TestMethod]
+        public void TestRestaurantwaitingline()
+        {
+            Guest guest = new Guest();
+            ((Restaurant)map[1, 1]).Capacity = 1;
+            ((Restaurant)map[1, 1]).Waitingline.Enqueue(guest);
+            ((Restaurant)map[1, 1]).HandleWaitingline();
+            Assert.AreEqual(0, ((Restaurant)map[1, 1]).Waitingline.Count);
         }
 
         [TestMethod]
@@ -149,21 +189,6 @@ namespace HotelSimulatorUnitTest
         public void AddNeighbours()
         {
             bool neighboursCreated = false;
-
-            //Creating a little example hotel to test for adding neighbours
-            for (int x = 0; x < map.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.GetLength(1); y++) {
-                    if (x == 0)
-                        map[x, y] = new ElevatorShaft();
-                    else if (x == 4 && y == 4) {
-                        map[x, y] = new Room();
-                        ((Room)map[x, y]).Classification = 2;
-                    }
-                    else
-                    map[x, y] = new Node();
-                }
-            }
 
             //Adding neighbours to every hotelroom.
             for (int x = 0; x < map.GetLength(0); x++)
