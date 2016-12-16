@@ -122,6 +122,21 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
+        public void TestMaidWalk()
+        {
+            Initialize();
+            hotel.Map = map;
+            AddNeighbours();
+            Maid maid = new Maid(hotel.Map[0, 0]);
+            maid.CleaningHTE = 1;
+            ((Room)hotel.Map[4, 4]).Dirty = true;
+            Point Position = maid.Position;
+            maid.SetPath(hotel);
+            maid.Walk(hotel);
+            Assert.AreEqual(Position.Y - 10, maid.Position.Y);
+        }
+
+        [TestMethod]
         public void TestWalkRight()
         {
             Initialize();
