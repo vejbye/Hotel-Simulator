@@ -14,6 +14,7 @@ namespace HotelSimulatorUnitTest
         Hotel hotel;
         LayoutReader reader;
         string standardLayout = @"..\..\..\WindowsFormsApplication5\Resources\Hotel3.layout";
+        HotelRoom[,] map;
 
         [TestInitialize]
         public void Initialize()
@@ -21,6 +22,7 @@ namespace HotelSimulatorUnitTest
             hotel = Hotel.getHotel();
             reader = new LayoutReader();
             hotel.Build(reader.ReadLayout(standardLayout));
+            map = hotel.GetMap();
             hotel.DrawMe.DrawHotel(hotel, true);
             /*map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
@@ -54,9 +56,9 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMovieStart()
         {
-            ((Cinema)hotel.GetMap()[2, 2]).Playing = true;
-            ((Cinema)hotel.GetMap()[2, 2]).PlayMovie(0);
-            Assert.AreEqual(false, ((Cinema)hotel.GetMap()[2, 2]).Playing);
+            ((Cinema)map[2, 2]).Playing = true;
+            ((Cinema)map[2, 2]).PlayMovie(0);
+            Assert.AreEqual(false, ((Cinema)map[2, 2]).Playing);
         }
 
         [TestMethod]
@@ -64,7 +66,7 @@ namespace HotelSimulatorUnitTest
         {
             bool hasDrawingBoxes = false;
             
-            for (int i = 0; i < hotel.Map.GetLength(0); i++)
+            for (int i = 0; i < map.GetLength(0); i++)
             {
                 if (hotel.Map[i, 0].BoundingBox.Height != 0 && hotel.Map[i, 0].BoundingBox.Width != 0)
                 {
@@ -81,10 +83,10 @@ namespace HotelSimulatorUnitTest
         public void TestRestaurantwaitingline()
         {
             Guest guest = new Guest();
-            ((Restaurant)hotel.GetMap()[1, 1]).Capacity = 1;
-            ((Restaurant)hotel.GetMap()[1, 1]).Waitingline.Enqueue(guest);
-            ((Restaurant)hotel.GetMap()[1, 1]).HandleWaitingline();
-            Assert.AreEqual(0, ((Restaurant)hotel.GetMap()[1, 1]).Waitingline.Count);
+            ((Restaurant)map[1, 1]).Capacity = 1;
+            ((Restaurant)map[1, 1]).Waitingline.Enqueue(guest);
+            ((Restaurant)map[1, 1]).HandleWaitingline();
+            Assert.AreEqual(0, ((Restaurant)map[1, 1]).Waitingline.Count);
         }
 
         [TestMethod]
@@ -98,7 +100,6 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void Testcheckin()
         {
-            Initialize();
             Reception r = new Reception();
             Guest guest = new Guest();
             guest.Preference = "1";
@@ -109,11 +110,10 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestGuestpathfind()
         {
-            Initialize();
             Guest guest = new Guest();
-            guest.Current = hotel.GetMap()[0, 0];
+            guest.Current = map[0, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.GetMap()[9, 0]);
+            guest.setPath(hotel, map[9, 0]);
             Assert.AreEqual(10, guest.Path.Count);
         }
 
@@ -123,7 +123,7 @@ namespace HotelSimulatorUnitTest
             Initialize();
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)hotel.GetMap()[2, 1]).Dirty = true;
+            ((Room)map[2, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             Assert.AreEqual(9, maid.Path.Count);
@@ -132,7 +132,6 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMaidWalk()
         {
-            Initialize();
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
             ((Room)hotel.GetMap()[2, 1]).Dirty = true;
@@ -145,9 +144,8 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestWalkRight()
         {
-            Initialize();
             Guest guest = new Guest();
-            guest.Current = hotel.GetMap()[0, 0];
+            guest.Current = map[0, 0];
             Point Position = guest.Position;
             guest.setPath(hotel, hotel.GetMap()[9, 0]);
             guest.Walk(hotel);
@@ -157,11 +155,10 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestWalkDown()
         {
-            Initialize();
             Guest guest = new Guest();
-            guest.Current = hotel.GetMap()[0, 5];
+            guest.Current = map[0, 5];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.GetMap()[0, 0]);
+            guest.setPath(hotel, map[0, 0]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y + 10, guest.Position.Y);
 
@@ -169,9 +166,8 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestWalkLeft()
         {
-            Initialize();
             Guest guest = new Guest();
-            guest.Current = hotel.GetMap()[9, 0];
+            guest.Current = map[9, 0];
             Point Position = guest.Position;
             guest.setPath(hotel, hotel.GetMap()[0, 0]);
             guest.Walk(hotel);
@@ -181,11 +177,10 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestWalkUp()
         {
-            Initialize();
             Guest guest = new Guest();
-            guest.Current = hotel.GetMap()[0, 0];
+            guest.Current = map[0, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.GetMap()[0, 4]);
+            guest.setPath(hotel, map[0, 4]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y - 10, guest.Position.Y);
 
@@ -194,7 +189,6 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void CreateHotel()
         {
-            Initialize();
             Assert.IsNotNull(hotel);
         }
 
@@ -211,7 +205,7 @@ namespace HotelSimulatorUnitTest
             bool neighboursCreated = false;
 
             //Adding neighbours to every hotelroom.
-            if (hotel.GetMap()[2, 5].Neighbours.Count == 2)
+            if (map[2, 5].Neighbours.Count == 2)
                 neighboursCreated = true;
 
             Assert.IsTrue(neighboursCreated);
