@@ -12,20 +12,15 @@ namespace HotelSimulatorUnitTest
     public class UnitTest1
     {
         Hotel hotel;
-        HotelRoom[,] map;
-        List<LayoutFormat> layoutFormatList;
-        List<int> hotelWidth;
-        List<int> hotelPosition;
         LayoutReader reader;
+        string standardLayout = @"..\..\..\WindowsFormsApplication5\Resources\Hotel3.layout";
 
         [TestInitialize]
         public void Initialize()
         {
             hotel = Hotel.getHotel();
             reader = new LayoutReader();
-            layoutFormatList = new List<LayoutFormat>();
-            hotel.Build(reader.ReadLayout(@"..\..\..\WindowsFormsApplication5\Resources\Hotel3.layout"));
-            map = hotel.Map;
+            hotel.Build(reader.ReadLayout(standardLayout));
             /*map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
             hotelPosition = new List<int>();
@@ -58,19 +53,19 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMovieStart()
         {
-            ((Cinema)map[2, 2]).Playing = true;
-            ((Cinema)map[2, 2]).PlayMovie(0);
-            Assert.AreEqual(false, ((Cinema)map[2, 2]).Playing);
+            ((Cinema)hotel.GetMap()[2, 2]).Playing = true;
+            ((Cinema)hotel.GetMap()[2, 2]).PlayMovie(0);
+            Assert.AreEqual(false, ((Cinema)hotel.GetMap()[2, 2]).Playing);
         }
 
         [TestMethod]
         public void TestRestaurantwaitingline()
         {
             Guest guest = new Guest();
-            ((Restaurant)map[1, 1]).Capacity = 1;
-            ((Restaurant)map[1, 1]).Waitingline.Enqueue(guest);
-            ((Restaurant)map[1, 1]).HandleWaitingline();
-            Assert.AreEqual(0, ((Restaurant)map[1, 1]).Waitingline.Count);
+            ((Restaurant)hotel.GetMap()[1, 1]).Capacity = 1;
+            ((Restaurant)hotel.GetMap()[1, 1]).Waitingline.Enqueue(guest);
+            ((Restaurant)hotel.GetMap()[1, 1]).HandleWaitingline();
+            Assert.AreEqual(0, ((Restaurant)hotel.GetMap()[1, 1]).Waitingline.Count);
         }
 
         [TestMethod]
@@ -85,8 +80,6 @@ namespace HotelSimulatorUnitTest
         public void Testcheckin()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
             Reception r = new Reception();
             Guest guest = new Guest();
             guest.Preference = "1";
@@ -98,12 +91,10 @@ namespace HotelSimulatorUnitTest
         public void TestGuestpathfind()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
             Guest guest = new Guest();
-            guest.Current = hotel.Map[0, 0];
+            guest.Current = hotel.GetMap()[0, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.Map[9, 0]);
+            guest.setPath(hotel, hotel.GetMap()[9, 0]);
             Assert.AreEqual(10, guest.Path.Count);
         }
 
@@ -111,11 +102,9 @@ namespace HotelSimulatorUnitTest
         public void TestMaidpathfind()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
-            Maid maid = new Maid(hotel.Map[0, 0]);
+            Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)hotel.Map[4, 4]).Dirty = true;
+            ((Room)hotel.GetMap()[2, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             Assert.AreEqual(9, maid.Path.Count);
@@ -125,11 +114,9 @@ namespace HotelSimulatorUnitTest
         public void TestMaidWalk()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
-            Maid maid = new Maid(hotel.Map[0, 0]);
+            Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)hotel.Map[4, 4]).Dirty = true;
+            ((Room)hotel.GetMap()[2, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             maid.Walk(hotel);
@@ -140,12 +127,10 @@ namespace HotelSimulatorUnitTest
         public void TestWalkRight()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
             Guest guest = new Guest();
-            guest.Current = hotel.Map[0, 0];
+            guest.Current = hotel.GetMap()[0, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.Map[9, 0]);
+            guest.setPath(hotel, hotel.GetMap()[9, 0]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.X + 10, guest.Position.X);
 
@@ -154,12 +139,10 @@ namespace HotelSimulatorUnitTest
         public void TestWalkDown()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
             Guest guest = new Guest();
-            guest.Current = hotel.Map[0, 9];
+            guest.Current = hotel.GetMap()[0, 9];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.Map[0, 0]);
+            guest.setPath(hotel, hotel.GetMap()[0, 0]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y + 10, guest.Position.Y);
 
@@ -168,12 +151,10 @@ namespace HotelSimulatorUnitTest
         public void TestWalkLeft()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
             Guest guest = new Guest();
-            guest.Current = hotel.Map[9, 0];
+            guest.Current = hotel.GetMap()[9, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.Map[0, 0]);
+            guest.setPath(hotel, hotel.GetMap()[0, 0]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.X - 10, guest.Position.X);
 
@@ -182,12 +163,10 @@ namespace HotelSimulatorUnitTest
         public void TestWalkUp()
         {
             Initialize();
-            hotel.Map = map;
-            AddNeighbours();
             Guest guest = new Guest();
-            guest.Current = hotel.Map[0, 0];
+            guest.Current = hotel.GetMap()[0, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.Map[0, 9]);
+            guest.setPath(hotel, hotel.GetMap()[0, 4]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y - 10, guest.Position.Y);
 
@@ -203,7 +182,7 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void CreateHotelBitmap()
         {
-            hotel.Build(layoutFormatList);
+            hotel.Build(reader.ReadLayout(standardLayout));
             Assert.IsNotNull(hotel.HotelBitmap);
         }
 
@@ -213,29 +192,7 @@ namespace HotelSimulatorUnitTest
             bool neighboursCreated = false;
 
             //Adding neighbours to every hotelroom.
-            for (int x = 0; x < map.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.GetLength(1); y++)
-                {
-                    if (y > 0 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
-                        map[x, y].CreateNeighbours(ref map[x, y - 1], Neighbours.North);
-
-                    if (y < map.GetLength(1) - 1 && (map[x, y] is ElevatorShaft || map[x, y] is Stair))
-                        map[x, y].CreateNeighbours(ref map[x, y + 1], Neighbours.South);
-
-                    if (x < map.GetLength(0) - 1)
-                        map[x, y].CreateNeighbours(ref map[x + 1, y], Neighbours.East);
-
-                    if (x > 0)
-                        map[x, y].CreateNeighbours(ref map[x - 1, y], Neighbours.West);
-
-                    if (map[x, y] != null)
-                        map[x, y].CurrentRoom = map[x, y];
-
-                }
-            }
-
-            if (map[2, 5].Neighbours.Count == 2)
+            if (hotel.GetMap()[2, 5].Neighbours.Count == 2)
                 neighboursCreated = true;
 
             Assert.IsTrue(neighboursCreated);
@@ -245,7 +202,7 @@ namespace HotelSimulatorUnitTest
         public void TestMovingElevator()
         {
             bool elevatorArrived = false;
-            hotel.Build(layoutFormatList);
+            hotel.Build(reader.ReadLayout(standardLayout));
             //Testing if the elevator movement is correct. Given are the hotel the elevator is in, the requested floor (3), and the speed of the elevator. (1)
 
             while (!elevatorArrived)
@@ -282,7 +239,7 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestAddingMaid()
         {
-            hotel.Build(layoutFormatList);
+            hotel.Build(reader.ReadLayout(standardLayout));
             hotel.AddMaids(1);
             Assert.AreEqual(hotel.Maids.Count, 2);
         }
@@ -291,15 +248,12 @@ namespace HotelSimulatorUnitTest
         public void TestBoundingBox()
         {
             bool hasDrawingBoxes = false;
-            hotel.DrawMe.DrawHotel(hotel, true);
 
+            hotel.DrawMe.DrawHotel(hotel, true);
             for (int i = 0; i < hotel.Map.GetLength(0); i++)
             {
-                for (int j = 0; j < hotel.Map.GetLength(1); j++)
-                {
-                    if (hotel.Map[i, j].BoundingBox.Height != 0 && hotel.Map[i, j].BoundingBox.Width != 0)
-                        hasDrawingBoxes = true;
-                }
+                if (hotel.Map[i, 0].BoundingBox.Height != 0 && hotel.Map[i, 0].BoundingBox.Width != 0)
+                    hasDrawingBoxes = true;
             }
 
             Assert.IsTrue(hasDrawingBoxes);
