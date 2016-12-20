@@ -56,9 +56,9 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMovieStart()
         {
-            ((Cinema)map[2, 2]).Playing = true;
-            ((Cinema)map[2, 2]).PlayMovie(0);
-            Assert.AreEqual(false, ((Cinema)map[2, 2]).Playing);
+            ((Cinema)map[3, 3]).Playing = true;
+            ((Cinema)map[3, 3]).PlayMovie(0);
+            Assert.AreEqual(false, ((Cinema)map[3, 3]).Playing);
         }
 
         [TestMethod]
@@ -83,10 +83,10 @@ namespace HotelSimulatorUnitTest
         public void TestRestaurantwaitingline()
         {
             Guest guest = new Guest();
-            ((Restaurant)map[1, 1]).Capacity = 1;
-            ((Restaurant)map[1, 1]).Waitingline.Enqueue(guest);
-            ((Restaurant)map[1, 1]).HandleWaitingline();
-            Assert.AreEqual(0, ((Restaurant)map[1, 1]).Waitingline.Count);
+            ((Restaurant)map[1, 2]).Capacity = 1;
+            ((Restaurant)map[1, 2]).Waitingline.Enqueue(guest);
+            ((Restaurant)map[1, 2]).HandleWaitingline();
+            Assert.AreEqual(0, ((Restaurant)map[1, 2]).Waitingline.Count);
         }
 
         [TestMethod]
