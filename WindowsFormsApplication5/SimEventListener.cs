@@ -14,6 +14,7 @@ namespace HotelSimulator
         private HotelSimulator _hs;
         public Queue<HotelEvent> events;
         private int _guestCount = 0;
+        public HotelEvent he;
 
         public SimEventListener(Hotel hotel, HotelSimulator hs)
         {
@@ -28,7 +29,18 @@ namespace HotelSimulator
         /// <param name="evt">Give the event to store</param>
         public void Notify(HotelEvent evt)
         {
-            events.Enqueue(evt);
+            if (he == null)
+            {
+                if ((evt.EventType == HotelEventType.CHECK_IN || evt.EventType == HotelEventType.NONE))
+                    events.Enqueue(evt);
+                else
+                {
+                    HotelEvent e = new HotelEvent();
+                    e.EventType = HotelEventType.GODZILLA;
+                    he = e;
+                    events.Enqueue(e);
+                }
+            }
         }
         /// <summary>
         /// handle the hotelevents stored in the queue
@@ -134,6 +146,8 @@ namespace HotelSimulator
                             g.Dead = true;
                         }
                         _hotel.Guests.Clear();
+                        _hotel.Maids.Clear();
+                        _hs.godzilla = true;
                         Console.WriteLine("it will kill us all!");
                         break;
                     case HotelEventType.GOTO_CINEMA:

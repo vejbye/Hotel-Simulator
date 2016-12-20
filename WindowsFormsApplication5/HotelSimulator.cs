@@ -21,6 +21,7 @@ namespace HotelSimulator
         private System.Windows.Forms.Timer HotelEventTimer;
         public Draw DrawMe;
         private SimEventListener EventListener;
+        public bool godzilla = false;
 
         //Parameters for panning
         private Point _startingPoint = Point.Empty;
@@ -231,6 +232,31 @@ namespace HotelSimulator
                 {
                     if(((Cinema)hr).Playing )
                         ((Cinema)hr).PlayMovie(MovieDuration * _standardMovieLength);
+                }
+            }
+
+            if (godzilla)
+            {
+                if (HotelEventManager.Running)
+                {
+                    HotelEventManager.Stop();
+                }
+                for (int x = 0; x < Hotel.Map.GetLength(0); x++)
+                {
+                    for (int y = 0; y < Hotel.Map.GetLength(1); y++)
+                    {
+                        
+                            if (Hotel.Map[Hotel.Map.GetLength(0) - 1, Hotel.Map.GetLength(1) - 1] == null)
+                            {
+                                break;
+                            }                        
+                        else if (Hotel.Map[x,y] != null)
+                        {
+                            Hotel.Map[x, y] = null;
+                            break;
+                        }
+                        
+                    }
                 }
             }
 
