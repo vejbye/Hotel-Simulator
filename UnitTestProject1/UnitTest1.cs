@@ -19,11 +19,14 @@ namespace HotelSimulatorUnitTest
         [TestInitialize]
         public void Initialize()
         {
-            hotel = Hotel.getHotel();
-            reader = new LayoutReader();
-            hotel.Build(reader.ReadLayout(standardLayout));
-            map = hotel.GetMap();
-            hotel.DrawMe.DrawHotel(hotel, true);
+                hotel = Hotel.getHotel();
+                reader = new LayoutReader();
+            if (hotel.GetMap() == null)
+            {
+                hotel.Build(reader.ReadLayout(standardLayout));
+            }
+                map = hotel.GetMap();
+                hotel.DrawMe.DrawHotel(hotel, true);
             /*map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
             hotelPosition = new List<int>();
@@ -126,7 +129,7 @@ namespace HotelSimulatorUnitTest
             ((Room)map[2, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
-            Assert.AreEqual(9, maid.Path.Count);
+            Assert.AreEqual(4, maid.Path.Count);
         }
 
         [TestMethod]
