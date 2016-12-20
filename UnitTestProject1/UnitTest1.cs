@@ -4,6 +4,7 @@ using HotelSimulator.Object;
 using System.Collections.Generic;
 using HotelSimulator;
 using System.Drawing;
+using WindowsFormsApplication5.Properties;
 
 namespace HotelSimulatorUnitTest
 {
@@ -15,13 +16,17 @@ namespace HotelSimulatorUnitTest
         List<LayoutFormat> layoutFormatList;
         List<int> hotelWidth;
         List<int> hotelPosition;
+        LayoutReader reader;
 
         [TestInitialize]
         public void Initialize()
         {
             hotel = Hotel.getHotel();
+            reader = new LayoutReader();
             layoutFormatList = new List<LayoutFormat>();
-            map = new HotelRoom[10, 10];
+            hotel.Build(reader.ReadLayout(@"..\..\..\WindowsFormsApplication5\Resources\Hotel3.layout"));
+            map = hotel.Map;
+            /*map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
             hotelPosition = new List<int>();
             //Creating a little example hotel to test for adding neighbours
@@ -35,7 +40,8 @@ namespace HotelSimulatorUnitTest
                     {
                         map[x, y] = new Room();
                         ((Room)map[x, y]).Classification = 2;
-                    }else if(x == 1 && y == 1)
+                    }
+                    else if (x == 1 && y == 1)
                     {
                         map[x, y] = new Restaurant();
                     }
@@ -46,8 +52,9 @@ namespace HotelSimulatorUnitTest
                     else
                         map[x, y] = new Node();
                 }
-            }
+            }*/
         }
+
         [TestMethod]
         public void TestMovieStart()
         {
@@ -82,7 +89,7 @@ namespace HotelSimulatorUnitTest
             AddNeighbours();
             Reception r = new Reception();
             Guest guest = new Guest();
-            guest.Preference = "1";           
+            guest.Preference = "1";
             guest.Room = r.FindEmptyRoom(hotel, guest);
             Assert.IsNotNull(guest.Room);
         }
@@ -108,7 +115,7 @@ namespace HotelSimulatorUnitTest
             AddNeighbours();
             Maid maid = new Maid(hotel.Map[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)hotel.Map[4,4]).Dirty = true;
+            ((Room)hotel.Map[4, 4]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             Assert.AreEqual(9, maid.Path.Count);
@@ -180,7 +187,7 @@ namespace HotelSimulatorUnitTest
             Guest guest = new Guest();
             guest.Current = hotel.Map[0, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, hotel.Map[0,9]);
+            guest.setPath(hotel, hotel.Map[0, 9]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y - 10, guest.Position.Y);
 
@@ -192,14 +199,14 @@ namespace HotelSimulatorUnitTest
             Initialize();
             Assert.IsNotNull(hotel);
         }
-        
+
         [TestMethod]
         public void CreateHotelBitmap()
         {
             hotel.Build(layoutFormatList);
             Assert.IsNotNull(hotel.HotelBitmap);
         }
-        
+
         [TestMethod]
         public void AddNeighbours()
         {
@@ -251,7 +258,7 @@ namespace HotelSimulatorUnitTest
                 }
             }
 
-            
+
 
             Assert.IsTrue(elevatorArrived);
         }
@@ -284,7 +291,6 @@ namespace HotelSimulatorUnitTest
         public void TestBoundingBox()
         {
             bool hasDrawingBoxes = false;
-            Initialize();
             hotel.DrawMe.DrawHotel(hotel, true);
 
             for (int i = 0; i < hotel.Map.GetLength(0); i++)
@@ -303,5 +309,5 @@ namespace HotelSimulatorUnitTest
 
     }
 
-    
+
 }
