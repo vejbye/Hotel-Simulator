@@ -21,6 +21,7 @@ namespace HotelSimulatorUnitTest
             hotel = Hotel.getHotel();
             reader = new LayoutReader();
             hotel.Build(reader.ReadLayout(standardLayout));
+            hotel.DrawMe.DrawHotel(hotel, true);
             /*map = new HotelRoom[10, 10];
             hotelWidth = new List<int>();
             hotelPosition = new List<int>();
@@ -56,6 +57,24 @@ namespace HotelSimulatorUnitTest
             ((Cinema)hotel.GetMap()[2, 2]).Playing = true;
             ((Cinema)hotel.GetMap()[2, 2]).PlayMovie(0);
             Assert.AreEqual(false, ((Cinema)hotel.GetMap()[2, 2]).Playing);
+        }
+
+        [TestMethod]
+        public void TestBoundingBox()
+        {
+            bool hasDrawingBoxes = false;
+            
+            for (int i = 0; i < hotel.Map.GetLength(0); i++)
+            {
+                if (hotel.Map[i, 0].BoundingBox.Height != 0 && hotel.Map[i, 0].BoundingBox.Width != 0)
+                {
+                    hasDrawingBoxes = true;
+                    break;
+                }
+            }
+
+            Assert.IsTrue(hasDrawingBoxes);
+
         }
 
         [TestMethod]
@@ -140,7 +159,7 @@ namespace HotelSimulatorUnitTest
         {
             Initialize();
             Guest guest = new Guest();
-            guest.Current = hotel.GetMap()[0, 9];
+            guest.Current = hotel.GetMap()[0, 5];
             Point Position = guest.Position;
             guest.setPath(hotel, hotel.GetMap()[0, 0]);
             guest.Walk(hotel);
@@ -244,21 +263,6 @@ namespace HotelSimulatorUnitTest
             Assert.AreEqual(hotel.Maids.Count, 2);
         }
 
-        [TestMethod]
-        public void TestBoundingBox()
-        {
-            bool hasDrawingBoxes = false;
-
-            hotel.DrawMe.DrawHotel(hotel, true);
-            for (int i = 0; i < hotel.Map.GetLength(0); i++)
-            {
-                if (hotel.Map[i, 0].BoundingBox.Height != 0 && hotel.Map[i, 0].BoundingBox.Width != 0)
-                    hasDrawingBoxes = true;
-            }
-
-            Assert.IsTrue(hasDrawingBoxes);
-
-        }
 
 
     }
