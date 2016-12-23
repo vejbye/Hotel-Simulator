@@ -132,11 +132,23 @@ namespace HotelSimulator.Object
                     }
                     if (Direction == Directions.South)
                     {
-                        if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                        if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft && hotel.Elevator.CurrentState == Elevator.ElevatorState.Idle)
                         {
-                            Current = Path[Path.IndexOf(Current) - 1];
+                            hotel.Elevator.AddRequest(Destination.Floor);
+                            if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y -= MoveDistance;
                         }
-                        Position.Y -= MoveDistance;
+                        else if (Current is Stair)
+                        {
+                            if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y -= MoveDistance;
+                        }                       
                     }
                     if (Direction == Directions.West)
                     {

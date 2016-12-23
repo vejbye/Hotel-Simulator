@@ -209,7 +209,7 @@ namespace HotelSimulator
         {
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
-            {
+            {  if(!Hotel.Guests[i].InQueue)
                 if (Hotel.Guests[i].Current != Hotel.Guests[i].Destination)
                     Hotel.Guests[i].Walk(Hotel);
             }
