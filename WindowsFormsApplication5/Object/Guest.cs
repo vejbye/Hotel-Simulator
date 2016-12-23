@@ -173,7 +173,7 @@ namespace HotelSimulator.Object
                     {
                         if (((Restaurant)Destination).Waitingline.Count < _queueCount)
                         {
-                            if (((Restaurant)Destination).Waitingline.Contains(this))
+                            if (!((Restaurant)Destination).Waitingline.Contains(this))
                             {
                                 ((Restaurant)Destination).Waitingline.Enqueue(this);
                                 InQueue = true;
