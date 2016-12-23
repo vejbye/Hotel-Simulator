@@ -84,19 +84,8 @@ namespace HotelSimulatorUnitTest
             guest.Walk(hotel);
             Assert.AreEqual(false, guest.CheckedIn);
             hotel.GetMap()[2, 3].Guests.Clear();
-        }
-
-        [TestMethod]
-        public void TestCheckout()
-        {
-            Guest guest = new Guest();
-            guest.Room = ((Room)hotel.GetMap()[1, 1]);
-            hotel.Guests.Add(guest);
-            ((Reception)hotel.GetMap()[1, 0]).CheckOut(guest);
-            Assert.AreEqual(null, guest.Room);
             ((Room)hotel.GetMap()[1, 1]).Dirty = false;
         }
-
 
         [TestMethod]
         public void TestMovieStart()
@@ -368,9 +357,10 @@ namespace HotelSimulatorUnitTest
             Guest guest = new Guest();
             guest.Preference = "1";
             guest.Room = r.FindEmptyRoom(hotel, guest);
-
+            Room room = guest.Room;
             r.CheckOut(guest);
             Assert.IsNull(guest.Room);
+            room.Dirty = false;
         }
 
         [TestMethod]
