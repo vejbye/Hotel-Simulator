@@ -17,7 +17,7 @@ namespace HotelSimulator.Object
         public Room Room { get; set; }
         public HotelRoom Destination { get; set; }
         public string Preference { get; set; }// the guests prefered room classification
-        private bool CheckedIn { get; set; }
+        public bool CheckedIn { get; set; }
         public bool InQueue { get; set; }
         public int EatingDuration { get; set; }
         private int _hteCount;

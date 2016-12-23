@@ -171,6 +171,7 @@ namespace HotelSimulator.Object
                 Dead = true;
                 Path.Clear();
                 Position = new System.Drawing.Point(DrawMe.XStartPosition + Width, DrawMe.YStartPosition - Height);
+                Current = hotel.GetMap()[0, 0];
                 Dead = false;
                 SetPath(hotel);
             }

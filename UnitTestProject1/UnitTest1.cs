@@ -74,6 +74,32 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
+        public void TestArrival3()
+        {
+            Guest guest = new Guest();
+            guest.Current = hotel.GetMap()[1, 0];
+            guest.Room = ((Room)hotel.GetMap()[1, 1]);
+            Point Position = guest.Position;
+            guest.setPath(hotel, hotel.GetMap()[1, 0]);
+            guest.Walk(hotel);
+            Assert.AreEqual(false, guest.CheckedIn);
+            hotel.GetMap()[2, 3].Guests.Clear();
+
+        }
+
+        //[TestMethod]
+        public void TestCheckout()
+        {
+            Guest guest = new Guest();
+            guest.Room = ((Room)hotel.GetMap()[1, 1]);
+            hotel.Guests.Add(guest);
+            ((Reception)hotel.GetMap()[1, 0]).CheckOut(guest);
+            Assert.AreEqual(0, guest.Room);
+            Assert.AreEqual(0, hotel.Guests.Count);
+        }
+
+
+        [TestMethod]
         public void TestMovieStart()
         {
             ((Cinema)map[4, 3]).Playing = true;
@@ -113,10 +139,20 @@ namespace HotelSimulatorUnitTest
         public void TestGuestDying()
         {
             Guest guest = new Guest();
-            //guest.WaitTime = 7;
+            guest.WaitTime = 7;
             guest.InLine();
-            //Assert.AreEqual(guest.Dead, true);
+            Assert.AreEqual(guest.Dead, true);
         }
+
+      /*  [TestMethod]
+        public void TestMaidDying()
+        {
+            Maid maid = new Maid(hotel.GetMap()[2,2]);
+            maid.WaitTime = 7;
+            maid.InLine(hotel);
+            Assert.AreEqual(hotel.GetMap()[0, 0], maid.Current);
+
+        }*/
         [TestMethod]
         public void Testcheckin()
         {
@@ -143,7 +179,7 @@ namespace HotelSimulatorUnitTest
             Initialize();
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)map[4, 1]).Dirty = true;
+            ((Room)hotel.Map[4, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             Assert.AreEqual(6, maid.Path.Count);
@@ -167,7 +203,6 @@ namespace HotelSimulatorUnitTest
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.Evacuation = true;
             maid.CleaningHTE = 1;
-            ((Room)hotel.GetMap()[4, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             maid.Walk(hotel);
@@ -179,7 +214,6 @@ namespace HotelSimulatorUnitTest
             Maid maid = new Maid(hotel.GetMap()[hotel.GetMap().GetLength(0) - 2, 0]);
             maid.Evacuation = true;
             maid.CleaningHTE = 1;
-            ((Room)hotel.GetMap()[4, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             maid.Walk(hotel);
