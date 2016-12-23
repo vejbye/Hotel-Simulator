@@ -12,63 +12,41 @@ namespace HotelSimulatorUnitTest
     public class UnitTest1
     {
         Hotel hotel;
+        
         LayoutReader reader;
-        string standardLayout = @"..\..\..\WindowsFormsApplication5\Resources\Hotel3.layout";
+        string standardLayout = @"..\..\..\WindowsFormsApplication5\Resources\Hotel5.layout";
         HotelRoom[,] map;
 
         [TestInitialize]
         public void Initialize()
         {
-                hotel = Hotel.getHotel();
-                reader = new LayoutReader();
+            hotel = Hotel.getHotel();
+            var hs = new HotelSimulator.HotelSimulator();
+            reader = new LayoutReader();
+
             if (hotel.GetMap() == null)
             {
                 hotel.Build(reader.ReadLayout(standardLayout));
             }
-                map = hotel.GetMap();
-                hotel.DrawMe.DrawHotel(hotel, true);
-            /*map = new HotelRoom[10, 10];
-            hotelWidth = new List<int>();
-            hotelPosition = new List<int>();
-            //Creating a little example hotel to test for adding neighbours
-            for (int x = 0; x < map.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.GetLength(1); y++)
-                {
-                    if (x == 0)
-                        map[x, y] = new ElevatorShaft();
-                    else if (x == 4 && y == 4)
-                    {
-                        map[x, y] = new Room();
-                        ((Room)map[x, y]).Classification = 2;
-                    }
-                    else if (x == 1 && y == 1)
-                    {
-                        map[x, y] = new Restaurant();
-                    }
-                    else if (x == 2 && y == 2)
-                    {
-                        map[x, y] = new Cinema();
-                    }
-                    else
-                        map[x, y] = new Node();
-                }
-            }*/
+
+            map = hotel.GetMap();
+            hotel.DrawMe.DrawHotel(hotel, true);
+
         }
 
         [TestMethod]
         public void TestMovieStart()
         {
-            ((Cinema)map[3, 3]).Playing = true;
-            ((Cinema)map[3, 3]).PlayMovie(0);
-            Assert.AreEqual(false, ((Cinema)map[3, 3]).Playing);
+            ((Cinema)map[4, 3]).Playing = true;
+            ((Cinema)map[4, 3]).PlayMovie(0);
+            Assert.AreEqual(false, ((Cinema)map[4, 3]).Playing);
         }
 
         [TestMethod]
         public void TestBoundingBox()
         {
             bool hasDrawingBoxes = false;
-            
+
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 if (hotel.Map[i, 0].BoundingBox.Height != 0 && hotel.Map[i, 0].BoundingBox.Width != 0)
@@ -86,10 +64,10 @@ namespace HotelSimulatorUnitTest
         public void TestRestaurantwaitingline()
         {
             Guest guest = new Guest();
-            ((Restaurant)map[1, 2]).Capacity = 1;
-            ((Restaurant)map[1, 2]).Waitingline.Enqueue(guest);
-            ((Restaurant)map[1, 2]).HandleWaitingline();
-            Assert.AreEqual(0, ((Restaurant)map[1, 2]).Waitingline.Count);
+            ((Restaurant)map[2, 3]).Capacity = 1;
+            ((Restaurant)map[2, 3]).Waitingline.Enqueue(guest);
+            ((Restaurant)map[2, 3]).HandleWaitingline();
+            Assert.AreEqual(0, ((Restaurant)map[2, 3]).Waitingline.Count);
         }
 
         [TestMethod]
@@ -126,10 +104,10 @@ namespace HotelSimulatorUnitTest
             Initialize();
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)map[2, 1]).Dirty = true;
+            ((Room)map[4, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
-            Assert.AreEqual(4, maid.Path.Count);
+            Assert.AreEqual(6, maid.Path.Count);
         }
 
         [TestMethod]
@@ -137,7 +115,7 @@ namespace HotelSimulatorUnitTest
         {
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
-            ((Room)hotel.GetMap()[2, 1]).Dirty = true;
+            ((Room)hotel.GetMap()[4, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
             maid.Walk(hotel);
@@ -215,7 +193,7 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void TestMovingElevator()
+        public void TestMovingElevatorUp()
         {
             bool elevatorArrived = false;
             hotel.Build(reader.ReadLayout(standardLayout));
@@ -224,6 +202,31 @@ namespace HotelSimulatorUnitTest
             while (!elevatorArrived)
             {
                 hotel.Elevator.MoveElevator(hotel, 3, 1);
+
+                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (3 * hotel.DrawMe.StandardRoomHeight))
+                {
+                    elevatorArrived = true;
+                }
+            }
+
+
+
+            Assert.IsTrue(elevatorArrived);
+        }
+
+        //NEEDS TO BE EDITED
+        [TestMethod]
+        public void TestMovingElevatorDown()
+        {
+            bool elevatorArrived = false;
+            hotel.Build(reader.ReadLayout(standardLayout));
+            hotel.Elevator.PreviousFloor = 6;
+            hotel.Elevator.Position.Y = hotel.DrawMe.YStartPosition - (6 * hotel.DrawMe.StandardRoomHeight);
+            //Testing if the elevator movement is correct. Given are the hotel the elevator is in, the requested floor (3), and the speed of the elevator. (1)
+
+            while (!elevatorArrived)
+            {
+                hotel.Elevator.MoveElevator(hotel,3, 1);
 
                 if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (3 * hotel.DrawMe.StandardRoomHeight))
                 {
@@ -258,6 +261,12 @@ namespace HotelSimulatorUnitTest
             hotel.Build(reader.ReadLayout(standardLayout));
             hotel.AddMaids(1);
             Assert.AreEqual(hotel.Maids.Count, 2);
+        }
+
+        [TestMethod]
+        public void BUTTON()
+        {
+            
         }
 
 
