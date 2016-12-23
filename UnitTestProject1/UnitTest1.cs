@@ -176,7 +176,6 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMaidpathfind()
         {
-            Initialize();
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
             ((Room)hotel.Map[4, 1]).Dirty = true;
@@ -362,9 +361,26 @@ namespace HotelSimulatorUnitTest
         }
 
         [TestMethod]
-        public void BUTTON()
+        public void TestCheckOut()
         {
-            
+            Reception r = new Reception();
+            Guest guest = new Guest();
+            guest.Preference = "1";
+            guest.Room = r.FindEmptyRoom(hotel, guest);
+
+            r.CheckOut(guest);
+            Assert.IsNull(guest.Room);
+        }
+
+        [TestMethod]
+        public void TestFailingLayout()
+        {
+            LayoutReader lr = new LayoutReader();
+            List<LayoutFormat> _formats;
+            _formats = lr.ReadLayout(@"..\..\..\WindowsFormsApplication5\Resources\Room.png");
+
+
+            Assert.IsNull(_formats);
         }
 
 

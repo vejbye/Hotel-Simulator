@@ -41,14 +41,12 @@ namespace HotelSimulator.Object
 
             Requests = new List<int>();
             Requests.Add(3);
-            Requests.Add(2);
+            /*Requests.Add(2);
             Requests.Add(6);
             Requests.Add(1);
             Requests.Add(5);
-            Requests.Add(3);
-
-            //_requests.Sort();
-            //_requests.ForEach(i => Console.Write("{0}\n", i));
+            Requests.Add(3);*/
+            
         }
 
 
@@ -60,6 +58,8 @@ namespace HotelSimulator.Object
         /// <param name="floor"></param>
         public void MoveElevator(Hotel hotel, int floor, int elevatorHTE)
         {
+            floor++; //Starts at floor 0, so add 1 to make it even
+
             if (Speed == elevatorHTE)
             {
                 if (hotel.Elevator.ElevatorPosition.Y != DrawMe.YStartPosition - (floor * DrawMe.StandardRoomHeight))
@@ -81,6 +81,11 @@ namespace HotelSimulator.Object
             }
             else
                 Speed++;
+        }
+
+        public void AddRequest(int RequestedFloor)
+        {
+            Requests.Add(RequestedFloor);
         }
 
 
