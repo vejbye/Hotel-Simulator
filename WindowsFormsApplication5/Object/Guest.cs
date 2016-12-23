@@ -74,11 +74,11 @@ namespace HotelSimulator.Object
         // provides the guest with a direction to walk in
         public void setDirection()
         {
-            foreach(KeyValuePair<Neighbours, HotelRoom> kvp in Current.Neighbours)
+            foreach (KeyValuePair<Neighbours, HotelRoom> kvp in Current.Neighbours)
             {
-                if(Path[Path.IndexOf(Current) - 1] == kvp.Value)
+                if (Path[Path.IndexOf(Current) - 1] == kvp.Value)
                 {
-                    
+
                     Direction = (Directions)kvp.Key;
                 }
             }
@@ -109,12 +109,26 @@ namespace HotelSimulator.Object
                     }
                     if (Direction == Directions.North)
                     {
-                        if(CurrentFloor == hotel.Elevator.Floor)
-                        if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                        if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft && hotel.Elevator.CurrentState == Elevator.ElevatorState.Idle)
                         {
-                            Current = Path[Path.IndexOf(Current) - 1];
+                            hotel.Elevator.AddRequest(Destination.Floor);
+                            if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y += MoveDistance;
+
                         }
-                        Position.Y += MoveDistance;
+                        else if(Current is Stair)
+                        {
+                            if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y += MoveDistance;
+                        }
+
+
                     }
                     if (Direction == Directions.South)
                     {
@@ -122,7 +136,7 @@ namespace HotelSimulator.Object
                         {
                             Current = Path[Path.IndexOf(Current) - 1];
                         }
-                        Position.Y -= MoveDistance;                       
+                        Position.Y -= MoveDistance;
                     }
                     if (Direction == Directions.West)
                     {

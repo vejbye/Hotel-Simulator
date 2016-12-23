@@ -40,7 +40,7 @@ namespace HotelSimulator.Object
 
 
             Requests = new List<int>();
-            Requests.Add(3);
+            //Requests.Add(3);
             /*Requests.Add(2);
             Requests.Add(6);
             Requests.Add(1);

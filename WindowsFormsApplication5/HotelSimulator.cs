@@ -260,8 +260,16 @@ namespace HotelSimulator
             }
 
 
-            //Gets the requestedfloor and calculates what y coordinate the floor is in.
-            Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
+            try
+            {
+                //Gets the requestedfloor and calculates what y coordinate the floor is in.
+                Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
+            }
+            catch
+            {
+                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+            }
+
             Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
 
             Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
