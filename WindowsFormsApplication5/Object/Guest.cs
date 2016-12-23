@@ -20,6 +20,7 @@ namespace HotelSimulator.Object
         private bool CheckedIn { get; set; }
         public bool InQueue { get; set; }
         public int EatingDuration { get; set; }
+        public int CurrentFloor { get; set; }
         private int _hteCount;
         private int _queueCount;
         public int EatingHTE;
@@ -40,6 +41,7 @@ namespace HotelSimulator.Object
             _hteCount = 1;
             _queueCount = 3;
             FitnessHTE = 0;
+            CurrentFloor = 0;
         }
         /// <summary>
         /// calculate the shrotest path to the guests destination
@@ -107,6 +109,7 @@ namespace HotelSimulator.Object
                     }
                     if (Direction == Directions.North)
                     {
+                        if(CurrentFloor == hotel.Elevator.Floor)
                         if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
                         {
                             Current = Path[Path.IndexOf(Current) - 1];

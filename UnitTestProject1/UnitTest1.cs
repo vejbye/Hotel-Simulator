@@ -140,7 +140,6 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMaidpathfind()
         {
-            Initialize();
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
             ((Room)map[4, 1]).Dirty = true;
