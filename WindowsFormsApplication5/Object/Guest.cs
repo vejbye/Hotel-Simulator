@@ -17,9 +17,10 @@ namespace HotelSimulator.Object
         public Room Room { get; set; }
         public HotelRoom Destination { get; set; }
         public string Preference { get; set; }// the guests prefered room classification
-        private bool CheckedIn { get; set; }
+        public bool CheckedIn { get; set; }
         public bool InQueue { get; set; }
         public int EatingDuration { get; set; }
+        public int CurrentFloor { get; set; }
         private int _hteCount;
         private int _queueCount;
         public int EatingHTE;
@@ -40,6 +41,7 @@ namespace HotelSimulator.Object
             _hteCount = 1;
             _queueCount = 3;
             FitnessHTE = 0;
+            CurrentFloor = 0;
         }
         /// <summary>
         /// calculate the shrotest path to the guests destination
@@ -72,11 +74,11 @@ namespace HotelSimulator.Object
         // provides the guest with a direction to walk in
         public void setDirection()
         {
-            foreach(KeyValuePair<Neighbours, HotelRoom> kvp in Current.Neighbours)
+            foreach (KeyValuePair<Neighbours, HotelRoom> kvp in Current.Neighbours)
             {
-                if(Path[Path.IndexOf(Current) - 1] == kvp.Value)
+                if (Path[Path.IndexOf(Current) - 1] == kvp.Value)
                 {
-                    
+
                     Direction = (Directions)kvp.Key;
                 }
             }
@@ -107,19 +109,46 @@ namespace HotelSimulator.Object
                     }
                     if (Direction == Directions.North)
                     {
-                        if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                        if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft && hotel.Elevator.CurrentState == Elevator.ElevatorState.Idle)
                         {
-                            Current = Path[Path.IndexOf(Current) - 1];
+                            hotel.Elevator.AddRequest(Destination.Floor);
+                            if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y += MoveDistance;
+
                         }
-                        Position.Y += MoveDistance;
+                        else if(Current is Stair)
+                        {
+                            if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y += MoveDistance;
+                        }
+
+
                     }
                     if (Direction == Directions.South)
                     {
-                        if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                        if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft && hotel.Elevator.CurrentState == Elevator.ElevatorState.Idle)
                         {
-                            Current = Path[Path.IndexOf(Current) - 1];
+                            hotel.Elevator.AddRequest(Destination.Floor);
+                            if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y -= MoveDistance;
                         }
-                        Position.Y -= MoveDistance;                       
+                        else if (Current is Stair)
+                        {
+                            if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y -= MoveDistance;
+                        }                       
                     }
                     if (Direction == Directions.West)
                     {
@@ -173,7 +202,7 @@ namespace HotelSimulator.Object
                     {
                         if (((Restaurant)Destination).Waitingline.Count < _queueCount)
                         {
-                            if (((Restaurant)Destination).Waitingline.Contains(this))
+                            if (!((Restaurant)Destination).Waitingline.Contains(this))
                             {
                                 ((Restaurant)Destination).Waitingline.Enqueue(this);
                                 InQueue = true;

@@ -50,7 +50,7 @@ namespace HotelSimulator.Object
             Previous = null;
             Distance = Int32.MaxValue;
         }
-
+        
 
     }
 }

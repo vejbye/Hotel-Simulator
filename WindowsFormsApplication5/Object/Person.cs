@@ -26,7 +26,7 @@ namespace HotelSimulator.Object
         public List<HotelRoom> Path { get; set; }// for storing the path to the guests destination
         public int HteDuration { get; set; }
         public bool Dead;
-        protected int WaitTime;
+        public int WaitTime;
         protected int MoveDistance;
         protected int RoomPositioning;
         protected int HeightPositioning;

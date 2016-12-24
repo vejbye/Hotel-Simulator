@@ -29,11 +29,11 @@ namespace HotelSimulator
         private Point _original = new Point(0, 0);
         private bool _panning = false;
 
-        //Max pan box settings
-        private int _maxPanX = -800;
-        private int _minPanX = 0;
-        private int _maxPanY = 200;
-        private int _minPanY = -250;
+        //Max pan box settings (TO SEE RESULT, ADJUST BITMAP TOO IN HOTEL)
+        private int _maxPanX = -800; //Adjust to right (greater negative, is more space to right)
+        private int _minPanX = 0; //Adjust to left (greater negative, is more space to left)
+        private int _maxPanY = 0; //Adjust upwards (greater integer, is more space upwards)
+        private int _minPanY = -250; //Adjust downwards (greater integer, is more space downwards)
         private bool _initialized = false;
 
         //Current element in list request list.
@@ -209,9 +209,9 @@ namespace HotelSimulator
         {
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
-            {
-                if(Hotel.Guests[i].Current != Hotel.Guests[i].Destination)
-                Hotel.Guests[i].Walk(Hotel);
+            {  if(!Hotel.Guests[i].InQueue)
+                if (Hotel.Guests[i].Current != Hotel.Guests[i].Destination)
+                    Hotel.Guests[i].Walk(Hotel);
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
@@ -230,7 +230,7 @@ namespace HotelSimulator
             {
                 if (hr is Cinema)
                 {
-                    if(((Cinema)hr).Playing )
+                    if (((Cinema)hr).Playing)
                         ((Cinema)hr).PlayMovie(MovieDuration * _standardMovieLength);
                 }
             }
@@ -245,23 +245,31 @@ namespace HotelSimulator
                 {
                     for (int y = 0; y < Hotel.Map.GetLength(1); y++)
                     {
-                        
-                            if (Hotel.Map[Hotel.Map.GetLength(0) - 1, Hotel.Map.GetLength(1) - 1] == null)
-                            {
-                                break;
-                            }                        
-                        else if (Hotel.Map[x,y] != null)
+
+                        if (Hotel.Map[Hotel.Map.GetLength(0) - 1, Hotel.Map.GetLength(1) - 1] == null)
                         {
-                            Hotel.Map[x, y] = null;
                             break;
                         }
-                        
+                        else if (Hotel.Map[x, y] != null && Hotel.Map[x, y].RoomPosition.Y != 1000)
+                        {
+                            Hotel.Map[x, y] = null;
+                        }
                     }
+
                 }
             }
 
-            //Gets the requestedfloor and calculates what y coordinate the floor is in.
-            Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
+
+            try
+            {
+                //Gets the requestedfloor and calculates what y coordinate the floor is in.
+                Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
+            }
+            catch
+            {
+                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+            }
+
             Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
 
             Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
@@ -285,6 +293,6 @@ namespace HotelSimulator
 
             DrawMe.DrawHotel(Hotel, false);
         }
-        
+
     }
 }

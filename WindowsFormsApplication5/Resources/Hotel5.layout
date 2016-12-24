@@ -19,7 +19,7 @@
 		"ID" : 6,
 		"AreaType" : "Restaurant",
 		"Position" : "8, 7",
-		"Dimension" : "2, 1"
+		"Dimension" : "2, 1" 
 	}, {
 		"ID" : 7,
 		"AreaType" : "Fitness",
@@ -38,7 +38,7 @@
 	}, {
 		"Classification" : "1 Star",
 		"ID" : 10,
-		"AreaType" : "Room",
+		"AreaType" : "RoomTEST",
 		"Position" : "2, 1",
 		"Dimension" : "1, 1"
 	}, {
@@ -56,7 +56,7 @@
 	}, {
 		"Classification" : "1 Star",
 		"ID" : 13,
-		"AreaType" : "RoomTEST",
+		"AreaType" : "Room",
 		"Position" : "0, 2",
 		"Dimension" : "1, 1"
 	}, {
