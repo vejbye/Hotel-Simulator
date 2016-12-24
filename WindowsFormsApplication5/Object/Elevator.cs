@@ -15,7 +15,6 @@ namespace HotelSimulator.Object
         public Point ElevatorPosition;
         public int Destination;
         public int RequestedFloor;
-        public int PreviousFloor = 0;
         public ElevatorState CurrentState;
 
         public List<int> Requests;
@@ -40,12 +39,7 @@ namespace HotelSimulator.Object
 
 
             Requests = new List<int>();
-            //Requests.Add(3);
-            /*Requests.Add(2);
-            Requests.Add(6);
-            Requests.Add(1);
-            Requests.Add(5);
-            Requests.Add(3);*/
+            
             
         }
 
@@ -58,7 +52,8 @@ namespace HotelSimulator.Object
         /// <param name="floor"></param>
         public void MoveElevator(Hotel hotel, int floor, int elevatorHTE)
         {
-            floor++; //Starts at floor 0, so add 1 to make it even
+            if (!hotel.LayoutAtZero())
+                floor++; ; //Starts at floor 0, so add 1 to cancel this effect out
 
             if (Speed == elevatorHTE)
             {
@@ -70,7 +65,7 @@ namespace HotelSimulator.Object
                         hotel.Elevator.ElevatorPosition.Y -= 10;
                     }
 
-                    if (hotel.Elevator.ElevatorPosition.Y < DrawMe.YStartPosition - (floor * DrawMe.StandardRoomHeight) && floor < hotel.Elevator.PreviousFloor)
+                    if (hotel.Elevator.ElevatorPosition.Y < DrawMe.YStartPosition - (floor * DrawMe.StandardRoomHeight) && floor < Floor)
                     {
                         hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
                         hotel.Elevator.ElevatorPosition.Y += 10;

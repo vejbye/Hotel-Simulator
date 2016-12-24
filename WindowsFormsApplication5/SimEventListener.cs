@@ -33,13 +33,13 @@ namespace HotelSimulator
             {
                 if ((evt.EventType == HotelEventType.CHECK_IN || evt.EventType == HotelEventType.NONE))
                     events.Enqueue(evt);
-                else
+               /* else
                 {
                     HotelEvent e = new HotelEvent();
                     e.EventType = HotelEventType.GODZILLA;
                     he = e;
                     events.Enqueue(e);
-                }
+                }*/
             }
         }
         /// <summary>

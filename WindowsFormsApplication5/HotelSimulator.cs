@@ -129,7 +129,7 @@ namespace HotelSimulator
                 {
                     _initialized = true;
                     Hotel.Build(reader.ReadLayout(json));
-                    Hotel.Reset();
+                    //Hotel.Reset();
                     CurrentElement = 0;
                     Hotel.AddMaids(MaidCleaningDuration);
                     screenPB.Image = DrawMe.DrawHotel(Hotel, true);
@@ -207,11 +207,46 @@ namespace HotelSimulator
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            try
+            {
+                //Gets the requestedfloor and calculates what y coordinate the floor is in.
+                Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
+            }
+            catch
+            {
+                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+            }
+
+            Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
+
+            Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
+
+            if (Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
+            {
+                Hotel.Elevator.Floor = Hotel.Elevator.RequestedFloor;
+
+                if (CurrentElement < Hotel.Elevator.Requests.Count - 1)
+                    CurrentElement++;
+                else
+                {
+                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
+                    CurrentElement = 0;
+                }
+            }
+
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
-            {  if(!Hotel.Guests[i].InQueue)
-                if (Hotel.Guests[i].Current != Hotel.Guests[i].Destination)
-                    Hotel.Guests[i].Walk(Hotel);
+            {  if(Hotel.Guests[i].InQueue && Hotel.Elevator.Floor == Hotel.Guests[i].CurrentFloor && Hotel.Guests[i].Current is ElevatorShaft)
+                {
+                    Hotel.Guests[i].InQueue = false;
+                    Hotel.Elevator.PersonsInElevator.Add(Hotel.Guests[i]);
+                }
+
+                if (!Hotel.Guests[i].InQueue)
+                    if (Hotel.Guests[i].Current != Hotel.Guests[i].Destination)
+                    {
+                        Hotel.Guests[i].Walk(Hotel);
+                    }
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
@@ -256,34 +291,6 @@ namespace HotelSimulator
                         }
                     }
 
-                }
-            }
-
-
-            try
-            {
-                //Gets the requestedfloor and calculates what y coordinate the floor is in.
-                Hotel.Elevator.RequestedFloor = Hotel.Elevator.Requests.ElementAt(CurrentElement);
-            }
-            catch
-            {
-                Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
-            }
-
-            Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
-
-            Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
-
-            if (Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
-            {
-                Hotel.Elevator.PreviousFloor = Hotel.Elevator.RequestedFloor;
-
-                if (CurrentElement < Hotel.Elevator.Requests.Count - 1)
-                    CurrentElement++;
-                else
-                {
-                    Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
-                    CurrentElement = 0;
                 }
             }
 

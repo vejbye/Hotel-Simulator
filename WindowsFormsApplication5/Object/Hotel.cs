@@ -30,13 +30,14 @@ namespace HotelSimulator.Object
         private int _hotelHeight;
 
         public bool Added = false;
-        private bool _layoutStartsAt0 = false;  
+        private bool _layoutStartsAt0;  
 
         private Hotel()
         {
             Guests = new List<Guest>();
             Maids = new List<Maid>();
             _hrFactory = new HotelRoomFactory();
+            _layoutStartsAt0 = false;
         }
 
         public static Hotel getHotel()
@@ -220,6 +221,11 @@ namespace HotelSimulator.Object
             _lastArrayDimension = 0;
             Added = false;
             _layoutStartsAt0 = false;
+        }
+
+        public bool LayoutAtZero()
+        {
+            return _layoutStartsAt0;
         }
 
     }

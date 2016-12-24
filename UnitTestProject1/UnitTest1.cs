@@ -307,7 +307,7 @@ namespace HotelSimulatorUnitTest
         {
             bool elevatorArrived = false;
             hotel.Build(reader.ReadLayout(standardLayout));
-            hotel.Elevator.PreviousFloor = 6;
+            hotel.Elevator.Floor = 6;
             hotel.Elevator.Position.Y = hotel.DrawMe.YStartPosition - (6 * hotel.DrawMe.StandardRoomHeight);
             //Testing if the elevator movement is correct. Given are the hotel the elevator is in, the requested floor (3), and the speed of the elevator. (1)
 
