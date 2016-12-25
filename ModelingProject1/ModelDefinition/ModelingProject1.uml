@@ -854,61 +854,6 @@
             </type_NamedElement>
           </property>
           <property
-            Id="95a8713d-e85f-49c2-9ed7-4205410e119e"
-            name="Hotel"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="1fab963e-0363-43b9-b458-d6ed77a7a33f"
-                LastKnownName="Hotel"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="adb94819-f5cf-448e-b89d-074ce39232b8"
-            name="_drawMe"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="a5f8a4a3-b51d-4e3c-85dd-44004b0c9583"
-                LastKnownName="Draw"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="a3ca1ee4-5ef8-4557-a32a-0c1b85f8c334"
-            name="EventListener"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="2762c187-65ae-4410-b845-0b1aa6604f6f"
-                LastKnownName="SimEventListener"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="eb39b2ad-509d-4f21-a838-a56ae4fff37f"
             name="_startingPoint"
             visibility="Private"
@@ -1939,90 +1884,6 @@
             </type_NamedElement>
           </property>
           <property
-            Id="df407562-bad5-49b2-acd3-607ca0f936a8"
-            name="Map"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <lowerValueInternal>
-              <literalString
-                Id="432dda64-e2c7-462c-b928-b48d4af5d037"
-                name="Lower"
-                value="," />
-            </lowerValueInternal>
-            <upperValueInternal>
-              <literalString
-                Id="a1bcdecc-b668-4cce-b31a-8ce9b3e3b048"
-                name="Upper"
-                value="," />
-            </upperValueInternal>
-            <type_NamedElement>
-              <classMoniker
-                Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
-                LastKnownName="HotelRoom"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="31e50bd7-04a6-4b42-ab9b-42b8f5f649c3"
-            name="Elevator"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="a8740f82-de36-44dd-8820-5a54815249ba"
-                LastKnownName="Elevator"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="2e39d9e4-aebd-4017-9ac1-60b5c090caf4"
-            name="Guests"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="42eb2f18-318d-4874-bc8b-08f89ddea8ff"
-                LastKnownName="List&lt;Guest&gt;"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="5203e23f-affc-4e2f-b9bc-9cb7d5f2039d"
-            name="Maids"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="e808fd6c-1e0a-407f-a0d5-032230401263"
-                LastKnownName="List&lt;Maid&gt;"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="b4ea7101-1585-4ec5-ae83-8b0898b422d2"
             name="BITMAPHEIGHT"
             visibility="Private"
@@ -2118,8 +1979,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="be394011-1594-4610-b202-9f068ab19730"
-            name="DrawMe"
+            Id="c3196607-255b-46bf-9be3-487408a18708"
+            name="Added"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -2130,8 +1991,8 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="af7c6ff0-7572-47db-ab50-c08d4d0ade66"
-                LastKnownName="HJotel"
+                Id="0fc7210e-d6ce-4385-b450-c209bc07c1b5"
+                LastKnownName="bool"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -2365,26 +2226,73 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="8cc942d6-425c-4580-810a-56eb10d78e29"
+            isDerived="false"
+            sourceEndRoleName="Elevator"
+            targetEndRoleName="Person"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8b897086-3450-41a9-9dcb-9d0f444a4340"
+              LastKnownName="Person"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="96877c1a-f201-4eaa-ad13-399d369f491b"
+                  name="Elevator"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="00763f6d-ca9b-49a0-99c3-51adc4b241d0"
+                      name="Lower"
+                      value="0" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="2672a0bc-69cd-4b2e-83c9-a1535eb5d0f1"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="405cea8e-b325-4f5f-a9f3-82700414e0ef"
+                  name="Person"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="871d16ef-e132-44f9-aacf-f8da0f0c8586"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="3ebb7e31-a7a0-405a-b662-b61cc91e2f45"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property
-            Id="d5a3ed86-5d41-426a-98c4-9d5fd5195682"
-            name="PersonsInElevator"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="ae873280-9512-4331-a636-7664ff6beece"
-                LastKnownName="List&lt;Person&gt;"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
           <property
             Id="31167950-d751-4991-a2d1-e6498ddca3b3"
             name="Speed"
@@ -2458,24 +2366,6 @@
             </type_NamedElement>
           </property>
           <property
-            Id="dc0b9f7e-bacc-4146-8233-fac350c5805a"
-            name="PreviousFloor"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
-                LastKnownName="int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="fb84ede1-3064-4276-a6d6-6340c791a049"
             name="CurrentState"
             isLeaf="false"
@@ -2513,14 +2403,6 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation
-            Id="2ab44a1c-c728-46db-ac93-abd2b2386e8d"
-            name="CalculateSeekingTime"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
           <operation
             Id="96d2e030-4a70-4c36-89e6-ea478241c710"
             name="MoveElevator"
@@ -2561,6 +2443,24 @@
                 <parameter
                   Id="706c1b55-bb14-4b17-b57d-679774c2fe41"
                   name="int elevatorHTE"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8d823cf3-4052-4ed7-b9e6-5227d6178461"
+            name="AddRequest"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b6e4d888-64ef-4d07-88de-f0e48418e85e"
+                  name="int RequestedFloor"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
@@ -3406,6 +3306,43 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="fcc1c4a9-7c58-47eb-afbd-bdea8de1d4b0"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e3d23586-0b4a-4716-8a4b-9b905a51b6ef"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d4442f9d-a5d6-4d19-8aab-de2c22e481ed"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -3459,24 +3396,6 @@
               <undefinedTypeMoniker
                 Id="37065ad4-b2f4-4ac4-a675-42cb7368f9f4"
                 LastKnownName="int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="96ebb5f0-6f4f-46fa-9f43-95edf83b7fb9"
-            name="CurrentRoom"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
-                LastKnownName="HotelRoom"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -3851,45 +3770,9 @@
             </type_NamedElement>
           </property>
           <property
-            Id="34944db4-cc3d-4a6b-b680-0b38d8094a05"
-            name="Destination"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
-                LastKnownName="HotelRoom"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="53a0832b-df95-4fc5-b1e4-229300efc71c"
             name="CheckedIn"
             visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="0fc7210e-d6ce-4385-b450-c209bc07c1b5"
-                LastKnownName="bool"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="dbc60009-3d41-4c06-bd4d-38efde17d0d7"
-            name="InQueue"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -4558,27 +4441,60 @@
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
         </suppliersInternal>
-        <ownedAttributesInternal>
-          <property
-            Id="c6b5e24a-7697-4c19-b991-9a08cca833e0"
-            name="_open"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
+        <targetEnds>
+          <association
+            Id="d869d260-e0e6-429a-9092-e03fb0b5656e"
             isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c8847be7-c0fb-4868-bc5a-d275acfad913"
-                LastKnownName="List&lt;HotelRoom&gt;"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
+            sourceEndRoleName="Pathfind"
+            targetEndRoleName="HotelRoom"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8595a293-ea8a-44de-b57b-93d4e4565cef"
+                  name="Pathfind"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="37b3a73a-df10-4643-beba-721a4d071fce"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="70fceecc-52f7-445b-b107-82882764d5ab"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c96b1a51-6faa-4ddd-9394-7bdcf0d42690"
+                  name="HotelRoom"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedOperationsInternal>
           <operation
             Id="b5368577-2fe1-4347-9905-126dd4c03b89"
@@ -5045,44 +4961,6 @@
         </targetEnds>
         <ownedAttributesInternal>
           <property
-            Id="73e73aa7-67bc-4706-989a-a031f70e7e1e"
-            name="_hs"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="d4b45548-d10e-4e70-95e9-4aee36374bb0"
-                LastKnownName="HotelSimulator"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="a1197ef3-060a-4d0c-97e3-29767699d495"
-            name="_hotel"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="1fab963e-0363-43b9-b458-d6ed77a7a33f"
-                LastKnownName="Hotel"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="18c3c599-a8b2-460d-b6d5-6b4e80040992"
             name="events"
             isLeaf="false"
@@ -5339,6 +5217,86 @@
               LastKnownLocation="ModelingProject1.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="3761fe0a-6eac-4b1d-b84e-7585ac269d53"
+            isDerived="false"
+            sourceEndRoleName="Person"
+            targetEndRoleName="HotelRoom"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2036f69a-ef10-4a59-a021-778c91ed489d"
+                  name="Person"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f10f5228-155b-4b5f-85bd-edba967bdbc3"
+                  name="HotelRoom"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="361bb5a7-8cbd-4117-8dda-d7482fff3433"
+            isDerived="false"
+            sourceEndRoleName="Person"
+            targetEndRoleName="HotelRoom"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f43fb21e-89ae-4b0a-b2a1-77b7e08f1e26"
+              LastKnownName="HotelRoom"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="fd6a3868-1774-4e8d-b854-dab14471f38f"
+                  name="Person"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="781ee3a4-1611-48a9-95f9-1a211bf72223"
+                  name="HotelRoom"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="b36c5061-61d3-45fa-a561-bb64ffd22f66"
@@ -5356,24 +5314,6 @@
               <undefinedTypeMoniker
                 Id="71c6edad-897b-4faa-9d47-e5f6e25ca8b0"
                 LastKnownName="Directions"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="0ca0e7ba-744b-4c48-8d6f-05dd5a729cca"
-            name="Current"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
-                LastKnownName="HotelRoom"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -5507,6 +5447,24 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="be8da4c3-67bc-4a97-8a56-24b47c9dc452"
+            name="InQueue"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="0fc7210e-d6ce-4385-b450-c209bc07c1b5"
+                LastKnownName="bool"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -5583,6 +5541,95 @@
       <undefinedType
         Id="f332fb57-424f-4c26-83ed-d5b85e62c749"
         name="viod" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b6a51bd3-8389-4149-bc81-6dce36f8cb2f"
+        name="HotelRoomFactory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="d9404a1c-f0c4-41fc-b7cf-74a12697747e"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="1fab963e-0363-43b9-b458-d6ed77a7a33f"
+              LastKnownName="Hotel"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7de4f0f2-17e0-42a9-88d5-3cfce8d29c0d"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="984ff579-54ed-4f07-a41d-cded60c157c8"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="119d26e2-0d0a-4b28-9a86-241a7c60cea9"
+            name="CreateHotelRoom"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e6db3074-d306-4689-9a3e-ac82a7db8c24"
+                  name="string AreaType"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="937632b7-a47b-4473-8354-f1cf3c3b93f9"
+                  name="string[] Dimensions"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d71a4137-8437-47cc-8e7f-aa741dddb7be"
+                  name="string Classification"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ee553b60-a97c-4374-882d-1d678d8806f7"
+                  name="int Capacity"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

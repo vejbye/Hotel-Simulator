@@ -31,6 +31,9 @@ namespace HotelSimulator.Object
         protected int RoomPositioning;
         protected int HeightPositioning;
         protected Directions Direction;
+        public HotelRoom Destination { get; set; }
+        public bool InQueue { get; set; }
+        public int CurrentFloor { get; set; }
 
         public Person()
         {

@@ -62,6 +62,7 @@ namespace HotelSimulator.Object
                         {
                             pf.ShortestPathDijkstra(Current, hm);//algorithm to define shortest path
                             HotelRoom cur = hm;
+                            Destination = hm;
                             while (cur != Current)// store path in list so maid can walk through it
                             {
                                 Path.Add(cur);
@@ -131,11 +132,44 @@ namespace HotelSimulator.Object
                 }
                 if (Direction == Directions.South)
                 {
-                    if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                    if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft)
                     {
-                        Current = Path[Path.IndexOf(Current) - 1];
+                        if (!hotel.Elevator.PersonsInElevator.Contains(this))
+                        {
+                            InQueue = true;
+                            //hotel.Elevator.AddRequest(Current.Floor);
+                            if (hotel.LayoutAtZero())
+                            {
+                                //Destination.Floor++;
+                                hotel.Elevator.AddRequest(Destination.Floor + 1);
+                                hotel.Elevator.Destination -= DrawMe.StandardRoomHeight * 2;
+                            }
+                            else
+                                hotel.Elevator.AddRequest(Destination.Floor);
+                        }
+                        if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
+                        {
+                            for (int i = Path.Count - 1; i > 0; i--)
+                            {
+                                if (Path[i].Floor != Destination.Floor)
+                                {
+                                    if (Path[i] is ElevatorShaft)
+                                        if (hotel.LayoutAtZero())
+                                            Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
+                                        else
+                                            Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
+                                }
+                                else
+                                {
+                                    Current = Path[i];
+                                    Position.Y -= (DrawMe.StandardRoomHeight / 2);
+                                    hotel.Elevator.PersonsInElevator.Remove(this);
+                                    break;
+                                }
+                            }
+
+                        }
                     }
-                    Position.Y -= MoveDistance;
                 }
                 if (Direction == Directions.West)
                 {

@@ -250,6 +250,13 @@ namespace HotelSimulator
             }
             for (int i = 0; i < Hotel.Maids.Count; i++)
             {
+                if (Hotel.Maids[i].InQueue && Hotel.Elevator.Floor == Hotel.Maids[i].CurrentFloor && Hotel.Maids[i].Current is ElevatorShaft)
+                {
+                    Hotel.Maids[i].InQueue = false;
+                    Hotel.Elevator.PersonsInElevator.Add(Hotel.Maids[i]);
+                }
+
+                if (!Hotel.Maids[i].InQueue)
                 Hotel.Maids[i].Walk(Hotel);
             }
 
