@@ -23,17 +23,20 @@ namespace HotelSimulator.Object
         /// <returns></returns>
         public Room FindEmptyRoom(Hotel hotel, Guest guest) //search for empty room if a guest wants to check in
         {
-            int stars = int.Parse(guest.Preference);
-            while (stars < 6)
+            int stars = int.Parse(guest.Preference); //How luxe the guest wants his hotelroom
+            while (stars < 6) //The hotel only has 5 star rooms and not any more luxe
             {
                 for (int i = 0; i < hotel.GetMap().GetLength(1); i++)
                 {
                     for (int j = 0; j < hotel.GetMap().GetLength(0); j++)
                     {
+                        //Checks for the first available room and if it corresponds to the amount of stars
                         if (hotel.GetMap()[j, i] is Room && ((Room)hotel.GetMap()[j, i]).Classification.ToString() == stars.ToString())
                         {
+                            //Checks if the room is available and clean
                             if (!((Room)hotel.GetMap()[j, i]).getTaken() && !((Room)hotel.GetMap()[j, i]).Dirty && !((Room)hotel.GetMap()[j, i]).BeingCleaned)
                             {
+                                //Sets room to taken
                                 ((Room)hotel.GetMap()[j, i]).setTaken(true);
                                 return (Room)hotel.GetMap()[j, i];
                             }
@@ -41,6 +44,7 @@ namespace HotelSimulator.Object
                     }
                 }
 
+                //If no room available, look for a more luxe room
                 stars++;
             }
             return null;

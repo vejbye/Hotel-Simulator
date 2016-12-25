@@ -20,7 +20,7 @@ namespace HotelSimulatorUnitTest
         [TestInitialize]
         public void Initialize()
         {
-            hotel = Hotel.getHotel();
+            hotel = Hotel.GetHotel();
             var hs = new HotelSimulator.HotelSimulator();
             reader = new LayoutReader();
 

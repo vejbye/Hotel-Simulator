@@ -1996,6 +1996,128 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="1015934b-9b63-48ac-965d-40b4b73e2934"
+            name="_hotel"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="1fab963e-0363-43b9-b458-d6ed77a7a33f"
+                LastKnownName="Hotel"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e897cd9b-04df-4536-a48d-b8a92d4aab3b"
+            name="Map"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <lowerValueInternal>
+              <literalString
+                Id="52ffd4ad-2659-424d-ad4e-b367a0bef195"
+                name="Lower"
+                value="," />
+            </lowerValueInternal>
+            <upperValueInternal>
+              <literalString
+                Id="23ff0cea-30fd-4818-acd7-c0c55fe2f314"
+                name="Upper"
+                value="," />
+            </upperValueInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
+                LastKnownName="HotelRoom"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="2eccca7a-1509-4e18-8a5a-e4b0232bb8f4"
+            name="Elevator"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="a8740f82-de36-44dd-8820-5a54815249ba"
+                LastKnownName="Elevator"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="42d514ce-f285-4fb7-b35e-def7c7ac4bad"
+            name="_hrFactory"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="b6a51bd3-8389-4149-bc81-6dce36f8cb2f"
+                LastKnownName="HotelRoomFactory"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="251e0616-29a9-45de-af9f-442c7b40af77"
+            name="Guests"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="42eb2f18-318d-4874-bc8b-08f89ddea8ff"
+                LastKnownName="List&lt;Guest&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5488e9ee-2707-447a-92e9-ccb8889699e8"
+            name="Maids"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="e808fd6c-1e0a-407f-a0d5-032230401263"
+                LastKnownName="List&lt;Maid&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -2110,6 +2232,90 @@
                     <undefinedTypeMoniker
                       Id="cf75fec7-6035-424c-b417-6716474aa4fe"
                       LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4a47c06b-ecf5-41e5-983c-24fe8f5304df"
+            name="GetHotel"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0672748f-d710-47f2-ae80-4714d83c0549"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="1fab963e-0363-43b9-b458-d6ed77a7a33f"
+                      LastKnownName="Hotel"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="1d429ca8-6fe3-4f5a-a142-4e56ef20a4a4"
+            name="GetMap"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ad6d856b-db89-474e-b181-6db5b8c0d0cf"
+                  direction="Return"
+                  isUnique="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="1d30bf86-c842-401a-ae63-20591796bc70"
+                      name="Lower"
+                      value="," />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="455f7d3d-46d4-4eba-89ed-b92d4b5973b2"
+                      name="Upper"
+                      value="," />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="039d7c88-dc68-4aa6-a640-99a4f1a5cdef"
+                      LastKnownName="HotelRoom"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a786a001-39c7-4691-9086-0d31ef0f9b6c"
+            name="LayoutAtZero"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a89cb76b-3441-484d-95d7-c5b348dca12e"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="0fc7210e-d6ce-4385-b450-c209bc07c1b5"
+                      LastKnownName="bool"
                       LastKnownLocation="ModelingProject1.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -2398,6 +2604,24 @@
               <undefinedTypeMoniker
                 Id="7b0f3d9e-e4fb-4458-aa74-26482a0ca369"
                 LastKnownName="List&lt;int&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a872eac4-cf3c-4784-909e-ece7b5e57847"
+            name="PersonsInElevator"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ae873280-9512-4331-a636-7664ff6beece"
+                LastKnownName="List&lt;Person&gt;"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -2703,6 +2927,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="4e169335-423e-4da7-90de-13cc1caf4f23"
+            isDerived="false"
+            sourceEndRoleName="SimObject"
+            targetEndRoleName="Draw"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="a5f8a4a3-b51d-4e3c-85dd-44004b0c9583"
+              LastKnownName="Draw"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="526d5012-f74f-4d76-bf26-a17755c06eb0"
+                  name="SimObject"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c1c74397-ce9f-44e4-af03-f3878d7de055"
+                  name="Draw"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -2810,24 +3073,6 @@
               <classMoniker
                 Id="a5f8a4a3-b51d-4e3c-85dd-44004b0c9583"
                 LastKnownName="Draw"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="1ed4017f-86fe-4b29-a688-c97d4a17d296"
-            name="Direction"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <enumerationMoniker
-                Id="cd04c3b3-b1b2-4132-a58d-e79033589a87"
-                LastKnownName="Directions"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -5078,19 +5323,16 @@
         <ownedLiterals>
           <enumerationLiteral
             Id="e14ee9d6-378a-4d9b-9f87-9300ab4d1ef4"
-            name="Left" />
+            name="South" />
           <enumerationLiteral
             Id="5bdffe63-8eaf-48b2-a2fc-7c150376f9fb"
-            name="Right" />
-          <enumerationLiteral
-            Id="93af5a1f-5bcb-4a16-b881-4ecf0791527d"
-            name="Up" />
+            name="West" />
           <enumerationLiteral
             Id="50743b8e-3d7c-4ae9-8cf0-1c48bcf51a03"
-            name="Down" />
+            name="North" />
           <enumerationLiteral
             Id="d19bb3a9-d925-4338-a8f6-a781c947c7d9"
-            name="None" />
+            name="East" />
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>

@@ -15,25 +15,20 @@ namespace HotelSimulator.Object
             East,
             South,
             West,
-            LEFT,
-            RIGHT,
-            UP,
-            DOWN,
-            NONE
         }
 
         public HotelRoom Current { get; set; } // current location of guest
         public List<HotelRoom> Path { get; set; }// for storing the path to the guests destination
-        public int HteDuration { get; set; }
-        public bool Dead;
-        public int WaitTime;
-        protected int MoveDistance;
-        protected int RoomPositioning;
-        protected int HeightPositioning;
-        protected Directions Direction;
-        public HotelRoom Destination { get; set; }
+        public int HteDuration { get; set; } //How fast the person will work
+        public bool Dead; 
+        public int WaitTime; //How long the person waits before he/she dies
+        protected int MoveDistance;//The amount of pixels it moves in the hotel
+        protected int RoomPositioning;//Where to make the guest walk, changing this will change how the guest will walk
+        protected int HeightPositioning;//Same as above 
+        protected Directions Direction;//The direction this person will go
+        public HotelRoom Destination { get; set; }//The destination where the guest will go to
         public bool InQueue { get; set; }
-        public int CurrentFloor { get; set; }
+        public int CurrentFloor { get; set; }//The current floor the guest is on
 
         public Person()
         {
