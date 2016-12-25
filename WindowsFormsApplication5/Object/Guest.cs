@@ -148,6 +148,7 @@ namespace HotelSimulator.Object
 
                             }
                         }
+                    }
                         if (Direction == Directions.South) //Actually north
                     {
                         if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft)
