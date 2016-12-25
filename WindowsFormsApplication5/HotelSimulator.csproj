@@ -76,8 +76,8 @@
     <Compile Include="InfoScreen.Designer.cs">
       <DependentUpon>InfoScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layout\LayoutReader.cs" />
     <Compile Include="Layout\LayoutFormat.cs" />
+    <Compile Include="Layout\LayoutReader.cs" />
     <Compile Include="Object\Cinema.cs" />
     <Compile Include="Object\Guest.cs" />
     <Compile Include="Object\HotelRoom.cs" />
@@ -213,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DirtyRoom5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Object\Layout\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

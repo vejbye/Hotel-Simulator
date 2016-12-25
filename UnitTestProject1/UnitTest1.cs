@@ -44,6 +44,15 @@ namespace HotelSimulatorUnitTest
             Assert.AreEqual(3, guest.EatingHTE);
         }
         [TestMethod]
+        public void TestEating2()
+        {
+            Guest guest = new Guest();
+            guest.EatingHTE = 1;
+            guest.EatingDuration = 1;
+            guest.Eating();
+            Assert.AreEqual(1, guest.EatingHTE);
+        }
+        [TestMethod]
         public void TestArrival1()
         {
             Guest guest = new Guest();
@@ -127,9 +136,11 @@ namespace HotelSimulatorUnitTest
         public void TestGuestDying()
         {
             Guest guest = new Guest();
+            guest.Current = hotel.GetMap()[0, 0];
             guest.WaitTime = 7;
             guest.InLine();
             Assert.AreEqual(guest.Dead, true);
+            Assert.AreEqual(0, hotel.GetMap()[0, 0].Guests.Count);
         }
 
         [TestMethod]

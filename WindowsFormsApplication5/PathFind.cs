@@ -10,7 +10,7 @@ namespace HotelSimulator
 {
     class PathFind
     {
-        private List<HotelRoom> _open;
+        private List<HotelRoom> _open; //this is iterated through to define the shortest path
 
         public PathFind()
         {
