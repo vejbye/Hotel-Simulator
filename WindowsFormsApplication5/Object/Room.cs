@@ -11,8 +11,8 @@ namespace HotelSimulator.Object
 {
     public class Room : HotelRoom
     {
-        private bool _taken;
-        public bool Dirty { get; set; }
+        private bool _taken; //The state of the room
+        public bool Dirty { get; set; } 
         public bool BeingCleaned { get; set; } = false;
         public Image DirtyRoom { get; set; }
 
@@ -34,6 +34,7 @@ namespace HotelSimulator.Object
 
         public void SetRoomImage(string[] RoomDimension)
         {
+            //Assigns the room images accordingly, if there is no corresponding image, itll use the standard room image but stretched out
             if (int.Parse(RoomDimension[0]) == 2)
             {
                 if (int.Parse(RoomDimension[1]) == 2)

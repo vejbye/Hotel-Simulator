@@ -10,7 +10,7 @@ namespace HotelSimulator.Object
     public class Cinema : HotelRoom
     {
         public bool Playing { get; set; }
-        private int _movieAt;
+        private int _movieAt; //Private integer that counts at how long the movie has been going for.
 
         public Cinema()
         {

@@ -20,6 +20,7 @@ namespace HotelSimulator.Object
 
         public void HandleWaitingline()
         {
+            //As long as there is space in the restaurant, a guest can eat
             while (Guests.Count < Capacity)
             {
                 //The first one in the queue gets a seat in the restaurant and starts eating

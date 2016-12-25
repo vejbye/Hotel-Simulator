@@ -53,7 +53,7 @@ namespace HotelSimulator
         public HotelSimulator()
         {
             InitializeComponent();
-            Hotel = Hotel.getHotel();
+            Hotel = Hotel.GetHotel();
             DrawMe = new Draw();
 
             timer.Interval = (1000 / 120); // Refreshes 120 times a second
@@ -217,10 +217,10 @@ namespace HotelSimulator
                 Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
             }
 
-            if (Hotel.Elevator.Destination == DrawMe.YStartPosition && Hotel.Elevator.Requests.Count > 0)
+            if (Hotel.Elevator.Destination == DrawMe.YStartPosition && Hotel.Elevator.Requests.Count > 0) 
                 Hotel.Elevator.Destination -= DrawMe.StandardRoomHeight;
             else
-                Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
+                Hotel.Elevator.Destination = (DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight)) - DrawMe.StandardRoomHeight ;
 
             Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
 
