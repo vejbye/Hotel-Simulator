@@ -217,13 +217,18 @@ namespace HotelSimulator
                 Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
             }
 
-            Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
+            if (Hotel.Elevator.Destination == DrawMe.YStartPosition && Hotel.Elevator.Requests.Count > 0)
+                Hotel.Elevator.Destination -= DrawMe.StandardRoomHeight;
+            else
+                Hotel.Elevator.Destination = DrawMe.YStartPosition - (Hotel.Elevator.RequestedFloor * DrawMe.StandardRoomHeight);
 
             Hotel.Elevator.MoveElevator(Hotel, Hotel.Elevator.RequestedFloor, ElevatorHteDuration);
+
 
             if (Hotel.Elevator.ElevatorPosition.Y == Hotel.Elevator.Destination)
             {
                 Hotel.Elevator.Floor = Hotel.Elevator.RequestedFloor;
+                
 
                 if (CurrentElement < Hotel.Elevator.Requests.Count - 1)
                     CurrentElement++;
@@ -232,7 +237,9 @@ namespace HotelSimulator
                     Hotel.Elevator.CurrentState = Elevator.ElevatorState.Idle;
                     CurrentElement = 0;
                 }
+               
             }
+
 
             //Let each guest/maid/elevator move one step each * milliseconds
             for (int i = 0; i < Hotel.Guests.Count; i++)
