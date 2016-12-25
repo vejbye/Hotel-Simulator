@@ -124,28 +124,22 @@ namespace HotelSimulator.Object
                 }
                 if (Direction == Directions.North)
                 {
-                    if (Position.Y > Path[Path.IndexOf(Current) - 1].RoomPosition.Y - (DrawMe.StandardRoomHeight / HeightPositioning))
-                    {
-                        Current = Path[Path.IndexOf(Current) - 1];
-                    }
-                    Position.Y += MoveDistance;
-                }
-                if (Direction == Directions.South)
-                {
                     if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft)
                     {
                         if (!hotel.Elevator.PersonsInElevator.Contains(this))
                         {
                             InQueue = true;
-                            //hotel.Elevator.AddRequest(Current.Floor);
                             if (hotel.LayoutAtZero())
                             {
-                                //Destination.Floor++;
+                                hotel.Elevator.AddRequest(Current.Floor);
                                 hotel.Elevator.AddRequest(Destination.Floor + 1);
                                 hotel.Elevator.Destination -= DrawMe.StandardRoomHeight * 2;
                             }
                             else
+                            {
+                                hotel.Elevator.AddRequest(Current.Floor);
                                 hotel.Elevator.AddRequest(Destination.Floor);
+                            }
                         }
                         if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
                         {
@@ -155,20 +149,74 @@ namespace HotelSimulator.Object
                                 {
                                     if (Path[i] is ElevatorShaft)
                                         if (hotel.LayoutAtZero())
-                                            Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
+                                            // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
+                                            Position.Y += DrawMe.StandardRoomHeight;
                                         else
-                                            Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
+                                            //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
+                                            Position.Y += DrawMe.StandardRoomHeight;
                                 }
                                 else
                                 {
                                     Current = Path[i];
-                                    Position.Y -= (DrawMe.StandardRoomHeight / 2);
+                                    //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
                                     hotel.Elevator.PersonsInElevator.Remove(this);
                                     break;
                                 }
                             }
 
                         }
+                    }
+                    if (Direction == Directions.South) //Actually north
+                {
+                    if (CurrentFloor == hotel.Elevator.Floor && Current is ElevatorShaft)
+                    {
+                        if (!hotel.Elevator.PersonsInElevator.Contains(this))
+                        {
+                            InQueue = true;
+                            if (hotel.LayoutAtZero())
+                            {
+                                hotel.Elevator.AddRequest(Current.Floor);
+                                hotel.Elevator.AddRequest(Destination.Floor + 1);
+                                hotel.Elevator.Destination -= DrawMe.StandardRoomHeight * 2;
+                            }
+                            else
+                            {
+                                hotel.Elevator.AddRequest(Current.Floor);
+                                hotel.Elevator.AddRequest(Destination.Floor);
+                            }
+                        }
+                        if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
+                        {
+                            for (int i = Path.Count - 1; i > 0; i--)
+                            {
+                                if (Path[i].Floor != Destination.Floor)
+                                {
+                                    if (Path[i] is ElevatorShaft)
+                                        if (hotel.LayoutAtZero())
+                                            // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
+                                            Position.Y -= DrawMe.StandardRoomHeight;
+                                        else
+                                            //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
+                                            Position.Y -= DrawMe.StandardRoomHeight;
+                                }
+                                else
+                                {
+                                    Current = Path[i];
+                                    //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
+                                    hotel.Elevator.PersonsInElevator.Remove(this);
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+                    else if (Current is Stair)
+                    {
+                        if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                        {
+                            Current = Path[Path.IndexOf(Current) - 1];
+                        }
+                        Position.Y -= MoveDistance;
                     }
                 }
                 if (Direction == Directions.West)

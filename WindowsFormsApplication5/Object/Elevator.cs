@@ -69,6 +69,12 @@ namespace HotelSimulator.Object
                     {
                         hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
                         hotel.Elevator.ElevatorPosition.Y += 10;
+
+                    }
+
+                     if(hotel.Elevator.ElevatorPosition.Y == Destination)
+                    {
+                        hotel.Elevator.Requests.RemoveAt(hotel.Elevator.Requests.Count -1);
                     }
                 }
 
