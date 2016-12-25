@@ -153,15 +153,17 @@ namespace HotelSimulator.Object
                                     if(Path[i].Floor != Destination.Floor)
                                     {
                                         if(Path[i] is ElevatorShaft)
-                                            if (hotel.LayoutAtZero())
-                                                Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
+                                             if (hotel.LayoutAtZero())
+                                                // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
+                                                Position.Y -= DrawMe.StandardRoomHeight;
                                             else
-                                                Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
+                                             //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
+                                        Position.Y -= DrawMe.StandardRoomHeight;
                                     }
                                     else
                                     {
                                         Current = Path[i];
-                                        Position.Y -= (DrawMe.StandardRoomHeight / 2);
+                                        //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
                                         hotel.Elevator.PersonsInElevator.Remove(this);
                                         break;
                                     }
