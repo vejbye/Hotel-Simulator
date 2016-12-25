@@ -57,15 +57,15 @@ namespace HotelSimulator.Object
 
             if (Speed == elevatorHTE)
             {
-                if (hotel.Elevator.ElevatorPosition.Y != DrawMe.YStartPosition - (floor * DrawMe.StandardRoomHeight))
+                if (hotel.Elevator.ElevatorPosition.Y != Destination)
                 {
-                    if (hotel.Elevator.ElevatorPosition.Y > DrawMe.YStartPosition - (floor * DrawMe.StandardRoomHeight))
+                    if (hotel.Elevator.ElevatorPosition.Y > Destination)
                     {
                         hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingUp;
                         hotel.Elevator.ElevatorPosition.Y -= 10;
                     }
 
-                     if (hotel.Elevator.ElevatorPosition.Y < DrawMe.YStartPosition - (floor * DrawMe.StandardRoomHeight) && floor < Floor)
+                     if (hotel.Elevator.ElevatorPosition.Y < Destination && floor < Floor)
                     {
                         hotel.Elevator.CurrentState = Elevator.ElevatorState.MovingDown;
                         hotel.Elevator.ElevatorPosition.Y += 10;
