@@ -9,28 +9,28 @@ namespace HotelSimulator.Object
 {
     public class Hotel
     {
-        private static Hotel _hotel = new Hotel();
-        public Bitmap HotelBitmap;
-        public HotelRoom[,] Map;
-        public Elevator Elevator;
-        public Draw DrawMe;
-        private HotelRoomFactory _hrFactory;
+        private static Hotel _hotel = new Hotel(); //Singleton hotel
+        public Bitmap HotelBitmap; //This is where the hotel will be drawed on
+        public HotelRoom[,] Map; //The double array to give positions to every room
+        public Elevator Elevator; //A hotel naturally has an elevator!
+        public Draw DrawMe; //To get standard information from like standard room height
+        private HotelRoomFactory _hrFactory; //A factory to create all kinds of rooms
 
-        public List<Guest> Guests { get; set; }
-        public List<Maid> Maids { get; set; }
-        private List<int> _hotelRoomWidths;
-        private List<int> _hotelRoomHeights;
+        public List<Guest> Guests { get; set; } //The guests that resides in the hotel
+        public List<Maid> Maids { get; set; }// The maids that are working in the hotel
+        private List<int> _hotelRoomWidths; // A list of all the widths of every room, used to calculate the width of the hotel
+        private List<int> _hotelRoomHeights;// A list of all the heights of every room, used to calculate the height of the hotel
 
-        private const int BITMAPHEIGHT = 800;
+        private const int BITMAPHEIGHT = 800; 
         private const int BITMAPWIDTH = 2000;
 
-        private int _amountOfInfrastructure = 3;
-        private int _lastArrayDimension = 0;
-        private int _hotelWidth;
-        private int _hotelHeight;
+        private int _amountOfInfrastructure = 3; //This will be added to the double array in map. 1 for the shaft, 1 for the stairs, and 1 for the elevator
+        private int _lastArrayDimension = 0; //The dimension of the most right room. This is to know if we have to make the hotel bigger or not because otherwise the room would stick out.
+        private int _hotelWidth; //Width of the hotel
+        private int _hotelHeight;// Height of the hotel
 
-        public bool Added = false;
-        private bool _layoutStartsAt0;  
+        public bool Added = false; //Checks if infrastructure is already added or not
+        private bool _layoutStartsAt0;  //Checks if the layout files starts at 0
 
         private Hotel()
         {
@@ -60,12 +60,14 @@ namespace HotelSimulator.Object
             //Looks at the width and height of the hotel
             foreach (LayoutFormat l in layout)
             {
+                //Splits dimensions and positions and make the numbers useable
                 string[] positions = l.Position.Split(',');
                 string[] dimensions = l.Dimension.Split(',');
 
                 _hotelRoomWidths.Add(int.Parse(positions[0]));
                 _hotelRoomHeights.Add(int.Parse(positions[1]));
 
+                //Checks for the widest room
                 for (int i = 0; i < _hotelRoomWidths.Count; i++)
                 {
                     if (_hotelRoomWidths[i] > _hotelWidth)
@@ -75,20 +77,24 @@ namespace HotelSimulator.Object
                     }
                 }
 
+                //Checks for the highest room
                 for (int i = 0; i < _hotelRoomHeights.Count; i++)
                 {
                     if (_hotelRoomHeights[i] > _hotelHeight)
                         _hotelHeight = _hotelRoomHeights[i];
                 }
 
+                //Checks if layout starts at 0
                 if (_hotelRoomWidths.Contains(0))
                 {
                     _layoutStartsAt0 = true;
                 }
             }
 
+            //If the last room has a width of 1, you can add the infrastructure normally to the hotel
             if (_lastArrayDimension == 1)
                 Map = new HotelRoom[_hotelWidth + _amountOfInfrastructure, _hotelHeight + 1];
+            //Else add more space in the hotel for the last room
             else
                 //Creates double array based on the width and height
                 //Adds height: 1 for reception
@@ -163,10 +169,12 @@ namespace HotelSimulator.Object
         }
         
         /// <summary>
-        /// Adds maids to the hotel
+        /// Add maids to the hotel.
         /// </summary>
+        /// <param name="cleaningHTE">How fast the maids need to work.</param>
         public void AddMaids(int cleaningHTE)
         {
+            //Adds 2 maids, giving them a position, and how fast they work
             Maid maid1 = new Maid(Map[0, 0]);
             Maid maid2 = new Maid(Map[0, 0]);
             maid1.Position = new Point(DrawMe.XStartPosition + maid1.Width, DrawMe.YStartPosition - maid1.Height);
@@ -178,7 +186,10 @@ namespace HotelSimulator.Object
             Maids.Add(maid2);
         }
 
-        //Adds neighbours for every direction possible in the layout.
+        /// <summary>
+        /// Adds neighbours for every single direction there is.
+        /// </summary>
+        /// <param name="map">Give the room for neighbours to assign.</param>
         private void AddNeighbours(HotelRoom[,] map)
         {
             for (int x = 0; x < map.GetLength(0); x++)
@@ -209,7 +220,9 @@ namespace HotelSimulator.Object
             return Map;
         }
 
-        //Resets every list and values
+        /// <summary>
+        /// Resets every list and value to their original state.
+        /// </summary>
         public void Reset()
         {
             _hotelRoomWidths.Clear();

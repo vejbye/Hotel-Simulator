@@ -77,6 +77,7 @@ namespace HotelSimulator.Object
 
                     if (hotel.Elevator.ElevatorPosition.Y == Destination)
                     {
+                        Floor = floor;
                         hotel.Elevator.Requests.RemoveAt(hotel.Elevator.Requests.Count - 1);
                     }
                 }

@@ -154,22 +154,24 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestGuestpathfind()
         {
+            int howFarDoesTheGuestNeedToWalk = 10;
             Guest guest = new Guest();
             guest.Current = map[0, 0];
             Point Position = guest.Position;
             guest.setPath(hotel, map[9, 0]);
-            Assert.AreEqual(10, guest.Path.Count);
+            Assert.AreEqual(howFarDoesTheGuestNeedToWalk, guest.Path.Count);
         }
 
         [TestMethod]
         public void TestMaidpathfind()
         {
+            int howFarDoesTheMaidNeedToWalk = 6;
             Maid maid = new Maid(hotel.GetMap()[0, 0]);
             maid.CleaningHTE = 1;
             ((Room)hotel.Map[4, 1]).Dirty = true;
             Point Position = maid.Position;
             maid.SetPath(hotel);
-            Assert.AreEqual(6, maid.Path.Count);
+            Assert.AreEqual(howFarDoesTheMaidNeedToWalk, maid.Path.Count);
         }
 
         [TestMethod]
@@ -283,14 +285,15 @@ namespace HotelSimulatorUnitTest
         public void TestMovingElevatorUp()
         {
             bool elevatorArrived = false;
+            int requestedFloor = 3;
             hotel.Build(reader.ReadLayout(standardLayout));
             //Testing if the elevator movement is correct. Given are the hotel the elevator is in, the requested floor (3), and the speed of the elevator. (1)
 
             while (!elevatorArrived)
             {
-                hotel.Elevator.MoveElevator(hotel, 3, 1);
+                hotel.Elevator.MoveElevator(hotel, requestedFloor, 2);
 
-                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (3 * hotel.DrawMe.StandardRoomHeight))
+                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (requestedFloor * hotel.DrawMe.StandardRoomHeight))
                 {
                     elevatorArrived = true;
                 }
@@ -306,24 +309,41 @@ namespace HotelSimulatorUnitTest
         public void TestMovingElevatorDown()
         {
             bool elevatorArrived = false;
+            bool elevatorWentDown = false;
+            int requestedFloor = 3;
+            int secondRequestedFloor = 1;
             hotel.Build(reader.ReadLayout(standardLayout));
-            hotel.Elevator.Floor = 6;
-            hotel.Elevator.Position.Y = hotel.DrawMe.YStartPosition - (6 * hotel.DrawMe.StandardRoomHeight);
             //Testing if the elevator movement is correct. Given are the hotel the elevator is in, the requested floor (3), and the speed of the elevator. (1)
+
+            hotel.Elevator.Destination = hotel.DrawMe.YStartPosition - (requestedFloor * hotel.DrawMe.StandardRoomHeight);
+            hotel.Elevator.Requests.Add(requestedFloor);
 
             while (!elevatorArrived)
             {
-                hotel.Elevator.MoveElevator(hotel,3, 1);
+                hotel.Elevator.MoveElevator(hotel, requestedFloor, 1);
 
-                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (3 * hotel.DrawMe.StandardRoomHeight))
+                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (requestedFloor * hotel.DrawMe.StandardRoomHeight))
                 {
                     elevatorArrived = true;
                 }
             }
 
+            hotel.Elevator.Destination = hotel.DrawMe.YStartPosition - (secondRequestedFloor * hotel.DrawMe.StandardRoomHeight);
+            hotel.Elevator.Requests.Add(secondRequestedFloor);
+
+            while (!elevatorWentDown)
+            {
+                hotel.Elevator.MoveElevator(hotel, secondRequestedFloor, 1);
+
+                if (hotel.Elevator.ElevatorPosition.Y == hotel.DrawMe.YStartPosition - (secondRequestedFloor * hotel.DrawMe.StandardRoomHeight))
+                {
+                    elevatorWentDown = true;
+                }
+            }
 
 
-            Assert.IsTrue(elevatorArrived);
+
+            Assert.IsTrue(elevatorWentDown);
         }
 
         [TestMethod]
@@ -345,9 +365,10 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestAddingMaid()
         {
+            int amountOfMaidsThatShouldBeInHotel = 2;
             hotel.Build(reader.ReadLayout(standardLayout));
             hotel.AddMaids(1);
-            Assert.AreEqual(hotel.Maids.Count, 2);
+            Assert.AreEqual(hotel.Maids.Count, amountOfMaidsThatShouldBeInHotel);
         }
 
         [TestMethod]
@@ -374,7 +395,16 @@ namespace HotelSimulatorUnitTest
             Assert.IsNull(_formats);
         }
 
+        [TestMethod]
+        public void TestAddingElevatorRequest()
+        {
+            int requestingFloor = 1;
+            hotel.Elevator.AddRequest(requestingFloor);
 
+            Assert.AreEqual(hotel.Elevator.Requests[0], requestingFloor);
+
+
+        }
 
     }
 

@@ -31,6 +31,7 @@
             this.screenPB = new System.Windows.Forms.PictureBox();
             this.loadlayoutBTN = new System.Windows.Forms.Button();
             this.settingsBTN = new System.Windows.Forms.Button();
+            this.warningLBL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,11 +72,23 @@
             this.settingsBTN.UseVisualStyleBackColor = true;
             this.settingsBTN.Click += new System.EventHandler(this.settingsBTN_Click);
             // 
+            // warningLBL
+            // 
+            this.warningLBL.AutoSize = true;
+            this.warningLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.warningLBL.Location = new System.Drawing.Point(362, 565);
+            this.warningLBL.Name = "warningLBL";
+            this.warningLBL.Size = new System.Drawing.Size(524, 20);
+            this.warningLBL.TabIndex = 3;
+            this.warningLBL.Text = "(NOTE: Settings will only take effect if you configure before loading hotel!)";
+            this.warningLBL.Click += new System.EventHandler(this.warningLBL_Click);
+            // 
             // HotelSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 614);
+            this.Controls.Add(this.warningLBL);
             this.Controls.Add(this.settingsBTN);
             this.Controls.Add(this.loadlayoutBTN);
             this.Controls.Add(this.screenPB);
@@ -83,6 +96,7 @@
             this.Text = "Hotel Simulator 2016";
             ((System.ComponentModel.ISupportInitialize)(this.screenPB)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,6 +105,7 @@
         private System.Windows.Forms.PictureBox screenPB;
         private System.Windows.Forms.Button loadlayoutBTN;
         private System.Windows.Forms.Button settingsBTN;
+        private System.Windows.Forms.Label warningLBL;
     }
 }
 

@@ -322,5 +322,9 @@ namespace HotelSimulator
             DrawMe.DrawHotel(Hotel, false);
         }
 
+        private void warningLBL_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
