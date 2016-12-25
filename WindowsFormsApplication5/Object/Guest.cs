@@ -12,16 +12,16 @@ namespace HotelSimulator.Object
 {
     public class Guest : Person
     {
-        public string GuestName { get; set; }
-        public string Id { get; set; }
-        public Room Room { get; set; }
+        public string GuestName { get; set; }// the name of the guest
+        public string Id { get; set; } //the guests unqiue ID
+        public Room Room { get; set; } //the room the guest obtained
         public string Preference { get; set; }// the guests prefered room classification
-        public bool CheckedIn { get; set; }
-        public int EatingDuration { get; set; }
+        public bool CheckedIn { get; set; }// for checking if a guest has checked in
+        public int EatingDuration { get; set; } //how long the guest does over eating
         private int _hteCount;
-        private int _queueCount;
-        public int EatingHTE;
-        public int FitnessHTE;
+        private int _queueCount; //how long the guest is waiting in line
+        public int EatingHTE; //how long before the guest is finished
+        public int FitnessHTE; // how long the guest does over fitness
 
 
         public Guest()
@@ -110,7 +110,8 @@ namespace HotelSimulator.Object
                         {
                             if (!hotel.Elevator.PersonsInElevator.Contains(this))
                             {
-                                InQueue = true;
+                                InQueue = true;// guest starts waiting for elevator
+                                //guest requests the elevator here
                                 if (hotel.LayoutAtZero())
                                 {
                                     hotel.Elevator.AddRequest(Current.Floor);
@@ -123,7 +124,7 @@ namespace HotelSimulator.Object
                                     hotel.Elevator.AddRequest(Destination.Floor);
                                 }
                             }
-                            if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
+                            if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)// when destination is reached move guest accordingly
                             {
                                 for (int i = Path.Count - 1; i > 0; i--)
                                 {
@@ -131,17 +132,14 @@ namespace HotelSimulator.Object
                                     {
                                         if (Path[i] is ElevatorShaft)
                                             if (hotel.LayoutAtZero())
-                                                // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
-                                                Position.Y += DrawMe.StandardRoomHeight;
+                                                Position.Y += DrawMe.StandardRoomHeight; //change guests position to the next floor
                                             else
-                                                //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
                                                 Position.Y += DrawMe.StandardRoomHeight;
                                     }
                                     else
                                     {
                                         Current = Path[i];
-                                        //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
-                                        hotel.Elevator.PersonsInElevator.Remove(this);
+                                        hotel.Elevator.PersonsInElevator.Remove(this); //let the guest exit
                                         break;
                                     }
                                 }
@@ -163,7 +161,8 @@ namespace HotelSimulator.Object
                         {
                             if (!hotel.Elevator.PersonsInElevator.Contains(this))
                             {
-                                InQueue = true;
+                                InQueue = true; // guest starts waiting for elevator
+                                //guest requests the elevator here
                                 if (hotel.LayoutAtZero())
                                 {
                                     hotel.Elevator.AddRequest(Current.Floor);
@@ -176,7 +175,7 @@ namespace HotelSimulator.Object
                                     hotel.Elevator.AddRequest(Destination.Floor);
                                 }
                             }
-                            if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
+                            if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance) // when destination is reached move guest accordingly
                             {
                                 for (int i = Path.Count -1; i > 0; i--)
                                 {
@@ -184,17 +183,14 @@ namespace HotelSimulator.Object
                                     {
                                         if(Path[i] is ElevatorShaft)
                                              if (hotel.LayoutAtZero())
-                                                // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
                                                 Position.Y -= DrawMe.StandardRoomHeight;
                                             else
-                                             //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
                                         Position.Y -= DrawMe.StandardRoomHeight;
                                     }
                                     else
                                     {
                                         Current = Path[i];
-                                        //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
-                                        hotel.Elevator.PersonsInElevator.Remove(this);
+                                        hotel.Elevator.PersonsInElevator.Remove(this); //let the guest exit
                                         break;
                                     }
                                 }
@@ -226,13 +222,13 @@ namespace HotelSimulator.Object
                     if (Room == null && Destination is Reception)
                     {
                         Room = ((Reception)Destination).FindEmptyRoom(hotel, this);
-                        if (Room == null)
+                        if (Room == null) //if there is no room guests leaves
                         {
                             Path.Clear();
                             setPath(hotel, hotel.Map[0, 0]);
                             hotel.Guests.Remove(this);
                         }
-                        else
+                        else //guest goes to room
                         {
                             Path.Clear();
                             setPath(hotel, Room);
@@ -276,18 +272,19 @@ namespace HotelSimulator.Object
 
                     }
 
-                    if (Destination is Gym && FitnessHTE > 0)
+                    if (Destination is Gym && FitnessHTE > 0) //Guest starts fitness;
                     {
                         HteDuration = FitnessHTE;
                         FitnessHTE = 0;
                     }
 
+                    //adds guest to a hotelroom if there is room for him (and if a movie ís not playing in case of cinema)
                     if (!Current.Guests.Contains(this) && !(Destination is Cinema && ((Cinema)Destination).Playing) && !(Destination is Restaurant && ((Restaurant)Destination).Guests.Count >= ((Restaurant)Destination).Capacity))
                     {
                         Current.Guests.Add(this);
                     }
 
-                    if (Destination is Restaurant && ((Restaurant)Destination).Guests.Count < ((Restaurant)Destination).Capacity)
+                    if (Destination is Restaurant && ((Restaurant)Destination).Guests.Count < ((Restaurant)Destination).Capacity) //guests starts eating
                     {
                         Eating();
                     }

@@ -10,9 +10,9 @@ namespace HotelSimulator.Object
 {
     public class Maid : Person
     {
-        public bool Evacuation { get; set; }
-        public int CleaningDuration { get; set; }
-        public int CleaningHTE { get; set; }
+        public bool Evacuation { get; set; } // let the maid know if he needs to evacuate
+        public int CleaningDuration { get; set; } // how much time the maid already spent cleaning the room
+        public int CleaningHTE { get; set; } //  how long it takes to clean the room
         public Maid(HotelRoom current)
         {
             Current = current;
@@ -128,7 +128,8 @@ namespace HotelSimulator.Object
                     {
                         if (!hotel.Elevator.PersonsInElevator.Contains(this))
                         {
-                            InQueue = true;
+                            InQueue = true; // miaid starts waiting for elevator
+                            //maid requests the elevator here
                             if (hotel.LayoutAtZero())
                             {
                                 hotel.Elevator.AddRequest(Current.Floor);
@@ -141,7 +142,7 @@ namespace HotelSimulator.Object
                                 hotel.Elevator.AddRequest(Destination.Floor);
                             }
                         }
-                        if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
+                        if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance) //when elevator reaches destination move maid accordingly
                         {
                             for (int i = Path.Count - 1; i > 0; i--)
                             {
@@ -149,17 +150,14 @@ namespace HotelSimulator.Object
                                 {
                                     if (Path[i] is ElevatorShaft)
                                         if (hotel.LayoutAtZero())
-                                            // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
                                             Position.Y += DrawMe.StandardRoomHeight;
                                         else
-                                            //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
                                             Position.Y += DrawMe.StandardRoomHeight;
                                 }
                                 else
                                 {
                                     Current = Path[i];
-                                    //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
-                                    hotel.Elevator.PersonsInElevator.Remove(this);
+                                    hotel.Elevator.PersonsInElevator.Remove(this); //let the maid exit the elevator
                                     break;
                                 }
                             }
@@ -173,7 +171,8 @@ namespace HotelSimulator.Object
                     {
                         if (!hotel.Elevator.PersonsInElevator.Contains(this))
                         {
-                            InQueue = true;
+                            InQueue = true;// miaid starts waiting for elevator
+                            //maid requests the elevator here
                             if (hotel.LayoutAtZero())
                             {
                                 hotel.Elevator.AddRequest(Current.Floor);
@@ -186,7 +185,7 @@ namespace HotelSimulator.Object
                                 hotel.Elevator.AddRequest(Destination.Floor);
                             }
                         }
-                        if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)
+                        if (hotel.Elevator.ElevatorPosition.Y == hotel.Elevator.Destination + MoveDistance)  //when elevator reaches destination move maid accordingly
                         {
                             for (int i = Path.Count - 1; i > 0; i--)
                             {
@@ -194,21 +193,17 @@ namespace HotelSimulator.Object
                                 {
                                     if (Path[i] is ElevatorShaft)
                                         if (hotel.LayoutAtZero())
-                                            // Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023) + (DrawMe.StandardRoomHeight));
                                             Position.Y -= DrawMe.StandardRoomHeight;
                                         else
-                                            //Position.Y = (int)(hotel.Elevator.Destination - (hotel.Elevator.Destination * 0.023));
                                             Position.Y -= DrawMe.StandardRoomHeight;
                                 }
                                 else
                                 {
                                     Current = Path[i];
-                                    //Position.Y -= DrawMe.StandardRoomHeight;//(DrawMe.StandardRoomHeight /2);
-                                    hotel.Elevator.PersonsInElevator.Remove(this);
+                                    hotel.Elevator.PersonsInElevator.Remove(this); //let the maid exit the elevator
                                     break;
                                 }
                             }
-
                         }
                     }
                     else if (Current is Stair)
@@ -230,7 +225,7 @@ namespace HotelSimulator.Object
                 }
             }
 
-            if(Path.Count > 0 && Current == Path.ElementAt(0) && !(Evacuation && Current == hotel.Map[0,0]))
+            if(Path.Count > 0 && Current == Path.ElementAt(0) && !(Evacuation && Current == hotel.Map[0,0])) //start cleaning the room if maid has arrived
             {
                 if (Current is Room)
                     ((Room)Path.ElementAt(0)).BeingCleaned = false;
@@ -239,7 +234,7 @@ namespace HotelSimulator.Object
                 SetPath(hotel);
             }
 
-            if(Path.Count <= 0)
+            if(Path.Count <= 0) //look for a new dirty room when finished
             {
                 Path.Clear();
                 SetPath(hotel);
