@@ -148,6 +148,14 @@ namespace HotelSimulator.Object
 
                             }
                         }
+                        else if (Current is Stair)
+                        {
+                            if (Position.Y < Path[Path.IndexOf(Current) - 1].RoomPosition.Y + (DrawMe.StandardRoomHeight / 2))
+                            {
+                                Current = Path[Path.IndexOf(Current) - 1];
+                            }
+                            Position.Y += MoveDistance;
+                        }
                     }
                         if (Direction == Directions.South) //Actually north
                     {

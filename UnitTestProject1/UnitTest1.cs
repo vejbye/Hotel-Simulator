@@ -175,7 +175,7 @@ namespace HotelSimulatorUnitTest
         [TestMethod]
         public void TestMaidWalk1()
         {
-            Maid maid = new Maid(hotel.GetMap()[0, 0]);
+            Maid maid = new Maid(hotel.GetMap()[map.GetLength(0) - 2, 0]);
             maid.CleaningHTE = 1;
             ((Room)hotel.GetMap()[4, 1]).Dirty = true;
             Point Position = maid.Position;
@@ -224,9 +224,9 @@ namespace HotelSimulatorUnitTest
         public void TestWalkDown()
         {
             Guest guest = new Guest();
-            guest.Current = map[0, 5];
+            guest.Current = map[map.GetLength(0) -2, 5];
             Point Position = guest.Position;
-            guest.setPath(hotel, map[0, 0]);
+            guest.setPath(hotel, map[map.GetLength(0) - 2, 0]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y + 10, guest.Position.Y);
 
@@ -246,9 +246,9 @@ namespace HotelSimulatorUnitTest
         public void TestWalkUp()
         {
             Guest guest = new Guest();
-            guest.Current = map[0, 0];
+            guest.Current = map[map.GetLength(0) - 2, 0];
             Point Position = guest.Position;
-            guest.setPath(hotel, map[0, 4]);
+            guest.setPath(hotel, map[map.GetLength(0) - 2, 4]);
             guest.Walk(hotel);
             Assert.AreEqual(Position.Y - 10, guest.Position.Y);
 

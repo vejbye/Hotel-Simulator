@@ -207,6 +207,7 @@ namespace HotelSimulator
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            int godzillatimer = 0;
             try
             {
                 //Gets the requestedfloor and calculates what y coordinate the floor is in.
@@ -286,25 +287,31 @@ namespace HotelSimulator
 
             if (godzilla)
             {
+
                 if (HotelEventManager.Running)
                 {
                     HotelEventManager.Stop();
                 }
-                for (int x = 0; x < Hotel.Map.GetLength(0); x++)
+                godzillatimer++;
+                if (godzillatimer == 10)
                 {
-                    for (int y = 0; y < Hotel.Map.GetLength(1); y++)
+                    for (int x = 0; x < Hotel.Map.GetLength(0); x++)
                     {
+                        for (int y = 0; y < Hotel.Map.GetLength(1); y++)
+                        {
 
-                        if (Hotel.Map[Hotel.Map.GetLength(0) - 1, Hotel.Map.GetLength(1) - 1] == null)
-                        {
-                            break;
+                            if (Hotel.Map[Hotel.Map.GetLength(0) - 1, Hotel.Map.GetLength(1) - 1] == null)
+                            {
+                                break;
+                            }
+                            else if (Hotel.Map[x, y] != null && Hotel.Map[x, y].RoomPosition.Y != 1000)
+                            {
+                                Hotel.Map[x, y] = null;
+                            }
                         }
-                        else if (Hotel.Map[x, y] != null && Hotel.Map[x, y].RoomPosition.Y != 1000)
-                        {
-                            Hotel.Map[x, y] = null;
-                        }
+
                     }
-
+                    godzillatimer = 0;
                 }
             }
 
